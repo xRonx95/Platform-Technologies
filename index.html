@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StackForge — Platform Technologies (IT 211)</title>
+<!-- Browser tab logo -->
+  <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+  <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1220;
+    --bg-elevated:#111B2E;
+    --bg-card:#141F35;
+    --hairline:#243252;
+    --ink:#EDF1F7;
+    --ink-muted:#8B96AC;
+    --ink-faint:#5C6883;
+
+    --l-hardware:#7C8AA3;
+    --l-os:#4F7CFF;
+    --l-virt:#A177FF;
+    --l-cloud:#2FCFC0;
+    --l-security:#F2A93B;
+    --l-enterprise:#FF6E6E;
+
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  img,svg{max-width:100%;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,18,32,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--hairline);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    max-width:1180px;margin:0 auto;padding:16px 32px;
+    gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:18px;letter-spacing:0.02em;}
+  .brand .mark{
+    width:30px;height:30px;border-radius:6px;flex:none;
+    background:linear-gradient(180deg,var(--l-enterprise),var(--l-os));
+    display:flex;flex-direction:column;justify-content:center;gap:2px;padding:5px;
+  }
+  .brand .mark span{display:block;height:2px;border-radius:1px;background:rgba(11,18,32,0.85);}
+  .brand small{color:var(--ink-faint);font-weight:400;font-size:12px;margin-left:2px;}
+
+  .navlinks{display:flex;align-items:center;gap:6px;position:static;}
+  .navlinks > a, .navlinks > .dropdown > button{
+    font-size:14px;color:var(--ink-muted);padding:10px 14px;border-radius:8px;
+    background:none;border:none;font-family:'IBM Plex Sans',sans-serif;cursor:pointer;
+    display:flex;align-items:center;gap:7px;
+  }
+  .navlinks > a:hover,
+  .navlinks > .dropdown > button:hover,
+  .navlinks > .dropdown > button[aria-expanded="true"]{
+    color:var(--ink);background:var(--bg-elevated);
+  }
+
+  .dropdown{position:static;}
+  .caret{font-size:10px;transition:transform .18s ease;color:var(--ink-faint);}
+  .dropdown.is-open .caret{transform:rotate(180deg);}
+
+  .cta{
+    background:var(--l-security);color:#1B1204;font-weight:600;font-size:13.5px;
+    padding:10px 18px;border-radius:8px;font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.02em;white-space:nowrap;flex:none;
+  }
+  .cta:hover{filter:brightness(1.08);}
+
+  /* ---------- FRIENDLIER TUTORIAL MENU ---------- */
+  .megamenu{
+    position:absolute;top:calc(100% + 12px);left:50%;
+    width:min(820px, calc(100vw - 48px));
+    background:var(--bg-elevated);border:1px solid var(--hairline);
+    border-radius:14px;box-shadow:0 26px 70px rgba(0,0,0,0.5);
+    overflow:hidden;
+    opacity:0;visibility:hidden;pointer-events:none;
+    transform:translate(-50%,-6px);
+    transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+  }
+  .dropdown.is-open .megamenu{
+    opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0);
+  }
+
+  .tutorial-menu-head{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+    padding:20px 22px;border-bottom:1px solid var(--hairline);
+    background:rgba(20,31,53,0.7);
+  }
+  .tutorial-menu-head .kicker{
+    display:block;margin-bottom:5px;font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--l-cloud);
+  }
+  .tutorial-menu-head h3{margin:0 0 5px;font-size:17px;line-height:1.25;}
+  .tutorial-menu-head p{margin:0;color:var(--ink-muted);font-size:12.5px;line-height:1.45;}
+  .tutorial-close{
+    width:34px;height:34px;flex:none;border:1px solid var(--hairline);border-radius:8px;
+    background:var(--bg);color:var(--ink-muted);cursor:pointer;font-size:20px;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tutorial-close:hover{color:var(--ink);border-color:var(--ink-faint);}
+
+  .tutorial-menu-layout{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:300px;}
+  .tutorial-categories{
+    padding:14px;border-right:1px solid var(--hairline);background:rgba(11,18,32,0.46);
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .tutorial-category{
+    width:100%;border:1px solid transparent;background:transparent;color:var(--ink-muted);
+    border-radius:9px;padding:11px 12px;cursor:pointer;text-align:left;
+    display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:9px;
+    font-family:'IBM Plex Sans',sans-serif;font-size:13px;
+  }
+  .tutorial-category .dot{width:8px;height:8px;border-radius:50%;}
+  .tutorial-category .count{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-faint);}
+  .tutorial-category:hover{background:var(--bg-card);color:var(--ink);}
+  .tutorial-category.active{
+    background:var(--bg-card);border-color:var(--hairline);color:var(--ink);font-weight:600;
+  }
+
+  .tutorial-content{min-width:0;}
+  .tutorial-panel{display:none;padding:22px 24px;}
+  .tutorial-panel.active{display:block;}
+  .tutorial-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;}
+  .tutorial-panel h4{margin:0 0 5px;font-size:15px;}
+  .tutorial-panel p{margin:0;color:var(--ink-muted);font-size:12.5px;line-height:1.5;}
+  .panel-label{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-faint);
+    border:1px solid var(--hairline);padding:5px 8px;border-radius:20px;white-space:nowrap;
+  }
+  .tutorial-topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .tutorial-topic{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    min-height:64px;padding:12px 14px;border:1px solid var(--hairline);border-radius:9px;
+    background:rgba(20,31,53,0.52);transition:border-color .15s ease, transform .15s ease, background .15s ease;
+  }
+  .tutorial-topic:hover{
+    border-color:var(--ink-faint);background:var(--bg-card);transform:translateY(-1px);
+  }
+  .tutorial-topic .topic-copy{min-width:0;}
+  .tutorial-topic strong{display:block;margin-bottom:3px;font-size:13px;color:var(--ink);font-weight:600;}
+  .tutorial-topic small{display:block;color:var(--ink-faint);font-size:11px;line-height:1.35;}
+  .tutorial-topic .arrow{font-family:'IBM Plex Mono',monospace;color:var(--l-os);font-size:16px;flex:none;}
+
+  .tutorial-menu-foot{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:13px 22px;border-top:1px solid var(--hairline);background:rgba(11,18,32,0.42);
+  }
+  .tutorial-menu-foot span{font-size:11.5px;color:var(--ink-faint);}
+  .tutorial-menu-foot a{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--l-security);}
+  .tutorial-menu-foot a:hover{text-decoration:underline;}
+
+  /* ---------- MOBILE NAV TOGGLE ---------- */
+  .nav-toggle{
+    display:none;
+    width:40px;height:40px;flex:none;
+    border:1px solid var(--hairline);border-radius:8px;background:var(--bg-elevated);
+    align-items:center;justify-content:center;cursor:pointer;
+  }
+  .nav-toggle .bars{width:18px;height:12px;position:relative;}
+  .nav-toggle .bars span{
+    position:absolute;left:0;width:100%;height:2px;background:var(--ink);border-radius:1px;
+    transition:transform .2s ease, opacity .2s ease, top .2s ease;
+  }
+  .nav-toggle .bars span:nth-child(1){top:0;}
+  .nav-toggle .bars span:nth-child(2){top:5px;}
+  .nav-toggle .bars span:nth-child(3){top:10px;}
+  body.nav-open .nav-toggle .bars span:nth-child(1){top:5px;transform:rotate(45deg);}
+  body.nav-open .nav-toggle .bars span:nth-child(2){opacity:0;}
+  body.nav-open .nav-toggle .bars span:nth-child(3){top:5px;transform:rotate(-45deg);}
+
+  .mobile-panel{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 40px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--l-cloud);
+    letter-spacing:0.14em;text-transform:uppercase;margin:0 0 16px;
+  }
+  .hero h1{
+    font-size:44px;line-height:1.12;margin:0 0 18px;font-weight:700;letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:normal;color:var(--l-os);}
+  .hero p.lede{
+    font-size:16.5px;line-height:1.65;color:var(--ink-muted);max-width:52ch;margin:0 0 28px;
+  }
+  .meta-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-muted);
+    border:1px solid var(--hairline);padding:7px 12px;border-radius:20px;
+    display:flex;align-items:center;gap:7px;
+  }
+  .chip b{color:var(--ink);font-weight:600;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--l-os);color:#EEF2FF;font-weight:600;padding:13px 22px;border-radius:8px;
+    font-size:14.5px;font-family:'IBM Plex Mono',monospace;display:inline-block;
+  }
+  .btn-primary:hover{filter:brightness(1.1);}
+  .btn-ghost{
+    border:1px solid var(--hairline);color:var(--ink-muted);padding:13px 22px;border-radius:8px;
+    font-size:14.5px;font-family:'IBM Plex Mono',monospace;display:inline-block;
+  }
+  .btn-ghost:hover{color:var(--ink);border-color:var(--ink-faint);}
+
+  /* Stack diagram — signature element */
+  .stack{display:flex;flex-direction:column-reverse;gap:6px;}
+  .stack-layer{
+    border-radius:8px;padding:16px 18px;border:1px solid rgba(255,255,255,0.06);
+    display:flex;align-items:center;justify-content:space-between;
+    cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;
+    position:relative;overflow:hidden;gap:10px;
+  }
+  .stack-layer:hover{transform:translateX(6px);}
+  .stack-layer .num{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:0.65;margin-right:12px;
+  }
+  .stack-layer .name{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14.5px;}
+  .stack-layer .weeks{font-size:11.5px;font-family:'IBM Plex Mono',monospace;opacity:0.8;white-space:nowrap;}
+  .stack-layer.l6{background:linear-gradient(90deg, rgba(255,110,110,0.16), rgba(255,110,110,0.04));color:var(--l-enterprise);}
+  .stack-layer.l5{background:linear-gradient(90deg, rgba(242,169,59,0.16), rgba(242,169,59,0.04));color:var(--l-security);}
+  .stack-layer.l4{background:linear-gradient(90deg, rgba(47,207,192,0.16), rgba(47,207,192,0.04));color:var(--l-cloud);}
+  .stack-layer.l3{background:linear-gradient(90deg, rgba(161,119,255,0.16), rgba(161,119,255,0.04));color:var(--l-virt);}
+  .stack-layer.l2{background:linear-gradient(90deg, rgba(79,124,255,0.16), rgba(79,124,255,0.04));color:var(--l-os);}
+  .stack-layer.l1{background:linear-gradient(90deg, rgba(124,138,163,0.18), rgba(124,138,163,0.05));color:var(--l-hardware);}
+  .stack-caption{font-size:11.5px;color:var(--ink-faint);text-align:center;margin-top:14px;font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:64px 0;border-top:1px solid var(--hairline);}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px;flex-wrap:wrap;gap:14px;}
+  .section-head h2{font-size:26px;margin:0 0 6px;font-weight:700;}
+  .section-head p{color:var(--ink-muted);margin:0;font-size:14.5px;max-width:60ch;}
+  .layer-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    padding:5px 10px;border-radius:6px;display:inline-block;
+  }
+
+  /* ---------- ROADMAP ---------- */
+  .roadmap-block{margin-bottom:52px;}
+  .roadmap-block:last-child{margin-bottom:0;}
+  .roadmap-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
+  .roadmap-head .bar{width:4px;height:26px;border-radius:2px;flex:none;}
+  .roadmap-head h3{margin:0;font-size:18px;font-weight:600;}
+  .roadmap-head span{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-faint);}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .card{
+    background:var(--bg-card);border:1px solid var(--hairline);border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .card .wk{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);margin-bottom:8px;letter-spacing:0.05em;}
+  .card h4{margin:0 0 8px;font-size:15px;font-weight:600;line-height:1.35;}
+  .card ul{margin:0;padding-left:18px;color:var(--ink-muted);font-size:13px;line-height:1.7;}
+
+  .milestone{
+    border:1px dashed var(--hairline);border-radius:var(--radius);
+    padding:16px 20px;display:flex;align-items:center;justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;color:var(--ink-muted);font-size:13px;margin-bottom:14px;
+    flex-wrap:wrap;gap:8px;
+  }
+  .milestone b{color:var(--ink);}
+
+  /* ---------- CLOs ---------- */
+  .clo-list{display:flex;flex-direction:column;gap:12px;}
+  .clo{
+    display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;
+    background:var(--bg-card);border:1px solid var(--hairline);border-radius:var(--radius);padding:18px 20px;
+  }
+  .clo .id{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--l-os);font-size:15px;}
+  .clo p{margin:0;font-size:14px;color:var(--ink-muted);line-height:1.6;}
+
+  /* ---------- GRADING + INFO ---------- */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .info-card{background:var(--bg-card);border:1px solid var(--hairline);border-radius:var(--radius);padding:26px;}
+  .info-card h3{margin:0 0 18px;font-size:15px;font-weight:600;}
+  .grade-row{display:flex;justify-content:space-between;font-size:13.5px;padding:10px 0;border-bottom:1px solid var(--hairline);gap:10px;}
+  .grade-row:last-child{border-bottom:none;font-weight:700;color:var(--l-security);}
+  .grade-row span:first-child{color:var(--ink-muted);}
+  .fact-row{display:flex;justify-content:space-between;font-size:13.5px;padding:10px 0;border-bottom:1px solid var(--hairline);gap:10px;}
+  .fact-row:last-child{border-bottom:none;}
+  .fact-row span:first-child{color:var(--ink-muted);}
+  .fact-row span:last-child{font-family:'IBM Plex Mono',monospace;text-align:right;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--hairline);padding:34px 0;}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .foot-row .brand{font-size:14px;}
+  footer p{color:var(--ink-faint);font-size:12.5px;margin:0;}
+
+  /* =====================================================
+     RESPONSIVE BREAKPOINTS
+     ===================================================== */
+
+  /* ---- Tablet: ≤920px ---- */
+  @media (max-width:920px){
+    .wrap{padding:0 24px;}
+    nav{padding:14px 24px;}
+    .hero-grid{grid-template-columns:1fr;gap:40px;}
+    .navlinks{display:none;}
+    /* Hide the desktop CTA on tablet/phone. The same CTA is already
+       available inside the mobile menu, so keeping both in the header
+       makes narrow screens overflow. */
+    .desktop-cta{display:none;}
+    .nav-toggle{display:flex;}
+    .megamenu{display:none !important;}
+    .brand{min-width:0;flex:1;}
+    .mobile-panel{max-height:calc(100vh - 68px);overflow-y:auto;}
+    .two-col{grid-template-columns:1fr;}
+    .hero h1{font-size:34px;}
+    .hero{padding:44px 0 32px;}
+    section{padding:48px 0;}
+
+    /* Mobile dropdown panel replaces hover megamenu */
+    .mobile-panel{
+      display:none;
+      max-width:1180px;margin:0 auto;
+      padding:0 24px 18px;
+      border-top:1px solid var(--hairline);
+    }
+    body.nav-open .mobile-panel{display:block;}
+    .mobile-panel .mp-links{display:flex;flex-direction:column;padding-top:14px;}
+    .mobile-panel .mp-links > a{
+      padding:12px 4px;font-size:15px;color:var(--ink-muted);border-bottom:1px solid var(--hairline);
+    }
+    .mobile-panel .mp-group{border-bottom:1px solid var(--hairline);}
+    .mobile-panel .mp-group summary{
+      padding:12px 4px;font-size:15px;color:var(--ink);cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;
+      list-style:none;font-family:'IBM Plex Mono',monospace;
+    }
+    .mobile-panel .mp-group summary::-webkit-details-marker{display:none;}
+    .mobile-panel .mp-group summary::after{content:'+';color:var(--ink-faint);font-size:18px;}
+    .mobile-panel .mp-group[open] summary::after{content:'–';}
+    .mobile-panel .mp-group ul{list-style:none;margin:0;padding:0 4px 14px 4px;display:flex;flex-direction:column;gap:2px;}
+    .mobile-panel .mp-group li a{
+      display:flex;align-items:center;gap:8px;
+      padding:9px 6px;font-size:13.5px;color:var(--ink-muted);border-radius:6px;
+    }
+    .mobile-panel .mp-group li a .dot{width:7px;height:7px;border-radius:50%;flex:none;}
+    .mobile-panel .mp-group li a:active{background:var(--bg-elevated);}
+    .mobile-panel .cta{display:block;text-align:center;margin-top:14px;}
+  }
+
+  /* ---- Phone: ≤600px ---- */
+  @media (max-width:600px){
+    .wrap{padding:0 18px;}
+    nav{padding:12px 18px;}
+    .brand{font-size:15px;white-space:nowrap;}
+    .brand small{display:none;}
+    .hero{padding:32px 0 28px;}
+    .eyebrow{font-size:11px;margin-bottom:12px;}
+    .hero h1{font-size:27px;line-height:1.2;margin-bottom:14px;}
+    .hero p.lede{font-size:14.5px;max-width:none;margin-bottom:22px;}
+    .meta-chips{gap:8px;margin-bottom:24px;}
+    .chip{font-size:11.5px;padding:6px 10px;}
+    .hero-actions{flex-direction:column;gap:10px;}
+    .btn-primary,.btn-ghost{width:100%;text-align:center;padding:14px 18px;}
+
+    .stack-layer{padding:13px 14px;}
+    .stack-layer .num{margin-right:8px;}
+    .stack-layer .name{font-size:12.5px;}
+    .stack-layer .weeks{font-size:10px;}
+    .stack-caption{font-size:10.5px;}
+
+    section{padding:38px 0;}
+    .section-head{margin-bottom:24px;}
+    .section-head h2{font-size:21px;}
+    .section-head p{font-size:13.5px;}
+
+    .roadmap-block{margin-bottom:38px;}
+    .roadmap-head h3{font-size:16px;}
+    .card-grid{grid-template-columns:1fr;gap:12px;}
+    .card{padding:16px 18px;}
+
+    .milestone{flex-direction:column;align-items:flex-start;font-size:12px;padding:14px 16px;}
+
+    .clo{grid-template-columns:1fr;gap:8px;padding:16px 18px;}
+    .clo .id{font-size:13px;}
+
+    .info-card{padding:20px;}
+    .fact-row,.grade-row{font-size:12.5px;flex-wrap:wrap;}
+
+    .foot-row{flex-direction:column;align-items:flex-start;gap:10px;}
+    footer p{font-size:11.5px;}
+
+    .cta{padding:9px 14px;font-size:12.5px;}
+    .nav-toggle{width:38px;height:38px;}
+  }
+
+  /* ---- Very small phones: ≤380px ---- */
+  @media (max-width:380px){
+    nav{padding:10px 14px;}
+    .wrap{padding-left:14px;padding-right:14px;}
+    .brand{font-size:14px;gap:8px;}
+    .brand .mark{width:28px;height:28px;}
+    .nav-toggle{width:36px;height:36px;}
+    .mobile-panel{padding-left:14px;padding-right:14px;}
+    .hero h1{font-size:25px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .stack-layer{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand"><span class="mark"><span></span><span></span><span></span></span>STACKFORGE<small>/ IT 211</small></div>
+    <div class="navlinks">
+      <div class="dropdown" id="tutorialDropdown">
+        <button type="button" id="tutorialToggle" aria-expanded="false" aria-controls="tutorialMenu">
+          Tutorials <span class="caret" aria-hidden="true">▾</span>
+        </button>
+
+        <div class="megamenu" id="tutorialMenu" aria-label="Tutorial library">
+          <div class="tutorial-menu-head">
+            <div>
+              <span class="kicker">Tutorial Library</span>
+              <h3>Choose a learning area</h3>
+              <p>Select a category first, then open the lesson you want to study.</p>
+            </div>
+            <button class="tutorial-close" id="tutorialClose" type="button" aria-label="Close tutorials menu">×</button>
+          </div>
+
+          <div class="tutorial-menu-layout">
+            <div class="tutorial-categories" aria-label="Tutorial categories">
+              <button class="tutorial-category active" type="button" data-panel="tutorial-foundations">
+                <span class="dot" style="background:var(--l-hardware)"></span>
+                <span>Foundations</span><span class="count">04</span>
+              </button>
+              <button class="tutorial-category" type="button" data-panel="tutorial-os">
+                <span class="dot" style="background:var(--l-os)"></span>
+                <span>Windows & Linux</span><span class="count">04</span>
+              </button>
+              <button class="tutorial-category" type="button" data-panel="tutorial-virt">
+                <span class="dot" style="background:var(--l-virt)"></span>
+                <span>Virtualization</span><span class="count">04</span>
+              </button>
+              <button class="tutorial-category" type="button" data-panel="tutorial-cloud">
+                <span class="dot" style="background:var(--l-cloud)"></span>
+                <span>Cloud & Containers</span><span class="count">04</span>
+              </button>
+              <button class="tutorial-category" type="button" data-panel="tutorial-security">
+                <span class="dot" style="background:var(--l-security)"></span>
+                <span>Security & Ops</span><span class="count">04</span>
+              </button>
+              <button class="tutorial-category" type="button" data-panel="tutorial-capstone">
+                <span class="dot" style="background:var(--l-enterprise)"></span>
+                <span>Capstone</span><span class="count">04</span>
+              </button>
+            </div>
+
+            <div class="tutorial-content">
+              <section class="tutorial-panel active" id="tutorial-foundations">
+                <div class="tutorial-panel-head">
+                  <div><h4>Foundations</h4><p>Start with platforms, operating systems, and file-system concepts.</p></div>
+                  <span class="panel-label">START HERE</span>
+                </div>
+                <div class="tutorial-topic-grid">
+                  <a class="tutorial-topic" href="Foundations/platform.html"><span class="topic-copy"><strong>What Is a Platform?</strong><small>Platform concepts and computing environments</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Foundations/foundations.html"><span class="topic-copy"><strong>Desktop, Mobile & Embedded</strong><small>Compare common computing platforms</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Foundations/os.html"><span class="topic-copy"><strong>OS: Process & Memory</strong><small>Core operating-system responsibilities</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Foundations/filesystems.html"><span class="topic-copy"><strong>File Systems</strong><small>Files, directories, storage, and structure</small></span><span class="arrow">→</span></a>
+                </div>
+              </section>
+
+              <section class="tutorial-panel" id="tutorial-os">
+                <div class="tutorial-panel-head">
+                  <div><h4>Windows & Linux</h4><p>Install, administer, and manage Windows and Linux systems.</p></div>
+                  <span class="panel-label">WEEKS 4–6, 10</span>
+                </div>
+                <div class="tutorial-topic-grid">
+                  <a class="tutorial-topic" href="Cloud%20%26%20Containers/windows.html"><span class="topic-copy"><strong>Windows Install & Partitioning</strong><small>Installation, disks, partitions, and file systems</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Cloud%20%26%20Containers/windows-server.html"><span class="topic-copy"><strong>Windows Server & AD</strong><small>Server roles and Active Directory fundamentals</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Cloud%20%26%20Containers/linux.html"><span class="topic-copy"><strong>Linux Distros & Shell</strong><small>Distributions, terminal navigation, and commands</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Cloud%20%26%20Containers/linux-users.html"><span class="topic-copy"><strong>Users, Permissions, Packages</strong><small>Accounts, access control, and package management</small></span><span class="arrow">→</span></a>
+                </div>
+              </section>
+
+              <section class="tutorial-panel" id="tutorial-virt">
+                <div class="tutorial-panel-head">
+                  <div><h4>Virtualization</h4><p>Learn hypervisors, virtual machines, and virtual networking.</p></div>
+                  <span class="panel-label">WEEKS 7–8</span>
+                </div>
+                <div class="tutorial-topic-grid">
+                  <a class="tutorial-topic" href="Virtualization/typehypervisor.html"><span class="topic-copy"><strong>Type 1 vs Type 2 Hypervisors</strong><small>Understand hypervisor architectures</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Virtualization/Virualbox.html"><span class="topic-copy"><strong>VirtualBox & VMware</strong><small>Compare desktop virtualization tools</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Virtualization/VM.html"><span class="topic-copy"><strong>Building Virtual Machines</strong><small>Create and configure virtual machines</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="Virtualization/VNetworking.html"><span class="topic-copy"><strong>Virtual Networking</strong><small>NAT, bridged, and host-only networking</small></span><span class="arrow">→</span></a>
+                </div>
+              </section>
+
+              <section class="tutorial-panel" id="tutorial-cloud">
+                <div class="tutorial-panel-head">
+                  <div><h4>Cloud & Containers</h4><p>Move from cloud service models to practical container workflows.</p></div>
+                  <span class="panel-label">WEEKS 11–12</span>
+                </div>
+                <div class="tutorial-topic-grid">
+                  <a class="tutorial-topic" href="#cloud-layer"><span class="topic-copy"><strong>IaaS, PaaS, SaaS</strong><small>Compare cloud service models</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#cloud-layer"><span class="topic-copy"><strong>AWS, Azure, Google Cloud</strong><small>Survey major cloud platforms</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#cloud-layer"><span class="topic-copy"><strong>Docker Fundamentals</strong><small>Images, containers, ports, and volumes</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#cloud-layer"><span class="topic-copy"><strong>Docker Compose</strong><small>Define and run multi-container applications</small></span><span class="arrow">→</span></a>
+                </div>
+              </section>
+
+              <section class="tutorial-panel" id="tutorial-security">
+                <div class="tutorial-panel-head">
+                  <div><h4>Security & Ops</h4><p>Protect platforms and keep systems observable and reliable.</p></div>
+                  <span class="panel-label">WEEKS 13–16</span>
+                </div>
+                <div class="tutorial-topic-grid">
+                  <a class="tutorial-topic" href="#security-layer"><span class="topic-copy"><strong>OS Hardening</strong><small>Reduce attack surface and secure configurations</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#security-layer"><span class="topic-copy"><strong>Firewalls & Backups</strong><small>Filtering, recovery, and resilience</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#security-layer"><span class="topic-copy"><strong>Performance Monitoring</strong><small>Observe resources and diagnose bottlenecks</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#security-layer"><span class="topic-copy"><strong>Capacity Planning</strong><small>Forecast resources and growth requirements</small></span><span class="arrow">→</span></a>
+                </div>
+              </section>
+
+              <section class="tutorial-panel" id="tutorial-capstone">
+                <div class="tutorial-panel-head">
+                  <div><h4>Capstone</h4><p>Plan, integrate, document, and defend a complete platform solution.</p></div>
+                  <span class="panel-label">WEEKS 15, 17</span>
+                </div>
+                <div class="tutorial-topic-grid">
+                  <a class="tutorial-topic" href="#enterprise-layer"><span class="topic-copy"><strong>Deployment Planning</strong><small>Prepare architecture, rollout, and risk plans</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#enterprise-layer"><span class="topic-copy"><strong>Migration & Integration</strong><small>Connect services and move workloads safely</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#enterprise-layer"><span class="topic-copy"><strong>Technical Documentation</strong><small>Record configuration, procedures, and evidence</small></span><span class="arrow">→</span></a>
+                  <a class="tutorial-topic" href="#enterprise-layer"><span class="topic-copy"><strong>Project Defense</strong><small>Present, demonstrate, and justify the solution</small></span><span class="arrow">→</span></a>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="tutorial-menu-foot">
+            <span>Tip: choose a category on the left to avoid scanning all 24 lessons at once.</span>
+            <a href="#roadmap">VIEW FULL ROADMAP →</a>
+          </div>
+        </div>
+      </div>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#clos">Outcomes</a>
+      <a href="#course-info">Syllabus</a>
+    </div>
+    <a class="cta desktop-cta" href="#roadmap">START LEARNING</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu panel -->
+  <div class="mobile-panel" id="mobilePanel">
+    <div class="mp-links">
+      <a href="#roadmap">Roadmap</a>
+      <a href="#clos">Outcomes</a>
+      <a href="#course-info">Syllabus</a>
+
+      <details class="mp-group">
+        <summary>Foundations</summary>
+        <ul>
+          <li><a href="Foundations/platform.html"><span class="dot" style="background:var(--l-hardware)"></span>What Is a Platform?</a></li>
+          <li><a href="Foundations/foundations.html"><span class="dot" style="background:var(--l-hardware)"></span>Desktop, Mobile & Embedded</a></li>
+          <li><a href="Foundations/os.html"><span class="dot" style="background:var(--l-hardware)"></span>OS: Process & Memory</a></li>
+          <li><a href="Foundations/filesystems.html"><span class="dot" style="background:var(--l-hardware)"></span>File Systems</a></li>
+        </ul>
+      </details>
+
+      <details class="mp-group">
+        <summary>Windows & Linux</summary>
+        <ul>
+          <li><a href="Cloud%20%26%20Containers/windows.html"><span class="dot" style="background:var(--l-os)"></span>Windows Install & Partitioning</a></li>
+          <li><a href="Cloud%20%26%20Containers/windows-server.html"><span class="dot" style="background:var(--l-os)"></span>Windows Server & AD</a></li>
+          <li><a href="Cloud%20%26%20Containers/linux.html"><span class="dot" style="background:var(--l-os)"></span>Linux Distros & Shell</a></li>
+          <li><a href="Cloud%20%26%20Containers/linux-users.html"><span class="dot" style="background:var(--l-os)"></span>Users, Permissions, Packages</a></li>
+        </ul>
+      </details>
+
+      <details class="mp-group">
+        <summary>Virtualization</summary>
+        <ul>
+          <li><a href="Virtualization/typehypervisor.html"><span class="dot" style="background:var(--l-virt)"></span>Type 1 vs Type 2 Hypervisors</a></li>
+          <li><a href="Virtualization/Virualbox.html"><span class="dot" style="background:var(--l-virt)"></span>VirtualBox & VMware</a></li>
+          <li><a href="Virtualization/VM.html"><span class="dot" style="background:var(--l-virt)"></span>Building Virtual Machines</a></li>
+          <li><a href="Virtualization/VNetworking.html"><span class="dot" style="background:var(--l-virt)"></span>Virtual Networking</a></li>
+        </ul>
+      </details>
+
+      <details class="mp-group">
+        <summary>Cloud & Containers</summary>
+        <ul>
+          <li><a href="#cloud-layer"><span class="dot" style="background:var(--l-cloud)"></span>IaaS, PaaS, SaaS</a></li>
+          <li><a href="#cloud-layer"><span class="dot" style="background:var(--l-cloud)"></span>AWS, Azure, Google Cloud</a></li>
+          <li><a href="#cloud-layer"><span class="dot" style="background:var(--l-cloud)"></span>Docker Fundamentals</a></li>
+          <li><a href="#cloud-layer"><span class="dot" style="background:var(--l-cloud)"></span>Docker Compose</a></li>
+        </ul>
+      </details>
+
+      <details class="mp-group">
+        <summary>Security & Ops</summary>
+        <ul>
+          <li><a href="#security-layer"><span class="dot" style="background:var(--l-security)"></span>OS Hardening</a></li>
+          <li><a href="#security-layer"><span class="dot" style="background:var(--l-security)"></span>Firewalls & Backups</a></li>
+          <li><a href="#security-layer"><span class="dot" style="background:var(--l-security)"></span>Performance Monitoring</a></li>
+          <li><a href="#security-layer"><span class="dot" style="background:var(--l-security)"></span>Capacity Planning</a></li>
+        </ul>
+      </details>
+
+      <details class="mp-group">
+        <summary>Capstone</summary>
+        <ul>
+          <li><a href="#enterprise-layer"><span class="dot" style="background:var(--l-enterprise)"></span>Deployment Planning</a></li>
+          <li><a href="#enterprise-layer"><span class="dot" style="background:var(--l-enterprise)"></span>Migration & Integration</a></li>
+          <li><a href="#enterprise-layer"><span class="dot" style="background:var(--l-enterprise)"></span>Technical Documentation</a></li>
+          <li><a href="#enterprise-layer"><span class="dot" style="background:var(--l-enterprise)"></span>Project Defense</a></li>
+        </ul>
+      </details>
+
+      <a class="cta" href="#roadmap">START LEARNING</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none;">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">IT 211 · Prerequisite IT 101</p>
+      <h1>Build the <em>stack</em> that runs<br>every business system.</h1>
+      <p class="lede">From bare hardware to Windows and Linux, through virtualization, cloud, containers, and security — Platform Technologies walks you up every layer a real IT operation depends on, one hands-on lab at a time.</p>
+      <div class="meta-chips">
+        <div class="chip">🕘 <b>3 units</b> · 90 hrs / 18 weeks</div>
+        <div class="chip">🧭 <b>18</b> weekly modules</div>
+        <div class="chip">🧪 <b>6</b> lab rubrics</div>
+        <div class="chip">🎓 Capstone deployment project</div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#roadmap">View the roadmap →</a>
+        <a class="btn-ghost" href="#course-info">Course details</a>
+      </div>
+    </div>
+    <div>
+      <div class="stack">
+        <div class="stack-layer l1" onclick="location.hash='foundations'">
+          <div><span class="num">01</span><span class="name">Hardware & OS Foundations</span></div>
+          <span class="weeks">WEEKS 1–3</span>
+        </div>
+        <div class="stack-layer l2" onclick="location.hash='os-layer'">
+          <div><span class="num">02</span><span class="name">Windows & Linux Administration</span></div>
+          <span class="weeks">WEEKS 4–6, 10</span>
+        </div>
+        <div class="stack-layer l3" onclick="location.hash='virt-layer'">
+          <div><span class="num">03</span><span class="name">Virtualization</span></div>
+          <span class="weeks">WEEKS 7–8</span>
+        </div>
+        <div class="stack-layer l4" onclick="location.hash='cloud-layer'">
+          <div><span class="num">04</span><span class="name">Cloud & Containers</span></div>
+          <span class="weeks">WEEKS 11–12</span>
+        </div>
+        <div class="stack-layer l5" onclick="location.hash='security-layer'">
+          <div><span class="num">05</span><span class="name">Security & Performance</span></div>
+          <span class="weeks">WEEKS 13–14, 16</span>
+        </div>
+        <div class="stack-layer l6" onclick="location.hash='enterprise-layer'">
+          <div><span class="num">06</span><span class="name">Enterprise Deployment & Capstone</span></div>
+          <span class="weeks">WEEKS 15, 17</span>
+        </div>
+      </div>
+      <p class="stack-caption">↳ every module sits on the one beneath it — click a layer to jump in</p>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>18-week roadmap</h2>
+        <p>Grouped the way the stack is actually built — bottom-up. Each block below corresponds to one band in the diagram above.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-block" id="foundations">
+      <div class="roadmap-head"><span class="bar" style="background:var(--l-hardware)"></span><h3>Hardware & OS Foundations</h3><span>WEEKS 1–3</span></div>
+      <div class="card-grid">
+        <div class="card"><div class="wk">WEEK 1</div><h4>Introduction to Platform Technologies</h4><ul><li>Computing platforms & operating environments</li><li>Hardware vs. software platforms</li><li>Role of platforms in business & IT</li></ul></div>
+        <div class="card"><div class="wk">WEEK 2</div><h4>Types of Computing Platforms</h4><ul><li>Desktop, mobile, enterprise platforms</li><li>Embedded systems</li><li>Matching a platform to a use case</li></ul></div>
+        <div class="card"><div class="wk">WEEK 3</div><h4>Operating System Fundamentals</h4><ul><li>Process & memory management</li><li>File systems</li><li>Comparing major OS architectures</li></ul></div>
+      </div>
+    </div>
+
+    <div class="roadmap-block" id="os-layer">
+      <div class="roadmap-head"><span class="bar" style="background:var(--l-os)"></span><h3>Windows & Linux Administration</h3><span>WEEKS 4–6, 10</span></div>
+      <div class="card-grid">
+        <div class="card"><div class="wk">WEEK 4</div><h4>Microsoft Windows</h4><ul><li>Editions & install requirements</li><li>Disk partitioning & file systems</li></ul></div>
+        <div class="card"><div class="wk">WEEK 5</div><h4>Linux Fundamentals</h4><ul><li>Distributions & directory structure</li><li>Core command-line navigation</li></ul></div>
+        <div class="card"><div class="wk">WEEK 6</div><h4>Linux User & Package Administration</h4><ul><li>Users, groups & permissions</li><li>Package managers & security basics</li></ul></div>
+        <div class="card"><div class="wk">WEEK 10</div><h4>Windows Server Fundamentals</h4><ul><li>Server roles & features</li><li>Active Directory overview</li></ul></div>
+      </div>
+      <div class="milestone">📝 <b>Week 9 — Midterm Examination</b> · covers Weeks 1–8</div>
+    </div>
+
+    <div class="roadmap-block" id="virt-layer">
+      <div class="roadmap-head"><span class="bar" style="background:var(--l-virt)"></span><h3>Virtualization</h3><span>WEEKS 7–8</span></div>
+      <div class="card-grid">
+        <div class="card"><div class="wk">WEEKS 7–8</div><h4>Hypervisors & Virtual Machines</h4><ul><li>Type 1 vs. Type 2 hypervisors</li><li>Oracle VirtualBox & VMware Workstation</li><li>Creating, cloning & networking VMs</li></ul></div>
+      </div>
+    </div>
+
+    <div class="roadmap-block" id="cloud-layer">
+      <div class="roadmap-head"><span class="bar" style="background:var(--l-cloud)"></span><h3>Cloud & Containers</h3><span>WEEKS 11–12</span></div>
+      <div class="card-grid">
+        <div class="card"><div class="wk">WEEK 11</div><h4>Cloud Computing Fundamentals</h4><ul><li>IaaS, PaaS, SaaS</li><li>Public, private & hybrid cloud</li><li>AWS, Azure, Google Cloud</li></ul></div>
+        <div class="card"><div class="wk">WEEK 12</div><h4>Containerization</h4><ul><li>Docker images & containers</li><li>Docker Compose basics</li></ul></div>
+      </div>
+    </div>
+
+    <div class="roadmap-block" id="security-layer">
+      <div class="roadmap-head"><span class="bar" style="background:var(--l-security)"></span><h3>Security & Performance</h3><span>WEEKS 13–14, 16</span></div>
+      <div class="card-grid">
+        <div class="card"><div class="wk">WEEK 13</div><h4>Platform Security</h4><ul><li>OS hardening</li><li>Firewall configuration</li><li>Backup & recovery</li></ul></div>
+        <div class="card"><div class="wk">WEEK 14</div><h4>Monitoring & Performance</h4><ul><li>Resource monitoring tools</li><li>Troubleshooting techniques</li></ul></div>
+        <div class="card"><div class="wk">WEEK 16</div><h4>Performance Evaluation</h4><ul><li>Benchmarking & optimization</li><li>Capacity planning</li></ul></div>
+      </div>
+    </div>
+
+    <div class="roadmap-block" id="enterprise-layer">
+      <div class="roadmap-head"><span class="bar" style="background:var(--l-enterprise)"></span><h3>Enterprise Deployment & Capstone</h3><span>WEEKS 15, 17</span></div>
+      <div class="card-grid">
+        <div class="card"><div class="wk">WEEK 15</div><h4>Enterprise Platform Deployment</h4><ul><li>Deployment planning & strategy</li><li>Migration & integration</li><li>Deployment documentation</li></ul></div>
+        <div class="card"><div class="wk">WEEK 17</div><h4>Capstone Project Presentation</h4><ul><li>Design & implement a platform solution</li><li>System demonstration & oral defense</li></ul></div>
+      </div>
+      <div class="milestone" style="margin-top:14px;">📝 <b>Week 18 — Final Examination</b> · covers Weeks 10–17</div>
+    </div>
+  </div>
+</section>
+
+<section id="clos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Course learning outcomes</h2>
+        <p>By the end of the course, you'll be able to:</p>
+      </div>
+    </div>
+    <div class="clo-list">
+      <div class="clo"><span class="id">CLO 1</span><p>Explain the concepts and characteristics of various computing platforms and operating environments.</p></div>
+      <div class="clo"><span class="id">CLO 2</span><p>Compare platform technologies based on organizational requirements and constraints.</p></div>
+      <div class="clo"><span class="id">CLO 3</span><p>Install and configure platform technologies for specific applications.</p></div>
+      <div class="clo"><span class="id">CLO 4</span><p>Apply platform technologies in supporting business and IT operations.</p></div>
+      <div class="clo"><span class="id">CLO 5</span><p>Evaluate platform performance and suitability for organizational needs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="course-info">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Course details</h2>
+        <p>IT 211 · Platform Technologies, College of Computing Studies.</p>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="info-card">
+        <h3>Class information</h3>
+        <div class="fact-row"><span>Course number</span><span>IT 211</span></div>
+        <div class="fact-row"><span>Prerequisite</span><span>IT 101</span></div>
+        <div class="fact-row"><span>Credit</span><span>3 units / 90 hrs / 18 wks</span></div>
+        <div class="fact-row"><span>Rooms</span><span>LAB 3 / ICT RM </span></div>
+        <div class="fact-row"><span>Facilitator</span><span>R.J Mayang</span></div>
+        <div class="fact-row"><span>Consultation</span><span>Mon 1–2:00 PM & Tue, 10–11:30 AM</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Grade weight</h3>
+        <div class="grade-row"><span>Attendance</span><span>5%</span></div>
+        <div class="grade-row"><span>Problem/Project-based tasks</span><span>20%</span></div>
+        <div class="grade-row"><span>Task performance</span><span>15%</span></div>
+        <div class="grade-row"><span>Short tests & quizzes</span><span>10%</span></div>
+        <div class="grade-row"><span>Midterm / Final exam</span><span>50%</span></div>
+        <div class="grade-row"><span>Total</span><span>100%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="brand"><span class="mark"><span></span><span></span><span></span></span>STACKFORGE</div>
+    <p>IT 211 — Platform Technologies · A.Y. 2026–2027, First Semester</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    /* ===== Desktop tutorial menu ===== */
+    var dropdown = document.getElementById('tutorialDropdown');
+    var tutorialToggle = document.getElementById('tutorialToggle');
+    var tutorialClose = document.getElementById('tutorialClose');
+    var categoryButtons = document.querySelectorAll('.tutorial-category');
+    var tutorialPanels = document.querySelectorAll('.tutorial-panel');
+
+    function setTutorialMenu(open){
+      if(!dropdown || !tutorialToggle) return;
+      dropdown.classList.toggle('is-open', open);
+      tutorialToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    if(dropdown && tutorialToggle){
+      tutorialToggle.addEventListener('click', function(e){
+        e.stopPropagation();
+        setTutorialMenu(!dropdown.classList.contains('is-open'));
+      });
+
+      if(tutorialClose){
+        tutorialClose.addEventListener('click', function(){
+          setTutorialMenu(false);
+          tutorialToggle.focus();
+        });
+      }
+
+      categoryButtons.forEach(function(button){
+        button.addEventListener('click', function(){
+          var targetId = button.getAttribute('data-panel');
+
+          categoryButtons.forEach(function(item){
+            item.classList.toggle('active', item === button);
+          });
+
+          tutorialPanels.forEach(function(panel){
+            panel.classList.toggle('active', panel.id === targetId);
+          });
+        });
+      });
+
+      dropdown.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', function(){
+          setTutorialMenu(false);
+        });
+      });
+
+      document.addEventListener('click', function(e){
+        if(dropdown.classList.contains('is-open') && !dropdown.contains(e.target)){
+          setTutorialMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && dropdown.classList.contains('is-open')){
+          setTutorialMenu(false);
+          tutorialToggle.focus();
+        }
+      });
+    }
+
+    /* ===== Mobile navigation ===== */
+    var toggle = document.getElementById('navToggle');
+    var panel = document.getElementById('mobilePanel');
+
+    if(toggle && panel){
+      toggle.addEventListener('click', function(){
+        var isOpen = document.body.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        setTutorialMenu(false);
+      });
+
+      // Close mobile panel when a link inside it is tapped.
+      panel.addEventListener('click', function(e){
+        if(e.target.closest('a')){
+          document.body.classList.remove('nav-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    /* Keep navigation state clean when crossing the desktop/mobile breakpoint. */
+    window.addEventListener('resize', function(){
+      if(window.innerWidth <= 920){
+        setTutorialMenu(false);
+      }else if(toggle){
+        document.body.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

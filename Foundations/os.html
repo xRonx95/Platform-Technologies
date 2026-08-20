@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS: Process & Memory - Platform Technologies</title>
+    
+    <!-- Browser tab logo -->
+    <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+    <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+       <link rel="stylesheet" href="../css/Foundation/os.css">
+   
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-home">Home</a>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">&#9776;</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>Operating System: Process & Memory Management</h1>
+        <p>Platform Technologies - Comprehensive Lecture Series</p>
+    </header>
+
+    <div class="main-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <span class="sidebar-title">On This Page</span>
+            <ul class="sidebar-nav">
+                <li><a href="#section1" class="nav-link"><span class="section-number">1</span> Introduction to Processes</a></li>
+                <li><a href="#section2" class="nav-link"><span class="section-number">2</span> Process States & Lifecycle</a></li>
+                <li><a href="#section3" class="nav-link"><span class="section-number">3</span> Process Control Block</a></li>
+                <li><a href="#section4" class="nav-link"><span class="section-number">4</span> Memory Management Intro</a></li>
+                <li><a href="#section5" class="nav-link"><span class="section-number">5</span> Virtual Memory</a></li>
+                <li><a href="#section6" class="nav-link"><span class="section-number">6</span> Memory Allocation Strategies</a></li>
+                <li><a href="#section7" class="nav-link"><span class="section-number">7</span> Process Memory Segments</a></li>
+                <li><a href="#section8" class="nav-link"><span class="section-number">8</span> Synchronization & Communication</a></li>
+                <li><a href="#section9" class="nav-link"><span class="section-number">9</span> Practical Considerations</a></li>
+                <li><a href="#section10" class="nav-link"><span class="section-number">10</span> Summary & Key Takeaways</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <div class="container">
+                <!-- SECTION 1: Introduction to Processes -->
+                <section id="section1">
+                    <h2>1. Introduction to Operating System Processes</h2>
+                    
+                    <h3>What is a Process?</h3>
+                    <p>A process is an instance of a program in execution. Unlike a program, which is a passive collection of instructions stored on disk, a process is an active entity with allocated system resources including memory, CPU time, file descriptors, and other resources necessary for program execution.</p>
+                    
+                    <div class="definition-box">
+                        <strong>Definition:</strong> A process is a program in execution that includes the program code, current activity status, allocated memory, open files, and assigned resources needed to run the program on a computer system.
+                    </div>
+
+                    <h3>Process vs Program</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Program</th>
+                                <th>Process</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Nature</strong></td>
+                                <td>Passive, static</td>
+                                <td>Active, dynamic</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Storage</strong></td>
+                                <td>Stored on disk</td>
+                                <td>Loaded in memory (RAM)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Execution</strong></td>
+                                <td>Not executing</td>
+                                <td>Currently executing or waiting</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resources</strong></td>
+                                <td>No system resources allocated</td>
+                                <td>Has allocated CPU time, memory, I/O devices</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Instances</strong></td>
+                                <td>Single entity on disk</td>
+                                <td>Multiple processes from one program</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight-box">
+                        <strong>Key Insight:</strong> You can run multiple instances of the same program simultaneously, creating multiple processes. For example, opening Google Chrome multiple times creates separate processes, each with its own memory space and resources.
+                    </div>
+
+                    <h3>Process Characteristics</h3>
+                    <ul>
+                        <li><strong>Unique Process ID (PID):</strong> Every process receives a unique identifier assigned by the operating system</li>
+                        <li><strong>Memory Space:</strong> Each process has its own isolated virtual memory space</li>
+                        <li><strong>CPU Time:</strong> Processes receive CPU time according to scheduling algorithms</li>
+                        <li><strong>State:</strong> Processes transition between different states (Running, Waiting, Ready, etc.)</li>
+                        <li><strong>Resources:</strong> Access to system resources managed and controlled by the OS</li>
+                    </ul>
+                </section>
+
+                <!-- SECTION 2: Process States -->
+                <section id="section2">
+                    <h2>2. Process States and Lifecycle</h2>
+                    
+                    <h3>Understanding Process States</h3>
+                    <p>During its lifetime, a process transitions between different states. These states represent the current condition and activity level of the process. The operating system continuously manages these state transitions to optimize resource usage and maintain system performance.</p>
+
+                    <h3>Five Main Process States</h3>
+
+                    <div class="step-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>New (Created)</h4>
+                            <p>Process has been created but not yet admitted to the ready queue. The OS is allocating resources for the new process.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Ready</h4>
+                            <p>Process is ready to run and waiting for CPU allocation. It has all necessary resources except CPU time.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Running</h4>
+                            <p>Process is currently executing on the CPU. Only one process per core can be in this state at a time.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Waiting (Blocked)</h4>
+                            <p>Process is waiting for an event (I/O operation, user input) and cannot continue until that event occurs.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Terminated</h4>
+                            <p>Process has finished execution and the OS is freeing its allocated resources.</p>
+                        </div>
+                    </div>
+
+                    <h3>State Transition Diagram</h3>
+                    <div class="diagram-container">
+                        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+                            <!-- Circles for states -->
+                            <circle cx="100" cy="200" r="40" fill="#1e3a8a" stroke="#0ea5e9" stroke-width="3"/>
+                            <text x="100" y="205" text-anchor="middle" fill="white" font-size="12" font-weight="bold">New</text>
+
+                            <circle cx="250" cy="200" r="40" fill="#2563eb" stroke="#0ea5e9" stroke-width="3"/>
+                            <text x="250" y="205" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Ready</text>
+
+                            <circle cx="400" cy="100" r="40" fill="#10b981" stroke="#0ea5e9" stroke-width="3"/>
+                            <text x="400" y="105" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Running</text>
+
+                            <circle cx="550" cy="200" r="40" fill="#f59e0b" stroke="#0ea5e9" stroke-width="3"/>
+                            <text x="550" y="205" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Waiting</text>
+
+                            <circle cx="700" cy="200" r="40" fill="#ef4444" stroke="#0ea5e9" stroke-width="3"/>
+                            <text x="700" y="205" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Terminated</text>
+
+                            <!-- Arrows -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                    <polygon points="0 0, 10 3, 0 6" fill="#1f2937"/>
+                                </marker>
+                            </defs>
+
+                            <!-- New to Ready -->
+                            <path d="M 140 200 L 210 200" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="175" y="190" font-size="11" fill="#1f2937">Admitted</text>
+
+                            <!-- Ready to Running -->
+                            <path d="M 280 170 L 370 130" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="310" y="140" font-size="11" fill="#1f2937">Dispatch</text>
+
+                            <!-- Running to Waiting -->
+                            <path d="M 430 90 L 520 170" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="470" y="120" font-size="11" fill="#1f2937">I/O or Event</text>
+
+                            <!-- Waiting to Ready -->
+                            <path d="M 520 230 L 300 280 Q 275 290 250 240" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="380" y="320" font-size="11" fill="#1f2937">I/O Complete</text>
+
+                            <!-- Running to Terminated -->
+                            <path d="M 435 75 L 665 175" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="540" y="110" font-size="11" fill="#1f2937">Exit</text>
+
+                            <!-- Running to Ready (preemption) -->
+                            <path d="M 375 115 Q 310 140 280 170" stroke="#1f2937" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+                            <text x="320" y="135" font-size="11" fill="#1f2937">Preempt</text>
+                        </svg>
+                    </div>
+                    <p class="diagram-label">Figure 1: Process State Transition Diagram</p>
+
+                    <div class="definition-box">
+                        <strong>Context Switching:</strong> The process of switching from one running process to another. The CPU saves the current process's state and loads the state of the next process. This allows the OS to multitask and share CPU resources among multiple processes.
+                    </div>
+                </section>
+
+                <!-- SECTION 3: Process Control Block -->
+                <section id="section3">
+                    <h2>3. Process Control Block (PCB)</h2>
+                    
+                    <h3>What is a Process Control Block?</h3>
+                    <p>The Process Control Block (PCB), also known as Task Control Block (TCB), is a data structure maintained by the operating system for each process. It contains all information about a process that the OS needs to manage and control its execution. Think of it as a "file folder" for each process that contains all its vital information.</p>
+
+                    <h3>PCB Structure and Components</h3>
+                    <div class="diagram-container">
+                        <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+                            <!-- Main PCB box -->
+                            <rect x="50" y="20" width="500" height="450" fill="white" stroke="#1e3a8a" stroke-width="2" rx="8"/>
+                            
+                            <!-- Title -->
+                            <text x="300" y="45" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e3a8a">Process Control Block (PCB)</text>
+                            
+                            <!-- Fields -->
+                            <g id="fields">
+                                <!-- Process ID -->
+                                <rect x="70" y="70" width="460" height="50" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="1" rx="4"/>
+                                <text x="90" y="92" font-size="12" font-weight="bold" fill="#1e3a8a">Process ID (PID):</text>
+                                <text x="90" y="108" font-size="11" fill="#6b7280">Unique identifier for the process assigned by the OS</text>
+                                
+                                <!-- Program Counter -->
+                                <rect x="70" y="130" width="460" height="50" fill="#f0fdf4" stroke="#10b981" stroke-width="1" rx="4"/>
+                                <text x="90" y="152" font-size="12" font-weight="bold" fill="#1e3a8a">Program Counter (PC):</text>
+                                <text x="90" y="168" font-size="11" fill="#6b7280">Address of the next instruction to be executed</text>
+                                
+                                <!-- Process State -->
+                                <rect x="70" y="190" width="460" height="50" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" rx="4"/>
+                                <text x="90" y="212" font-size="12" font-weight="bold" fill="#1e3a8a">Process State:</text>
+                                <text x="90" y="228" font-size="11" fill="#6b7280">Current state: New, Ready, Running, Waiting, or Terminated</text>
+                                
+                                <!-- Priority -->
+                                <rect x="70" y="250" width="460" height="50" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="1" rx="4"/>
+                                <text x="90" y="272" font-size="12" font-weight="bold" fill="#1e3a8a">Priority Level:</text>
+                                <text x="90" y="288" font-size="11" fill="#6b7280">Process priority for CPU scheduling (0=lowest, 15=highest)</text>
+                                
+                                <!-- Memory Pointers -->
+                                <rect x="70" y="310" width="460" height="50" fill="#fce7f3" stroke="#ec4899" stroke-width="1" rx="4"/>
+                                <text x="90" y="332" font-size="12" font-weight="bold" fill="#1e3a8a">Memory Pointers:</text>
+                                <text x="90" y="348" font-size="11" fill="#6b7280">Pointers to: code segment, data segment, stack segment</text>
+                                
+                                <!-- I/O Status -->
+                                <rect x="70" y="370" width="460" height="50" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="1" rx="4"/>
+                                <text x="90" y="392" font-size="12" font-weight="bold" fill="#1e3a8a">I/O Status Information:</text>
+                                <text x="90" y="408" font-size="11" fill="#6b7280">List of devices allocated to the process, open files</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="diagram-label">Figure 2: Components of Process Control Block</p>
+
+                    <h3>PCB Components in Detail</h3>
+                    <ul>
+                        <li>
+                            <strong>Process Identification:</strong> Contains PID, parent process ID (PPID), user ID, and group ID for identifying the process uniquely in the system.
+                        </li>
+                        <li>
+                            <strong>Processor State Information:</strong> Includes program counter, CPU registers, stack pointer, and status word - essential for context switching.
+                        </li>
+                        <li>
+                            <strong>Process Control Information:</strong> Stores process state, priority, signal handlers, and scheduling information.
+                        </li>
+                        <li>
+                            <strong>Memory Management Information:</strong> Contains pointers to code, data, and stack segments; page tables for virtual memory.
+                        </li>
+                        <li>
+                            <strong>I/O Status Information:</strong> Lists allocated devices, open files, and pending I/O requests.
+                        </li>
+                        <li>
+                            <strong>Accounting Information:</strong> Tracks CPU time used, elapsed time, and resource usage statistics.
+                        </li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <strong>Important Note:</strong> The PCB is crucial for context switching. When a process is preempted, all its information is saved in the PCB. When it's time to run again, the OS reads from the PCB to restore the process state exactly as it was before.
+                    </div>
+                </section>
+
+                <!-- SECTION 4: Memory Management Introduction -->
+                <section id="section4">
+                    <h2>4. Introduction to Memory Management</h2>
+                    
+                    <h3>Why Memory Management Matters</h3>
+                    <p>Memory is one of the most critical resources in a computer system. Effective memory management ensures that multiple processes can run simultaneously without interfering with each other, that memory is used efficiently, and that system performance is optimized. The operating system must allocate and deallocate memory, protect memory from unauthorized access, and manage the virtual address space.</p>
+
+                    <h3>Memory Hierarchy</h3>
+                    <p>Computer memory exists in a hierarchy from fast but small to slow but large:</p>
+                    
+                    <div class="diagram-container">
+                        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+                            <!-- CPU Registers -->
+                            <rect x="50" y="20" width="300" height="60" fill="#1e3a8a" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="200" y="40" text-anchor="middle" font-size="13" font-weight="bold" fill="white">CPU Registers</text>
+                            <text x="200" y="58" text-anchor="middle" font-size="10" fill="#e0e7ff">~1 KB | Fastest</text>
+
+                            <!-- L1 Cache -->
+                            <rect x="40" y="100" width="320" height="60" fill="#2563eb" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="200" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="white">L1 Cache</text>
+                            <text x="200" y="138" text-anchor="middle" font-size="10" fill="#e0e7ff">~32-64 KB | Very Fast</text>
+
+                            <!-- L2 Cache -->
+                            <rect x="30" y="180" width="340" height="60" fill="#3b82f6" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="200" y="200" text-anchor="middle" font-size="13" font-weight="bold" fill="white">L2 Cache</text>
+                            <text x="200" y="218" text-anchor="middle" font-size="10" fill="#e0e7ff">~256 KB-1 MB | Fast</text>
+
+                            <!-- Main Memory (RAM) -->
+                            <rect x="20" y="260" width="360" height="60" fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="200" y="280" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Main Memory (RAM)</text>
+                            <text x="200" y="298" text-anchor="middle" font-size="10" fill="white">~8 GB - 64 GB | Medium Speed</text>
+
+                            <!-- Secondary Storage -->
+                            <rect x="10" y="340" width="380" height="60" fill="#6b7280" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="200" y="360" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Secondary Storage (SSD/HDD)</text>
+                            <text x="200" y="378" text-anchor="middle" font-size="10" fill="#e0e7ff">~500 GB - 2 TB | Slowest</text>
+
+                            <!-- Legend -->
+                            <text x="50" y="430" font-size="11" fill="#1f2937">Speed: Top to Bottom ↓</text>
+                            <text x="50" y="450" font-size="11" fill="#1f2937">Cost & Size: Top to Bottom ↑</text>
+                        </svg>
+                    </div>
+                    <p class="diagram-label">Figure 3: Memory Hierarchy</p>
+
+                    <h3>Types of Memory</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Memory Type</th>
+                                <th>Size</th>
+                                <th>Speed</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Registers</strong></td>
+                                <td>Bytes (32-64 bit)</td>
+                                <td>Nanoseconds</td>
+                                <td>CPU-internal storage for immediate operations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cache</strong></td>
+                                <td>KB - MB</td>
+                                <td>Nanoseconds</td>
+                                <td>Bridge between CPU and RAM for frequently used data</td>
+                            </tr>
+                            <tr>
+                                <td><strong>RAM</strong></td>
+                                <td>GB</td>
+                                <td>Microseconds</td>
+                                <td>Main memory for running programs and data</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Storage</strong></td>
+                                <td>TB</td>
+                                <td>Milliseconds</td>
+                                <td>Persistent storage for programs and files</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- SECTION 5: Virtual Memory -->
+                <section id="section5">
+                    <h2>5. Virtual Memory</h2>
+                    
+                    <h3>Concept of Virtual Memory</h3>
+                    <p>Virtual memory is a memory management technique that allows processes to use memory addresses that are not directly mapped to physical RAM. Instead, the operating system maintains a virtual address space for each process and uses a Memory Management Unit (MMU) to translate virtual addresses to physical addresses. This abstraction provides several important advantages.</p>
+
+                    <div class="definition-box">
+                        <strong>Virtual Memory:</strong> A technique that gives each process the illusion of having access to a large, contiguous block of memory, even though the actual physical memory may be fragmented or smaller than the virtual address space.
+                    </div>
+
+                    <h3>Benefits of Virtual Memory</h3>
+                    <ul>
+                        <li><strong>Process Isolation:</strong> Each process has its own virtual address space, protecting processes from interfering with each other's memory.</li>
+                        <li><strong>Memory Abstraction:</strong> Programs don't need to know about actual physical memory layout.</li>
+                        <li><strong>Efficient Memory Usage:</strong> Allows more processes to run than would fit in physical RAM simultaneously.</li>
+                        <li><strong>Flexibility:</strong> Processes can be relocated in physical memory without affecting their execution.</li>
+                        <li><strong>Security:</strong> Prevents unauthorized access to memory of other processes or the kernel.</li>
+                    </ul>
+
+                    <h3>Virtual Memory Implementation: Paging</h3>
+                    <p>Paging is the most common technique for implementing virtual memory. Memory is divided into fixed-size chunks called pages (typically 4 KB).</p>
+
+                    <div class="step-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Virtual Address Space</h4>
+                            <p>Each process sees a continuous memory space from address 0 to maximum address (e.g., 2^32 for 32-bit systems).</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Virtual Pages</h4>
+                            <p>Virtual memory is divided into fixed-size pages (e.g., 4 KB each).</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Page Frames</h4>
+                            <p>Physical RAM is divided into page frames of the same size as pages.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Page Table</h4>
+                            <p>Maps virtual pages to physical page frames, maintained by the OS.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Page Faults</h4>
+                            <p>When a virtual page is not in memory, a page fault occurs and the OS must fetch it from disk.</p>
+                        </div>
+                    </div>
+
+                    <h3>Virtual to Physical Address Translation</h3>
+                    <div class="diagram-container">
+                        <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+                            <!-- Virtual Address -->
+                            <rect x="30" y="30" width="180" height="80" fill="#1e3a8a" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="120" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Virtual Address</text>
+                            <text x="120" y="75" text-anchor="middle" font-size="11" fill="#e0e7ff">Page Number</text>
+                            <text x="120" y="90" text-anchor="middle" font-size="11" fill="#e0e7ff">Offset</text>
+
+                            <!-- Arrow 1 -->
+                            <path d="M 230 70 L 280 70" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="255" y="60" text-anchor="middle" font-size="10" fill="#1f2937">Translation</text>
+
+                            <!-- Page Table -->
+                            <rect x="290" y="20" width="150" height="100" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="365" y="40" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">Page Table</text>
+                            <text x="365" y="60" text-anchor="middle" font-size="10" fill="#1f2937">Virtual Page → Physical Frame</text>
+                            <text x="365" y="80" text-anchor="middle" font-size="10" fill="#1f2937">Performs translation</text>
+
+                            <!-- Arrow 2 -->
+                            <path d="M 460 70 L 510 70" stroke="#1f2937" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                            <text x="485" y="60" text-anchor="middle" font-size="10" fill="#1f2937">Result</text>
+
+                            <!-- Physical Address -->
+                            <rect x="520" y="30" width="180" height="80" fill="#10b981" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                            <text x="610" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Physical Address</text>
+                            <text x="610" y="75" text-anchor="middle" font-size="11" fill="#e0e7ff">Frame Number</text>
+                            <text x="610" y="90" text-anchor="middle" font-size="11" fill="#e0e7ff">Offset</text>
+
+                            <!-- Example -->
+                            <rect x="30" y="150" width="650" height="200" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
+                            
+                            <text x="50" y="175" font-size="12" font-weight="bold" fill="#1e3a8a">Example: Address Translation</text>
+                            
+                            <text x="50" y="210" font-size="11" fill="#1f2937">Process requests memory at virtual address: <tspan font-family="monospace" font-weight="bold">0x2045</tspan></text>
+                            <text x="70" y="230" font-size="10" fill="#6b7280">• Virtual Page Number (VPN) = 0x20 (32)</text>
+                            <text x="70" y="245" font-size="10" fill="#6b7280">• Offset = 0x45 (69)</text>
+                            
+                            <text x="50" y="280" font-size="11" fill="#1f2937">OS consults Page Table:</text>
+                            <text x="70" y="295" font-size="10" fill="#6b7280">• Page 32 is mapped to Frame 8 in physical RAM</text>
+                            
+                            <text x="50" y="330" font-size="11" fill="#1f2937">Physical address calculated: <tspan font-family="monospace" font-weight="bold">Frame 8, Offset 0x45 = 0x8045</tspan></text>
+                        </svg>
+                    </div>
+                    <p class="diagram-label">Figure 4: Virtual to Physical Address Translation</p>
+
+                    <div class="warning-box">
+                        <strong>Page Faults:</strong> If a process tries to access a virtual page that's not currently in physical memory, the CPU raises a page fault exception. The OS then must load the page from disk (swap space) into a free frame in memory. This is slower than accessing RAM but allows systems to run larger programs than available physical memory.
+                    </div>
+                </section>
+
+                <!-- SECTION 6: Memory Allocation Strategies -->
+                <section id="section6">
+                    <h2>6. Memory Allocation Strategies</h2>
+                    
+                    <h3>Fixed vs Dynamic Allocation</h3>
+                    <p>When a process needs memory, the operating system must allocate it. There are several strategies for doing this, each with different advantages and disadvantages.</p>
+
+                    <h3>Contiguous Memory Allocation</h3>
+                    <p>In contiguous allocation, each process is allocated a single contiguous block of physical memory. This was common in older systems and simpler to implement.</p>
+
+                    <div class="diagram-container">
+                        <svg viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+                            <!-- Memory blocks -->
+                            <rect x="50" y="20" width="100" height="60" fill="#1e3a8a" stroke="#0ea5e9" stroke-width="2" rx="2"/>
+                            <text x="100" y="55" text-anchor="middle" font-size="10" font-weight="bold" fill="white">OS Kernel</text>
+
+                            <rect x="50" y="90" width="100" height="60" fill="#2563eb" stroke="#0ea5e9" stroke-width="2" rx="2"/>
+                            <text x="100" y="125" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Process A</text>
+
+                            <rect x="50" y="160" width="100" height="60" fill="#3b82f6" stroke="#0ea5e9" stroke-width="2" rx="2"/>
+                            <text x="100" y="195" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Process B</text>
+
+                            <rect x="50" y="230" width="100" height="60" fill="#60a5fa" stroke="#0ea5e9" stroke-width="2" rx="2"/>
+                            <text x="100" y="260" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Free Space</text>
+
+                            <!-- Labels -->
+                            <text x="170" y="55" font-size="10" fill="#1f2937">0x00000</text>
+                            <text x="170" y="125" font-size="10" fill="#1f2937">0x10000</text>
+                            <text x="170" y="195" font-size="10" fill="#1f2937">0x20000</text>
+                            <text x="170" y="265" font-size="10" fill="#1f2937">0x30000</text>
+
+                            <!-- Issue: External Fragmentation -->
+                            <rect x="280" y="20" width="150" height="330" fill="#fff5f5" stroke="#ef4444" stroke-width="2" rx="4"/>
+                            <text x="355" y="45" text-anchor="middle" font-size="11" font-weight="bold" fill="#ef4444">External Fragmentation</text>
+                            
+                            <text x="295" y="70" font-size="9" fill="#1f2937">Before:</text>
+                            <rect x="295" y="80" width="35" height="20" fill="#2563eb" stroke="#1f2937" stroke-width="1" rx="1"/>
+                            <text x="338" y="93" font-size="8" fill="#1f2937">20KB</text>
+                            <rect x="295" y="110" width="35" height="20" fill="#60a5fa" stroke="#1f2937" stroke-width="1" rx="1"/>
+                            <text x="338" y="123" font-size="8" fill="#1f2937">10KB</text>
+                            <rect x="295" y="140" width="35" height="20" fill="#2563eb" stroke="#1f2937" stroke-width="1" rx="1"/>
+                            <text x="338" y="153" font-size="8" fill="#1f2937">20KB</text>
+
+                            <text x="295" y="185" font-size="9" fill="#1f2937">After removing Process B:</text>
+                            <rect x="295" y="195" width="35" height="20" fill="#2563eb" stroke="#1f2937" stroke-width="1" rx="1"/>
+                            <text x="338" y="208" font-size="8" fill="#1f2937">20KB</text>
+                            <rect x="295" y="225" width="35" height="20" fill="#60a5fa" stroke="#1f2937" stroke-width="1" rx="1"/>
+                            <text x="338" y="238" font-size="8" fill="#1f2937">20KB</text>
+
+                            <text x="295" y="280" font-size="8" fill="#ef4444">Cannot allocate 25KB</text>
+                            <text x="295" y="293" font-size="8" fill="#ef4444">despite 30KB free!</text>
+                        </svg>
+                    </div>
+                    <p class="diagram-label">Figure 5: External Fragmentation Problem</p>
+
+                    <h3>Issues with Contiguous Allocation</h3>
+                    <ul>
+                        <li><strong>External Fragmentation:</strong> Free memory becomes fragmented into non-contiguous pieces, making it difficult to allocate large blocks even if total free space is sufficient.</li>
+                        <li><strong>Memory Waste:</strong> Processes may need less memory than allocated, wasting space.</li>
+                        <li><strong>Relocation:</strong> Moving processes to reduce fragmentation is expensive.</li>
+                    </ul>
+
+                    <h3>Non-Contiguous Memory Allocation: Paging</h3>
+                    <p>With paging, a process's memory is divided into small fixed-size pages that can be scattered throughout physical memory, connected by the page table.</p>
+
+                    <div class="highlight-box">
+                        <strong>Advantages of Paging:</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Eliminates external fragmentation</li>
+                            <li>Makes memory allocation simpler and more efficient</li>
+                            <li>Enables virtual memory implementation</li>
+                            <li>Easier process creation and termination</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SECTION 7: Memory Segments -->
+                <section id="section7">
+                    <h2>7. Process Memory Segments</h2>
+                    
+                    <h3>Memory Layout of a Process</h3>
+                    <p>Each process's virtual address space is typically divided into distinct segments, each serving a different purpose. Understanding this layout is essential for understanding how programs store data and execute code.</p>
+
+                    <div class="diagram-container">
+                        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+                            <!-- Stack -->
+                            <rect x="50" y="20" width="300" height="80" fill="#ef4444" stroke="#dc2626" stroke-width="2" rx="4"/>
+                            <text x="200" y="50" text-anchor="middle" font-size="13" font-weight="bold" fill="white">STACK</text>
+                            <text x="200" y="70" text-anchor="middle" font-size="9" fill="white">Local variables, function params</text>
+                            <text x="200" y="83" text-anchor="middle" font-size="8" fill="#fecaca">↑ Grows downward</text>
+
+                            <!-- Arrow showing stack growth -->
+                            <path d="M 370 110 L 370 130" stroke="#ef4444" stroke-width="2" fill="none"/>
+                            <polygon points="370,135 365,125 375,125" fill="#ef4444"/>
+
+                            <!-- Heap -->
+                            <rect x="50" y="140" width="300" height="80" fill="#10b981" stroke="#059669" stroke-width="2" rx="4"/>
+                            <text x="200" y="170" text-anchor="middle" font-size="13" font-weight="bold" fill="white">HEAP</text>
+                            <text x="200" y="190" text-anchor="middle" font-size="9" fill="white">Dynamically allocated memory</text>
+                            <text x="200" y="203" text-anchor="middle" font-size="8" fill="#a7f3d0">↓ Grows upward</text>
+
+                            <!-- Arrow showing heap growth -->
+                            <path d="M 30 225 L 30 245" stroke="#10b981" stroke-width="2" fill="none"/>
+                            <polygon points="30,250 25,240 35,240" fill="#10b981"/>
+
+                            <!-- Uninitialized Data (BSS) -->
+                            <rect x="50" y="230" width="300" height="60" fill="#f59e0b" stroke="#d97706" stroke-width="2" rx="4"/>
+                            <text x="200" y="255" text-anchor="middle" font-size="12" font-weight="bold" fill="white">BSS Segment</text>
+                            <text x="200" y="273" text-anchor="middle" font-size="9" fill="white">Uninitialized global/static vars</text>
+
+                            <!-- Initialized Data -->
+                            <rect x="50" y="300" width="300" height="60" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2" rx="4"/>
+                            <text x="200" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Data Segment</text>
+                            <text x="200" y="343" text-anchor="middle" font-size="9" fill="white">Initialized global/static vars</text>
+
+                            <!-- Code -->
+                            <rect x="50" y="370" width="300" height="80" fill="#1e3a8a" stroke="#1e40af" stroke-width="2" rx="4"/>
+                            <text x="200" y="400" text-anchor="middle" font-size="13" font-weight="bold" fill="white">CODE SEGMENT</text>
+                            <text x="200" y="420" text-anchor="middle" font-size="9" fill="white">Program instructions, constants</text>
+                            <text x="200" y="433" text-anchor="middle" font-size="8" fill="#bfdbfe">Read-only, Shared</text>
+
+                            <!-- Address labels -->
+                            <text x="370" y="65" font-size="9" font-weight="bold" fill="#1f2937">High</text>
+                            <text x="370" y="415" font-size="9" font-weight="bold" fill="#1f2937">Low</text>
+                        </svg>
+                    </div>
+                    <p class="diagram-label">Figure 6: Process Virtual Address Space Layout</p>
+
+                    <h3>Segment Descriptions</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Segment</th>
+                                <th>Purpose</th>
+                                <th>Permissions</th>
+                                <th>Growth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Code</strong></td>
+                                <td>Program instructions, literals, constants</td>
+                                <td>Read-only (R)</td>
+                                <td>Static - no growth</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data</strong></td>
+                                <td>Initialized global and static variables</td>
+                                <td>Read-Write (RW)</td>
+                                <td>Static - determined at compile time</td>
+                            </tr>
+                            <tr>
+                                <td><strong>BSS</strong></td>
+                                <td>Uninitialized global and static variables (zero-initialized)</td>
+                                <td>Read-Write (RW)</td>
+                                <td>Static - determined at compile time</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Heap</strong></td>
+                                <td>Memory dynamically allocated by program (malloc, new)</td>
+                                <td>Read-Write (RW)</td>
+                                <td>Dynamic - grows upward as needed</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Stack</strong></td>
+                                <td>Function parameters, return addresses, local variables</td>
+                                <td>Read-Write (RW)</td>
+                                <td>Dynamic - grows downward as functions call each other</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="definition-box">
+                        <strong>Stack vs Heap:</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li><strong>Stack:</strong> LIFO structure, automatic memory management, fast allocation/deallocation, limited size</li>
+                            <li><strong>Heap:</strong> Manual memory management (in C/C++), slower allocation/deallocation, larger size, risk of fragmentation</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- SECTION 8: Process Synchronization Basics -->
+                <section id="section8">
+                    <h2>8. Process Synchronization and Communication</h2>
+                    
+                    <h3>The Challenge of Multiple Processes</h3>
+                    <p>When multiple processes run concurrently and need to access shared resources or communicate with each other, careful coordination is necessary. Without proper synchronization, processes may interfere with each other, leading to data corruption, inconsistency, and system failures.</p>
+
+                    <h3>Critical Section Problem</h3>
+                    <p>A critical section is a part of a program where a process accesses a shared resource that should not be accessed by other processes at the same time. The critical section problem is ensuring that only one process executes its critical section at any given time.</p>
+
+                    <div class="diagram-container">
+                        <svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+                            <!-- Process 1 -->
+                            <g>
+                                <rect x="30" y="30" width="220" height="290" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2" rx="4"/>
+                                <text x="140" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">Process 1</text>
+                                
+                                <rect x="45" y="75" width="190" height="50" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1" rx="3"/>
+                                <text x="140" y="95" text-anchor="middle" font-size="10" fill="#1f2937">Non-Critical Section</text>
+                                <text x="140" y="110" text-anchor="middle" font-size="9" fill="#6b7280">(Can execute anytime)</text>
+
+                                <rect x="45" y="140" width="190" height="50" fill="#fecaca" stroke="#ef4444" stroke-width="2" rx="3"/>
+                                <text x="140" y="160" text-anchor="middle" font-size="10" font-weight="bold" fill="#dc2626">CRITICAL SECTION</text>
+                                <text x="140" y="175" text-anchor="middle" font-size="9" fill="#991b1b">(Access shared resource)</text>
+
+                                <rect x="45" y="205" width="190" height="50" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1" rx="3"/>
+                                <text x="140" y="225" text-anchor="middle" font-size="10" fill="#1f2937">Non-Critical Section</text>
+                                <text x="140" y="240" text-anchor="middle" font-size="9" fill="#6b7280">(Can execute anytime)</text>
+                            </g>
+
+                            <!-- Process 2 -->
+                            <g>
+                                <rect x="350" y="30" width="220" height="290" fill="#f0fdf4" stroke="#10b981" stroke-width="2" rx="4"/>
+                                <text x="460" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">Process 2</text>
+                                
+                                <rect x="365" y="75" width="190" height="50" fill="#dcfce7" stroke="#10b981" stroke-width="1" rx="3"/>
+                                <text x="460" y="95" text-anchor="middle" font-size="10" fill="#1f2937">Non-Critical Section</text>
+                                <text x="460" y="110" text-anchor="middle" font-size="9" fill="#6b7280">(Can execute anytime)</text>
+
+                                <rect x="365" y="140" width="190" height="50" fill="#fecaca" stroke="#ef4444" stroke-width="2" rx="3"/>
+                                <text x="460" y="160" text-anchor="middle" font-size="10" font-weight="bold" fill="#dc2626">CRITICAL SECTION</text>
+                                <text x="460" y="175" text-anchor="middle" font-size="9" fill="#991b1b">(Access shared resource)</text>
+
+                                <rect x="365" y="205" width="190" height="50" fill="#dcfce7" stroke="#10b981" stroke-width="1" rx="3"/>
+                                <text x="460" y="225" text-anchor="middle" font-size="10" fill="#1f2937">Non-Critical Section</text>
+                                <text x="460" y="240" text-anchor="middle" font-size="9" fill="#6b7280">(Can execute anytime)</text>
+                            </g>
+
+                            <!-- Shared Resource -->
+                            <rect x="250" y="320" width="100" height="40" fill="#2563eb" stroke="#1e40af" stroke-width="2" rx="4"/>
+                            <text x="300" y="345" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Shared Resource</text>
+                        </svg>
+                    </div>
+                    <p class="diagram-label">Figure 7: Critical Section Problem</p>
+
+                    <h3>Synchronization Mechanisms</h3>
+                    <ul>
+                        <li>
+                            <strong>Mutex (Mutual Exclusion):</strong> A binary lock that can be owned by only one process at a time. When a process needs to enter a critical section, it acquires the mutex. Other processes must wait until the mutex is released.
+                        </li>
+                        <li>
+                            <strong>Semaphore:</strong> A generalization of mutex that maintains a counter. Useful for managing access to a pool of resources. Can be binary (0 or 1) or counting (0 to n).
+                        </li>
+                        <li>
+                            <strong>Monitor:</strong> A high-level synchronization primitive that encapsulates shared data and operations. Only one process can execute operations on a monitor at a time.
+                        </li>
+                        <li>
+                            <strong>Message Passing:</strong> Processes communicate by sending messages to each other rather than sharing memory. Eliminates need for synchronization primitives.
+                        </li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <strong>Race Condition:</strong> A situation where the behavior of a program depends on the relative timing of events. In the critical section problem, a race condition occurs when multiple processes access the same shared variable without proper synchronization.
+                    </div>
+                </section>
+
+                <!-- SECTION 9: Practical Considerations -->
+                <section id="section9">
+                    <h2>9. Practical Considerations and Best Practices</h2>
+                    
+                    <h3>Monitoring Process and Memory Usage</h3>
+                    <p>System administrators and developers need tools to monitor and understand how processes use system resources, particularly memory.</p>
+
+                    <h3>Common Tools for Process/Memory Monitoring</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Purpose</th>
+                                <th>Platform</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ps</strong></td>
+                                <td>Display list of running processes with details</td>
+                                <td>Linux/Unix</td>
+                            </tr>
+                            <tr>
+                                <td><strong>top</strong></td>
+                                <td>Real-time monitoring of processes and resource usage</td>
+                                <td>Linux/Unix</td>
+                            </tr>
+                            <tr>
+                                <td><strong>htop</strong></td>
+                                <td>Interactive version of top with better interface</td>
+                                <td>Linux/Unix</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Task Manager</strong></td>
+                                <td>Monitor processes and system performance</td>
+                                <td>Windows</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Activity Monitor</strong></td>
+                                <td>Monitor processes and resource usage</td>
+                                <td>macOS</td>
+                            </tr>
+                            <tr>
+                                <td><strong>free</strong></td>
+                                <td>Display memory usage statistics</td>
+                                <td>Linux</td>
+                            </tr>
+                            <tr>
+                                <td><strong>vmstat</strong></td>
+                                <td>Virtual memory statistics and system activity</td>
+                                <td>Linux/Unix</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Memory Optimization Tips</h3>
+                    <ul>
+                        <li><strong>Profile Before Optimizing:</strong> Use memory profiling tools to identify actual memory bottlenecks before spending time optimizing.</li>
+                        <li><strong>Manage Heap Memory:</strong> Be careful with dynamic memory allocation. Use appropriate data structures for your use case.</li>
+                        <li><strong>Avoid Memory Leaks:</strong> Ensure every allocated memory is properly freed. Use tools like Valgrind to detect memory leaks.</li>
+                        <li><strong>Use Appropriate Data Structures:</strong> Choose data structures based on your access patterns. Arrays for random access, linked lists for frequent insertion/deletion.</li>
+                        <li><strong>Minimize Global Variables:</strong> Global variables persist for the entire process lifetime. Use local variables when possible.</li>
+                        <li><strong>Cache Locality:</strong> Access data in a way that utilizes CPU cache effectively (sequential access is better than random access).</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>Memory Fragmentation:</strong> Over time, as memory is allocated and freed, the heap can become fragmented, making efficient allocation difficult. Regular compaction or using memory pools can help mitigate this issue.
+                    </div>
+
+                    <h3>Process Management Best Practices</h3>
+                    <ul>
+                        <li><strong>Resource Limits:</strong> Set limits on how much CPU, memory, and I/O resources each process can use to prevent one process from starving others.</li>
+                        <li><strong>Graceful Shutdown:</strong> Ensure processes have time to clean up resources (close files, release locks) before termination.</li>
+                        <li><strong>Error Handling:</strong> Proper error handling prevents processes from entering invalid states and consuming resources unnecessarily.</li>
+                        <li><strong>Process Isolation:</strong> Keep processes isolated to prevent cascading failures. A crash in one process shouldn't affect others.</li>
+                    </ul>
+                </section>
+
+                <!-- SECTION 10: Summary and Conclusion -->
+                <section id="section10">
+                    <h2>10. Summary and Key Takeaways</h2>
+                    
+                    <h3>Core Concepts Reviewed</h3>
+                    
+                    <div class="step-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Processes</h4>
+                            <p>Programs in execution with allocated resources, unique PIDs, and state management.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Process States</h4>
+                            <p>New, Ready, Running, Waiting, Terminated - managed by the OS scheduler.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>PCB</h4>
+                            <p>Essential data structure containing all process information for OS management.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Virtual Memory</h4>
+                            <p>Abstraction providing each process with large isolated address space.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Memory Segments</h4>
+                            <p>Code, Data, BSS, Heap, Stack - organized for different purposes.</p>
+                        </div>
+                    </div>
+
+                    <h3>Why This Matters</h3>
+                    <p>Understanding processes and memory management is fundamental to:</p>
+                    <ul>
+                        <li>Writing efficient and reliable applications</li>
+                        <li>Debugging performance issues and memory problems</li>
+                        <li>Designing secure systems with proper isolation</li>
+                        <li>Optimizing resource usage in constrained environments</li>
+                        <li>Understanding operating system architecture and design</li>
+                    </ul>
+
+                    <div class="definition-box">
+                        <strong>Remember:</strong> The operating system is the bridge between applications and hardware. Effective process and memory management is what allows multiple programs to run simultaneously on the same machine without interfering with each other. This is one of the core functions that makes operating systems essential.
+                    </div>
+
+                    <h3>Next Steps</h3>
+                    <p>To deepen your understanding of Operating Systems, consider studying:</p>
+                    <ul>
+                        <li>CPU Scheduling algorithms (FCFS, Round Robin, Priority Scheduling)</li>
+                        <li>Deadlock detection and prevention</li>
+                        <li>File System Organization and Management</li>
+                        <li>I/O System and Device Management</li>
+                        <li>Security and Protection Mechanisms</li>
+                    </ul>
+                </section>
+
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                <p>&copy; 2024 Platform Technologies Course. OS: Process & Memory Management Lecture.</p>
+                <p>For educational purposes. Created with professional standards for academic instruction.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">&#8593;</button>
+
+    <script>
+        // Mobile sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+
+        mobileMenuToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar on link click (mobile) and highlight active link
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                sidebar.classList.remove('active');
+            });
+        });
+
+        // Highlight active section link on scroll
+        const sections = document.querySelectorAll('section[id]');
+
+        function setActiveLink() {
+            let currentId = '';
+            const scrollPos = window.scrollY + 120;
+
+            sections.forEach(function (section) {
+                if (scrollPos >= section.offsetTop) {
+                    currentId = section.id;
+                }
+            });
+
+            navLinks.forEach(function (link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveLink);
+        setActiveLink();
+
+        // Scroll-to-top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

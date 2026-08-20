@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Linux Distros & Shell | Cloud & Containers</title>
+  <meta name="description" content="Professional lecture module on Linux distributions, the Linux shell, commands, permissions, networking, Bash scripting, SSH, cloud computing, and containers.">
+
+  <!-- Browser tab logo -->
+  <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+  <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+  <!-- Separate stylesheet -->
+  <link rel="stylesheet" href="../css/Cloud & Containers/linux.css">
+</head>
+
+<body>
+  <!-- Mobile sidebar button -->
+  <button class="sidebar-toggle" id="sidebarToggle"
+          aria-label="Open lesson topics"
+          aria-controls="lessonSidebar"
+          aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- =========================================================
+       SIDEBAR
+       ========================================================= -->
+  <aside class="sidebar" id="lessonSidebar" aria-label="Lesson topics">
+    <div class="sidebar-brand">
+      <div class="brand-icon" aria-hidden="true">
+        <img src="https://cdn.simpleicons.org/linux/FCC624" alt="">
+      </div>
+      <div>
+        <p class="eyebrow">Cloud &amp; Containers</p>
+        <h2>Linux Module</h2>
+      </div>
+    </div>
+
+    <nav class="topic-nav">
+      <a class="home-link" href="../index.html">
+        <span class="topic-number">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <p class="nav-label">Lesson Topics</p>
+
+      <a href="#overview"><span class="topic-number">01</span><span>Lesson Overview</span></a>
+      <a href="#linux-basics"><span class="topic-number">02</span><span>What Is Linux?</span></a>
+      <a href="#architecture"><span class="topic-number">03</span><span>Linux Architecture</span></a>
+      <a href="#distros"><span class="topic-number">04</span><span>Linux Distributions</span></a>
+      <a href="#choosing-distro"><span class="topic-number">05</span><span>Choosing a Distro</span></a>
+      <a href="#filesystem"><span class="topic-number">06</span><span>Linux Filesystem</span></a>
+      <a href="#shell-terminal"><span class="topic-number">07</span><span>Shell &amp; Terminal</span></a>
+      <a href="#navigation"><span class="topic-number">08</span><span>Navigation Commands</span></a>
+      <a href="#files"><span class="topic-number">09</span><span>File Management</span></a>
+      <a href="#text-tools"><span class="topic-number">10</span><span>Text &amp; Search Tools</span></a>
+      <a href="#permissions"><span class="topic-number">11</span><span>Permissions</span></a>
+      <a href="#users"><span class="topic-number">12</span><span>Users &amp; sudo</span></a>
+      <a href="#processes"><span class="topic-number">13</span><span>Processes &amp; Services</span></a>
+      <a href="#networking"><span class="topic-number">14</span><span>Linux Networking</span></a>
+      <a href="#packages"><span class="topic-number">15</span><span>Package Management</span></a>
+      <a href="#redirection"><span class="topic-number">16</span><span>Pipes &amp; Redirection</span></a>
+      <a href="#bash"><span class="topic-number">17</span><span>Bash Scripting</span></a>
+      <a href="#ssh"><span class="topic-number">18</span><span>SSH &amp; Remote Access</span></a>
+      <a href="#cloud"><span class="topic-number">19</span><span>Linux in the Cloud</span></a>
+      <a href="#containers"><span class="topic-number">20</span><span>Linux &amp; Containers</span></a>
+      <a href="#security"><span class="topic-number">21</span><span>Security Practices</span></a>
+      <a href="#troubleshooting"><span class="topic-number">22</span><span>Troubleshooting</span></a>
+      <a href="#lab"><span class="topic-number">23</span><span>Guided Laboratory</span></a>
+      <a href="#review"><span class="topic-number">24</span><span>Review &amp; Activities</span></a>
+      <a href="#glossary"><span class="topic-number">25</span><span>Glossary</span></a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p>Professional Lecture Module</p>
+      <small>Linux Distros &amp; Shell</small>
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       MAIN CONTENT
+       ========================================================= -->
+  <main class="main-content">
+
+    <!-- HERO -->
+    <header class="hero" id="overview">
+      <div class="hero-copy">
+        <p class="kicker">Cloud &amp; Containers • Lecture Module</p>
+        <h1>Linux Distributions &amp; Shell</h1>
+        <p class="hero-lead">
+          A professional introduction to Linux operating systems, command-line
+          administration, Bash, networking, security, cloud servers, and the
+          Linux foundations used by modern container platforms.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#linux-basics">Start Lesson</a>
+          <a class="btn btn-secondary" href="#lab">Go to Laboratory</a>
+        </div>
+
+        <div class="hero-meta">
+          <span><strong>Level:</strong> Beginner to Professional</span>
+          <span><strong>Format:</strong> Lecture + Demonstration + Lab</span>
+          <span><strong>Focus:</strong> Cloud &amp; Containers</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img
+          src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=85"
+          alt="Computer screen showing source code and terminal-style development work"
+          loading="eager">
+        <div class="hero-terminal" aria-label="Example Linux terminal">
+          <div class="terminal-bar">
+            <span></span><span></span><span></span>
+            <b>student@linux:~</b>
+          </div>
+          <pre><code>$ uname -a
+Linux cloud-lab ...
+
+$ whoami
+student
+
+$ pwd
+/home/student</code></pre>
+        </div>
+      </div>
+    </header>
+
+    <!-- LEARNING OUTCOMES -->
+    <section class="lesson-section intro-section">
+      <div class="section-heading">
+        <span class="section-index">MODULE OUTCOMES</span>
+        <h2>What Students Should Learn</h2>
+        <p>
+          At the end of this module, students should be able to explain Linux
+          clearly and perform essential command-line administration with
+          confidence.
+        </p>
+      </div>
+
+      <div class="outcome-grid">
+        <article class="outcome-card">
+          <span>01</span>
+          <h3>Explain Linux</h3>
+          <p>Describe the kernel, distribution, shell, terminal, filesystem, and user space.</p>
+        </article>
+        <article class="outcome-card">
+          <span>02</span>
+          <h3>Compare Distros</h3>
+          <p>Differentiate Ubuntu, Debian, Fedora, RHEL-family, and other Linux distribution families.</p>
+        </article>
+        <article class="outcome-card">
+          <span>03</span>
+          <h3>Use the Shell</h3>
+          <p>Navigate directories, manage files, search text, and combine commands.</p>
+        </article>
+        <article class="outcome-card">
+          <span>04</span>
+          <h3>Administer Systems</h3>
+          <p>Work with users, permissions, processes, services, packages, networking, and logs.</p>
+        </article>
+        <article class="outcome-card">
+          <span>05</span>
+          <h3>Automate Tasks</h3>
+          <p>Create simple Bash scripts using variables, conditions, loops, and command output.</p>
+        </article>
+        <article class="outcome-card">
+          <span>06</span>
+          <h3>Connect to Cloud &amp; Containers</h3>
+          <p>Explain why Linux skills are central to cloud virtual machines and container platforms.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 02 WHAT IS LINUX -->
+    <section class="lesson-section" id="linux-basics">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 02</span>
+        <h2>What Is Linux?</h2>
+        <p>
+          Linux is the kernel at the center of many operating systems. In everyday
+          conversation, people often use the word “Linux” to describe a complete
+          operating system distribution that combines the Linux kernel with system
+          utilities, libraries, package-management tools, applications, and a user interface.
+        </p>
+      </div>
+
+      <div class="media-layout">
+        <div class="content-stack">
+          <div class="definition-box">
+            <h3>Simple Classroom Definition</h3>
+            <p>
+              <strong>Linux is the core software that manages hardware resources and allows
+              programs to communicate with a computer.</strong> A Linux distribution packages
+              that kernel with the additional software needed to create a usable operating system.
+            </p>
+          </div>
+
+          <h3>Why Linux Matters in Cloud Computing</h3>
+          <p>
+            Linux is widely used on servers because it is highly configurable, scriptable,
+            automation-friendly, and well suited to remote administration. Cloud engineers
+            frequently interact with Linux systems through secure shell sessions rather than
+            through a desktop interface.
+          </p>
+
+          <h3>Linux Is More Than a Desktop OS</h3>
+          <ul class="explain-list">
+            <li><strong>Servers:</strong> web servers, database servers, DNS servers, and application servers.</li>
+            <li><strong>Cloud virtual machines:</strong> compute instances in public and private clouds.</li>
+            <li><strong>Containers:</strong> many container images use Linux user-space environments.</li>
+            <li><strong>Networking:</strong> routers, firewalls, appliances, and infrastructure services.</li>
+            <li><strong>Development:</strong> compilers, Git, scripting tools, CI/CD systems, and DevOps workflows.</li>
+            <li><strong>Embedded systems:</strong> appliances, IoT devices, and specialized hardware.</li>
+          </ul>
+        </div>
+
+        <figure class="lesson-image">
+          <img src="https://www.kernel.org/theme/images/logos/tux.png"
+               alt="Tux, the Linux mascot"
+               loading="lazy">
+          <figcaption>
+            Tux is the widely recognized Linux mascot. Linux itself refers specifically
+            to the kernel, while complete distributions add the surrounding software.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="concept-callout">
+        <strong>Teaching point:</strong>
+        The kernel is not the same thing as the shell. The <em>kernel</em> manages system
+        resources; the <em>shell</em> interprets commands from the user.
+      </div>
+    </section>
+
+    <!-- 03 ARCHITECTURE -->
+    <section class="lesson-section" id="architecture">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 03</span>
+        <h2>Understanding Linux Architecture</h2>
+        <p>
+          Students understand Linux more easily when the operating system is viewed
+          as layers. A command typed by the user travels through user-space tools
+          before the kernel performs the requested operation on hardware or virtual resources.
+        </p>
+      </div>
+
+      <div class="architecture-diagram" aria-label="Linux architecture diagram">
+        <div class="arch-layer layer-user">
+          <span>Layer 5</span>
+          <strong>Applications &amp; User Tools</strong>
+          <small>Editors, browsers, compilers, Git, cloud CLIs</small>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span>Layer 4</span>
+          <strong>Shell / Command Interpreter</strong>
+          <small>Bash, Zsh, Fish</small>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">
+          <span>Layer 3</span>
+          <strong>System Libraries &amp; Utilities</strong>
+          <small>Core utilities, shared libraries, service tools</small>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer layer-kernel">
+          <span>Layer 2</span>
+          <strong>Linux Kernel</strong>
+          <small>Processes, memory, devices, filesystem, networking</small>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer layer-hardware">
+          <span>Layer 1</span>
+          <strong>Physical or Virtual Hardware</strong>
+          <small>CPU, RAM, disks, NICs, virtual devices</small>
+        </div>
+      </div>
+
+      <div class="three-column">
+        <article class="info-card">
+          <h3>Kernel</h3>
+          <p>
+            Controls low-level resources such as process scheduling, memory,
+            storage devices, drivers, and network interfaces.
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>User Space</h3>
+          <p>
+            Contains applications and utilities that run outside the kernel,
+            including shells, editors, package managers, and services.
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>System Calls</h3>
+          <p>
+            Provide controlled interfaces that allow applications to request
+            services from the kernel.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 04 DISTROS -->
+    <section class="lesson-section" id="distros">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 04</span>
+        <h2>Linux Distributions</h2>
+        <p>
+          A <strong>Linux distribution (distro)</strong> is a complete operating
+          system assembled around the Linux kernel. Distros differ in package
+          management, release policy, default software, support model, and intended audience.
+        </p>
+      </div>
+
+      <div class="distro-grid">
+        <article class="distro-card">
+          <img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="Ubuntu logo" loading="lazy">
+          <div>
+            <h3>Ubuntu</h3>
+            <p>
+              A widely used Debian-family distribution for desktops, servers,
+              cloud workloads, development, and learning environments.
+            </p>
+            <ul>
+              <li>Family: Debian</li>
+              <li>Packages: <code>.deb</code></li>
+              <li>Common manager: <code>apt</code></li>
+              <li>Strong cloud/server presence</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="distro-card">
+          <img src="https://cdn.simpleicons.org/debian/A81D33" alt="Debian logo" loading="lazy">
+          <div>
+            <h3>Debian</h3>
+            <p>
+              A community-developed free operating system known for broad
+              architecture support and a strong emphasis on stability.
+            </p>
+            <ul>
+              <li>Family: Debian</li>
+              <li>Packages: <code>.deb</code></li>
+              <li>Common manager: <code>apt</code></li>
+              <li>Popular server foundation</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="distro-card">
+          <img src="https://cdn.simpleicons.org/fedora/51A2DA" alt="Fedora logo" loading="lazy">
+          <div>
+            <h3>Fedora</h3>
+            <p>
+              A community Linux platform focused on current open-source
+              technologies and commonly used by developers and administrators.
+            </p>
+            <ul>
+              <li>Family: Red Hat ecosystem</li>
+              <li>Packages: <code>.rpm</code></li>
+              <li>Common manager: <code>dnf</code></li>
+              <li>Developer-oriented workstation options</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="distro-card">
+          <img src="https://cdn.simpleicons.org/redhat/EE0000" alt="Red Hat logo" loading="lazy">
+          <div>
+            <h3>Red Hat Enterprise Linux</h3>
+            <p>
+              A commercially supported enterprise distribution designed for
+              production infrastructure, servers, applications, and regulated environments.
+            </p>
+            <ul>
+              <li>Family: Red Hat</li>
+              <li>Packages: <code>.rpm</code></li>
+              <li>Common manager: <code>dnf</code></li>
+              <li>Enterprise support lifecycle</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="distro-card">
+          <img src="https://cdn.simpleicons.org/archlinux/1793D1" alt="Arch Linux logo" loading="lazy">
+          <div>
+            <h3>Arch Linux</h3>
+            <p>
+              A rolling-release distribution emphasizing simplicity,
+              user control, and hands-on configuration.
+            </p>
+            <ul>
+              <li>Family: Independent</li>
+              <li>Packages: <code>.pkg.tar.zst</code></li>
+              <li>Common manager: <code>pacman</code></li>
+              <li>Best for experienced learners</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="distro-card">
+          <img src="https://cdn.simpleicons.org/alpinelinux/0D597F" alt="Alpine Linux logo" loading="lazy">
+          <div>
+            <h3>Alpine Linux</h3>
+            <p>
+              A compact distribution frequently encountered in lightweight
+              environments and container images.
+            </p>
+            <ul>
+              <li>Family: Independent</li>
+              <li>Packages: <code>.apk</code></li>
+              <li>Common manager: <code>apk</code></li>
+              <li>Small footprint</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Distribution</th>
+              <th>Package Tool</th>
+              <th>Typical Learning Context</th>
+              <th>Cloud/Container Relevance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Ubuntu</td><td><code>apt</code></td><td>Beginner, desktop, server</td><td>Very common cloud image</td></tr>
+            <tr><td>Debian</td><td><code>apt</code></td><td>Stable servers, general Linux</td><td>Common base image</td></tr>
+            <tr><td>Fedora</td><td><code>dnf</code></td><td>Modern Linux administration</td><td>Developer/server workflows</td></tr>
+            <tr><td>RHEL family</td><td><code>dnf</code></td><td>Enterprise administration</td><td>Enterprise cloud platforms</td></tr>
+            <tr><td>Arch</td><td><code>pacman</code></td><td>Advanced self-managed systems</td><td>Specialized use</td></tr>
+            <tr><td>Alpine</td><td><code>apk</code></td><td>Minimal Linux environments</td><td>Common in compact containers</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 05 CHOOSING DISTRO -->
+    <section class="lesson-section" id="choosing-distro">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 05</span>
+        <h2>How to Choose a Linux Distribution</h2>
+        <p>
+          There is no single “best” distribution for every situation. The correct
+          choice depends on workload requirements, support needs, team knowledge,
+          package availability, release policy, and compatibility.
+        </p>
+      </div>
+
+      <div class="decision-grid">
+        <article>
+          <span>1</span>
+          <h3>Define the workload</h3>
+          <p>Desktop, web server, database, cloud VM, container image, security lab, or embedded system?</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>Check support needs</h3>
+          <p>Will the organization require long-term security updates, vendor support, and certification?</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Review software availability</h3>
+          <p>Confirm that required packages, runtimes, drivers, and repositories are supported.</p>
+        </article>
+        <article>
+          <span>4</span>
+          <h3>Consider team skills</h3>
+          <p>A familiar distribution reduces operational errors and speeds troubleshooting.</p>
+        </article>
+      </div>
+
+      <div class="tip-box">
+        <strong>Recommended classroom approach:</strong>
+        Use Ubuntu or Debian for introductory command-line lessons, then demonstrate
+        Fedora/RHEL-family commands so students understand that Linux concepts are
+        portable even when package tools differ.
+      </div>
+    </section>
+
+    <!-- 06 FILESYSTEM -->
+    <section class="lesson-section" id="filesystem">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 06</span>
+        <h2>The Linux Filesystem Hierarchy</h2>
+        <p>
+          Linux uses a single directory tree that begins at <code>/</code>, called
+          the <strong>root directory</strong>. Disks and filesystems are mounted
+          into locations inside this tree.
+        </p>
+      </div>
+
+      <div class="media-layout reverse">
+        <figure class="lesson-image dark-image">
+          <img src="https://cdn.simpleicons.org/files/FFFFFF"
+               alt="Files icon representing the Linux filesystem"
+               loading="lazy">
+          <figcaption>
+            In Linux, system configuration, users, programs, devices, and logs
+            appear under one hierarchical directory structure.
+          </figcaption>
+        </figure>
+
+        <div class="content-stack">
+          <div class="filesystem-tree">
+            <code>/</code>
+            <ul>
+              <li><code>/home</code> — regular users' home directories</li>
+              <li><code>/root</code> — root user's home directory</li>
+              <li><code>/etc</code> — system-wide configuration</li>
+              <li><code>/var</code> — variable data such as logs and caches</li>
+              <li><code>/usr</code> — applications, libraries, documentation</li>
+              <li><code>/bin</code> — essential command binaries</li>
+              <li><code>/tmp</code> — temporary files</li>
+              <li><code>/dev</code> — device representations</li>
+              <li><code>/proc</code> — process and kernel information interface</li>
+              <li><code>/mnt</code> and <code>/media</code> — common mount locations</li>
+            </ul>
+          </div>
+
+          <div class="warning-box">
+            <strong>Important:</strong>
+            Linux paths are case-sensitive. <code>Report.txt</code>,
+            <code>report.txt</code>, and <code>REPORT.txt</code> can be three
+            different filenames.
+          </div>
+        </div>
+      </div>
+
+      <h3>Absolute vs. Relative Paths</h3>
+      <div class="two-column">
+        <article class="info-card">
+          <h4>Absolute Path</h4>
+          <p>Starts from the root directory and identifies a complete location.</p>
+          <pre><code>/home/student/projects/cloud-notes.txt</code></pre>
+        </article>
+        <article class="info-card">
+          <h4>Relative Path</h4>
+          <p>Starts from the current working directory.</p>
+          <pre><code>projects/cloud-notes.txt</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- 07 SHELL AND TERMINAL -->
+    <section class="lesson-section" id="shell-terminal">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 07</span>
+        <h2>Shell vs. Terminal</h2>
+        <p>
+          Students often use these words interchangeably, but they describe
+          different components.
+        </p>
+      </div>
+
+      <div class="shell-comparison">
+        <article>
+          <img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="GNU Bash logo" loading="lazy">
+          <h3>Shell</h3>
+          <p>
+            A program that reads commands and starts programs. Bash is a common
+            Linux shell. Other shells include Zsh and Fish.
+          </p>
+        </article>
+        <article>
+          <div class="terminal-window small-terminal">
+            <div class="terminal-bar"><span></span><span></span><span></span><b>Terminal</b></div>
+            <pre><code>student@server:~$ echo "Hello Linux"
+Hello Linux</code></pre>
+          </div>
+          <h3>Terminal Emulator</h3>
+          <p>
+            The graphical or text interface in which a shell session is displayed.
+            Examples include GNOME Terminal, Konsole, Windows Terminal, and remote SSH clients.
+          </p>
+        </article>
+      </div>
+
+      <h3>Reading a Command Prompt</h3>
+      <pre class="code-large"><code>student@cloud-server:~/projects$</code></pre>
+
+      <div class="prompt-breakdown">
+        <span><b>student</b><small>Current user</small></span>
+        <span><b>@</b><small>Separator</small></span>
+        <span><b>cloud-server</b><small>Hostname</small></span>
+        <span><b>~/projects</b><small>Current directory</small></span>
+        <span><b>$</b><small>Normal-user prompt</small></span>
+      </div>
+
+      <div class="concept-callout">
+        A prompt ending in <code>#</code> commonly indicates a root shell.
+        Students should not assume root access is required for normal work.
+      </div>
+    </section>
+
+    <!-- 08 NAVIGATION -->
+    <section class="lesson-section" id="navigation">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 08</span>
+        <h2>Essential Navigation Commands</h2>
+        <p>
+          Navigation is the first practical skill students should master because
+          most later tasks depend on knowing where they are in the filesystem.
+        </p>
+      </div>
+
+      <div class="command-grid">
+        <article><code>pwd</code><h3>Print working directory</h3><p>Shows the absolute path of the current directory.</p></article>
+        <article><code>ls</code><h3>List directory contents</h3><p>Displays files and directories.</p></article>
+        <article><code>ls -la</code><h3>Detailed listing</h3><p>Shows hidden files, permissions, ownership, size, and metadata.</p></article>
+        <article><code>cd /path</code><h3>Change directory</h3><p>Moves the shell to another directory.</p></article>
+        <article><code>cd ..</code><h3>Move to parent</h3><p>Moves one directory level upward.</p></article>
+        <article><code>cd ~</code><h3>Go to home</h3><p>Returns to the current user's home directory.</p></article>
+      </div>
+
+      <h3>Step-by-Step Demonstration</h3>
+      <div class="steps">
+        <article class="step">
+          <div class="step-number">1</div>
+          <div>
+            <h4>Identify your current location</h4>
+            <pre><code>$ pwd
+/home/student</code></pre>
+            <p>Never assume the current directory. Confirm it before manipulating files.</p>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-number">2</div>
+          <div>
+            <h4>Inspect available files and directories</h4>
+            <pre><code>$ ls -la</code></pre>
+            <p>The <code>-l</code> option uses a long listing; <code>-a</code> includes hidden entries.</p>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-number">3</div>
+          <div>
+            <h4>Move into a directory</h4>
+            <pre><code>$ cd Documents
+$ pwd
+/home/student/Documents</code></pre>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-number">4</div>
+          <div>
+            <h4>Return home</h4>
+            <pre><code>$ cd ~</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 09 FILE MANAGEMENT -->
+    <section class="lesson-section" id="files">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 09</span>
+        <h2>Creating and Managing Files</h2>
+        <p>
+          Shell commands can create, copy, move, rename, inspect, and remove files.
+          Students should always verify a path before using destructive commands.
+        </p>
+      </div>
+
+      <div class="command-table table-wrap">
+        <table>
+          <thead><tr><th>Command</th><th>Purpose</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><code>touch</code></td><td>Create an empty file or update its timestamp</td><td><code>touch notes.txt</code></td></tr>
+            <tr><td><code>mkdir</code></td><td>Create a directory</td><td><code>mkdir cloud-lab</code></td></tr>
+            <tr><td><code>mkdir -p</code></td><td>Create nested directories</td><td><code>mkdir -p project/logs</code></td></tr>
+            <tr><td><code>cp</code></td><td>Copy a file</td><td><code>cp notes.txt backup.txt</code></td></tr>
+            <tr><td><code>cp -r</code></td><td>Copy directories recursively</td><td><code>cp -r project project-backup</code></td></tr>
+            <tr><td><code>mv</code></td><td>Move or rename</td><td><code>mv old.txt new.txt</code></td></tr>
+            <tr><td><code>rm</code></td><td>Remove a file</td><td><code>rm old.txt</code></td></tr>
+            <tr><td><code>rmdir</code></td><td>Remove an empty directory</td><td><code>rmdir empty-folder</code></td></tr>
+            <tr><td><code>cat</code></td><td>Display file content</td><td><code>cat notes.txt</code></td></tr>
+            <tr><td><code>less</code></td><td>Read long text interactively</td><td><code>less /var/log/syslog</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="danger-box">
+        <strong>Safety rule:</strong>
+        Commands such as <code>rm</code> can permanently remove data. Never teach
+        students to run broad recursive deletion commands without first explaining
+        path verification, backups, and least privilege.
+      </div>
+    </section>
+
+    <!-- 10 TEXT TOOLS -->
+    <section class="lesson-section" id="text-tools">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 10</span>
+        <h2>Reading, Searching, and Filtering Text</h2>
+        <p>
+          Linux administration depends heavily on text: configuration files,
+          logs, command output, and structured text streams. Shell tools make
+          these data sources easy to inspect.
+        </p>
+      </div>
+
+      <div class="command-grid">
+        <article><code>head</code><h3>First lines</h3><p><code>head -n 10 file.txt</code></p></article>
+        <article><code>tail</code><h3>Last lines</h3><p><code>tail -n 20 file.txt</code></p></article>
+        <article><code>tail -f</code><h3>Follow a file</h3><p>Useful for watching logs as new lines are written.</p></article>
+        <article><code>grep</code><h3>Search text</h3><p><code>grep "error" app.log</code></p></article>
+        <article><code>find</code><h3>Find filesystem entries</h3><p><code>find . -name "*.log"</code></p></article>
+        <article><code>wc</code><h3>Count text</h3><p><code>wc -l access.log</code> counts lines.</p></article>
+        <article><code>sort</code><h3>Sort lines</h3><p><code>sort names.txt</code></p></article>
+        <article><code>uniq</code><h3>Collapse adjacent duplicates</h3><p>Often used after <code>sort</code>.</p></article>
+      </div>
+
+      <h3>Example: Find Error Messages in a Log</h3>
+      <pre><code>$ grep -i "error" application.log
+ERROR database connection failed
+ERROR retry limit reached</code></pre>
+
+      <p>
+        The <code>-i</code> option performs a case-insensitive match. In real
+        troubleshooting, students should inspect surrounding context instead of
+        assuming every line containing “error” identifies the root cause.
+      </p>
+    </section>
+
+    <!-- 11 PERMISSIONS -->
+    <section class="lesson-section" id="permissions">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 11</span>
+        <h2>Linux File Permissions</h2>
+        <p>
+          Linux permission controls determine who can read, modify, or execute
+          a file. Basic discretionary permissions are expressed for the
+          <strong>owner</strong>, <strong>group</strong>, and <strong>others</strong>.
+        </p>
+      </div>
+
+      <pre class="code-large"><code>-rwxr-xr-- 1 student developers 2048 Aug 17 script.sh</code></pre>
+
+      <div class="permission-visual">
+        <div><strong>-</strong><span>Type</span></div>
+        <div><strong>rwx</strong><span>Owner</span></div>
+        <div><strong>r-x</strong><span>Group</span></div>
+        <div><strong>r--</strong><span>Others</span></div>
+      </div>
+
+      <div class="three-column">
+        <article class="info-card">
+          <h3>r — Read</h3>
+          <p>Allows file content to be read. For a directory, allows listing entries when combined appropriately.</p>
+        </article>
+        <article class="info-card">
+          <h3>w — Write</h3>
+          <p>Allows file content to be changed. Directory write permission affects entry creation/removal.</p>
+        </article>
+        <article class="info-card">
+          <h3>x — Execute</h3>
+          <p>Allows executable files to run. On directories, it controls traversal/search access.</p>
+        </article>
+      </div>
+
+      <h3>Changing Permissions</h3>
+      <pre><code># Add execute permission for the owner
+$ chmod u+x deploy.sh
+
+# Symbolic permission example
+$ chmod g-w report.txt
+
+# Numeric permission example
+$ chmod 750 deploy.sh</code></pre>
+
+      <div class="table-wrap compact-table">
+        <table>
+          <thead><tr><th>Number</th><th>Permission</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>4</td><td><code>r</code></td><td>Read</td></tr>
+            <tr><td>2</td><td><code>w</code></td><td>Write</td></tr>
+            <tr><td>1</td><td><code>x</code></td><td>Execute</td></tr>
+            <tr><td>7</td><td><code>rwx</code></td><td>4 + 2 + 1</td></tr>
+            <tr><td>5</td><td><code>r-x</code></td><td>4 + 1</td></tr>
+            <tr><td>0</td><td><code>---</code></td><td>No basic permissions</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-box">
+        <strong>Do not teach <code>chmod 777</code> as a universal fix.</strong>
+        It grants broad permissions and often hides an ownership or deployment
+        design problem. Use the minimum permissions required.
+      </div>
+    </section>
+
+    <!-- 12 USERS AND SUDO -->
+    <section class="lesson-section" id="users">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 12</span>
+        <h2>Users, Groups, Root, and sudo</h2>
+        <p>
+          Linux is a multi-user operating system. User accounts and groups help
+          separate responsibilities and protect files, processes, and administrative functions.
+        </p>
+      </div>
+
+      <div class="command-grid">
+        <article><code>whoami</code><h3>Current identity</h3><p>Displays the current effective username.</p></article>
+        <article><code>id</code><h3>User and groups</h3><p>Shows numeric user/group IDs and memberships.</p></article>
+        <article><code>groups</code><h3>Group membership</h3><p>Lists groups associated with the user.</p></article>
+        <article><code>passwd</code><h3>Password management</h3><p>Changes a user's password when permitted.</p></article>
+        <article><code>sudo</code><h3>Elevated command</h3><p>Runs an authorized command with elevated privileges according to policy.</p></article>
+        <article><code>su</code><h3>Switch user</h3><p>Starts a shell as another user when authentication and policy allow.</p></article>
+      </div>
+
+      <h3>Why <code>sudo</code> Matters</h3>
+      <p>
+        Administrative operations such as installing packages or changing
+        protected configuration may require elevated privileges. Rather than
+        performing all work as root, administrators generally use normal user
+        accounts and elevate only the commands that require it.
+      </p>
+
+      <pre><code>$ sudo apt update
+[sudo] password for student:
+...</code></pre>
+
+      <div class="concept-callout">
+        <strong>Least privilege:</strong> Give users and processes only the permissions
+        required to perform their intended tasks.
+      </div>
+    </section>
+
+    <!-- 13 PROCESSES -->
+    <section class="lesson-section" id="processes">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 13</span>
+        <h2>Processes and Services</h2>
+        <p>
+          A process is a running program. Administrators need to inspect processes,
+          identify resource usage, stop malfunctioning programs, and manage background services.
+        </p>
+      </div>
+
+      <div class="command-grid">
+        <article><code>ps aux</code><h3>Process snapshot</h3><p>Shows detailed information about running processes.</p></article>
+        <article><code>top</code><h3>Live process view</h3><p>Interactive CPU and memory activity.</p></article>
+        <article><code>kill PID</code><h3>Send a signal</h3><p>Requests a process to terminate or handle another signal.</p></article>
+        <article><code>pkill name</code><h3>Signal by name</h3><p>Targets processes matching a name/pattern.</p></article>
+        <article><code>systemctl status</code><h3>Service status</h3><p>Checks a systemd-managed service.</p></article>
+        <article><code>journalctl</code><h3>System logs</h3><p>Queries logs collected by systemd-journald.</p></article>
+      </div>
+
+      <h3>Service Administration Example</h3>
+      <pre><code># Check service status
+$ systemctl status ssh
+
+# Start a service (requires appropriate privilege)
+$ sudo systemctl start ssh
+
+# Configure a service to start at boot
+$ sudo systemctl enable ssh
+
+# View recent service logs
+$ journalctl -u ssh --since "30 minutes ago"</code></pre>
+
+      <p class="note">
+        Service names vary by distribution and installed package. For example,
+        SSH server services may appear under names such as <code>ssh</code> or
+        <code>sshd</code>.
+      </p>
+    </section>
+
+    <!-- 14 NETWORKING -->
+    <section class="lesson-section" id="networking">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 14</span>
+        <h2>Linux Networking Fundamentals</h2>
+        <p>
+          Cloud engineers troubleshoot Linux networking from the command line.
+          Students should understand interfaces, IP addresses, routes, DNS resolution,
+          sockets, and connectivity tests.
+        </p>
+      </div>
+
+      <div class="media-layout">
+        <div class="content-stack">
+          <div class="command-grid two-up">
+            <article><code>ip addr</code><h3>IP addresses</h3><p>Displays network interfaces and assigned addresses.</p></article>
+            <article><code>ip route</code><h3>Routing table</h3><p>Shows where network traffic will be sent.</p></article>
+            <article><code>ping</code><h3>Reachability test</h3><p>Sends ICMP echo requests when permitted by the network.</p></article>
+            <article><code>ss -tulpn</code><h3>Listening sockets</h3><p>Displays TCP/UDP sockets and associated processes when permitted.</p></article>
+            <article><code>curl</code><h3>HTTP/API testing</h3><p>Transfers data using URLs and is useful for service checks.</p></article>
+            <article><code>hostname</code><h3>Host identity</h3><p>Displays or helps inspect the system hostname.</p></article>
+          </div>
+        </div>
+
+        <figure class="lesson-image">
+          <img src="https://cdn.simpleicons.org/cloudflare/F38020"
+               alt="Cloud network icon"
+               loading="lazy">
+          <figcaption>
+            Linux networking skills are directly applicable to cloud servers,
+            load-balanced services, container networks, and remote troubleshooting.
+          </figcaption>
+        </figure>
+      </div>
+
+      <h3>Four-Step Connectivity Check</h3>
+      <div class="steps">
+        <article class="step"><div class="step-number">1</div><div><h4>Check interface state</h4><pre><code>$ ip addr</code></pre></div></article>
+        <article class="step"><div class="step-number">2</div><div><h4>Check routing</h4><pre><code>$ ip route</code></pre></div></article>
+        <article class="step"><div class="step-number">3</div><div><h4>Test name resolution/service URL</h4><pre><code>$ curl -I https://example.com</code></pre></div></article>
+        <article class="step"><div class="step-number">4</div><div><h4>Inspect local listeners</h4><pre><code>$ ss -tulpn</code></pre></div></article>
+      </div>
+    </section>
+
+    <!-- 15 PACKAGES -->
+    <section class="lesson-section" id="packages">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 15</span>
+        <h2>Package Management</h2>
+        <p>
+          Package managers install, upgrade, remove, and track software. The
+          command depends on the distribution family.
+        </p>
+      </div>
+
+      <div class="package-visual">
+        <article>
+          <img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="Ubuntu logo" loading="lazy">
+          <h3>Debian / Ubuntu Family</h3>
+          <pre><code># Refresh package metadata
+sudo apt update
+
+# Install a package
+sudo apt install nginx
+
+# Upgrade installed packages
+sudo apt upgrade
+
+# Remove a package
+sudo apt remove nginx</code></pre>
+        </article>
+
+        <article>
+          <img src="https://cdn.simpleicons.org/fedora/51A2DA" alt="Fedora logo" loading="lazy">
+          <h3>Fedora / RHEL Family</h3>
+          <pre><code># Refresh/check metadata
+sudo dnf check-update
+
+# Install a package
+sudo dnf install nginx
+
+# Upgrade packages
+sudo dnf upgrade
+
+# Remove a package
+sudo dnf remove nginx</code></pre>
+        </article>
+      </div>
+
+      <div class="warning-box">
+        Package names, repositories, and commands can differ by distribution and
+        version. Teach students to confirm the target distribution before copying
+        installation commands from documentation.
+      </div>
+    </section>
+
+    <!-- 16 REDIRECTION -->
+    <section class="lesson-section" id="redirection">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 16</span>
+        <h2>Pipes, Redirection, and Command Composition</h2>
+        <p>
+          The shell becomes especially powerful when small tools are combined.
+          Standard input, standard output, and standard error can be redirected or
+          connected between commands.
+        </p>
+      </div>
+
+      <div class="operator-grid">
+        <article><code>&gt;</code><h3>Overwrite output</h3><p><code>echo "hello" &gt; file.txt</code></p></article>
+        <article><code>&gt;&gt;</code><h3>Append output</h3><p><code>date &gt;&gt; history.log</code></p></article>
+        <article><code>&lt;</code><h3>Input redirection</h3><p><code>sort &lt; names.txt</code></p></article>
+        <article><code>|</code><h3>Pipe</h3><p>Sends the output of one command to the input of another.</p></article>
+        <article><code>2&gt;</code><h3>Redirect errors</h3><p><code>command 2&gt; errors.log</code></p></article>
+        <article><code>&amp;&amp;</code><h3>Conditional chaining</h3><p>Run the next command only if the previous command succeeds.</p></article>
+      </div>
+
+      <h3>Practical Examples</h3>
+      <pre><code># Find matching processes
+$ ps aux | grep nginx
+
+# Count lines containing "ERROR"
+$ grep "ERROR" app.log | wc -l
+
+# Sort and count repeated values
+$ sort users.txt | uniq -c
+
+# Save disk usage output
+$ df -h &gt; disk-report.txt</code></pre>
+
+      <div class="concept-callout">
+        A pipeline should be read from left to right: “produce data → filter it →
+        transform it → summarize it.”
+      </div>
+    </section>
+
+    <!-- 17 BASH -->
+    <section class="lesson-section" id="bash">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 17</span>
+        <h2>Introduction to Bash Scripting</h2>
+        <p>
+          Bash scripts automate repeated command-line tasks. A script is a text
+          file containing shell commands, variables, conditions, loops, and functions.
+        </p>
+      </div>
+
+      <div class="media-layout reverse">
+        <figure class="lesson-image dark-image">
+          <img src="https://cdn.simpleicons.org/gnubash/FFFFFF"
+               alt="GNU Bash logo"
+               loading="lazy">
+          <figcaption>
+            Bash automation is useful for server setup, log processing, deployment,
+            backups, and repetitive administration.
+          </figcaption>
+        </figure>
+
+        <div class="content-stack">
+          <h3>First Script</h3>
+          <pre><code>#!/usr/bin/env bash
+
+name="Cloud Student"
+
+echo "Hello, $name"
+echo "Current date: $(date)"
+echo "Current directory: $(pwd)"</code></pre>
+
+          <h3>Make It Executable</h3>
+          <pre><code>$ chmod u+x hello.sh
+$ ./hello.sh</code></pre>
+        </div>
+      </div>
+
+      <h3>Conditions</h3>
+      <pre><code>#!/usr/bin/env bash
+
+if command -v docker &gt;/dev/null 2&gt;&amp;1; then
+  echo "Docker command is available."
+else
+  echo "Docker command was not found."
+fi</code></pre>
+
+      <h3>Loops</h3>
+      <pre><code>#!/usr/bin/env bash
+
+for service in nginx ssh cron
+do
+  echo "Checking: $service"
+done</code></pre>
+
+      <div class="tip-box">
+        Professional scripts should validate inputs, quote variables where appropriate,
+        check exit statuses, produce understandable errors, and avoid embedding secrets.
+      </div>
+    </section>
+
+    <!-- 18 SSH -->
+    <section class="lesson-section" id="ssh">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 18</span>
+        <h2>SSH and Remote Linux Administration</h2>
+        <p>
+          Secure Shell (SSH) is a standard method for remotely accessing Linux
+          servers. In cloud environments, students may spend more time in SSH
+          sessions than in a graphical desktop.
+        </p>
+      </div>
+
+      <div class="media-layout">
+        <div class="content-stack">
+          <h3>Basic Connection</h3>
+          <pre><code>$ ssh student@203.0.113.10</code></pre>
+
+          <h3>Using a Key File</h3>
+          <pre><code>$ ssh -i ~/.ssh/cloud-lab-key student@203.0.113.10</code></pre>
+
+          <h3>Secure Copy Example</h3>
+          <pre><code>$ scp report.txt student@203.0.113.10:/home/student/</code></pre>
+
+          <p>
+            Cloud providers often provision instances with key-based authentication.
+            Private keys should be protected carefully and should never be published
+            in a public repository.
+          </p>
+        </div>
+
+        <figure class="lesson-image">
+          <img src="https://cdn.simpleicons.org/openssh/000000"
+               alt="OpenSSH logo"
+               loading="lazy">
+          <figcaption>
+            SSH enables encrypted remote administration and secure file-transfer workflows.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="danger-box">
+        <strong>Credential safety:</strong> Never place real private SSH keys,
+        passwords, API tokens, or cloud credentials in lecture screenshots,
+        source repositories, or shared scripts.
+      </div>
+    </section>
+
+    <!-- 19 CLOUD -->
+    <section class="lesson-section" id="cloud">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 19</span>
+        <h2>Linux in Cloud Computing</h2>
+        <p>
+          Cloud virtual machines behave like remote computers. A Linux cloud
+          instance typically has virtual CPU, memory, storage, network interfaces,
+          an operating-system image, and access-control settings.
+        </p>
+      </div>
+
+      <div class="cloud-flow" aria-label="Cloud Linux workflow">
+        <div class="flow-card">
+          <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux logo" loading="lazy">
+          <strong>Linux Image</strong>
+          <small>Ubuntu, Debian, RHEL-family, etc.</small>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-card">
+          <img src="https://cdn.simpleicons.org/serverfault/62C2A9" alt="Server icon" loading="lazy">
+          <strong>Cloud VM</strong>
+          <small>vCPU, memory, virtual disk, network</small>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-card">
+          <img src="https://cdn.simpleicons.org/openssh/000000" alt="SSH icon" loading="lazy">
+          <strong>SSH Administration</strong>
+          <small>Remote command-line access</small>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-card">
+          <img src="https://cdn.simpleicons.org/nginx/009639" alt="NGINX logo" loading="lazy">
+          <strong>Application Service</strong>
+          <small>Web, API, database, worker</small>
+        </div>
+      </div>
+
+      <h3>Typical Cloud Administrator Workflow</h3>
+      <div class="steps">
+        <article class="step"><div class="step-number">1</div><div><h4>Provision a Linux VM</h4><p>Select an image, instance size, storage, networking, and security settings.</p></div></article>
+        <article class="step"><div class="step-number">2</div><div><h4>Connect securely</h4><p>Use SSH and a protected authentication method.</p></div></article>
+        <article class="step"><div class="step-number">3</div><div><h4>Update the system</h4><p>Refresh package metadata and install approved security/software updates according to policy.</p></div></article>
+        <article class="step"><div class="step-number">4</div><div><h4>Install/configure services</h4><p>Install the application runtime, web server, agent, or service required by the workload.</p></div></article>
+        <article class="step"><div class="step-number">5</div><div><h4>Observe and troubleshoot</h4><p>Review resource use, logs, network listeners, service state, and application health.</p></div></article>
+      </div>
+    </section>
+
+    <!-- 20 CONTAINERS -->
+    <section class="lesson-section" id="containers">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 20</span>
+        <h2>Linux and Containers</h2>
+        <p>
+          Containers isolate application processes while sharing the host
+          operating-system kernel. Linux kernel capabilities such as namespaces
+          and control groups are foundational to common Linux container runtimes.
+        </p>
+      </div>
+
+      <div class="media-layout reverse">
+        <figure class="lesson-image">
+          <img src="https://cdn.simpleicons.org/docker/2496ED"
+               alt="Docker logo"
+               loading="lazy">
+          <figcaption>
+            Container tools package applications with their required user-space
+            files while relying on the host kernel for core operating-system services.
+          </figcaption>
+        </figure>
+
+        <div class="content-stack">
+          <h3>Virtual Machine vs. Container</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Virtual Machine</th><th>Container</th></tr></thead>
+              <tbody>
+                <tr><td>Includes a guest operating system/kernel</td><td>Shares the host kernel</td></tr>
+                <tr><td>Usually heavier</td><td>Usually lighter</td></tr>
+                <tr><td>Strong VM-level isolation boundary</td><td>Process-level isolation mechanisms</td></tr>
+                <tr><td>Boots an OS environment</td><td>Starts application processes</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Why Linux Skills Still Matter</h3>
+          <ul class="explain-list">
+            <li>Container images contain Linux files, directories, packages, and permissions.</li>
+            <li>Logs and configuration are frequently handled with shell tools.</li>
+            <li>File ownership can affect bind mounts and application behavior.</li>
+            <li>Networking concepts apply to ports, interfaces, bridges, and service communication.</li>
+            <li>Shell scripts commonly automate builds, startup, deployment, and diagnostics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Illustrative Container Commands</h3>
+      <pre><code># Show running containers
+$ docker ps
+
+# Run a temporary shell in an Ubuntu image
+$ docker run --rm -it ubuntu bash
+
+# List files inside that container
+root@container:/# ls /
+
+# Exit the shell
+root@container:/# exit</code></pre>
+
+      <p class="note">
+        These commands are demonstrations only and require a container runtime
+        such as Docker to be installed and configured on the laboratory machine.
+      </p>
+    </section>
+
+    <!-- 21 SECURITY -->
+    <section class="lesson-section" id="security">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 21</span>
+        <h2>Linux Security Practices</h2>
+        <p>
+          Secure administration is not a single command. It is a combination of
+          access control, updates, logging, network restrictions, careful privilege
+          use, and disciplined operational procedures.
+        </p>
+      </div>
+
+      <div class="security-grid">
+        <article><span>01</span><h3>Use least privilege</h3><p>Operate as a normal user and elevate only when required.</p></article>
+        <article><span>02</span><h3>Patch responsibly</h3><p>Apply security and software updates according to organizational change policy.</p></article>
+        <article><span>03</span><h3>Protect credentials</h3><p>Keep SSH keys, passwords, and cloud tokens out of public files and repositories.</p></article>
+        <article><span>04</span><h3>Restrict network access</h3><p>Expose only required services and ports.</p></article>
+        <article><span>05</span><h3>Review permissions</h3><p>Avoid unnecessary write/execute access and overly permissive modes.</p></article>
+        <article><span>06</span><h3>Inspect logs</h3><p>Use logs to investigate authentication events, service failures, and configuration problems.</p></article>
+        <article><span>07</span><h3>Back up important data</h3><p>Backups should be tested, protected, and appropriate to recovery requirements.</p></article>
+        <article><span>08</span><h3>Document changes</h3><p>Professional administrators keep reproducible records of system changes.</p></article>
+      </div>
+    </section>
+
+    <!-- 22 TROUBLESHOOTING -->
+    <section class="lesson-section" id="troubleshooting">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 22</span>
+        <h2>A Professional Troubleshooting Method</h2>
+        <p>
+          Randomly trying commands can make incidents worse. A structured method
+          improves speed, safety, and repeatability.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article>
+          <span>1</span>
+          <div><h3>Define the symptom</h3><p>What exactly is failing? When did it start? Which users or systems are affected?</p></div>
+        </article>
+        <article>
+          <span>2</span>
+          <div><h3>Collect evidence</h3><p>Check service state, process state, logs, disk capacity, memory, network paths, and recent changes.</p></div>
+        </article>
+        <article>
+          <span>3</span>
+          <div><h3>Form a hypothesis</h3><p>Use the evidence to identify the most likely causes instead of guessing.</p></div>
+        </article>
+        <article>
+          <span>4</span>
+          <div><h3>Test safely</h3><p>Prefer reversible, low-risk checks. Avoid destructive changes during diagnosis.</p></div>
+        </article>
+        <article>
+          <span>5</span>
+          <div><h3>Apply and verify the fix</h3><p>Correct the cause, then verify service functionality and check for side effects.</p></div>
+        </article>
+        <article>
+          <span>6</span>
+          <div><h3>Document the incident</h3><p>Record the cause, commands used, resolution, and prevention actions.</p></div>
+        </article>
+      </div>
+
+      <h3>Useful Diagnostic Commands</h3>
+      <pre><code>$ df -h                 # filesystem capacity
+$ free -h               # memory overview
+$ uptime                 # load and uptime
+$ ps aux                 # processes
+$ systemctl --failed     # failed systemd units
+$ journalctl -p err      # error-priority journal entries
+$ ip addr                # interfaces and IPs
+$ ip route               # routing
+$ ss -tulpn              # listening sockets</code></pre>
+    </section>
+
+    <!-- 23 GUIDED LAB -->
+    <section class="lesson-section lab-section" id="lab">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 23</span>
+        <h2>Guided Laboratory: Linux Shell Fundamentals</h2>
+        <p>
+          This activity is designed for a disposable classroom VM, lab machine,
+          or training environment. Do not use production servers for beginner exercises.
+        </p>
+      </div>
+
+      <div class="lab-banner">
+        <img src="https://cdn.simpleicons.org/gnubash/FFFFFF" alt="Bash logo" loading="lazy">
+        <div>
+          <p class="eyebrow">Hands-on Exercise</p>
+          <h3>Build a Small Cloud-Lab Workspace</h3>
+          <p>Students practice navigation, file creation, permissions, pipes, search, and a simple Bash script.</p>
+        </div>
+      </div>
+
+      <ol class="lab-steps">
+        <li>
+          <h3>Confirm the current user and system</h3>
+          <pre><code>whoami
+hostname
+uname -a
+pwd</code></pre>
+          <p><strong>Explain:</strong> These commands establish identity, host, kernel/system information, and current location.</p>
+        </li>
+
+        <li>
+          <h3>Create a laboratory directory</h3>
+          <pre><code>cd ~
+mkdir -p cloud-linux-lab/{logs,scripts,reports}
+cd cloud-linux-lab
+ls -la</code></pre>
+          <p><strong>Explain:</strong> Brace expansion lets Bash generate multiple directory names from one command.</p>
+        </li>
+
+        <li>
+          <h3>Create sample files</h3>
+          <pre><code>printf "INFO service started\nERROR database unavailable\nINFO retrying\n" &gt; logs/app.log
+printf "server-01\nserver-02\nserver-01\n" &gt; servers.txt</code></pre>
+          <p><strong>Explain:</strong> <code>&gt;</code> redirects output into a file and replaces previous content.</p>
+        </li>
+
+        <li>
+          <h3>Search and count</h3>
+          <pre><code>grep "ERROR" logs/app.log
+sort servers.txt | uniq -c</code></pre>
+          <p><strong>Explain:</strong> The pipe connects one command's standard output to the next command's standard input.</p>
+        </li>
+
+        <li>
+          <h3>Create a report</h3>
+          <pre><code>{
+  echo "Linux Lab Report"
+  echo "User: $(whoami)"
+  echo "Host: $(hostname)"
+  echo "Date: $(date)"
+  echo "Path: $(pwd)"
+} &gt; reports/system-report.txt
+
+cat reports/system-report.txt</code></pre>
+        </li>
+
+        <li>
+          <h3>Create a Bash script</h3>
+          <pre><code>cat &gt; scripts/check.sh &lt;&lt;'EOF'
+#!/usr/bin/env bash
+
+echo "=== System Check ==="
+echo "User: $(whoami)"
+echo "Host: $(hostname)"
+echo "Disk:"
+df -h /
+EOF
+
+chmod u+x scripts/check.sh
+./scripts/check.sh</code></pre>
+          <p><strong>Explain:</strong> The script gathers a few non-destructive system details and demonstrates executable permissions.</p>
+        </li>
+
+        <li>
+          <h3>Inspect permissions</h3>
+          <pre><code>ls -l scripts/check.sh
+stat scripts/check.sh</code></pre>
+          <p><strong>Explain:</strong> Ask students to identify owner, group, and permission bits.</p>
+        </li>
+
+        <li>
+          <h3>Clean up only the training workspace</h3>
+          <pre><code>cd ~
+rm -r cloud-linux-lab</code></pre>
+          <p>
+            <strong>Explain before running:</strong> Confirm the exact directory with
+            <code>pwd</code> and <code>ls</code>. This command removes the training
+            directory recursively and should never be redirected to an unknown path.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 24 REVIEW -->
+    <section class="lesson-section" id="review">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 24</span>
+        <h2>Review Questions and Classroom Activities</h2>
+        <p>
+          Use these prompts after the lecture to test conceptual understanding,
+          not just memorization of commands.
+        </p>
+      </div>
+
+      <div class="activity-grid">
+        <article class="activity-card">
+          <span>A</span>
+          <h3>Concept Check</h3>
+          <ol>
+            <li>What is the difference between the Linux kernel and a Linux distribution?</li>
+            <li>What is the difference between a terminal and a shell?</li>
+            <li>Why is <code>/</code> important in the Linux filesystem?</li>
+            <li>What do <code>r</code>, <code>w</code>, and <code>x</code> represent?</li>
+            <li>Why should administrators avoid working as root unnecessarily?</li>
+          </ol>
+        </article>
+
+        <article class="activity-card">
+          <span>B</span>
+          <h3>Command Interpretation</h3>
+          <ol>
+            <li>Explain <code>ls -la</code>.</li>
+            <li>Explain <code>grep "ERROR" app.log | wc -l</code>.</li>
+            <li>Explain <code>chmod 750 deploy.sh</code>.</li>
+            <li>Explain <code>ip route</code>.</li>
+            <li>Explain <code>journalctl -u ssh</code>.</li>
+          </ol>
+        </article>
+
+        <article class="activity-card">
+          <span>C</span>
+          <h3>Cloud Scenario</h3>
+          <p>
+            A web application on a Linux VM is unreachable. Students should propose
+            a safe troubleshooting sequence using service status, listening sockets,
+            logs, IP addressing, routes, and HTTP testing.
+          </p>
+        </article>
+
+        <article class="activity-card">
+          <span>D</span>
+          <h3>Container Scenario</h3>
+          <p>
+            A containerized application cannot write to a mounted directory.
+            Ask students which Linux concepts might matter: ownership, permissions,
+            process identity, path correctness, and mount configuration.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 25 GLOSSARY -->
+    <section class="lesson-section" id="glossary">
+      <div class="section-heading">
+        <span class="section-index">TOPIC 25</span>
+        <h2>Key Terms and Glossary</h2>
+      </div>
+
+      <dl class="glossary">
+        <div><dt>Kernel</dt><dd>The operating-system core that manages hardware resources and provides low-level services.</dd></div>
+        <div><dt>Distribution</dt><dd>A complete operating system built around the Linux kernel with utilities, packages, and management tools.</dd></div>
+        <div><dt>Shell</dt><dd>A command interpreter such as Bash.</dd></div>
+        <div><dt>Terminal</dt><dd>An interface used to interact with a shell session.</dd></div>
+        <div><dt>Root directory</dt><dd>The top of the Linux filesystem hierarchy, represented by <code>/</code>.</dd></div>
+        <div><dt>Root user</dt><dd>The traditional superuser account with extensive administrative privileges.</dd></div>
+        <div><dt>sudo</dt><dd>A mechanism used to execute authorized commands with elevated privileges according to policy.</dd></div>
+        <div><dt>Package manager</dt><dd>A tool that installs, updates, removes, and tracks software packages.</dd></div>
+        <div><dt>Process</dt><dd>A running instance of a program.</dd></div>
+        <div><dt>Service</dt><dd>A long-running background capability such as SSH, a web server, or another system/application daemon.</dd></div>
+        <div><dt>Pipe</dt><dd>The <code>|</code> operator that passes one command's output into another command's input.</dd></div>
+        <div><dt>SSH</dt><dd>A protocol and toolset for secure remote access and related operations.</dd></div>
+        <div><dt>Container</dt><dd>An isolated application process environment that normally shares the host kernel.</dd></div>
+        <div><dt>Image</dt><dd>A packaged filesystem and metadata used as the starting point for a container.</dd></div>
+      </dl>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="lesson-section references">
+      <div class="section-heading">
+        <span class="section-index">LECTURE REFERENCES</span>
+        <h2>Recommended Official Reading</h2>
+        <p>
+          These references can be used by the instructor for deeper discussion
+          and to verify distribution-specific commands before laboratory work.
+        </p>
+      </div>
+
+      <div class="reference-list">
+        <a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer">
+          <strong>Ubuntu</strong><span>Official Ubuntu website and documentation resources</span>
+        </a>
+        <a href="https://www.debian.org/intro/index" target="_blank" rel="noopener noreferrer">
+          <strong>Debian Project</strong><span>Official introduction to Debian</span>
+        </a>
+        <a href="https://fedoraproject.org/workstation/" target="_blank" rel="noopener noreferrer">
+          <strong>Fedora Project</strong><span>Official Fedora Workstation information</span>
+        </a>
+        <a href="https://www.redhat.com/en/blog/20-essential-linux-commands-every-user" target="_blank" rel="noopener noreferrer">
+          <strong>Red Hat</strong><span>Essential Linux command-line reference</span>
+        </a>
+        <a href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">
+          <strong>Linux Kernel</strong><span>Official kernel project website</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FINAL SUMMARY -->
+    <section class="lesson-summary">
+      <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux logo" loading="lazy">
+      <div>
+        <p class="eyebrow">Module Summary</p>
+        <h2>Linux Skills Are Infrastructure Skills</h2>
+        <p>
+          Understanding distributions and the shell prepares students for server
+          administration, cloud virtual machines, DevOps automation, containers,
+          troubleshooting, networking, and secure systems operations.
+        </p>
+        <a class="btn btn-primary" href="#overview">Back to Top</a>
+        <a class="btn btn-secondary summary-home" href="../index.html">Home</a>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>Cloud &amp; Containers Lecture Module — Linux Distros &amp; Shell</p>
+      <p>Designed for classroom lecture, guided demonstration, and laboratory discussion.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const sidebar = document.getElementById("lessonSidebar");
+      const toggle = document.getElementById("sidebarToggle");
+      const overlay = document.getElementById("sidebarOverlay");
+      const topicLinks = document.querySelectorAll(".topic-nav a[href^='#']");
+      const sections = document.querySelectorAll("section[id], header[id]");
+
+      function setMenu(open) {
+        sidebar.classList.toggle("is-open", open);
+        overlay.classList.toggle("is-visible", open);
+        document.body.classList.toggle("menu-open", open);
+        toggle.classList.toggle("is-active", open);
+        toggle.setAttribute("aria-expanded", String(open));
+      }
+
+      toggle.addEventListener("click", function () {
+        setMenu(!sidebar.classList.contains("is-open"));
+      });
+
+      overlay.addEventListener("click", function () {
+        setMenu(false);
+      });
+
+      topicLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (window.innerWidth <= 1024) setMenu(false);
+        });
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") setMenu(false);
+      });
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+
+          topicLinks.forEach(function (link) {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + entry.target.id) {
+              link.classList.add("active");
+            }
+          });
+        });
+      }, {
+        rootMargin: "-20% 0px -68% 0px",
+        threshold: 0
+      });
+
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+    })();
+  </script>
+</body>
+</html>

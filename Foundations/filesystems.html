@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional lecture module on file systems for Platform Technologies.">
+  <title>File Systems | Platform Technologies</title>
+  <!-- Browser tab logo -->
+  <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+  <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+  <link rel="stylesheet" href="../css/Foundation/filesystems.css">
+</head>
+<body>
+  <a class="skip-link" href="#lecture">Skip to lecture content</a>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Platform Technologies</p>
+      <h1>File Systems</h1>
+      <p class="subtitle">Professional Lecture Module</p>
+    </div>
+    <a class="home-link" href="../index.html">Home</a>
+  </header>
+
+  <button class="menu-button" type="button" aria-controls="lesson-nav" aria-expanded="false">Lesson Topics</button>
+
+  <div class="page-layout">
+    <aside class="sidebar" id="lesson-nav" aria-label="Lecture topics">
+      <div class="sidebar-inner">
+        <p class="sidebar-title">Lecture Topics</p>
+        <nav>
+          <a href="#overview">1. Lesson Overview</a>
+          <a href="#objectives">2. Learning Objectives</a>
+          <a href="#concept">3. File-System Concept</a>
+          <a href="#components">4. Core Components</a>
+          <a href="#organization">5. Organization Models</a>
+          <a href="#paths">6. Paths and Navigation</a>
+          <a href="#operations">7. File Operations</a>
+          <a href="#metadata">8. Metadata</a>
+          <a href="#permissions">9. Permissions</a>
+          <a href="#allocation">10. Allocation Methods</a>
+          <a href="#formats">11. Common Formats</a>
+          <a href="#mounting">12. Mounting</a>
+          <a href="#reliability">13. Reliability</a>
+          <a href="#performance">14. Performance</a>
+          <a href="#security">15. Security Practices</a>
+          <a href="#platforms">16. Platform Comparison</a>
+          <a href="#workflow">17. Step-by-Step Workflow</a>
+          <a href="#summary">18. Summary</a>
+          <a href="#review">19. Review Questions</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main id="lecture" class="lecture">
+      <section id="overview" class="hero-card section-card">
+        <div class="hero-copy">
+          <span class="lesson-label">Lesson 01</span>
+          <h2>Understanding File Systems</h2>
+          <p>A file system is the platform service that names, organizes, stores, retrieves, protects, and tracks data on storage devices. It gives applications and users a consistent way to work with persistent information.</p>
+          <div class="lesson-meta">
+            <span><strong>Level:</strong> Professional</span>
+            <span><strong>Suggested time:</strong> 90-120 minutes</span>
+            <span><strong>Mode:</strong> Lecture</span>
+          </div>
+        </div>
+        <figure class="visual-panel">
+          <svg viewBox="0 0 760 430" role="img" aria-labelledby="heroTitle heroDesc">
+            <title id="heroTitle">File system relationship diagram</title>
+            <desc id="heroDesc">Users and applications send requests to the operating system file system, which manages storage devices.</desc>
+            <defs><linearGradient id="g1" x1="0" x2="1"><stop stop-color="#123f6d"/><stop offset="1" stop-color="#2878b8"/></linearGradient></defs>
+            <rect width="760" height="430" rx="30" fill="#edf5fb"/>
+            <g font-family="Arial, sans-serif" text-anchor="middle">
+              <rect x="65" y="50" width="180" height="82" rx="16" fill="#fff" stroke="#2878b8" stroke-width="3"/>
+              <text x="155" y="84" font-size="23" font-weight="700" fill="#123f6d">Users</text><text x="155" y="111" font-size="17" fill="#40566b">Create and access data</text>
+              <rect x="515" y="50" width="180" height="82" rx="16" fill="#fff" stroke="#2878b8" stroke-width="3"/>
+              <text x="605" y="84" font-size="23" font-weight="700" fill="#123f6d">Applications</text><text x="605" y="111" font-size="17" fill="#40566b">Request file services</text>
+              <path d="M155 145 L315 207 M605 145 L445 207" stroke="#2878b8" stroke-width="6" marker-end="url(#arrow)"/>
+              <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2878b8"/></marker></defs>
+              <rect x="245" y="185" width="270" height="92" rx="20" fill="url(#g1)"/>
+              <text x="380" y="222" font-size="26" font-weight="700" fill="#fff">FILE SYSTEM</text><text x="380" y="251" font-size="17" fill="#dceeff">Names, organizes and protects</text>
+              <path d="M380 290 L380 332" stroke="#2878b8" stroke-width="6" marker-end="url(#arrow)"/>
+              <g transform="translate(220 337)"><ellipse cx="160" cy="20" rx="160" ry="25" fill="#5d7285"/><rect y="20" width="320" height="42" fill="#40566b"/><ellipse cx="160" cy="62" rx="160" ry="25" fill="#2f4355"/><ellipse cx="160" cy="20" rx="143" ry="16" fill="#91a7ba"/><text x="160" y="57" font-size="21" font-weight="700" fill="#fff">Persistent Storage</text></g>
+            </g>
+          </svg>
+          <figcaption>Figure 1. The file system connects users and applications to persistent storage.</figcaption>
+        </figure>
+      </section>
+
+      <section id="objectives" class="section-card">
+        <p class="section-kicker">Lesson Foundation</p><h2>Learning Objectives</h2>
+        <p>By the end of the lecture, students should be able to:</p>
+        <ol class="objective-grid">
+          <li>Explain the purpose and responsibilities of a file system.</li>
+          <li>Differentiate files, directories, paths, metadata, and volumes.</li>
+          <li>Describe common file operations and allocation methods.</li>
+          <li>Interpret access permissions and apply secure practices.</li>
+          <li>Compare common file-system formats across platforms.</li>
+          <li>Explain mounting, journaling, caching, and recovery.</li>
+        </ol>
+      </section>
+
+      <section id="concept" class="section-card">
+        <p class="section-kicker">Topic 1</p><h2>The File-System Concept</h2>
+        <p>Raw storage is only a collection of addressable blocks. A file system adds a logical structure above those blocks so people and programs can refer to information by meaningful names rather than physical locations.</p>
+        <div class="callout"><strong>Key distinction:</strong> A <em>storage device</em> holds bits, while a <em>file system</em> defines how those bits are organized and managed.</div>
+        <figure class="wide-figure">
+          <svg viewBox="0 0 1000 250" role="img" aria-label="Layered file system architecture">
+            <g font-family="Arial, sans-serif" text-anchor="middle">
+              <rect width="1000" height="250" rx="22" fill="#f2f7fb"/>
+              <g transform="translate(40 55)">
+                <rect width="190" height="120" rx="16" fill="#fff" stroke="#1b6397" stroke-width="3"/><text x="95" y="50" font-size="23" font-weight="700" fill="#123f6d">Applications</text><text x="95" y="82" font-size="17" fill="#40566b">Open, read, write</text>
+                <path d="M205 60 H270" stroke="#2878b8" stroke-width="5" marker-end="url(#a2)"/>
+                <rect x="285" width="190" height="120" rx="16" fill="#dcecf8" stroke="#1b6397" stroke-width="3"/><text x="380" y="50" font-size="23" font-weight="700" fill="#123f6d">System Calls</text><text x="380" y="82" font-size="17" fill="#40566b">OS interface</text>
+                <path d="M490 60 H555" stroke="#2878b8" stroke-width="5" marker-end="url(#a2)"/>
+                <rect x="570" width="190" height="120" rx="16" fill="#2878b8"/><text x="665" y="50" font-size="23" font-weight="700" fill="#fff">File System</text><text x="665" y="82" font-size="17" fill="#eaf5fc">Logical management</text>
+                <path d="M775 60 H840" stroke="#2878b8" stroke-width="5" marker-end="url(#a2)"/>
+                <rect x="855" width="105" height="120" rx="16" fill="#40566b"/><text x="907" y="50" font-size="21" font-weight="700" fill="#fff">Disk</text><text x="907" y="80" font-size="16" fill="#eaf5fc">Blocks</text>
+              </g>
+              <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2878b8"/></marker></defs>
+            </g>
+          </svg>
+          <figcaption>Figure 2. Applications use operating-system services rather than addressing disk blocks directly.</figcaption>
+        </figure>
+      </section>
+
+      <section id="components" class="section-card">
+        <p class="section-kicker">Topic 2</p><h2>Core Components</h2>
+        <div class="card-grid four">
+          <article><div class="icon">F</div><h3>File</h3><p>A named unit of related data, such as a document, executable, image, or configuration record.</p></article>
+          <article><div class="icon">D</div><h3>Directory</h3><p>A container that groups files and subdirectories and associates names with file records.</p></article>
+          <article><div class="icon">M</div><h3>Metadata</h3><p>Descriptive information such as size, owner, permissions, type, and timestamps.</p></article>
+          <article><div class="icon">V</div><h3>Volume</h3><p>A logical storage area containing a formatted file system, often mapped to a partition or device.</p></article>
+        </div>
+      </section>
+
+      <section id="organization" class="section-card">
+        <p class="section-kicker">Topic 3</p><h2>Directory Organization Models</h2>
+        <p>Modern systems generally use a hierarchical directory tree. Earlier or specialized systems may use simpler or graph-based models.</p>
+        <div class="comparison-table" role="region" aria-label="Directory organization comparison" tabindex="0">
+          <table><thead><tr><th>Model</th><th>Structure</th><th>Primary Consideration</th></tr></thead><tbody>
+            <tr><td>Single-level</td><td>All files share one directory</td><td>Simple, but naming conflicts are common</td></tr>
+            <tr><td>Two-level</td><td>Separate directory for each user</td><td>Reduces conflicts but limits grouping</td></tr>
+            <tr><td>Tree</td><td>Directories contain files and subdirectories</td><td>Scalable and intuitive</td></tr>
+            <tr><td>Acyclic graph</td><td>Shared files or directories through links</td><td>Supports sharing while preventing cycles</td></tr>
+          </tbody></table>
+        </div>
+        <figure class="wide-figure">
+          <svg viewBox="0 0 960 470" role="img" aria-label="Hierarchical directory tree">
+            <g font-family="Arial, sans-serif" text-anchor="middle">
+              <rect width="960" height="470" rx="24" fill="#f2f7fb"/>
+              <g stroke="#7794aa" stroke-width="4" fill="none"><path d="M480 100 V145 M480 145 H180 V195 M480 145 V195 M480 145 H780 V195"/><path d="M180 250 V300 M180 300 H85 V350 M180 300 H275 V350"/><path d="M480 250 V350"/><path d="M780 250 V300 M780 300 H685 V350 M780 300 H875 V350"/></g>
+              <g><rect x="390" y="45" width="180" height="58" rx="12" fill="#123f6d"/><text x="480" y="82" font-size="22" font-weight="700" fill="#fff">Root /</text>
+              <rect x="90" y="195" width="180" height="58" rx="12" fill="#2878b8"/><text x="180" y="232" font-size="21" font-weight="700" fill="#fff">home</text>
+              <rect x="390" y="195" width="180" height="58" rx="12" fill="#2878b8"/><text x="480" y="232" font-size="21" font-weight="700" fill="#fff">etc</text>
+              <rect x="690" y="195" width="180" height="58" rx="12" fill="#2878b8"/><text x="780" y="232" font-size="21" font-weight="700" fill="#fff">var</text>
+              <rect x="15" y="350" width="140" height="58" rx="12" fill="#fff" stroke="#2878b8" stroke-width="3"/><text x="85" y="386" font-size="19" fill="#123f6d">student</text>
+              <rect x="205" y="350" width="140" height="58" rx="12" fill="#fff" stroke="#2878b8" stroke-width="3"/><text x="275" y="386" font-size="19" fill="#123f6d">teacher</text>
+              <rect x="410" y="350" width="140" height="58" rx="12" fill="#fff" stroke="#2878b8" stroke-width="3"/><text x="480" y="386" font-size="19" fill="#123f6d">config</text>
+              <rect x="615" y="350" width="140" height="58" rx="12" fill="#fff" stroke="#2878b8" stroke-width="3"/><text x="685" y="386" font-size="19" fill="#123f6d">log</text>
+              <rect x="805" y="350" width="140" height="58" rx="12" fill="#fff" stroke="#2878b8" stroke-width="3"/><text x="875" y="386" font-size="19" fill="#123f6d">cache</text></g>
+            </g>
+          </svg><figcaption>Figure 3. A hierarchical tree makes location and grouping explicit.</figcaption>
+        </figure>
+      </section>
+
+      <section id="paths" class="section-card">
+        <p class="section-kicker">Topic 4</p><h2>Paths and Navigation</h2>
+        <div class="two-column">
+          <article><h3>Absolute Path</h3><p>Begins from the root of the file system and identifies one complete location.</p><code>/home/student/lesson/notes.txt</code><code>C:\Users\Student\Lesson\notes.txt</code></article>
+          <article><h3>Relative Path</h3><p>Begins from the current working directory and changes meaning when the current location changes.</p><code>lesson/notes.txt</code><code>../shared/guide.pdf</code></article>
+        </div>
+        <div class="teaching-note"><strong>Teaching point:</strong> The symbols <code>.</code> and <code>..</code> commonly represent the current directory and parent directory.</div>
+      </section>
+
+      <section id="operations" class="section-card">
+        <p class="section-kicker">Topic 5</p><h2>Common File Operations</h2>
+        <div class="process-row">
+          <div><span>1</span><strong>Create</strong><small>Allocate a file record</small></div><div class="arrow">→</div>
+          <div><span>2</span><strong>Open</strong><small>Check access and obtain a handle</small></div><div class="arrow">→</div>
+          <div><span>3</span><strong>Read / Write</strong><small>Transfer or modify data</small></div><div class="arrow">→</div>
+          <div><span>4</span><strong>Close</strong><small>Release the handle</small></div>
+        </div>
+        <p>Additional operations include rename, copy, move, truncate, delete, seek, append, synchronize, and query metadata. Applications normally request these actions through an operating-system API.</p>
+      </section>
+
+      <section id="metadata" class="section-card">
+        <p class="section-kicker">Topic 6</p><h2>File Metadata</h2>
+        <p>Metadata allows the operating system to identify, locate, protect, and manage a file without reading all of its content.</p>
+        <div class="metadata-visual">
+          <div class="file-sheet"><span></span><span></span><span></span><strong>report.pdf</strong></div>
+          <dl><div><dt>Name</dt><dd>report.pdf</dd></div><div><dt>Type</dt><dd>PDF document</dd></div><div><dt>Size</dt><dd>2.4 MB</dd></div><div><dt>Owner</dt><dd>student</dd></div><div><dt>Permissions</dt><dd>read and write</dd></div><div><dt>Modified</dt><dd>timestamp</dd></div></dl>
+        </div>
+      </section>
+
+      <section id="permissions" class="section-card">
+        <p class="section-kicker">Topic 7</p><h2>Permissions and Access Control</h2>
+        <p>Access control answers two questions: <strong>who</strong> is requesting the operation, and <strong>what</strong> is that identity allowed to do?</p>
+        <div class="permission-grid">
+          <article><span class="permission read">R</span><h3>Read</h3><p>View file contents or list a directory.</p></article>
+          <article><span class="permission write">W</span><h3>Write</h3><p>Modify content or change directory entries.</p></article>
+          <article><span class="permission execute">X</span><h3>Execute</h3><p>Run a program or traverse a directory.</p></article>
+        </div>
+        <div class="comparison-table" role="region" aria-label="Permission model comparison" tabindex="0"><table><thead><tr><th>Model</th><th>How It Works</th><th>Typical Use</th></tr></thead><tbody><tr><td>Owner / group / others</td><td>Three identity classes receive permission bits</td><td>Unix-like systems</td></tr><tr><td>Access Control List</td><td>Individual users and groups receive detailed entries</td><td>Enterprise and shared systems</td></tr><tr><td>Capabilities</td><td>Access is granted through protected authority tokens</td><td>Specialized secure designs</td></tr></tbody></table></div>
+      </section>
+
+      <section id="allocation" class="section-card">
+        <p class="section-kicker">Topic 8</p><h2>File Allocation Methods</h2>
+        <p>An allocation method determines how the blocks belonging to a file are recorded and reached.</p>
+        <div class="allocation-grid">
+          <article><h3>Contiguous Allocation</h3><div class="blocks"><i class="used"></i><i class="used"></i><i class="used"></i><i></i><i></i></div><p>Blocks are adjacent. Access is fast, but growth and external fragmentation can be difficult.</p></article>
+          <article><h3>Linked Allocation</h3><div class="blocks linked"><i class="used">1</i><b>→</b><i class="used">7</i><b>→</b><i class="used">3</i></div><p>Each block refers to the next block. Growth is flexible, but random access is inefficient.</p></article>
+          <article><h3>Indexed Allocation</h3><div class="blocks indexed"><i class="index">I</i><b>→</b><i class="used">2</i><i class="used">8</i><i class="used">5</i></div><p>An index stores block addresses. Random access is supported with additional index overhead.</p></article>
+        </div>
+      </section>
+
+      <section id="formats" class="section-card">
+        <p class="section-kicker">Topic 9</p><h2>Common File-System Formats</h2>
+        <div class="comparison-table" role="region" aria-label="File system formats" tabindex="0"><table><thead><tr><th>Format</th><th>Common Platform</th><th>Notable Characteristics</th></tr></thead><tbody>
+          <tr><td>NTFS</td><td>Windows</td><td>Journaling, permissions, compression, large-volume support</td></tr>
+          <tr><td>ReFS</td><td>Windows Server and selected Windows editions</td><td>Integrity and resilience features for large data sets</td></tr>
+          <tr><td>ext4</td><td>Linux</td><td>Journaling, mature tooling, broad deployment</td></tr>
+          <tr><td>XFS</td><td>Linux and Unix-like systems</td><td>High scalability and strong large-file performance</td></tr>
+          <tr><td>APFS</td><td>Apple platforms</td><td>Snapshots, encryption, copy-on-write design</td></tr>
+          <tr><td>FAT32</td><td>Cross-platform and embedded devices</td><td>High compatibility but limited file size and security</td></tr>
+          <tr><td>exFAT</td><td>Removable and cross-platform storage</td><td>Supports larger files with broad device compatibility</td></tr>
+        </tbody></table></div>
+        <div class="callout warning"><strong>Selection principle:</strong> Choose a format according to compatibility, reliability, security, expected file sizes, workload, and platform support.</div>
+      </section>
+
+      <section id="mounting" class="section-card">
+        <p class="section-kicker">Topic 10</p><h2>Volumes and Mounting</h2>
+        <p>Before a formatted volume can be used, the operating system attaches it to a location in the existing namespace. This process is called <strong>mounting</strong>.</p>
+        <figure class="wide-figure"><svg viewBox="0 0 1000 330" role="img" aria-label="Volume mounting process">
+          <g font-family="Arial, sans-serif" text-anchor="middle"><rect width="1000" height="330" rx="24" fill="#f2f7fb"/>
+          <g transform="translate(55 80)"><rect width="210" height="150" rx="18" fill="#fff" stroke="#2878b8" stroke-width="3"/><ellipse cx="105" cy="52" rx="65" ry="23" fill="#9db4c5"/><rect x="40" y="52" width="130" height="37" fill="#6f879a"/><ellipse cx="105" cy="89" rx="65" ry="23" fill="#40566b"/><text x="105" y="130" font-size="22" font-weight="700" fill="#123f6d">Volume</text></g>
+          <path d="M285 155 H400" stroke="#2878b8" stroke-width="7" marker-end="url(#a3)"/><text x="342" y="137" font-size="19" fill="#40566b">mount</text>
+          <g transform="translate(420 55)"><rect width="520" height="200" rx="18" fill="#fff" stroke="#2878b8" stroke-width="3"/><text x="260" y="38" font-size="23" font-weight="700" fill="#123f6d">Unified Namespace</text><path d="M260 60 V90 H115 V120 M260 90 V120 M260 90 H405 V120" stroke="#7794aa" stroke-width="4" fill="none"/><rect x="50" y="120" width="130" height="48" rx="10" fill="#dcecf8"/><text x="115" y="151" font-size="18">/home</text><rect x="195" y="120" width="130" height="48" rx="10" fill="#dcecf8"/><text x="260" y="151" font-size="18">/media</text><rect x="340" y="120" width="130" height="48" rx="10" fill="#2878b8"/><text x="405" y="151" font-size="18" fill="#fff">/data</text></g>
+          <defs><marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2878b8"/></marker></defs></g>
+        </svg><figcaption>Figure 4. Mounting makes a volume accessible at a defined point in the namespace.</figcaption></figure>
+      </section>
+
+      <section id="reliability" class="section-card">
+        <p class="section-kicker">Topic 11</p><h2>Reliability, Journaling, and Recovery</h2>
+        <div class="three-step">
+          <article><span>1</span><h3>Record Intent</h3><p>Metadata changes are first described in a journal or transaction log.</p></article>
+          <article><span>2</span><h3>Apply Change</h3><p>The file system updates its main structures and data blocks.</p></article>
+          <article><span>3</span><h3>Recover</h3><p>After interruption, completed transactions are replayed and incomplete work is resolved.</p></article>
+        </div>
+        <p>Additional reliability mechanisms include checksums, snapshots, redundancy, consistency checking, backups, and copy-on-write updates. A file system improves resilience, but it does not replace a tested backup strategy.</p>
+      </section>
+
+      <section id="performance" class="section-card">
+        <p class="section-kicker">Topic 12</p><h2>Performance Concepts</h2>
+        <div class="card-grid">
+          <article><h3>Caching</h3><p>Frequently used data and metadata are retained in faster memory to reduce device access.</p></article>
+          <article><h3>Buffering</h3><p>Transfers are grouped or temporarily held to improve efficiency and match device speeds.</p></article>
+          <article><h3>Read-Ahead</h3><p>The system predicts sequential requests and loads upcoming blocks before they are requested.</p></article>
+          <article><h3>Write-Back</h3><p>Changes may be kept in memory briefly and written later; synchronization controls durability.</p></article>
+        </div>
+        <div class="callout"><strong>Trade-off:</strong> Aggressive caching can improve speed, but unsynchronized data may be lost during a sudden failure.</div>
+      </section>
+
+      <section id="security" class="section-card">
+        <p class="section-kicker">Topic 13</p><h2>Professional Security Practices</h2>
+        <ol class="step-list">
+          <li><strong>Apply least privilege.</strong> Grant only the access required for the task.</li>
+          <li><strong>Protect sensitive data.</strong> Use encryption at rest and secure key management where appropriate.</li>
+          <li><strong>Maintain recoverable copies.</strong> Follow a documented and tested backup plan.</li>
+          <li><strong>Audit important activity.</strong> Monitor permission changes, deletion, and unusual access patterns.</li>
+          <li><strong>Keep systems supported.</strong> Apply platform and storage updates through controlled procedures.</li>
+          <li><strong>Dispose of data securely.</strong> Use approved sanitization methods for retired devices.</li>
+        </ol>
+      </section>
+
+      <section id="platforms" class="section-card">
+        <p class="section-kicker">Topic 14</p><h2>Platform Comparison</h2>
+        <div class="comparison-table" role="region" aria-label="Platform path comparison" tabindex="0"><table><thead><tr><th>Concept</th><th>Windows Example</th><th>Unix-like Example</th></tr></thead><tbody>
+          <tr><td>Root location</td><td><code>C:\</code> or another drive letter</td><td><code>/</code></td></tr>
+          <tr><td>Path separator</td><td>Backslash</td><td>Forward slash</td></tr>
+          <tr><td>User directory</td><td><code>C:\Users\Name</code></td><td><code>/home/name</code> or <code>/Users/name</code></td></tr>
+          <tr><td>Hidden item convention</td><td>Hidden attribute</td><td>Name commonly begins with a dot</td></tr>
+          <tr><td>Typical permission model</td><td>ACL-based security descriptors</td><td>Mode bits plus optional ACLs</td></tr>
+        </tbody></table></div>
+        <p class="footnote">Exact behavior depends on the operating system, selected file system, configuration, and administrative policy.</p>
+      </section>
+
+      <section id="workflow" class="section-card">
+        <p class="section-kicker">Topic 15</p><h2>Step-by-Step: What Happens When a File Is Saved?</h2>
+        <div class="timeline">
+          <article><span>01</span><div><h3>Application Issues a Request</h3><p>The program asks the operating system to create or open a named file at a path.</p></div></article>
+          <article><span>02</span><div><h3>Path Is Resolved</h3><p>Directory entries are examined from the starting point until the target location is identified.</p></div></article>
+          <article><span>03</span><div><h3>Access Is Checked</h3><p>The requesting identity and file permissions are evaluated before modification is allowed.</p></div></article>
+          <article><span>04</span><div><h3>Space Is Allocated</h3><p>Free blocks are selected, and the file's allocation information is updated.</p></div></article>
+          <article><span>05</span><div><h3>Data Is Written</h3><p>Content passes through buffers or caches and is transferred to the storage device.</p></div></article>
+          <article><span>06</span><div><h3>Metadata Is Updated</h3><p>Size, timestamps, allocation records, and possibly journal entries are changed.</p></div></article>
+          <article><span>07</span><div><h3>Changes Become Durable</h3><p>Synchronization and device completion make the required information persistent.</p></div></article>
+          <article><span>08</span><div><h3>File Is Closed</h3><p>The operating system releases the handle and related in-memory structures when appropriate.</p></div></article>
+        </div>
+      </section>
+
+      <section id="summary" class="section-card summary-card">
+        <p class="section-kicker">Lecture Conclusion</p><h2>Summary</h2>
+        <ul class="summary-list">
+          <li>A file system converts raw storage into a structured, named, and protected information space.</li>
+          <li>Files, directories, paths, metadata, volumes, and permissions are its central abstractions.</li>
+          <li>Allocation methods determine how file blocks are recorded and accessed.</li>
+          <li>Mounting connects a formatted volume to the operating system's namespace.</li>
+          <li>Journaling, caching, snapshots, and checksums address reliability and performance concerns.</li>
+          <li>File-system choices must match platform, workload, security, compatibility, and recovery requirements.</li>
+        </ul>
+      </section>
+
+      <section id="review" class="section-card">
+        <p class="section-kicker">Knowledge Check</p><h2>Review Questions</h2>
+        <ol class="review-list">
+          <li>Why is a file system necessary if a storage device can already hold data?</li>
+          <li>How does an absolute path differ from a relative path?</li>
+          <li>What information is normally stored as file metadata?</li>
+          <li>Compare contiguous, linked, and indexed allocation.</li>
+          <li>How do permissions support confidentiality and integrity?</li>
+          <li>What is mounting, and why is it required?</li>
+          <li>How can journaling reduce recovery time after an unexpected shutdown?</li>
+          <li>Why do backups remain necessary even when a file system provides snapshots or redundancy?</li>
+        </ol>
+      </section>
+    </main>
+  </div>
+
+  <footer><p>Platform Technologies - File Systems Lecture Module</p></footer>
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const sidebar = document.querySelector('.sidebar');
+    menuButton.addEventListener('click', () => {
+      const open = sidebar.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('.sidebar a').forEach(link => link.addEventListener('click', () => {
+      sidebar.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+</body>
+</html>

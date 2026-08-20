@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional lecture module on Virtual Networking for virtualization courses.">
+  <title>Virtual Networking | Virtualization Lesson Module</title>
+
+  <!-- Browser tab logo -->
+  <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+  <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+  <!-- Separate stylesheet -->
+  <link rel="stylesheet" href="../css/Virtualization/VNetworking.css">
+</head>
+
+<body>
+<div class="site-shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">VN</div>
+        <div class="brand-text">
+          <strong>Virtual Networking</strong>
+          <span>Virtualization • Professional Lecture Module</span>
+        </div>
+      </div>
+
+      <a class="home-link" href="../index.html">Home</a>
+    </div>
+  </header>
+
+  <div class="page-layout">
+
+    <aside class="sidebar" aria-label="Lesson topics">
+      <h2>Lesson Topics</h2>
+      <nav>
+        <a href="#overview">1. Module Overview</a>
+        <a href="#objectives">2. Learning Objectives</a>
+        <a href="#foundation">3. Networking Foundations</a>
+        <a href="#what-is-virtual-networking">4. What Is Virtual Networking?</a>
+        <a href="#components">5. Core Components</a>
+        <a href="#packet-flow">6. How Virtual Traffic Flows</a>
+
+        <span class="mini-label">Network Modes</span>
+        <a href="#nat">7. NAT Networking</a>
+        <a href="#bridged">8. Bridged Networking</a>
+        <a href="#host-only">9. Host-Only Networking</a>
+        <a href="#internal">10. Internal / Private Networking</a>
+        <a href="#modes-comparison">11. Mode Comparison</a>
+
+        <span class="mini-label">Configuration</span>
+        <a href="#ip-addressing">12. IP Addressing</a>
+        <a href="#dhcp-dns-gateway">13. DHCP, DNS & Gateway</a>
+        <a href="#virtualbox">14. VirtualBox Configuration</a>
+        <a href="#vmware">15. VMware Configuration</a>
+        <a href="#multi-nic">16. Multi-NIC VM Design</a>
+        <a href="#vlans">17. VLANs & Segmentation</a>
+
+        <span class="mini-label">Operations</span>
+        <a href="#security">18. Security Considerations</a>
+        <a href="#performance">19. Performance</a>
+        <a href="#commands">20. Diagnostic Commands</a>
+        <a href="#troubleshooting">21. Troubleshooting</a>
+        <a href="#lab">22. Guided Laboratory</a>
+        <a href="#scenarios">23. Professional Scenarios</a>
+        <a href="#best-practices">24. Best Practices</a>
+        <a href="#glossary">25. Glossary</a>
+        <a href="#review">26. Review Questions</a>
+        <a href="#summary">27. Lesson Summary</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+
+      <details class="mobile-toc">
+        <summary>Open Lesson Topics</summary>
+        <nav>
+          <a href="#overview">Module Overview</a>
+          <a href="#objectives">Learning Objectives</a>
+          <a href="#foundation">Networking Foundations</a>
+          <a href="#what-is-virtual-networking">What Is Virtual Networking?</a>
+          <a href="#components">Core Components</a>
+          <a href="#packet-flow">How Virtual Traffic Flows</a>
+          <a href="#nat">NAT Networking</a>
+          <a href="#bridged">Bridged Networking</a>
+          <a href="#host-only">Host-Only Networking</a>
+          <a href="#internal">Internal Networking</a>
+          <a href="#modes-comparison">Mode Comparison</a>
+          <a href="#ip-addressing">IP Addressing</a>
+          <a href="#dhcp-dns-gateway">DHCP, DNS & Gateway</a>
+          <a href="#virtualbox">VirtualBox Configuration</a>
+          <a href="#vmware">VMware Configuration</a>
+          <a href="#multi-nic">Multi-NIC VM Design</a>
+          <a href="#vlans">VLANs & Segmentation</a>
+          <a href="#security">Security</a>
+          <a href="#performance">Performance</a>
+          <a href="#commands">Diagnostic Commands</a>
+          <a href="#troubleshooting">Troubleshooting</a>
+          <a href="#lab">Guided Laboratory</a>
+          <a href="#scenarios">Professional Scenarios</a>
+          <a href="#best-practices">Best Practices</a>
+          <a href="#glossary">Glossary</a>
+          <a href="#review">Review Questions</a>
+          <a href="#summary">Lesson Summary</a>
+        </nav>
+      </details>
+
+      <article>
+
+        <header class="hero" id="overview">
+          <p class="eyebrow">Virtualization — Lesson Module</p>
+          <h1>Virtual Networking</h1>
+          <p class="lead">
+            Virtual networking is the technology that allows virtual machines, hosts, physical networks,
+            and external services to communicate through software-defined network interfaces and switches.
+            This module explains the architecture, operating modes, addressing, configuration, security,
+            troubleshooting, and practical design of networks used in virtualized environments.
+          </p>
+
+          <div class="module-meta">
+            <span class="pill">Professional Level</span>
+            <span class="pill">Lecture Only</span>
+            <span class="pill">VirtualBox & VMware Concepts</span>
+            <span class="pill">Mobile Responsive</span>
+            <span class="pill">Embedded Diagrams</span>
+          </div>
+        </header>
+
+        <section id="objectives">
+          <h2>2. Learning Objectives</h2>
+          <p>At the end of this lesson, students should be able to:</p>
+
+          <div class="learning-grid">
+            <div class="objective">
+              <strong>Explain the architecture</strong>
+              Describe how virtual network adapters, virtual switches, hypervisors, and physical adapters work together.
+            </div>
+            <div class="objective">
+              <strong>Differentiate network modes</strong>
+              Distinguish NAT, bridged, host-only, and internal networking based on connectivity and security.
+            </div>
+            <div class="objective">
+              <strong>Configure VM connectivity</strong>
+              Select an appropriate virtual networking mode for common laboratory and production scenarios.
+            </div>
+            <div class="objective">
+              <strong>Apply TCP/IP concepts</strong>
+              Explain IP address, subnet mask, default gateway, DNS, DHCP, MAC address, and routing in a VM.
+            </div>
+            <div class="objective">
+              <strong>Troubleshoot communication</strong>
+              Use operating-system networking commands to diagnose address, gateway, DNS, and reachability problems.
+            </div>
+            <div class="objective">
+              <strong>Design securely</strong>
+              Apply segmentation, firewalling, least privilege, and controlled exposure to virtual networks.
+            </div>
+          </div>
+        </section>
+
+        <section id="foundation">
+          <h2>3. Networking Foundations Before Virtualization</h2>
+          <p>
+            Virtual networking uses the same core networking principles as physical networking. The major difference
+            is that several network devices are implemented in software rather than as separate physical hardware.
+            A student therefore needs to understand a few foundational terms before studying virtual switches and
+            virtual adapters.
+          </p>
+
+          <div class="definition-list">
+            <dt>NIC</dt>
+            <dd>A Network Interface Card connects a system to a network. A VM normally uses a virtual NIC or vNIC.</dd>
+
+            <dt>MAC Address</dt>
+            <dd>A Layer 2 hardware identifier assigned to a network interface. Hypervisors generate virtual MAC addresses for vNICs.</dd>
+
+            <dt>IP Address</dt>
+            <dd>A logical Layer 3 address used to identify a host or interface within an IP network.</dd>
+
+            <dt>Subnet Mask / Prefix</dt>
+            <dd>Defines which portion of an IP address represents the network and which portion represents the host.</dd>
+
+            <dt>Default Gateway</dt>
+            <dd>The router used when a destination is outside the local subnet.</dd>
+
+            <dt>DNS</dt>
+            <dd>Translates human-readable names such as example.com into IP addresses.</dd>
+
+            <dt>DHCP</dt>
+            <dd>Automatically supplies IP configuration such as address, prefix, gateway, and DNS server.</dd>
+
+            <dt>Switch</dt>
+            <dd>Forwards Ethernet frames between network interfaces based primarily on MAC addresses.</dd>
+
+            <dt>Router</dt>
+            <dd>Forwards packets between different IP networks.</dd>
+          </div>
+
+          <div class="callout">
+            <strong>Teaching point:</strong> Virtual machines are not exempt from normal networking rules.
+            If a VM has an incorrect IP address, subnet, gateway, DNS configuration, or firewall rule, communication can fail
+            exactly as it would on a physical computer.
+          </div>
+        </section>
+
+        <section id="what-is-virtual-networking">
+          <h2>4. What Is Virtual Networking?</h2>
+          <p>
+            <strong>Virtual networking</strong> is the creation and operation of network connectivity through software.
+            In a virtualized host, the hypervisor provides networking components that allow VMs to communicate with one another,
+            the host operating system, the physical local-area network, and the internet.
+          </p>
+
+          <p>
+            A physical computer may have only one Ethernet or Wi-Fi adapter, yet the virtualization platform can create several
+            virtual adapters and logical networks. This enables an administrator to simulate data centers, client-server systems,
+            isolated testing environments, routing laboratories, security zones, and multi-tier applications on a single host.
+          </p>
+
+          <figure class="visual">
+            <svg class="diagram" viewBox="0 0 1000 430" role="img" aria-labelledby="fig1title fig1desc">
+              <title id="fig1title">Basic virtual networking architecture</title>
+              <desc id="fig1desc">Two virtual machines connect through a virtual switch, which connects to the host physical network adapter and external network.</desc>
+              <defs>
+                <marker id="arrow1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#174a7e"/>
+                </marker>
+              </defs>
+
+              <rect x="65" y="70" width="245" height="120" rx="18" fill="#e7f0fa" stroke="#174a7e" stroke-width="3"/>
+              <text x="188" y="112" text-anchor="middle" font-size="28" font-weight="700" fill="#0d365e">Virtual Machine 1</text>
+              <text x="188" y="150" text-anchor="middle" font-size="21" fill="#536179">vNIC: 192.168.56.10</text>
+
+              <rect x="65" y="240" width="245" height="120" rx="18" fill="#eaf7f4" stroke="#0f766e" stroke-width="3"/>
+              <text x="188" y="282" text-anchor="middle" font-size="28" font-weight="700" fill="#0f5c56">Virtual Machine 2</text>
+              <text x="188" y="320" text-anchor="middle" font-size="21" fill="#536179">vNIC: 192.168.56.20</text>
+
+              <rect x="400" y="150" width="220" height="130" rx="18" fill="#fff8e8" stroke="#a16207" stroke-width="3"/>
+              <text x="510" y="198" text-anchor="middle" font-size="28" font-weight="700" fill="#7a4a06">Virtual Switch</text>
+              <text x="510" y="235" text-anchor="middle" font-size="20" fill="#536179">Software Layer 2</text>
+
+              <rect x="710" y="150" width="220" height="130" rx="18" fill="#f3f5f8" stroke="#536179" stroke-width="3"/>
+              <text x="820" y="198" text-anchor="middle" font-size="26" font-weight="700" fill="#172033">Physical NIC</text>
+              <text x="820" y="235" text-anchor="middle" font-size="20" fill="#536179">Host Ethernet / Wi-Fi</text>
+
+              <line x1="310" y1="130" x2="400" y2="185" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow1)"/>
+              <line x1="310" y1="300" x2="400" y2="245" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow1)"/>
+              <line x1="620" y1="215" x2="710" y2="215" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow1)"/>
+
+              <path d="M820 130 C790 90, 850 70, 850 104 C905 76, 950 117, 922 150 C970 161, 956 214, 913 208"
+                    fill="#e8f3ff" stroke="#174a7e" stroke-width="3"/>
+              <text x="860" y="70" text-anchor="middle" font-size="24" font-weight="700" fill="#174a7e">LAN / Internet</text>
+            </svg>
+            <figcaption>Figure 1. A software virtual switch connects VM interfaces to one another and, when permitted, to the physical network.</figcaption>
+          </figure>
+
+          <p class="small-note">
+            The diagram above is embedded directly in this HTML file as SVG, so no separate picture file is required.
+          </p>
+        </section>
+
+        <section id="components">
+          <h2>5. Core Components of a Virtual Network</h2>
+
+          <div class="card-grid">
+            <div class="card">
+              <h3>Virtual Network Adapter (vNIC)</h3>
+              <p>
+                A vNIC is the VM's software-based network interface. The guest operating system normally treats it like
+                a physical Ethernet adapter. It receives a MAC address and can be assigned an IPv4 or IPv6 configuration.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Virtual Switch (vSwitch)</h3>
+              <p>
+                A vSwitch performs Layer 2 frame forwarding between virtual ports. Depending on configuration, it can
+                connect VMs to one another, to the host, or to an uplink that reaches the physical network.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Virtual Port</h3>
+              <p>
+                A virtual port is a logical connection point on a virtual switch. A VM's vNIC is attached to a virtual
+                port in much the same way that a physical computer's cable connects to a physical switch port.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Uplink / Physical NIC</h3>
+              <p>
+                An uplink connects the virtual networking environment to a physical NIC. Bridged networking commonly
+                depends on this path when a VM needs direct presence on the physical LAN.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Virtual DHCP Service</h3>
+              <p>
+                Some hypervisors can provide DHCP to NAT or host-only networks so that guests receive their addresses
+                automatically without requiring a separate DHCP server VM.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Virtual NAT Service</h3>
+              <p>
+                NAT translates private guest traffic through the host's external connectivity. It is frequently used
+                when VMs require outbound internet access without being fully exposed to the physical LAN.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="packet-flow">
+          <h2>6. How Traffic Flows Through a Virtual Network</h2>
+          <p>
+            When an application inside a VM sends data, the guest operating system creates network packets and Ethernet
+            frames. These are transmitted through the VM's virtual NIC to the hypervisor's virtual switching layer.
+            The virtual switch then decides where the traffic should be delivered.
+          </p>
+
+          <ol class="step-list">
+            <li><strong>Application generates traffic.</strong> A browser, ping utility, database client, or other application requests communication.</li>
+            <li><strong>The guest network stack processes the data.</strong> TCP/UDP, IP, and Ethernet headers are applied as required.</li>
+            <li><strong>The vNIC receives the frame.</strong> The guest treats the vNIC as a normal network adapter.</li>
+            <li><strong>The virtual switch forwards the frame.</strong> It determines whether the destination is another VM, the host, or an external network.</li>
+            <li><strong>NAT, bridging, routing, or filtering is applied.</strong> The selected networking mode determines how the packet is handled.</li>
+            <li><strong>The destination receives the traffic.</strong> Return packets follow an appropriate reverse path.</li>
+          </ol>
+
+          <figure class="visual">
+            <svg class="diagram" viewBox="0 0 1000 340" role="img" aria-labelledby="fig2title fig2desc">
+              <title id="fig2title">Virtual packet flow</title>
+              <desc id="fig2desc">Traffic moves from an application in a guest operating system through a virtual NIC and virtual switch to a virtual NAT or bridge and then to a physical network.</desc>
+              <defs>
+                <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#174a7e"/>
+                </marker>
+              </defs>
+              <g font-family="Arial, sans-serif">
+                <rect x="30" y="110" width="145" height="90" rx="14" fill="#e7f0fa" stroke="#174a7e" stroke-width="3"/>
+                <text x="102" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#0d365e">App</text>
+                <text x="102" y="176" text-anchor="middle" font-size="18" fill="#536179">Browser / Ping</text>
+
+                <rect x="220" y="110" width="145" height="90" rx="14" fill="#edf9f6" stroke="#0f766e" stroke-width="3"/>
+                <text x="292" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#0f5c56">Guest OS</text>
+                <text x="292" y="176" text-anchor="middle" font-size="18" fill="#536179">TCP/IP Stack</text>
+
+                <rect x="410" y="110" width="145" height="90" rx="14" fill="#fff8e8" stroke="#a16207" stroke-width="3"/>
+                <text x="482" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#7a4a06">vNIC</text>
+                <text x="482" y="176" text-anchor="middle" font-size="18" fill="#536179">Virtual Adapter</text>
+
+                <rect x="600" y="110" width="155" height="90" rx="14" fill="#f1edff" stroke="#6d4bc3" stroke-width="3"/>
+                <text x="677" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#4d3590">vSwitch</text>
+                <text x="677" y="176" text-anchor="middle" font-size="18" fill="#536179">Forwarding</text>
+
+                <rect x="800" y="110" width="170" height="90" rx="14" fill="#f3f5f8" stroke="#536179" stroke-width="3"/>
+                <text x="885" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#172033">NAT / Bridge</text>
+                <text x="885" y="176" text-anchor="middle" font-size="18" fill="#536179">External Path</text>
+
+                <line x1="175" y1="155" x2="220" y2="155" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow2)"/>
+                <line x1="365" y1="155" x2="410" y2="155" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow2)"/>
+                <line x1="555" y1="155" x2="600" y2="155" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow2)"/>
+                <line x1="755" y1="155" x2="800" y2="155" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow2)"/>
+
+                <text x="500" y="265" text-anchor="middle" font-size="23" font-weight="700" fill="#174a7e">
+                  Data is processed by software-defined networking components
+                </text>
+              </g>
+            </svg>
+            <figcaption>Figure 2. Simplified packet path from an application inside a VM toward an external network.</figcaption>
+          </figure>
+        </section>
+
+        <section id="nat">
+          <h2>7. NAT Networking</h2>
+          <p>
+            <strong>Network Address Translation (NAT)</strong> is commonly the default virtual networking mode.
+            The VM uses a private address, and the virtualization platform translates its outbound traffic so that it can
+            use the host's connection to reach other networks.
+          </p>
+
+          <h3>Characteristics</h3>
+          <ul>
+            <li>The VM can normally initiate outbound connections to the internet.</li>
+            <li>The VM is typically not directly visible as a separate device on the physical LAN.</li>
+            <li>Inbound connections may require port forwarding.</li>
+            <li>NAT is convenient for software testing, web browsing, package downloads, and general laboratory work.</li>
+          </ul>
+
+          <figure class="visual">
+            <svg class="diagram" viewBox="0 0 1000 380" role="img" aria-labelledby="fig3title fig3desc">
+              <title id="fig3title">NAT network diagram</title>
+              <desc id="fig3desc">A virtual machine with a private address sends traffic through a NAT service, the host adapter, and the internet.</desc>
+              <defs>
+                <marker id="arrow3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#174a7e"/>
+                </marker>
+              </defs>
+
+              <rect x="45" y="110" width="225" height="135" rx="18" fill="#e7f0fa" stroke="#174a7e" stroke-width="3"/>
+              <text x="157" y="150" text-anchor="middle" font-size="27" font-weight="700" fill="#0d365e">VM</text>
+              <text x="157" y="187" text-anchor="middle" font-size="20" fill="#536179">10.0.2.15</text>
+              <text x="157" y="217" text-anchor="middle" font-size="19" fill="#536179">Private address</text>
+
+              <rect x="365" y="110" width="225" height="135" rx="18" fill="#fff8e8" stroke="#a16207" stroke-width="3"/>
+              <text x="477" y="150" text-anchor="middle" font-size="27" font-weight="700" fill="#7a4a06">Virtual NAT</text>
+              <text x="477" y="187" text-anchor="middle" font-size="20" fill="#536179">Address translation</text>
+              <text x="477" y="217" text-anchor="middle" font-size="19" fill="#536179">Optional port forward</text>
+
+              <rect x="685" y="110" width="260" height="135" rx="18" fill="#edf9f6" stroke="#0f766e" stroke-width="3"/>
+              <text x="815" y="150" text-anchor="middle" font-size="27" font-weight="700" fill="#0f5c56">Host / Internet</text>
+              <text x="815" y="187" text-anchor="middle" font-size="20" fill="#536179">Uses host connectivity</text>
+              <text x="815" y="217" text-anchor="middle" font-size="19" fill="#536179">External services</text>
+
+              <line x1="270" y1="177" x2="365" y2="177" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow3)"/>
+              <line x1="590" y1="177" x2="685" y2="177" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow3)"/>
+
+              <text x="500" y="315" text-anchor="middle" font-size="22" fill="#536179">
+                Typical use: safe outbound access without direct LAN exposure
+              </text>
+            </svg>
+            <figcaption>Figure 3. NAT hides the guest's private network behind a translation service.</figcaption>
+          </figure>
+
+          <div class="callout success">
+            <strong>Recommended classroom use:</strong> Choose NAT when a student VM needs access to websites,
+            software repositories, or updates but does not need to act as a directly reachable server on the classroom LAN.
+          </div>
+        </section>
+
+        <section id="bridged">
+          <h2>8. Bridged Networking</h2>
+          <p>
+            In <strong>bridged networking</strong>, the VM is connected more directly to the same physical network as the host.
+            The VM can usually obtain an address from the physical network's DHCP server and may appear as an independent
+            network device to other systems.
+          </p>
+
+          <h3>Characteristics</h3>
+          <ul>
+            <li>The VM typically receives an IP address from the same subnet as the host's physical LAN.</li>
+            <li>Other devices may be able to connect directly to the VM, depending on firewall and network policy.</li>
+            <li>The VM can be used to host services for other machines on the LAN.</li>
+            <li>Bridging can be limited or affected by Wi-Fi drivers, enterprise network controls, captive portals, or security policies.</li>
+          </ul>
+
+          <figure class="visual">
+            <svg class="diagram" viewBox="0 0 1000 400" role="img" aria-labelledby="fig4title fig4desc">
+              <title id="fig4title">Bridged network diagram</title>
+              <desc id="fig4desc">A host computer and a virtual machine both connect to the same physical LAN through a bridge.</desc>
+              <defs>
+                <marker id="arrow4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#174a7e"/>
+                </marker>
+              </defs>
+
+              <rect x="80" y="55" width="245" height="115" rx="18" fill="#e7f0fa" stroke="#174a7e" stroke-width="3"/>
+              <text x="202" y="96" text-anchor="middle" font-size="26" font-weight="700" fill="#0d365e">Virtual Machine</text>
+              <text x="202" y="134" text-anchor="middle" font-size="20" fill="#536179">192.168.1.51</text>
+
+              <rect x="80" y="230" width="245" height="115" rx="18" fill="#edf9f6" stroke="#0f766e" stroke-width="3"/>
+              <text x="202" y="271" text-anchor="middle" font-size="26" font-weight="700" fill="#0f5c56">Host Computer</text>
+              <text x="202" y="309" text-anchor="middle" font-size="20" fill="#536179">192.168.1.50</text>
+
+              <rect x="415" y="140" width="205" height="120" rx="18" fill="#fff8e8" stroke="#a16207" stroke-width="3"/>
+              <text x="517" y="185" text-anchor="middle" font-size="26" font-weight="700" fill="#7a4a06">Bridge</text>
+              <text x="517" y="220" text-anchor="middle" font-size="19" fill="#536179">Physical NIC uplink</text>
+
+              <rect x="710" y="140" width="220" height="120" rx="18" fill="#f3f5f8" stroke="#536179" stroke-width="3"/>
+              <text x="820" y="184" text-anchor="middle" font-size="26" font-weight="700" fill="#172033">Physical LAN</text>
+              <text x="820" y="220" text-anchor="middle" font-size="19" fill="#536179">192.168.1.0/24</text>
+
+              <line x1="325" y1="112" x2="415" y2="170" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow4)"/>
+              <line x1="325" y1="287" x2="415" y2="230" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow4)"/>
+              <line x1="620" y1="200" x2="710" y2="200" stroke="#174a7e" stroke-width="4" marker-end="url(#arrow4)"/>
+            </svg>
+            <figcaption>Figure 4. With bridging, both the host and VM can participate on the physical LAN as separate IP endpoints.</figcaption>
+          </figure>
+
+          <div class="callout warning">
+            <strong>Security caution:</strong> A bridged VM may be exposed to the same threats as other devices on the physical LAN.
+            Keep the guest operating system patched, use host and guest firewalls, and enable only necessary services.
+          </div>
+        </section>
+
+        <section id="host-only">
+          <h2>9. Host-Only Networking</h2>
+          <p>
+            <strong>Host-only networking</strong> creates a private network shared between the host and selected virtual machines.
+            By default, it does not provide a path to the physical LAN or the internet unless additional routing or forwarding is configured.
+          </p>
+
+          <h3>Common Uses</h3>
+          <ul>
+            <li>Testing client-server systems without exposing them to the LAN.</li>
+            <li>Creating management networks between the host and VMs.</li>
+            <li>Building isolated cybersecurity or systems-administration laboratories.</li>
+            <li>Allowing the instructor's host to manage guest systems while limiting outside access.</li>
+          </ul>
+
+          <figure class="visual">
+            <svg class="diagram" viewBox="0 0 1000 360" role="img" aria-labelledby="fig5title fig5desc">
+              <title id="fig5title">Host-only network diagram</title>
+              <desc id="fig5desc">Two VMs and a host adapter communicate on a private host-only network that has no direct path to the internet.</desc>
+              <rect x="50" y="65" width="230" height="110" rx="16" fill="#e7f0fa" stroke="#174a7e" stroke-width="3"/>
+              <text x="165" y="108" text-anchor="middle" font-size="26" font-weight="700" fill="#0d365e">VM 1</text>
+              <text x="165" y="142" text-anchor="middle" font-size="19" fill="#536179">192.168.56.10</text>
+
+              <rect x="50" y="215" width="230" height="110" rx="16" fill="#edf9f6" stroke="#0f766e" stroke-width="3"/>
+              <text x="165" y="258" text-anchor="middle" font-size="26" font-weight="700" fill="#0f5c56">VM 2</text>
+              <text x="165" y="292" text-anchor="middle" font-size="19" fill="#536179">192.168.56.20</text>
+
+              <rect x="385" y="138" width="230" height="115" rx="16" fill="#fff8e8" stroke="#a16207" stroke-width="3"/>
+              <text x="500" y="181" text-anchor="middle" font-size="26" font-weight="700" fill="#7a4a06">Host-Only Switch</text>
+              <text x="500" y="219" text-anchor="middle" font-size="19" fill="#536179">192.168.56.0/24</text>
+
+              <rect x="720" y="138" width="230" height="115" rx="16" fill="#f3f5f8" stroke="#536179" stroke-width="3"/>
+              <text x="835" y="181" text-anchor="middle" font-size="26" font-weight="700" fill="#172033">Host Adapter</text>
+              <text x="835" y="219" text-anchor="middle" font-size="19" fill="#536179">192.168.56.1</text>
+
+              <line x1="280" y1="120" x2="385" y2="167" stroke="#174a7e" stroke-width="4"/>
+              <line x1="280" y1="270" x2="385" y2="224" stroke="#174a7e" stroke-width="4"/>
+              <line x1="615" y1="195" x2="720" y2="195" stroke="#174a7e" stroke-width="4"/>
+
+              <text x="500" y="333" text-anchor="middle" font-size="21" font-weight="700" fill="#b42318">
+                No direct external network path by default
+              </text>
+            </svg>
+            <figcaption>Figure 5. Host-only networking is ideal when the host and VMs must communicate privately.</figcaption>
+          </figure>
+        </section>
+
+        <section id="internal">
+          <h2>10. Internal / Private Networking</h2>
+          <p>
+            An <strong>internal network</strong> is designed for communication between selected VMs while keeping the host
+            and external physical network out of the communication path. Terminology varies between hypervisors, but the central
+            concept is isolation.
+          </p>
+
+          <p>
+            Internal networking is especially valuable when students need to create a simulated enterprise network that should
+            not interfere with real infrastructure. For example, students can configure their own DHCP server, domain controller,
+            DNS server, router, or firewall entirely inside the virtual environment.
+          </p>
+
+          <div class="callout">
+            <strong>Example:</strong> VM-A can act as a server at <span class="inline-code">10.10.10.10/24</span>,
+            while VM-B acts as a client at <span class="inline-code">10.10.10.20/24</span>. If both interfaces are connected
+            to the same internal network, they can communicate without requiring the host's physical LAN.
+          </div>
+        </section>
+
+        <section id="modes-comparison">
+          <h2>11. Comparison of Common Virtual Network Modes</h2>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mode</th>
+                  <th>Internet Access</th>
+                  <th>Host Access</th>
+                  <th>LAN Visibility</th>
+                  <th>Typical Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>NAT</strong></td>
+                  <td>Usually yes</td>
+                  <td>Platform dependent</td>
+                  <td>Usually hidden from direct inbound LAN access</td>
+                  <td>General internet access, updates, basic testing</td>
+                </tr>
+                <tr>
+                  <td><strong>Bridged</strong></td>
+                  <td>Usually yes if LAN provides it</td>
+                  <td>Yes, subject to routing/firewall</td>
+                  <td>Yes</td>
+                  <td>Server testing, direct LAN participation</td>
+                </tr>
+                <tr>
+                  <td><strong>Host-Only</strong></td>
+                  <td>No by default</td>
+                  <td>Yes</td>
+                  <td>No</td>
+                  <td>Private host-to-VM labs</td>
+                </tr>
+                <tr>
+                  <td><strong>Internal / Private</strong></td>
+                  <td>No by default</td>
+                  <td>Usually no</td>
+                  <td>No</td>
+                  <td>Fully isolated VM-to-VM laboratory</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout success">
+            <strong>Selection rule:</strong> Choose the least-exposed mode that still satisfies the communication requirement.
+            Do not use bridged networking merely because it appears more convenient.
+          </div>
+        </section>
+
+        <section id="ip-addressing">
+          <h2>12. IP Addressing in Virtual Networks</h2>
+          <p>
+            Each VM interface that participates in an IPv4 network normally requires an IP address and subnet prefix.
+            An address can be assigned dynamically through DHCP or configured statically.
+          </p>
+
+          <h3>Example IPv4 Network</h3>
+          <p>
+            Consider the network <span class="inline-code">192.168.56.0/24</span>. With a /24 prefix,
+            addresses such as <span class="inline-code">192.168.56.10</span> and
+            <span class="inline-code">192.168.56.20</span> are within the same subnet.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Device</th>
+                  <th>Example Address</th>
+                  <th>Prefix</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Host-only adapter</td>
+                  <td>192.168.56.1</td>
+                  <td>/24</td>
+                  <td>Host management endpoint</td>
+                </tr>
+                <tr>
+                  <td>Server VM</td>
+                  <td>192.168.56.10</td>
+                  <td>/24</td>
+                  <td>Laboratory server</td>
+                </tr>
+                <tr>
+                  <td>Client VM</td>
+                  <td>192.168.56.20</td>
+                  <td>/24</td>
+                  <td>Laboratory client</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Static vs Dynamic Addressing</h3>
+          <p>
+            <strong>Dynamic addressing</strong> is convenient for client VMs and short-lived systems.
+            <strong>Static addressing</strong> is appropriate for infrastructure services such as DNS, DHCP, web servers,
+            databases, gateways, and domain controllers because their address must remain predictable.
+          </p>
+        </section>
+
+        <section id="dhcp-dns-gateway">
+          <h2>13. DHCP, DNS, and Default Gateway</h2>
+
+          <div class="mode-grid">
+            <div class="mode-card">
+              <h3>DHCP</h3>
+              <p>
+                DHCP can automatically assign the guest its IP address, subnet prefix, gateway, DNS server, and lease information.
+                If DHCP fails, a guest may receive no usable IPv4 configuration or may fall back to an automatic local address.
+              </p>
+            </div>
+
+            <div class="mode-card">
+              <h3>DNS</h3>
+              <p>
+                DNS is required when a VM must resolve names. If pinging an IP address works but opening a domain name fails,
+                DNS configuration should be investigated.
+              </p>
+            </div>
+
+            <div class="mode-card">
+              <h3>Default Gateway</h3>
+              <p>
+                The gateway is required when traffic must leave the local IP subnet. Purely isolated same-subnet laboratories
+                may not need a gateway until a router is introduced.
+              </p>
+            </div>
+
+            <div class="mode-card">
+              <h3>Routing Table</h3>
+              <p>
+                The guest operating system uses a routing table to determine the best path for each destination.
+                Multi-NIC VMs require careful routing so that return traffic uses the expected interface.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="virtualbox">
+          <h2>14. Step-by-Step: VirtualBox Network Configuration</h2>
+          <p>
+            The following procedure can be demonstrated during lecture using Oracle VirtualBox. Menu labels can vary slightly
+            between versions, but the networking principles remain the same.
+          </p>
+
+          <h3>A. Configure a VM for NAT</h3>
+          <ol class="step-list">
+            <li>Shut down the VM completely before making adapter changes.</li>
+            <li>Open <strong>VirtualBox Manager</strong>, select the VM, and open <strong>Settings</strong>.</li>
+            <li>Select <strong>Network</strong> and enable <strong>Adapter 1</strong>.</li>
+            <li>Set <strong>Attached to</strong> to <strong>NAT</strong>.</li>
+            <li>Start the VM and inspect the assigned IP configuration.</li>
+            <li>Test the default gateway, then test an external IP address, then test a DNS name.</li>
+          </ol>
+
+          <figure class="visual">
+            <svg class="diagram" viewBox="0 0 1000 500" role="img" aria-labelledby="fig6title fig6desc">
+              <title id="fig6title">VirtualBox network configuration illustration</title>
+              <desc id="fig6desc">A simplified settings window showing Network, Adapter 1, Enable Network Adapter, and Attached to NAT.</desc>
+
+              <rect x="75" y="35" width="850" height="420" rx="18" fill="#ffffff" stroke="#536179" stroke-width="3"/>
+              <rect x="75" y="35" width="850" height="60" rx="18" fill="#174a7e"/>
+              <rect x="75" y="75" width="850" height="20" fill="#174a7e"/>
+              <text x="110" y="74" font-size="26" font-weight="700" fill="#ffffff">Virtual Machine Settings</text>
+
+              <rect x="100" y="120" width="210" height="300" rx="10" fill="#f3f7fb" stroke="#d7e0eb" stroke-width="2"/>
+              <text x="125" y="160" font-size="22" fill="#536179">System</text>
+              <text x="125" y="205" font-size="22" fill="#536179">Display</text>
+              <rect x="112" y="228" width="185" height="48" rx="8" fill="#e7f0fa"/>
+              <text x="125" y="260" font-size="23" font-weight="700" fill="#174a7e">Network</text>
+              <text x="125" y="315" font-size="22" fill="#536179">Storage</text>
+
+              <text x="355" y="150" font-size="28" font-weight="700" fill="#0d365e">Adapter 1</text>
+              <rect x="355" y="180" width="27" height="27" rx="4" fill="#174a7e"/>
+              <path d="M361 194 l7 7 l12 -16" fill="none" stroke="#fff" stroke-width="4"/>
+              <text x="395" y="202" font-size="22" fill="#172033">Enable Network Adapter</text>
+
+              <text x="355" y="255" font-size="21" font-weight="700" fill="#536179">Attached to:</text>
+              <rect x="495" y="220" width="330" height="55" rx="8" fill="#ffffff" stroke="#9fb2c6" stroke-width="2"/>
+              <text x="520" y="255" font-size="23" fill="#172033">NAT</text>
+              <path d="M790 240 l10 12 l10 -12" fill="none" stroke="#536179" stroke-width="3"/>
+
+              <text x="355" y="325" font-size="21" font-weight="700" fill="#536179">Cable connected:</text>
+              <rect x="535" y="300" width="27" height="27" rx="4" fill="#0f766e"/>
+              <path d="M541 314 l7 7 l12 -16" fill="none" stroke="#fff" stroke-width="4"/>
+
+              <rect x="690" y="380" width="130" height="50" rx="9" fill="#174a7e"/>
+              <text x="755" y="412" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">OK</text>
+            </svg>
+            <figcaption>Figure 6. Simplified VirtualBox-style network settings illustration for classroom explanation.</figcaption>
+          </figure>
+
+          <h3>B. Configure Bridged Adapter</h3>
+          <ol class="step-list">
+            <li>Open the VM's <strong>Network</strong> settings.</li>
+            <li>Set <strong>Attached to</strong> to <strong>Bridged Adapter</strong>.</li>
+            <li>Select the correct physical Ethernet or Wi-Fi interface from the adapter list.</li>
+            <li>Start the VM and verify that its address belongs to the physical network.</li>
+            <li>Test communication with the default gateway and another LAN device where permitted.</li>
+          </ol>
+
+          <h3>C. Configure Host-Only Adapter</h3>
+          <ol class="step-list">
+            <li>Create or confirm a host-only network in VirtualBox's network management tools.</li>
+            <li>Open the VM's <strong>Network</strong> settings.</li>
+            <li>Choose <strong>Host-only Adapter</strong> for the desired adapter.</li>
+            <li>Connect two VMs to the same host-only network.</li>
+            <li>Assign compatible IP addresses or enable the hypervisor's host-only DHCP service.</li>
+            <li>Use <span class="inline-code">ping</span> to confirm VM-to-VM and host-to-VM communication.</li>
+          </ol>
+        </section>
+
+        <section id="vmware">
+          <h2>15. Step-by-Step: VMware Network Configuration</h2>
+          <p>
+            VMware desktop products also offer several common connection types. Names and available advanced settings may differ
+            by product edition, but students should focus on the function of each mode rather than memorizing one interface.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Common VMware Mode</th>
+                  <th>Networking Concept</th>
+                  <th>Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>NAT</td>
+                  <td>Private guest network translated through the host</td>
+                  <td>Outbound connectivity with reduced LAN exposure</td>
+                </tr>
+                <tr>
+                  <td>Bridged</td>
+                  <td>Guest connects to the physical LAN</td>
+                  <td>VM should behave like another LAN device</td>
+                </tr>
+                <tr>
+                  <td>Host-only</td>
+                  <td>Private network between host and guests</td>
+                  <td>Isolated development or management environment</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>General Procedure</h3>
+          <ol class="step-list">
+            <li>Power off the VM if the product requires the adapter to be changed while stopped.</li>
+            <li>Open the VM's hardware or network-adapter settings.</li>
+            <li>Select NAT, Bridged, or Host-only according to the laboratory requirement.</li>
+            <li>Confirm that the virtual network adapter is connected.</li>
+            <li>Start the guest and check its IP address, default route, and DNS configuration.</li>
+            <li>Perform layered connectivity tests rather than immediately assuming that the hypervisor is at fault.</li>
+          </ol>
+        </section>
+
+        <section id="multi-nic">
+          <h2>16. Multi-NIC Virtual Machines</h2>
+          <p>
+            A VM can have more than one virtual network adapter. This is essential when a virtual machine must act as a router,
+            firewall, VPN gateway, load balancer, or server connected to separate security zones.
+          </p>
+
+          <h3>Example: Two-Adapter Server</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Adapter</th>
+                  <th>Mode</th>
+                  <th>Example Address</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Adapter 1</td>
+                  <td>NAT</td>
+                  <td>10.0.2.15/24</td>
+                  <td>Controlled internet access</td>
+                </tr>
+                <tr>
+                  <td>Adapter 2</td>
+                  <td>Host-only</td>
+                  <td>192.168.56.10/24</td>
+                  <td>Private client-server laboratory</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout warning">
+            <strong>Important:</strong> Multiple NICs can create routing problems. Usually, only the interface that should
+            reach external networks should have the appropriate default route. Administrators must verify the routing table
+            and avoid conflicting gateways.
+          </div>
+        </section>
+
+        <section id="vlans">
+          <h2>17. VLANs and Network Segmentation</h2>
+          <p>
+            In enterprise virtualization, VLANs are widely used to separate workloads logically even when they share physical
+            switching infrastructure. A VLAN creates a Layer 2 broadcast domain identified by a VLAN ID.
+          </p>
+
+          <h3>Common Segmentation Examples</h3>
+          <ul>
+            <li><strong>Management VLAN:</strong> hypervisor and administrative interfaces.</li>
+            <li><strong>Server VLAN:</strong> application and database servers.</li>
+            <li><strong>User VLAN:</strong> desktop or VDI workloads.</li>
+            <li><strong>DMZ VLAN:</strong> externally reachable services separated from internal resources.</li>
+            <li><strong>Storage VLAN:</strong> dedicated traffic for storage systems where applicable.</li>
+          </ul>
+
+          <p>
+            VLAN configuration depends on the virtualization platform and the physical switch environment. The physical switch
+            ports, trunks, VLAN tagging, and virtual switch configuration must be coordinated correctly.
+          </p>
+        </section>
+
+        <section id="security">
+          <h2>18. Virtual Networking Security</h2>
+          <p>
+            Virtual networks require the same defense-in-depth mindset used in physical networks. Virtualization may simplify
+            deployment, but it does not eliminate threats such as unauthorized access, malware, weak services, credential theft,
+            insecure management interfaces, and lateral movement.
+          </p>
+
+          <div class="check-grid">
+            <div class="card">
+              <h3>Reduce Exposure</h3>
+              <p>Use NAT, host-only, or internal networks when direct LAN exposure is unnecessary.</p>
+            </div>
+            <div class="card">
+              <h3>Enable Firewalls</h3>
+              <p>Maintain appropriate firewalls on the host and inside each guest operating system.</p>
+            </div>
+            <div class="card">
+              <h3>Patch Systems</h3>
+              <p>Apply security updates to both the hypervisor and guest operating systems.</p>
+            </div>
+            <div class="card">
+              <h3>Segment Workloads</h3>
+              <p>Separate management, user, server, and test traffic where practical.</p>
+            </div>
+            <div class="card">
+              <h3>Limit Services</h3>
+              <p>Disable unnecessary listening services and expose only required ports.</p>
+            </div>
+            <div class="card">
+              <h3>Protect Management</h3>
+              <p>Restrict access to hypervisor administration tools and use strong authentication.</p>
+            </div>
+          </div>
+
+          <div class="callout danger">
+            <strong>Laboratory warning:</strong> Never bridge intentionally vulnerable training VMs to a production or school LAN
+            unless the environment is explicitly designed and authorized for that purpose.
+          </div>
+        </section>
+
+        <section id="performance">
+          <h2>19. Virtual Network Performance</h2>
+          <p>
+            Virtual networking performance depends on CPU resources, host load, virtual adapter type, driver support, packet size,
+            offloading capabilities, physical NIC speed, storage/application bottlenecks, and hypervisor configuration.
+          </p>
+
+          <h3>Common Performance Factors</h3>
+          <ul>
+            <li><strong>Oversubscription:</strong> Too many busy VMs compete for the same host CPU and physical NIC.</li>
+            <li><strong>Virtual adapter drivers:</strong> Optimized/paravirtualized drivers can reduce overhead.</li>
+            <li><strong>Physical uplink:</strong> A 1 Gbps uplink creates a lower ceiling than a faster uplink for aggregate traffic.</li>
+            <li><strong>Host resource pressure:</strong> CPU starvation and memory pressure can affect network processing.</li>
+            <li><strong>Packet filtering:</strong> Firewalls, inspection, or security appliances introduce processing overhead.</li>
+          </ul>
+        </section>
+
+        <section id="commands">
+          <h2>20. Useful Diagnostic Commands</h2>
+          <p>
+            Students should use commands methodically. The exact command differs by operating system, but the troubleshooting
+            logic remains the same.
+          </p>
+
+          <div class="command-grid">
+            <div class="card">
+              <h3>Windows</h3>
+              <div class="code-block">ipconfig /all
+ping 127.0.0.1
+ping &lt;gateway-ip&gt;
+ping &lt;remote-ip&gt;
+nslookup example.com
+tracert example.com
+route print
+arp -a
+getmac</div>
+            </div>
+
+            <div class="card">
+              <h3>Linux</h3>
+              <div class="code-block">ip address
+ip route
+ping -c 4 127.0.0.1
+ping -c 4 &lt;gateway-ip&gt;
+ping -c 4 &lt;remote-ip&gt;
+getent hosts example.com
+traceroute example.com
+ip neigh
+ss -tulpen</div>
+            </div>
+          </div>
+
+          <h3>Recommended Test Order</h3>
+          <ol>
+            <li>Verify that the virtual adapter is enabled and connected.</li>
+            <li>Check the assigned IP address and subnet.</li>
+            <li>Ping loopback: <span class="inline-code">127.0.0.1</span>.</li>
+            <li>Ping the VM's own IP address.</li>
+            <li>Ping another device in the same subnet.</li>
+            <li>Ping the default gateway if one should exist.</li>
+            <li>Ping a known external IP address if internet access is expected.</li>
+            <li>Test DNS name resolution.</li>
+            <li>Inspect routing and firewall rules if the previous tests indicate a path problem.</li>
+          </ol>
+        </section>
+
+        <section id="troubleshooting">
+          <h2>21. Troubleshooting Virtual Networking Problems</h2>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Symptom</th>
+                  <th>Likely Area</th>
+                  <th>What to Check</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No IP address</td>
+                  <td>DHCP / adapter</td>
+                  <td>Adapter enabled, cable connected, DHCP service, guest interface state</td>
+                </tr>
+                <tr>
+                  <td>Can ping own IP but not gateway</td>
+                  <td>Layer 2 / subnet / virtual switch</td>
+                  <td>Network mode, subnet, switch membership, firewall, VLAN</td>
+                </tr>
+                <tr>
+                  <td>Can ping external IP but not domain name</td>
+                  <td>DNS</td>
+                  <td>DNS server address, resolver service, DNS reachability</td>
+                </tr>
+                <tr>
+                  <td>Host can reach VM, but LAN cannot</td>
+                  <td>Mode / firewall / routing</td>
+                  <td>Host-only vs bridged, guest firewall, network policy</td>
+                </tr>
+                <tr>
+                  <td>VM has internet but inbound server connection fails</td>
+                  <td>NAT / port forwarding / firewall</td>
+                  <td>NAT mode, forwarding rule, guest service listening port, firewall</td>
+                </tr>
+                <tr>
+                  <td>Two internal VMs cannot communicate</td>
+                  <td>Virtual network membership</td>
+                  <td>Same internal network name, compatible IP subnet, firewall rules</td>
+                </tr>
+                <tr>
+                  <td>Intermittent connectivity</td>
+                  <td>Resource / driver / physical network</td>
+                  <td>Host load, NIC driver, Wi-Fi stability, duplicated IP, DHCP conflicts</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout">
+            <strong>Professional troubleshooting principle:</strong> Diagnose from the lowest practical layer upward.
+            Confirm interface state and addressing first, then local reachability, routing, DNS, services, and application behavior.
+          </div>
+        </section>
+
+        <section id="lab">
+          <h2>22. Guided Laboratory: Build a Small Virtual Network</h2>
+          <p>
+            This laboratory is designed for instructor demonstration or guided student practice. It requires two VMs and does not
+            require them to be exposed to the physical LAN.
+          </p>
+
+          <h3>Laboratory Goal</h3>
+          <p>
+            Create a private network in which two VMs communicate with one another using static IPv4 addresses.
+          </p>
+
+          <h3>Suggested Topology</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>System</th>
+                  <th>Network</th>
+                  <th>IPv4 Address</th>
+                  <th>Prefix</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>VM-Server</td>
+                  <td>Host-only or Internal</td>
+                  <td>192.168.77.10</td>
+                  <td>/24</td>
+                </tr>
+                <tr>
+                  <td>VM-Client</td>
+                  <td>Same host-only or internal network</td>
+                  <td>192.168.77.20</td>
+                  <td>/24</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Procedure</h3>
+          <ol class="step-list">
+            <li>Create or select a private virtual network.</li>
+            <li>Connect both VM network adapters to the same private virtual network.</li>
+            <li>Start both VMs and confirm that each virtual network adapter is active.</li>
+            <li>Assign <strong>192.168.77.10/24</strong> to VM-Server.</li>
+            <li>Assign <strong>192.168.77.20/24</strong> to VM-Client.</li>
+            <li>Do not configure a default gateway if the lab is intended to remain fully isolated.</li>
+            <li>From VM-Client, ping <strong>192.168.77.10</strong>.</li>
+            <li>From VM-Server, ping <strong>192.168.77.20</strong>.</li>
+            <li>If ping is blocked, review the guest firewall before changing the entire network design.</li>
+            <li>Document the final IP addresses, network mode, and test results.</li>
+          </ol>
+
+          <div class="practice-box">
+            <h3>Extension Activity</h3>
+            <p>
+              Add a second adapter to VM-Server using NAT. Keep Adapter 1 on the private network and Adapter 2 on NAT.
+              Discuss why this design gives the server two different network paths and why routing must be planned carefully.
+            </p>
+          </div>
+        </section>
+
+        <section id="scenarios">
+          <h2>23. Professional Virtual Networking Scenarios</h2>
+
+          <h3>Scenario 1: Software Development VM</h3>
+          <p>
+            A developer needs internet access to download packages but does not need inbound access from the office LAN.
+            <strong>NAT</strong> is usually an appropriate starting choice.
+          </p>
+
+          <h3>Scenario 2: Web Server Demonstration</h3>
+          <p>
+            Students must open the guest web server from other authorized computers on the classroom network.
+            <strong>Bridged networking</strong> may be used if school policy permits direct LAN participation.
+          </p>
+
+          <h3>Scenario 3: Private Client-Server Laboratory</h3>
+          <p>
+            Two VMs must communicate without affecting the real network.
+            <strong>Internal networking</strong> or <strong>host-only networking</strong> is preferable.
+          </p>
+
+          <h3>Scenario 4: Firewall Laboratory</h3>
+          <p>
+            A firewall VM can use two vNICs: one external-facing interface and one internal private interface.
+            Client VMs connect to the private side, allowing students to study routing and security policies.
+          </p>
+
+          <h3>Scenario 5: Enterprise Server Segmentation</h3>
+          <p>
+            Production hypervisors can attach VM interfaces to different VLAN-backed networks so that management,
+            application, database, DMZ, and storage traffic are logically separated.
+          </p>
+        </section>
+
+        <section id="best-practices">
+          <h2>24. Virtual Networking Best Practices</h2>
+          <ul>
+            <li>Document each virtual network, subnet, gateway, DNS service, and purpose.</li>
+            <li>Use meaningful VM and virtual-network names.</li>
+            <li>Keep laboratory and production networks separated.</li>
+            <li>Use static addresses for infrastructure services when predictable addressing is required.</li>
+            <li>Avoid duplicate static IP addresses.</li>
+            <li>Use the least permissive network mode that meets the requirement.</li>
+            <li>Apply firewall rules at appropriate points and verify them after changes.</li>
+            <li>Protect hypervisor management interfaces from general user access.</li>
+            <li>Monitor resource utilization when many VMs share one physical uplink.</li>
+            <li>Back up important configuration and document changes before complex network experiments.</li>
+          </ul>
+        </section>
+
+        <section id="glossary">
+          <h2>25. Glossary of Important Terms</h2>
+          <div class="definition-list">
+            <dt>vNIC</dt>
+            <dd>Virtual Network Interface Card presented to a guest virtual machine.</dd>
+
+            <dt>vSwitch</dt>
+            <dd>Software-defined Ethernet switch used by virtualization platforms.</dd>
+
+            <dt>NAT</dt>
+            <dd>Network Address Translation; maps private guest traffic through another address/path.</dd>
+
+            <dt>Bridging</dt>
+            <dd>Connects a VM more directly to an external Layer 2 network.</dd>
+
+            <dt>Host-Only</dt>
+            <dd>Private network that normally permits host-to-VM and VM-to-VM communication without direct external access.</dd>
+
+            <dt>Internal Network</dt>
+            <dd>Private logical network generally intended for communication between VMs only.</dd>
+
+            <dt>DHCP</dt>
+            <dd>Dynamic Host Configuration Protocol; automatically distributes IP network settings.</dd>
+
+            <dt>DNS</dt>
+            <dd>Domain Name System; maps names to IP addresses and performs other naming functions.</dd>
+
+            <dt>Default Gateway</dt>
+            <dd>Router used to reach destinations outside the local IP subnet.</dd>
+
+            <dt>VLAN</dt>
+            <dd>Virtual LAN; logically separates Layer 2 broadcast domains.</dd>
+
+            <dt>Port Forwarding</dt>
+            <dd>Maps traffic arriving on one address/port to a service on another address/port, often used with NAT.</dd>
+
+            <dt>Subnet</dt>
+            <dd>A logical IP network defined by an address and prefix length.</dd>
+          </div>
+        </section>
+
+        <section id="review">
+          <h2>26. Review and Discussion Questions</h2>
+          <ol>
+            <li>What is the main role of a virtual network adapter?</li>
+            <li>How does a virtual switch differ from a physical switch?</li>
+            <li>Why is NAT a common default for desktop virtualization?</li>
+            <li>When is bridged networking more appropriate than NAT?</li>
+            <li>Why is host-only networking useful in laboratory environments?</li>
+            <li>What is the difference between host-only and internal networking?</li>
+            <li>Why does a VM need a default gateway?</li>
+            <li>What symptom suggests that DNS may be failing?</li>
+            <li>Why can a multi-NIC VM create routing complexity?</li>
+            <li>What are the security risks of bridging an intentionally vulnerable VM to a real LAN?</li>
+            <li>How can VLANs improve segmentation in enterprise virtualization?</li>
+            <li>What troubleshooting sequence should be used when a VM cannot reach the internet?</li>
+          </ol>
+
+          <div class="practice-box">
+            <h3>Instructor Discussion Prompt</h3>
+            <p>
+              Ask students to choose a networking mode for each of these requirements: internet-only software updates,
+              hosting a service to the LAN, a completely isolated malware-analysis lab, and a private host-to-VM management network.
+              Require students to justify each choice in terms of connectivity and exposure.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-summary" id="summary">
+          <h2>27. Lesson Summary</h2>
+          <p>
+            Virtual networking extends normal networking concepts into software-defined environments. A virtual machine uses a
+            vNIC, which connects to virtual switching and other hypervisor networking services. NAT provides convenient outbound
+            access, bridged networking places the VM more directly on the physical LAN, host-only networking creates a private
+            network between host and guests, and internal networking can isolate VM-to-VM communication.
+          </p>
+
+          <p>
+            Correct virtual network design also depends on IP addressing, subnetting, routing, DHCP, DNS, firewalls, VLANs,
+            and systematic troubleshooting. The professional approach is to define the required communication first, choose the
+            least exposed network design that satisfies it, verify each layer of connectivity, and document the final topology.
+          </p>
+
+          <div class="callout">
+            <strong>Key idea to remember:</strong> A VM is virtual, but its network communication follows real networking principles.
+            Understanding those principles makes virtualization easier to configure, secure, and troubleshoot.
+          </div>
+        </section>
+
+      </article>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>
+      Virtualization Lesson Module — Virtual Networking.
+      <a href="../index.html">Return to Home</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

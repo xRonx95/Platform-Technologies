@@ -1,0 +1,101 @@
+/**
+ * Qualified Consent Gate (DPXLW-105) - Float-Right Mode
+ *
+ * Gates the Qualified widget bootstrap (`qualified('initialize', token)`) behind
+ * OneTrust functional cookie consent (OT_FUNCTIONAL). This is the float-right
+ * variant: no docking, no skeleton, no body rewrite.
+ *
+ * Works for both Nunjucks and Remix render paths when loaded via statics.json.
+ * The token is read from window.wpdata.qualified.token (set by both paths).
+ *
+ * This script does NOT change any page load UI behavior. It only controls when
+ * `qualified('initialize', token)` fires:
+ *   - Consent granted: initialize immediately
+ *   - Consent pending (banner open): wait for user decision
+ *   - Consent denied: do not initialize; teardown if previously granted
+ *
+ * The gdpr.js module (https://a.sfdcstatic.com/digital/one-trust/ext/v1-stable/gdpr.js)
+ * provides the consent check and update event listener.
+ *
+ * Loaded via statics.json with defer.
+ */
+(function () {
+    'use strict';
+
+    var GDPR_MODULE_URL = 'https://a.sfdcstatic.com/digital/one-trust/ext/v1-stable/gdpr.js';
+    var initialized = false;
+
+    function getToken() {
+        // Both Nunjucks and Remix set window.wpdata.qualified
+        if (window.wpdata && window.wpdata.qualified && typeof window.wpdata.qualified === 'object') {
+            return window.wpdata.qualified.token;
+        }
+        return null;
+    }
+
+    function bootstrapQualified(token) {
+        if (initialized) return;
+        if (!token) return;
+        initialized = true;
+        if (typeof window.qualified === 'function') {
+            window.qualified('initialize', token);
+        }
+    }
+
+    function teardownQualified() {
+        if (!initialized) return;
+        if (typeof window.qualified === 'function') {
+            window.qualified('setCookieConsent', false);
+            window.qualified('teardown');
+        }
+        initialized = false;
+    }
+
+    function run() {
+        var token = getToken();
+        if (!token) return;
+
+        // Ensure the qualified command queue exists
+        if (!window.qualified) {
+            window['QualifiedObject'] = 'qualified';
+            window['qualified'] = function () {
+                (window.qualified.q = window.qualified.q || []).push(arguments);
+            };
+        }
+
+        // Load gdpr.js and gate on consent
+        import(GDPR_MODULE_URL)
+            .then(function (gdprModule) {
+                var gdpr = gdprModule.default || gdprModule;
+                return gdpr.onGdprReady.then(function () {
+                    // Check initial consent state
+                    var hasFunctionalConsent = gdpr.isActiveGroup(gdpr.OT_FUNCTIONAL);
+                    if (hasFunctionalConsent) {
+                        bootstrapQualified(token);
+                    }
+
+                    // Listen for consent changes
+                    if (gdpr.OT_UPDATE_EVENT) {
+                        window.addEventListener(gdpr.OT_UPDATE_EVENT, function () {
+                            var isActive = false;
+                            try {
+                                isActive = gdpr.isActiveGroup(gdpr.OT_FUNCTIONAL);
+                            } catch (e) {
+                                isActive = false;
+                            }
+                            if (isActive) {
+                                bootstrapQualified(token);
+                            } else {
+                                teardownQualified();
+                            }
+                        });
+                    }
+                });
+            })
+            .catch(function () {
+                // GDPR module failed to load - fail safe: never initialize
+            });
+    }
+
+    run();
+})();

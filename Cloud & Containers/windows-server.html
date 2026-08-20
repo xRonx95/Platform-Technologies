@@ -1,0 +1,3176 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Expanded professional lecture module about Windows Server and Active Directory Domain Services with student-friendly explanations, examples, troubleshooting, and laboratory guidance." name="description"/>
+<meta content="Windows Server, Active Directory, AD DS, Domain Controller, DNS, Group Policy, PowerShell, Cloud, Containers" name="keywords"/>
+<meta content="JavaLearn" name="author"/>
+<title>Windows Server &amp; Active Directory | Cloud &amp; Containers</title>
+<!-- Browser tab logo -->
+<link href="../img/favicon.jpg?v=2" rel="icon" type="image/jpeg"/>
+<link href="../img/favicon.jpg?v=2" rel="shortcut icon" type="image/jpeg"/>
+<!-- External CSS -->
+<link href="../css/Cloud &amp; Containers/windows-server.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- =========================================================
+     MOBILE SIDEBAR BUTTON
+========================================================= -->
+<button aria-expanded="false" aria-label="Open lesson navigation" class="sidebar-toggle" id="sidebarToggle">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="brand-icon">WS</div>
+<div>
+<p class="brand-category">Cloud &amp; Containers</p>
+<h2>Windows Server</h2>
+</div>
+</div>
+<div class="sidebar-module">
+<span class="module-label">Professional Module</span>
+<strong>Windows Server &amp; AD</strong>
+<small>Infrastructure Administration</small>
+</div>
+<nav aria-label="Lesson topics" class="sidebar-nav">
+<p class="sidebar-section-title">Navigation</p>
+<a class="home-link" href="../index.html">
+<span class="topic-number">00</span>
+<span>Home</span>
+</a>
+<p class="sidebar-section-title">Module Introduction</p>
+<a href="#overview">
+<span class="topic-number">01</span>
+<span>Module Overview</span>
+</a>
+<a href="#objectives">
+<span class="topic-number">02</span>
+<span>Learning Objectives</span>
+</a>
+<p class="sidebar-section-title">Windows Server</p>
+<a href="#windows-server">
+<span class="topic-number">03</span>
+<span>Windows Server Fundamentals</span>
+</a>
+<a href="#server-roles">
+<span class="topic-number">04</span>
+<span>Server Roles</span>
+</a>
+<a href="#deployment">
+<span class="topic-number">05</span>
+<span>Deployment Models</span>
+</a>
+<a href="#installation">
+<span class="topic-number">06</span>
+<span>Installing Windows Server</span>
+</a>
+<a href="#initial-config">
+<span class="topic-number">07</span>
+<span>Initial Configuration</span>
+</a>
+<p class="sidebar-section-title">Active Directory</p>
+<a href="#active-directory">
+<span class="topic-number">08</span>
+<span>Active Directory</span>
+</a>
+<a href="#ad-structure">
+<span class="topic-number">09</span>
+<span>AD DS Structure</span>
+</a>
+<a href="#ad-installation">
+<span class="topic-number">10</span>
+<span>Install AD DS</span>
+</a>
+<a href="#domain-controller">
+<span class="topic-number">11</span>
+<span>Domain Controller</span>
+</a>
+<a href="#dns">
+<span class="topic-number">12</span>
+<span>DNS Integration</span>
+</a>
+<a href="#organizational-units">
+<span class="topic-number">13</span>
+<span>Organizational Units</span>
+</a>
+<a href="#users-groups">
+<span class="topic-number">14</span>
+<span>Users &amp; Groups</span>
+</a>
+<a href="#join-domain">
+<span class="topic-number">15</span>
+<span>Joining a Domain</span>
+</a>
+<a href="#group-policy">
+<span class="topic-number">16</span>
+<span>Group Policy</span>
+</a>
+<p class="sidebar-section-title">Administration</p>
+<a href="#permissions">
+<span class="topic-number">17</span>
+<span>File Permissions</span>
+</a>
+<a href="#powershell">
+<span class="topic-number">18</span>
+<span>PowerShell</span>
+</a>
+<a href="#security">
+<span class="topic-number">19</span>
+<span>Security &amp; Hardening</span>
+</a>
+<a href="#backup">
+<span class="topic-number">20</span>
+<span>Backup &amp; Recovery</span>
+</a>
+<p class="sidebar-section-title">Modern Infrastructure</p>
+<a href="#cloud">
+<span class="topic-number">21</span>
+<span>Hybrid Cloud</span>
+</a>
+<a href="#containers">
+<span class="topic-number">22</span>
+<span>Windows Containers</span>
+</a>
+<a href="#troubleshooting">
+<span class="topic-number">23</span>
+<span>Troubleshooting</span>
+</a>
+<p class="sidebar-section-title">Assessment</p>
+<a href="#laboratory">
+<span class="topic-number">24</span>
+<span>Laboratory Activity</span>
+</a>
+<a href="#review">
+<span class="topic-number">25</span>
+<span>Review Questions</span>
+</a>
+<a href="#summary">
+<span class="topic-number">26</span>
+<span>Module Summary</span>
+</a>
+<a href="#concept-review">
+<span class="topic-number">27</span>
+<span>Concept Review</span>
+</a><a href="#references">
+<span class="topic-number">28</span>
+<span>References</span>
+</a>
+</nav>
+<div class="sidebar-footer">
+<p>Windows Server &amp; AD</p>
+<span>Professional Lecture Module</span>
+</div>
+</aside>
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+<main class="main-content">
+<!-- =====================================================
+         HERO
+    ====================================================== -->
+<header class="hero">
+<div class="hero-content">
+<span class="eyebrow">
+                CLOUD &amp; CONTAINERS • PROFESSIONAL LEVEL
+            </span>
+<h1>
+                Windows Server
+                <span>&amp; Active Directory</span>
+</h1>
+<p class="hero-lead">
+                A professional introduction to enterprise Windows Server
+                administration, Active Directory Domain Services, identity
+                management, DNS, Group Policy, security, PowerShell,
+                hybrid cloud infrastructure, and Windows containers.
+            </p>
+<div class="hero-tags">
+<span>Windows Server</span>
+<span>AD DS</span>
+<span>Domain Controller</span>
+<span>DNS</span>
+<span>PowerShell</span>
+<span>Cloud</span>
+</div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#overview">
+                    Start Lecture
+                </a>
+<a class="btn btn-secondary" href="#laboratory">
+                    View Laboratory
+                </a>
+</div>
+</div>
+<div class="hero-image">
+<!-- Direct online image - no download required -->
+<img alt="Windows Admin Center dashboard showing Windows Server administration" src="https://learn.microsoft.com/en-us/windows-server/get-started/media/overview/windows-admin-center.png"/>
+<div class="image-credit">
+                Microsoft Learn — Windows Admin Center
+            </div>
+</div>
+</header>
+<!-- =====================================================
+         MODULE INFORMATION
+    ====================================================== -->
+<section class="module-info">
+<article>
+<span class="info-label">Level</span>
+<strong>Professional</strong>
+</article>
+<article>
+<span class="info-label">Category</span>
+<strong>Cloud &amp; Containers</strong>
+</article>
+<article>
+<span class="info-label">Primary Technology</span>
+<strong>Windows Server</strong>
+</article>
+<article>
+<span class="info-label">Identity Service</span>
+<strong>Active Directory</strong>
+</article>
+</section>
+<!-- =====================================================
+         01 OVERVIEW
+    ====================================================== -->
+<section class="lesson-section" id="overview">
+<div class="section-heading">
+<span class="section-number">01</span>
+<div>
+<p class="section-kicker">MODULE INTRODUCTION</p>
+<h2>Module Overview</h2>
+</div>
+</div>
+<p class="section-intro">
+            Modern organizations require centralized systems for managing
+            computers, applications, users, network resources, permissions,
+            security policies, and authentication. Windows Server provides
+            an enterprise server platform for implementing many of these
+            infrastructure services.
+        </p><div class="callout info">
+<strong>Student-Friendly Explanation</strong>
+<p>
+        Think of Windows Server as the central control system of an organization’s Windows network.
+        Instead of configuring every computer separately, the administrator can place important
+        services on servers and allow many client computers to use those services. Active Directory
+        adds centralized identity management, which means the organization can manage users,
+        computers, passwords, permissions, and policies from a common directory.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Simple Example</h3>
+<p>
+            In a school with 300 computers, creating the same user account manually on every computer
+            would be difficult. With Active Directory, the student can have one domain account and use
+            that account on authorized computers throughout the school.
+        </p>
+</article>
+<article class="content-card">
+<h3>Centralized Management</h3>
+<p>
+            The administrator can change a password policy, disable an account, create a security
+            group, or apply a computer setting from a central management environment rather than
+            visiting each workstation individually.
+        </p>
+</article>
+<article class="content-card">
+<h3>Why This Matters</h3>
+<p>
+            Centralized administration improves consistency, reduces repetitive work, helps enforce
+            security standards, and makes a large network easier to support and audit.
+        </p>
+</article>
+</div>
+<div class="content-grid two-column">
+<article class="content-card">
+<div class="card-icon">S</div>
+<h3>Windows Server</h3>
+<p>
+                    Windows Server is designed to operate server workloads
+                    such as file services, identity services, virtualization,
+                    application hosting, networking, storage, remote
+                    administration, and enterprise infrastructure.
+                </p>
+</article>
+<article class="content-card">
+<div class="card-icon">AD</div>
+<h3>Active Directory</h3>
+<p>
+                    Active Directory Domain Services, commonly abbreviated
+                    as AD DS, provides centralized identity management,
+                    authentication, authorization, directory services, and
+                    administrative control within a Windows domain.
+                </p>
+</article>
+</div>
+<div class="callout professional">
+<strong>Professional Perspective</strong>
+<p>
+                A Windows Server administrator does more than install an
+                operating system. The administrator is responsible for
+                availability, authentication, security, policy enforcement,
+                network services, monitoring, backup, troubleshooting, and
+                infrastructure continuity.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         02 OBJECTIVES
+    ====================================================== -->
+<section class="lesson-section" id="objectives">
+<div class="section-heading">
+<span class="section-number">02</span>
+<div>
+<p class="section-kicker">EXPECTED OUTCOMES</p>
+<h2>Learning Objectives</h2>
+</div>
+</div>
+<p class="section-intro">
+            At the completion of this module, students should be able to
+            explain and demonstrate the fundamental administration concepts
+            associated with Windows Server and Active Directory.
+        </p>
+<div class="objective-list">
+<article>
+<span>01</span>
+<p>Explain the purpose and capabilities of Windows Server.</p>
+</article>
+<article>
+<span>02</span>
+<p>Differentiate server roles, features, and services.</p>
+</article>
+<article>
+<span>03</span>
+<p>Explain Active Directory Domain Services architecture.</p>
+</article>
+<article>
+<span>04</span>
+<p>Describe forests, domains, trees, OUs, users, and groups.</p>
+</article>
+<article>
+<span>05</span>
+<p>Prepare a Windows Server for domain-controller deployment.</p>
+</article>
+<article>
+<span>06</span>
+<p>Explain how the AD DS server role is installed.</p>
+</article>
+<article>
+<span>07</span>
+<p>Explain how a server is promoted to a domain controller.</p>
+</article>
+<article>
+<span>08</span>
+<p>Create a logical organizational structure using OUs.</p>
+</article>
+<article>
+<span>09</span>
+<p>Explain centralized user and security-group management.</p>
+</article>
+<article>
+<span>10</span>
+<p>Describe domain joining and centralized authentication.</p>
+</article>
+<article>
+<span>11</span>
+<p>Explain Group Policy and enterprise policy enforcement.</p>
+</article>
+<article>
+<span>12</span>
+<p>Recognize basic security, backup, and recovery practices.</p>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         03 WINDOWS SERVER
+    ====================================================== -->
+<section class="lesson-section" id="windows-server">
+<div class="section-heading">
+<span class="section-number">03</span>
+<div>
+<p class="section-kicker">WINDOWS INFRASTRUCTURE</p>
+<h2>Windows Server Fundamentals</h2>
+</div>
+</div>
+<p class="section-intro">
+            Windows Server is Microsoft's enterprise operating system
+            platform for running infrastructure services and server
+            workloads in physical, virtualized, cloud, and hybrid
+            environments.
+        </p><div class="callout info">
+<strong>In Simple Terms</strong>
+<p>
+        A normal desktop operating system is designed primarily for one person who uses applications,
+        browses the web, and creates files. A server operating system is designed primarily to provide
+        services to other computers. For example, one Windows Server may authenticate users, another
+        may store shared files, and another may host business applications.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Client</h3>
+<p>
+            A client requests a service. For example, a Windows 11 computer may request authentication,
+            a shared folder, an IP address, or a website.
+        </p>
+</article>
+<article class="content-card">
+<h3>Server</h3>
+<p>
+            A server responds to requests and provides a service. The server is normally configured
+            to remain available for many users and devices at the same time.
+        </p>
+</article>
+<article class="content-card">
+<h3>Service</h3>
+<p>
+            A service is a function provided over the network, such as DNS name resolution,
+            authentication, file sharing, DHCP addressing, or web hosting.
+        </p>
+</article>
+</div><div class="callout professional">
+<strong>Instructor Talking Point</strong>
+<p>
+        Emphasize that “server” can refer to the physical machine, the virtual machine, or the service
+        being delivered. In professional environments, a server is normally designed for reliability,
+        security, controlled access, monitoring, backup, and continuous operation.
+    </p>
+</div>
+<h3 class="subheading">Server vs. Client Operating System</h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Client Windows</th>
+<th>Windows Server</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary Purpose</td>
+<td>End-user computing</td>
+<td>Enterprise service delivery</td>
+</tr>
+<tr>
+<td>Typical User</td>
+<td>Individual user</td>
+<td>Administrator and multiple clients</td>
+</tr>
+<tr>
+<td>Active Directory</td>
+<td>Can join a domain</td>
+<td>Can provide AD DS services</td>
+</tr>
+<tr>
+<td>File Services</td>
+<td>Basic sharing</td>
+<td>Enterprise file and storage services</td>
+</tr>
+<tr>
+<td>Virtualization</td>
+<td>Limited scenarios</td>
+<td>Enterprise Hyper-V infrastructure</td>
+</tr>
+<tr>
+<td>Administration</td>
+<td>Local device management</td>
+<td>Centralized enterprise management</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="concept-grid">
+<div class="concept-box">
+<strong>Availability</strong>
+<p>Server services should remain continuously accessible.</p>
+</div>
+<div class="concept-box">
+<strong>Scalability</strong>
+<p>Infrastructure should support organizational growth.</p>
+</div>
+<div class="concept-box">
+<strong>Security</strong>
+<p>Resources require controlled and authenticated access.</p>
+</div>
+<div class="concept-box">
+<strong>Manageability</strong>
+<p>Administrators require centralized management tools.</p>
+</div>
+</div>
+</section>
+<!-- =====================================================
+         04 SERVER ROLES
+    ====================================================== -->
+<section class="lesson-section" id="server-roles">
+<div class="section-heading">
+<span class="section-number">04</span>
+<div>
+<p class="section-kicker">INFRASTRUCTURE SERVICES</p>
+<h2>Understanding Server Roles</h2>
+</div>
+</div>
+<p class="section-intro">
+            A server role defines the primary function performed by a
+            Windows Server computer. One server may operate multiple roles,
+            although enterprise environments frequently separate critical
+            workloads for security, performance, and availability.
+        </p><div class="callout info">
+<strong>Understanding Roles and Features</strong>
+<p>
+        Windows Server starts as a general-purpose server operating system. Administrators add
+        specific roles depending on what the machine must do. A role represents a major server
+        responsibility, while a feature normally adds supporting functionality or management tools.
+        The correct design is based on business requirements, not on installing every available role.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>AD DS Example</h3>
+<p>
+            When a user signs in using <code>CORP\maria.santos</code>, a domain controller can verify
+            the identity and determine whether the account is allowed to access domain resources.
+        </p>
+</article>
+<article class="content-card">
+<h3>DNS Example</h3>
+<p>
+            Instead of memorizing the IP address <code>192.168.10.10</code>, users and computers can
+            locate a server using a name such as <code>dc01.corp.example.com</code>.
+        </p>
+</article>
+<article class="content-card">
+<h3>DHCP Example</h3>
+<p>
+            A newly connected client can automatically receive an IP address, subnet mask, default
+            gateway, and DNS server information instead of requiring manual network configuration.
+        </p>
+</article>
+</div>
+<div class="content-grid three-column">
+<article class="content-card">
+<h3>AD DS</h3>
+<p>
+                    Provides centralized authentication, directory
+                    services, identity management, and domain management.
+                </p>
+</article>
+<article class="content-card">
+<h3>DNS Server</h3>
+<p>
+                    Resolves host names and supports service discovery
+                    required by Active Directory.
+                </p>
+</article>
+<article class="content-card">
+<h3>DHCP Server</h3>
+<p>
+                    Automatically distributes IP addressing configuration
+                    to network clients.
+                </p>
+</article>
+<article class="content-card">
+<h3>File Services</h3>
+<p>
+                    Provides centralized storage, file sharing, quotas,
+                    permissions, and storage management.
+                </p>
+</article>
+<article class="content-card">
+<h3>Hyper-V</h3>
+<p>
+                    Provides Microsoft virtualization technology for
+                    hosting virtual machines.
+                </p>
+</article>
+<article class="content-card">
+<h3>Web Server IIS</h3>
+<p>
+                    Hosts websites, web applications, APIs, and related
+                    HTTP/HTTPS workloads.
+                </p>
+</article>
+</div>
+<div class="callout warning">
+<strong>Infrastructure Design Note</strong>
+<p>
+                Installing every possible role on one production server
+                increases operational complexity and can increase security
+                risk. Enterprise systems should separate workloads when
+                reliability, security, or scale requires it.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         05 DEPLOYMENT
+    ====================================================== -->
+<section class="lesson-section" id="deployment">
+<div class="section-heading">
+<span class="section-number">05</span>
+<div>
+<p class="section-kicker">INFRASTRUCTURE ARCHITECTURE</p>
+<h2>Windows Server Deployment Models</h2>
+</div>
+</div><div class="callout info">
+<strong>How to Choose a Deployment Model</strong>
+<p>
+        The operating system can perform similar server functions whether it runs on physical hardware,
+        inside a virtual machine, or in a cloud environment. The main differences involve where the
+        computing resources are located, who manages the hardware, how quickly resources can be scaled,
+        and how the organization handles cost, redundancy, security, and connectivity.
+    </p>
+</div><div class="content-grid two-column">
+<article class="content-card">
+<h3>Physical vs. Virtual</h3>
+<p>
+            A physical server uses dedicated hardware. A virtual server shares physical hardware
+            through a hypervisor. Virtualization is widely used because it allows multiple isolated
+            server workloads to run on one physical host and makes laboratories easier to build.
+        </p>
+</article>
+<article class="content-card">
+<h3>On-Premises vs. Cloud</h3>
+<p>
+            On-premises infrastructure is located within facilities controlled by the organization.
+            Cloud infrastructure uses resources hosted by a cloud provider. A hybrid design combines
+            both approaches when applications, identities, management, or workloads need to span them.
+        </p>
+</article>
+</div>
+<div class="deployment-grid">
+<article>
+<span class="deployment-icon">01</span>
+<h3>Physical Server</h3>
+<p>
+                    Windows Server runs directly on dedicated physical
+                    hardware located inside an organization's data center.
+                </p>
+</article>
+<article>
+<span class="deployment-icon">02</span>
+<h3>Virtual Machine</h3>
+<p>
+                    Windows Server operates as a virtual machine through a
+                    hypervisor such as Hyper-V.
+                </p>
+</article>
+<article>
+<span class="deployment-icon">03</span>
+<h3>Cloud Server</h3>
+<p>
+                    Windows Server operates as an infrastructure virtual
+                    machine hosted by a cloud provider.
+                </p>
+</article>
+<article>
+<span class="deployment-icon">04</span>
+<h3>Hybrid Infrastructure</h3>
+<p>
+                    On-premises Windows Servers integrate with cloud
+                    management, monitoring, security, and identity services.
+                </p>
+</article>
+</div>
+<figure class="lesson-image large-image">
+<img alt="Windows Admin Center interface for managing Windows Server" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/get-started/media/overview/windows-admin-center.png"/>
+<figcaption>
+                Figure 1. Windows Server can be centrally administered using
+                modern management tools such as Windows Admin Center.
+            </figcaption>
+</figure>
+</section>
+<!-- =====================================================
+         06 INSTALL WINDOWS SERVER
+    ====================================================== -->
+<section class="lesson-section" id="installation">
+<div class="section-heading">
+<span class="section-number">06</span>
+<div>
+<p class="section-kicker">DEPLOYMENT PROCEDURE</p>
+<h2>Installing Windows Server</h2>
+</div>
+</div>
+<p class="section-intro">
+            Before Active Directory can be configured, administrators need
+            a stable Windows Server installation with appropriate hardware
+            resources and network connectivity.
+        </p><div class="callout professional">
+<strong>What Students Should Understand Before Installation</strong>
+<p>
+        Installing Windows Server is only the beginning. Before making the server a domain controller,
+        the administrator should decide its purpose, assign sufficient CPU and memory, plan storage,
+        configure networking, choose a meaningful computer name, apply updates, and confirm that the
+        server can communicate correctly with the rest of the laboratory network.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Why CPU and Memory Matter</h3>
+<p>
+            Server roles consume processor and memory resources. If a virtual machine has too few
+            resources, installation and administration may become slow and services may respond poorly.
+        </p>
+</article>
+<article class="content-card">
+<h3>Why Storage Matters</h3>
+<p>
+            The server needs storage for the operating system, logs, updates, applications, Active
+            Directory data, and possibly shared files. Production storage also requires a backup plan.
+        </p>
+</article>
+<article class="content-card">
+<h3>Why Networking Matters</h3>
+<p>
+            Active Directory is a network service. If clients cannot reach the domain controller or
+            cannot resolve its DNS records, authentication and domain operations will fail.
+        </p>
+</article>
+</div>
+<h3 class="subheading">Typical Laboratory Environment</h3>
+<div class="lab-specs">
+<div>
+<span>Server Name</span>
+<strong>DC01</strong>
+</div>
+<div>
+<span>Example Domain</span>
+<strong>corp.example.com</strong>
+</div>
+<div>
+<span>IPv4 Address</span>
+<strong>192.168.10.10</strong>
+</div>
+<div>
+<span>Subnet Mask</span>
+<strong>255.255.255.0</strong>
+</div>
+<div>
+<span>Default Gateway</span>
+<strong>192.168.10.1</strong>
+</div>
+<div>
+<span>Preferred DNS</span>
+<strong>192.168.10.10</strong>
+</div>
+</div>
+<div class="callout info">
+<strong>Laboratory Addressing</strong>
+<p>
+                The addresses above are examples for an isolated classroom
+                laboratory. Your actual network addressing must match your
+                organization's network design.
+            </p>
+</div>
+<div class="steps">
+<article class="step">
+<div class="step-number">1</div>
+<div>
+<h3>Prepare the Installation Environment</h3>
+<p>
+                        Prepare physical hardware or create a virtual machine.
+                        Assign adequate CPU, memory, storage, and networking.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">2</div>
+<div>
+<h3>Boot the Installation Media</h3>
+<p>
+                        Start the computer or virtual machine using the
+                        official Windows Server installation media.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">3</div>
+<div>
+<h3>Select Installation Options</h3>
+<p>
+                        Select language, keyboard configuration, Windows
+                        Server edition, installation type, and target disk.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">4</div>
+<div>
+<h3>Complete Installation</h3>
+<p>
+                        Allow Windows Setup to install the operating system
+                        and restart the server.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">5</div>
+<div>
+<h3>Configure Administrator Credentials</h3>
+<p>
+                        Establish a secure local Administrator password and
+                        sign in to begin server configuration.
+                    </p>
+</div>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         07 INITIAL CONFIG
+    ====================================================== -->
+<section class="lesson-section" id="initial-config">
+<div class="section-heading">
+<span class="section-number">07</span>
+<div>
+<p class="section-kicker">SERVER PREPARATION</p>
+<h2>Initial Windows Server Configuration</h2>
+</div>
+</div>
+<p class="section-intro">
+            A domain controller should have predictable networking and a
+            meaningful computer name before Active Directory Domain Services
+            is deployed.
+        </p><div class="callout info">
+<strong>Why Initial Configuration Comes Before AD DS</strong>
+<p>
+        A domain controller becomes a permanent reference point for many network services. Changing
+        basic identity or network settings after deployment can create unnecessary problems. For this
+        reason, administrators normally establish the correct server name, static IP configuration,
+        DNS settings, time configuration, updates, and network connectivity before promoting the
+        machine to a domain controller.
+    </p>
+</div><div class="content-grid two-column">
+<article class="content-card">
+<h3>Why Use a Meaningful Computer Name?</h3>
+<p>
+            Names such as <code>DC01</code>, <code>FILE01</code>, and <code>WEB01</code> immediately
+            communicate the role of a server. Clear naming becomes especially important when an
+            organization manages dozens or hundreds of servers.
+        </p>
+</article>
+<article class="content-card">
+<h3>Why Use a Static IP?</h3>
+<p>
+            Clients need a stable location for DNS and directory services. If the domain controller’s
+            address changes unexpectedly, devices may continue trying to contact the old address and
+            domain services can become unavailable.
+        </p>
+</article>
+</div>
+<div class="process-flow">
+<div>
+<span>01</span>
+<strong>Rename Server</strong>
+</div>
+<div class="flow-arrow">→</div>
+<div>
+<span>02</span>
+<strong>Static IP</strong>
+</div>
+<div class="flow-arrow">→</div>
+<div>
+<span>03</span>
+<strong>DNS Configuration</strong>
+</div>
+<div class="flow-arrow">→</div>
+<div>
+<span>04</span>
+<strong>Updates</strong>
+</div>
+<div class="flow-arrow">→</div>
+<div>
+<span>05</span>
+<strong>Install AD DS</strong>
+</div>
+</div>
+<h3 class="subheading">Step 1 — Rename the Server</h3>
+<ol class="professional-list">
+<li>Open <strong>Server Manager</strong>.</li>
+<li>Select <strong>Local Server</strong>.</li>
+<li>Select the current computer name.</li>
+<li>Select <strong>Change</strong>.</li>
+<li>Enter a descriptive name such as <code>DC01</code>.</li>
+<li>Restart the server when required.</li>
+</ol>
+<figure class="lesson-image">
+<img alt="Windows Server computer name and domain settings" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/media/upgrade-domain-controllers-to-windows-server-2016/upgrade2.png"/>
+<figcaption>
+                Figure 2. Windows Server computer-name and domain
+                configuration interface.
+            </figcaption>
+</figure>
+<h3 class="subheading">Step 2 — Configure a Static IPv4 Address</h3>
+<p>
+            Domain controllers should use stable network addressing because
+            clients and other servers depend on them for DNS, authentication,
+            directory access, and service discovery.
+        </p>
+<div class="code-title">Example Network Configuration</div>
+<pre><code>Server Name:     DC01
+IPv4 Address:    192.168.10.10
+Subnet Mask:     255.255.255.0
+Gateway:         192.168.10.1
+Preferred DNS:   192.168.10.10</code></pre>
+</section>
+<!-- =====================================================
+         08 ACTIVE DIRECTORY
+    ====================================================== -->
+<section class="lesson-section" id="active-directory">
+<div class="section-heading">
+<span class="section-number">08</span>
+<div>
+<p class="section-kicker">IDENTITY INFRASTRUCTURE</p>
+<h2>What Is Active Directory?</h2>
+</div>
+</div>
+<p class="section-intro">
+            Active Directory Domain Services is a directory service that
+            stores and organizes information about network objects while
+            providing centralized mechanisms for authentication,
+            authorization, administration, and policy management.
+        </p><div class="callout info">
+<strong>Active Directory as a Digital Organization Directory</strong>
+<p>
+        A useful analogy is a secure organizational directory. It contains records representing
+        people, computers, groups, and other resources. Unlike a simple contact list, however,
+        Active Directory also participates in authentication and authorization. It helps answer two
+        important questions: “Who are you?” and “What are you allowed to access?”
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Authentication</h3>
+<p>
+            Authentication verifies identity. When Maria enters her domain username and password,
+            the domain environment checks whether those credentials represent a valid account.
+        </p>
+</article>
+<article class="content-card">
+<h3>Authorization</h3>
+<p>
+            Authorization determines what an authenticated identity can do. Maria may be allowed to
+            open the Accounting folder but denied access to the Human Resources folder.
+        </p>
+</article>
+<article class="content-card">
+<h3>Directory Service</h3>
+<p>
+            The directory stores structured information so administrators and services can locate and
+            manage objects such as users, groups, computers, and organizational units.
+        </p>
+</article>
+</div>
+<div class="definition-box">
+<span class="definition-label">Core Definition</span>
+<h3>Active Directory Domain Services — AD DS</h3>
+<p>
+                A hierarchical enterprise directory service used to manage
+                identities and resources such as users, computers, groups,
+                organizational units, servers, and security principals.
+            </p>
+</div>
+<h3 class="subheading">What Can Active Directory Manage?</h3>
+<div class="content-grid three-column">
+<article class="mini-card">
+<strong>User Accounts</strong>
+<p>Employee and administrator identities.</p>
+</article>
+<article class="mini-card">
+<strong>Computer Accounts</strong>
+<p>Domain-connected computers and servers.</p>
+</article>
+<article class="mini-card">
+<strong>Security Groups</strong>
+<p>Collections used to assign access permissions.</p>
+</article>
+<article class="mini-card">
+<strong>Policies</strong>
+<p>Centralized configuration and security settings.</p>
+</article>
+<article class="mini-card">
+<strong>Resources</strong>
+<p>Shared folders, printers, applications, and services.</p>
+</article>
+<article class="mini-card">
+<strong>Authentication</strong>
+<p>Verification of identities throughout a domain.</p>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         09 AD STRUCTURE
+    ====================================================== -->
+<section class="lesson-section" id="ad-structure">
+<div class="section-heading">
+<span class="section-number">09</span>
+<div>
+<p class="section-kicker">DIRECTORY ARCHITECTURE</p>
+<h2>Active Directory Logical Structure</h2>
+</div>
+</div><div class="callout info">
+<strong>Think of the Structure from Largest to Smallest</strong>
+<p>
+        A forest is the broadest Active Directory structure shown in this lesson. Inside a forest are
+        one or more domains. Inside a domain, administrators can create Organizational Units to arrange
+        objects according to management needs. Individual user, computer, and group accounts are then
+        stored within the directory structure.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Forest Example</h3>
+<p>
+            A large organization may operate multiple domains that still belong to one forest and share
+            the same overall Active Directory schema and configuration.
+        </p>
+</article>
+<article class="content-card">
+<h3>Domain Example</h3>
+<p>
+<code>corp.example.com</code> is the demonstration domain in this lesson. Users and
+            computers can become members of that domain and use its authentication services.
+        </p>
+</article>
+<article class="content-card">
+<h3>OU Example</h3>
+<p>
+            An OU called <strong>Faculty</strong> may contain faculty user accounts. A policy linked
+            to that OU can then target those accounts without applying to every user in the domain.
+        </p>
+</article>
+</div>
+<div class="hierarchy">
+<div class="hierarchy-item forest">
+<span>FOREST</span>
+<strong>Enterprise Directory Boundary</strong>
+</div>
+<div class="hierarchy-line"></div>
+<div class="hierarchy-item">
+<span>DOMAIN</span>
+<strong>corp.example.com</strong>
+</div>
+<div class="hierarchy-line"></div>
+<div class="hierarchy-row">
+<div class="hierarchy-item small">
+<span>OU</span>
+<strong>Employees</strong>
+</div>
+<div class="hierarchy-item small">
+<span>OU</span>
+<strong>Computers</strong>
+</div>
+<div class="hierarchy-item small">
+<span>OU</span>
+<strong>Servers</strong>
+</div>
+</div>
+</div>
+<div class="glossary-grid">
+<article>
+<h3>Forest</h3>
+<p>
+                    The highest-level Active Directory structure containing
+                    one or more domains that share directory information.
+                </p>
+</article>
+<article>
+<h3>Domain</h3>
+<p>
+                    A logical administrative structure containing directory
+                    objects and sharing a common DNS domain name.
+                </p>
+</article>
+<article>
+<h3>Domain Controller</h3>
+<p>
+                    A server running AD DS that authenticates users and
+                    maintains directory information.
+                </p>
+</article>
+<article>
+<h3>Organizational Unit</h3>
+<p>
+                    A container used to organize users, computers, groups,
+                    and other directory objects.
+                </p>
+</article>
+<article>
+<h3>Directory Object</h3>
+<p>
+                    An entity stored in Active Directory such as a user,
+                    computer, group, or printer.
+                </p>
+</article>
+<article>
+<h3>Schema</h3>
+<p>
+                    Defines the types of objects and attributes that may
+                    exist within the directory.
+                </p>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         10 INSTALL AD DS
+    ====================================================== -->
+<section class="lesson-section" id="ad-installation">
+<div class="section-heading">
+<span class="section-number">10</span>
+<div>
+<p class="section-kicker">ROLE INSTALLATION</p>
+<h2>Installing Active Directory Domain Services</h2>
+</div>
+</div>
+<p class="section-intro">
+            Active Directory is installed as a Windows Server role. The
+            role installation provides the binaries and management tools
+            required before the computer can be promoted to a domain
+            controller.
+        </p><div class="callout info">
+<strong>Two Separate Stages</strong>
+<p>
+        Students should distinguish between <strong>installing the AD DS role</strong> and
+        <strong>promoting the server to a domain controller</strong>. Installing the role places the
+        necessary software and management components on Windows Server. Promotion performs the
+        directory configuration that actually turns the server into a domain controller.
+    </p>
+</div><div class="content-grid two-column">
+<article class="content-card">
+<h3>Stage 1 — Install the Role</h3>
+<p>
+            Windows Server receives the AD DS binaries and administrative tools. At this point, the
+            machine is prepared for Active Directory configuration but is not yet functioning as a
+            domain controller.
+        </p>
+</article>
+<article class="content-card">
+<h3>Stage 2 — Promote the Server</h3>
+<p>
+            The administrator chooses whether to create a new forest, create a new domain, or add
+            another domain controller to an existing domain. Directory-specific settings are then
+            configured and the server restarts.
+        </p>
+</article>
+</div>
+<div class="steps">
+<article class="step">
+<div class="step-number">1</div>
+<div>
+<h3>Open Server Manager</h3>
+<p>Sign in using an administrative account.</p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">2</div>
+<div>
+<h3>Select Add Roles and Features</h3>
+<p>
+                        From Server Manager, select
+                        <strong>Manage → Add Roles and Features</strong>.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">3</div>
+<div>
+<h3>Select Installation Type</h3>
+<p>
+                        Choose
+                        <strong>Role-based or feature-based installation</strong>.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">4</div>
+<div>
+<h3>Select the Destination Server</h3>
+<p>
+                        Select the server that will receive the AD DS role.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">5</div>
+<div>
+<h3>Select Active Directory Domain Services</h3>
+<p>
+                        Enable <strong>Active Directory Domain Services</strong>
+                        and add the required management features.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">6</div>
+<div>
+<h3>Install</h3>
+<p>
+                        Review the selections and begin role installation.
+                    </p>
+</div>
+</article>
+</div>
+<figure class="lesson-image large-image">
+<img alt="Server Manager Add Roles and Features showing Active Directory Domain Services" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/media/upgrade-domain-controllers-to-windows-server-2016/upgrade3.png"/>
+<figcaption>
+                Figure 3. Active Directory Domain Services selected in
+                the Add Roles and Features Wizard.
+            </figcaption>
+</figure>
+<h3 class="subheading">PowerShell Alternative</h3>
+<p>
+            Administrators can also install the AD DS server role using
+            Windows PowerShell.
+        </p>
+<div class="code-title">PowerShell — Install AD DS</div>
+<pre><code>Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools</code></pre>
+<div class="callout professional">
+<strong>Professional Administration</strong>
+<p>
+                Graphical management tools are useful for learning and
+                smaller administrative tasks. PowerShell becomes increasingly
+                important for repeatability, remote administration,
+                documentation, and automation.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         11 DOMAIN CONTROLLER
+    ====================================================== -->
+<section class="lesson-section" id="domain-controller">
+<div class="section-heading">
+<span class="section-number">11</span>
+<div>
+<p class="section-kicker">DOMAIN DEPLOYMENT</p>
+<h2>Promoting the Server to a Domain Controller</h2>
+</div>
+</div>
+<p class="section-intro">
+            Installing AD DS does not automatically make the machine a
+            domain controller. A separate configuration process must promote
+            the server and configure the Active Directory domain.
+        </p><div class="callout info">
+<strong>What a Domain Controller Actually Does</strong>
+<p>
+        A domain controller is a Windows Server that runs Active Directory Domain Services and
+        participates in the security of the domain. It stores directory information, processes
+        authentication requests, helps enforce domain security policies, and allows computers and
+        services to locate directory resources.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>User Signs In</h3>
+<p>
+            The client contacts domain services to verify the user’s credentials and obtain information
+            required for domain access.
+        </p>
+</article>
+<article class="content-card">
+<h3>Computer Joins Domain</h3>
+<p>
+            A computer account is created or used in Active Directory so the device becomes a trusted
+            member of the domain.
+        </p>
+</article>
+<article class="content-card">
+<h3>Policy Is Applied</h3>
+<p>
+            Domain and OU-linked policies can be delivered to domain users and computers according to
+            the administrator’s configuration.
+        </p>
+</article>
+</div><div class="callout professional">
+<strong>Production Design Note</strong>
+<p>
+        Organizations commonly deploy more than one domain controller for resilience. If one controller
+        becomes unavailable, another can continue providing directory services. Redundancy, replication,
+        backup, monitoring, and recovery planning are therefore important AD DS design concerns.
+    </p>
+</div>
+<h3 class="subheading">Step 1 — Start Post-Deployment Configuration</h3>
+<p>
+            After AD DS installation is complete, Server Manager displays a
+            post-deployment notification.
+        </p>
+<figure class="lesson-image large-image">
+<img alt="Server Manager showing promote this server to a domain controller" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/media/upgrade-domain-controllers-to-windows-server-2016/upgrade4.png"/>
+<figcaption>
+                Figure 4. Select “Promote this server to a domain
+                controller” after AD DS role installation.
+            </figcaption>
+</figure>
+<h3 class="subheading">Step 2 — Select Deployment Configuration</h3>
+<div class="option-list">
+<article>
+<strong>Add a domain controller to an existing domain</strong>
+<p>
+                    Used when the organization already has an Active
+                    Directory domain.
+                </p>
+</article>
+<article>
+<strong>Add a new domain to an existing forest</strong>
+<p>
+                    Used when creating another domain within an existing
+                    Active Directory forest.
+                </p>
+</article>
+<article>
+<strong>Add a new forest</strong>
+<p>
+                    Used for a completely new Active Directory environment.
+                </p>
+</article>
+</div>
+<figure class="lesson-image">
+<img alt="Active Directory Domain Services Configuration Wizard deployment configuration" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/media/upgrade-domain-controllers-to-windows-server-2016/upgrade5.png"/>
+<figcaption>
+                Figure 5. Active Directory Domain Services Deployment
+                Configuration screen.
+            </figcaption>
+</figure>
+<h3 class="subheading">Example Classroom Domain</h3>
+<div class="code-title">Example</div>
+<pre><code>Root domain name: corp.example.com
+NetBIOS name:     CORP
+Domain Controller: DC01
+DNS Server:        Enabled
+Global Catalog:    Enabled</code></pre>
+<div class="callout warning">
+<strong>Domain Naming</strong>
+<p>
+                Production Active Directory namespace planning should be
+                performed carefully before deployment. Renaming or
+                restructuring established domains can become complex.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         12 DNS
+    ====================================================== -->
+<section class="lesson-section" id="dns">
+<div class="section-heading">
+<span class="section-number">12</span>
+<div>
+<p class="section-kicker">NAME RESOLUTION</p>
+<h2>Active Directory and DNS</h2>
+</div>
+</div>
+<p class="section-intro">
+            DNS is fundamental to Active Directory. Domain-joined computers
+            use DNS records to locate domain controllers and directory
+            services.
+        </p><div class="callout info">
+<strong>Why DNS Is More Than “Name to IP” in Active Directory</strong>
+<p>
+        DNS is used not only to find a server by name but also to locate specific Active Directory
+        services. AD DS registers service records so clients can discover domain controllers and other
+        required services. If the client uses the wrong DNS server, it may have Internet access and
+        still fail to find the domain.
+    </p>
+</div><div class="content-grid two-column">
+<article class="content-card">
+<h3>Successful Example</h3>
+<p>
+            PC01 uses <code>192.168.10.10</code> as its DNS server. When PC01 searches for the
+            <code>corp.example.com</code> domain, the DNS service on DC01 can return the records that
+            identify the domain’s services.
+        </p>
+</article>
+<article class="content-card">
+<h3>Failure Example</h3>
+<p>
+            PC01 uses only an unrelated public DNS server. Public DNS may resolve Internet websites,
+            but it does not contain the private Active Directory service records for the classroom
+            domain, so the client may be unable to join or locate the domain.
+        </p>
+</article>
+</div>
+<div class="relationship-diagram">
+<div class="diagram-node client">
+<span>CLIENT</span>
+<strong>PC01</strong>
+</div>
+<div class="diagram-arrow">
+<span>DNS Query</span>
+                →
+            </div>
+<div class="diagram-node dns-node">
+<span>DNS</span>
+<strong>corp.example.com</strong>
+</div>
+<div class="diagram-arrow">
+<span>Locate Service</span>
+                →
+            </div>
+<div class="diagram-node server-node">
+<span>DOMAIN CONTROLLER</span>
+<strong>DC01</strong>
+</div>
+</div>
+<h3 class="subheading">Important DNS Concepts</h3>
+<div class="content-grid two-column">
+<article class="content-card">
+<h3>A Record</h3>
+<p>
+                    Maps a host name to an IPv4 address.
+                </p>
+<code>dc01.corp.example.com → 192.168.10.10</code>
+</article>
+<article class="content-card">
+<h3>SRV Record</h3>
+<p>
+                    Identifies servers providing specific network services.
+                    Active Directory relies heavily on SRV records.
+                </p>
+</article>
+<article class="content-card">
+<h3>Forward Lookup</h3>
+<p>
+                    Resolves a host or domain name to an IP address.
+                </p>
+</article>
+<article class="content-card">
+<h3>Reverse Lookup</h3>
+<p>
+                    Resolves an IP address back to a host name when an
+                    appropriate reverse zone exists.
+                </p>
+</article>
+</div>
+<div class="callout danger">
+<strong>Common Laboratory Error</strong>
+<p>
+                A domain-joining problem is frequently caused by incorrect
+                DNS configuration. A client intended to join the laboratory
+                domain should use the Active Directory DNS service rather
+                than an unrelated public DNS server for domain resolution.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         13 OUs
+    ====================================================== -->
+<section class="lesson-section" id="organizational-units">
+<div class="section-heading">
+<span class="section-number">13</span>
+<div>
+<p class="section-kicker">DIRECTORY ORGANIZATION</p>
+<h2>Organizational Units</h2>
+</div>
+</div>
+<p class="section-intro">
+            Organizational Units allow administrators to create a logical
+            management structure inside a domain. OUs are commonly designed
+            according to organizational, administrative, geographic, or
+            technical requirements.
+        </p><div class="callout info">
+<strong>Why Organizational Units Are Important</strong>
+<p>
+        OUs are not just folders used to make the directory look organized. They are administrative
+        containers. Administrators can delegate responsibility over selected OUs and link Group Policy
+        Objects to them. A well-designed OU structure therefore supports both management and policy
+        targeting.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Department-Based OU</h3>
+<p>
+            Create OUs such as Accounting, Human Resources, and IT when departments require different
+            administration or policies.
+        </p>
+</article>
+<article class="content-card">
+<h3>Device-Based OU</h3>
+<p>
+            Create OUs such as Laboratory PCs, Office PCs, and Servers when different device types
+            require different computer policies.
+        </p>
+</article>
+<article class="content-card">
+<h3>Delegation Example</h3>
+<p>
+            A help-desk technician can be delegated permission to reset passwords in one OU without
+            receiving full administrative control over the entire domain.
+        </p>
+</article>
+</div>
+<div class="directory-tree">
+<div class="tree-domain">
+<strong>corp.example.com</strong>
+</div>
+<div class="tree-children">
+<div class="tree-branch">
+<strong>OU = Employees</strong>
+<span>Management</span>
+<span>Faculty</span>
+<span>Staff</span>
+</div>
+<div class="tree-branch">
+<strong>OU = Computers</strong>
+<span>Laboratory</span>
+<span>Office</span>
+<span>Laptops</span>
+</div>
+<div class="tree-branch">
+<strong>OU = Servers</strong>
+<span>Domain Controllers</span>
+<span>File Servers</span>
+<span>Application Servers</span>
+</div>
+</div>
+</div>
+<h3 class="subheading">Creating an Organizational Unit</h3>
+<ol class="professional-list">
+<li>Open <strong>Server Manager</strong>.</li>
+<li>
+                Select
+                <strong>Tools → Active Directory Users and Computers</strong>.
+            </li>
+<li>Right-click the target domain.</li>
+<li>
+                Select
+                <strong>New → Organizational Unit</strong>.
+            </li>
+<li>Enter a meaningful OU name.</li>
+<li>Select <strong>OK</strong>.</li>
+</ol>
+</section>
+<!-- =====================================================
+         14 USERS GROUPS
+    ====================================================== -->
+<section class="lesson-section" id="users-groups">
+<div class="section-heading">
+<span class="section-number">14</span>
+<div>
+<p class="section-kicker">IDENTITY MANAGEMENT</p>
+<h2>Managing Users and Security Groups</h2>
+</div>
+</div>
+<p class="section-intro">
+            Centralized account administration is one of the most important
+            benefits of Active Directory. Administrators can create,
+            organize, disable, reset, secure, and audit domain accounts.
+        </p><div class="callout info">
+<strong>User Accounts vs. Security Groups</strong>
+<p>
+        A user account represents an individual identity. A security group represents a collection of
+        identities that should receive similar access. Instead of granting a file permission separately
+        to Maria, John, and Alex, the administrator can place them in the Accounting group and grant the
+        resource permission to that group.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>User Account</h3>
+<p>
+            Stores identity-related information such as the sign-in name, account status, group
+            memberships, and other directory attributes.
+        </p>
+</article>
+<article class="content-card">
+<h3>Security Group</h3>
+<p>
+            Simplifies authorization by allowing permissions to be assigned to a role or department
+            instead of to each person individually.
+        </p>
+</article>
+<article class="content-card">
+<h3>Lifecycle Management</h3>
+<p>
+            When an employee changes department, administrators can often modify group membership
+            instead of manually editing permissions on every shared resource.
+        </p>
+</article>
+</div>
+<h3 class="subheading">Creating a Domain User</h3>
+<div class="steps compact">
+<article class="step">
+<div class="step-number">1</div>
+<div>
+<h3>Open AD Users and Computers</h3>
+</div>
+</article>
+<article class="step">
+<div class="step-number">2</div>
+<div>
+<h3>Select the Correct OU</h3>
+</div>
+</article>
+<article class="step">
+<div class="step-number">3</div>
+<div>
+<h3>Select New → User</h3>
+</div>
+</article>
+<article class="step">
+<div class="step-number">4</div>
+<div>
+<h3>Enter Identity Information</h3>
+</div>
+</article>
+<article class="step">
+<div class="step-number">5</div>
+<div>
+<h3>Configure Password Options</h3>
+</div>
+</article>
+<article class="step">
+<div class="step-number">6</div>
+<div>
+<h3>Create the Account</h3>
+</div>
+</article>
+</div>
+<div class="example-account">
+<div>
+<span>Full Name</span>
+<strong>Maria Santos</strong>
+</div>
+<div>
+<span>Username</span>
+<strong>maria.santos</strong>
+</div>
+<div>
+<span>Domain</span>
+<strong>CORP</strong>
+</div>
+<div>
+<span>Logon</span>
+<strong>CORP\maria.santos</strong>
+</div>
+</div>
+<h3 class="subheading">Why Use Groups?</h3>
+<div class="permission-flow">
+<div class="permission-node users">
+<strong>USERS</strong>
+<span>Maria</span>
+<span>John</span>
+<span>Alex</span>
+</div>
+<div class="flow-arrow">→</div>
+<div class="permission-node group">
+<strong>GROUP</strong>
+<span>Accounting</span>
+</div>
+<div class="flow-arrow">→</div>
+<div class="permission-node resource">
+<strong>RESOURCE</strong>
+<span>Finance Share</span>
+</div>
+</div>
+<div class="callout professional">
+<strong>Recommended Administrative Principle</strong>
+<p>
+                Whenever practical, assign resource permissions to security
+                groups rather than repeatedly assigning permissions directly
+                to individual user accounts.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         15 DOMAIN JOIN
+    ====================================================== -->
+<section class="lesson-section" id="join-domain">
+<div class="section-heading">
+<span class="section-number">15</span>
+<div>
+<p class="section-kicker">CLIENT INTEGRATION</p>
+<h2>Joining a Computer to the Domain</h2>
+</div>
+</div>
+<p class="section-intro">
+            Joining a compatible Windows computer to Active Directory
+            establishes a computer account and allows domain identities and
+            centralized policies to be used on that device.
+        </p><div class="callout info">
+<strong>What Changes When a Computer Joins the Domain?</strong>
+<p>
+        The computer becomes a recognized member of the Active Directory environment. A computer
+        account represents the device in the directory, domain users can authenticate on the device
+        when permitted, and centralized Group Policy settings can be applied. Domain membership creates
+        a managed trust relationship between the client and the domain.
+    </p>
+</div><div class="content-grid two-column">
+<article class="content-card">
+<h3>Before Domain Join</h3>
+<p>
+            The workstation is normally managed using local accounts and local settings. An account
+            created only on that PC generally exists only on that machine.
+        </p>
+</article>
+<article class="content-card">
+<h3>After Domain Join</h3>
+<p>
+            Authorized domain identities can be used, the computer can receive domain policies, and
+            administrators can manage the device as part of the organization’s directory structure.
+        </p>
+</article>
+</div>
+<div class="prerequisite-panel">
+<h3>Before Joining the Domain</h3>
+<ul>
+<li>Client and domain controller have network connectivity.</li>
+<li>The client uses the correct Active Directory DNS server.</li>
+<li>The domain name can be resolved.</li>
+<li>The client clock is synchronized appropriately.</li>
+<li>Authorized credentials are available.</li>
+</ul>
+</div>
+<div class="steps">
+<article class="step">
+<div class="step-number">1</div>
+<div>
+<h3>Configure DNS</h3>
+<p>
+                        Point the client to the DNS server hosting the
+                        Active Directory zone.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">2</div>
+<div>
+<h3>Open System Settings</h3>
+<p>Open computer-name or domain membership settings.</p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">3</div>
+<div>
+<h3>Select Domain</h3>
+<p>
+                        Enter the domain, for example:
+                        <code>corp.example.com</code>.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">4</div>
+<div>
+<h3>Provide Credentials</h3>
+<p>
+                        Supply credentials permitted to join the computer.
+                    </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">5</div>
+<div>
+<h3>Restart the Client</h3>
+<p>Restart when prompted.</p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">6</div>
+<div>
+<h3>Authenticate Using the Domain</h3>
+<p>
+                        Test sign-in using an authorized domain account.
+                    </p>
+</div>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         16 GROUP POLICY
+    ====================================================== -->
+<section class="lesson-section" id="group-policy">
+<div class="section-heading">
+<span class="section-number">16</span>
+<div>
+<p class="section-kicker">CENTRALIZED CONFIGURATION</p>
+<h2>Group Policy</h2>
+</div>
+</div>
+<p class="section-intro">
+            Group Policy provides centralized configuration management for
+            domain users and computers. Administrators can define settings
+            once and apply them across selected portions of the organization.
+        </p><div class="callout info">
+<strong>Think of Group Policy as Centralized Rules</strong>
+<p>
+        Without Group Policy, an administrator might need to configure the same security or desktop
+        setting manually on every workstation. A Group Policy Object allows the administrator to define
+        many settings centrally and apply them to selected users or computers through sites, domains,
+        and Organizational Units.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Security Example</h3>
+<p>
+            An organization can configure account, firewall, auditing, or other security-related
+            settings consistently across targeted computers.
+        </p>
+</article>
+<article class="content-card">
+<h3>User Experience Example</h3>
+<p>
+            Administrators can control selected desktop settings or restrict access to particular
+            configuration areas for specific users.
+        </p>
+</article>
+<article class="content-card">
+<h3>Management Benefit</h3>
+<p>
+            Centralized policy reduces configuration differences between machines and makes changes
+            easier to document, repeat, and troubleshoot.
+        </p>
+</article>
+</div><div class="callout professional">
+<strong>Important Processing Concept</strong>
+<p>
+        The Local, Site, Domain, and OU sequence is a useful starting model, but actual Group Policy
+        results can also be affected by inheritance, enforced links, security filtering, WMI filtering,
+        loopback processing, and other configuration choices. Students should use tools such as
+        <code>gpresult</code> when troubleshooting what actually applied.
+    </p>
+</div>
+<div class="policy-example">
+<div class="policy-source">
+<span>GROUP POLICY OBJECT</span>
+<strong>Corporate Security Policy</strong>
+</div>
+<div class="policy-arrow">↓</div>
+<div class="policy-targets">
+<article>
+<span>User Setting</span>
+<strong>Password Policy</strong>
+</article>
+<article>
+<span>Computer Setting</span>
+<strong>Firewall Configuration</strong>
+</article>
+<article>
+<span>Desktop Setting</span>
+<strong>Control Panel Restrictions</strong>
+</article>
+<article>
+<span>Security Setting</span>
+<strong>Account Lockout</strong>
+</article>
+</div>
+</div>
+<h3 class="subheading">Group Policy Processing</h3>
+<div class="policy-order">
+<div>
+<span>1</span>
+<strong>Local</strong>
+</div>
+<div>→</div>
+<div>
+<span>2</span>
+<strong>Site</strong>
+</div>
+<div>→</div>
+<div>
+<span>3</span>
+<strong>Domain</strong>
+</div>
+<div>→</div>
+<div>
+<span>4</span>
+<strong>OU</strong>
+</div>
+</div>
+<h3 class="subheading">Useful Administrative Commands</h3>
+<div class="code-title">Refresh Group Policy</div>
+<pre><code>gpupdate /force</code></pre>
+<div class="code-title">View Resulting Policy</div>
+<pre><code>gpresult /r</code></pre>
+</section>
+<!-- =====================================================
+         17 PERMISSIONS
+    ====================================================== -->
+<section class="lesson-section" id="permissions">
+<div class="section-heading">
+<span class="section-number">17</span>
+<div>
+<p class="section-kicker">RESOURCE SECURITY</p>
+<h2>File Sharing and NTFS Permissions</h2>
+</div>
+</div>
+<p class="section-intro">
+            Windows Server frequently provides centralized storage.
+            Administrators need to understand both shared-folder permissions
+            and NTFS permissions when controlling access to files.
+        </p><div class="callout info">
+<strong>Share Permissions and NTFS Permissions Work Together</strong>
+<p>
+        When a folder is accessed across the network, the user may be affected by both the shared-folder
+        permission and the NTFS permission on the files or folders. Effective access therefore depends
+        on the combined configuration. Administrators should design permissions carefully and test
+        access using accounts that represent real user roles.
+    </p>
+</div><div class="content-grid two-column">
+<article class="content-card">
+<h3>Example: Accounting Folder</h3>
+<p>
+            The Accounting security group might receive Modify access to a finance folder so members
+            can create and update documents. Other employees may receive Read access or no access,
+            depending on business requirements.
+        </p>
+</article>
+<article class="content-card">
+<h3>Why Avoid “Everyone Full Control”?</h3>
+<p>
+            Excessive permissions increase the chance of accidental deletion, unauthorized changes,
+            information exposure, and malware impact. Permission design should follow least privilege.
+        </p>
+</article>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td>View files and folder contents.</td>
+</tr>
+<tr>
+<td>Write</td>
+<td>Create or modify data where permitted.</td>
+</tr>
+<tr>
+<td>Modify</td>
+<td>Read, write, change, and delete permitted files.</td>
+</tr>
+<tr>
+<td>Full Control</td>
+<td>
+                            Provides broad control including permission
+                            management where applicable.
+                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout warning">
+<strong>Least Privilege</strong>
+<p>
+                Users should receive only the level of access necessary to
+                perform their assigned responsibilities.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         18 POWERSHELL
+    ====================================================== -->
+<section class="lesson-section" id="powershell">
+<div class="section-heading">
+<span class="section-number">18</span>
+<div>
+<p class="section-kicker">ADMINISTRATION &amp; AUTOMATION</p>
+<h2>Windows PowerShell for Active Directory</h2>
+</div>
+</div>
+<p class="section-intro">
+            PowerShell provides administrators with a scriptable and
+            repeatable method of managing Windows Server and Active
+            Directory.
+        </p><div class="callout info">
+<strong>Why Administrators Learn PowerShell</strong>
+<p>
+        A graphical interface is convenient when performing one task. PowerShell becomes especially
+        valuable when the same task must be repeated many times. For example, creating 200 users
+        manually can be slow and inconsistent, while a carefully tested script can perform repetitive
+        operations in a controlled and repeatable way.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Discovery</h3>
+<p>
+            Commands such as <code>Get-ADUser</code>, <code>Get-ADComputer</code>, and
+            <code>Get-ADGroup</code> allow administrators to query directory objects.
+        </p>
+</article>
+<article class="content-card">
+<h3>Automation</h3>
+<p>
+            Scripts can standardize repetitive administrative tasks, reduce manual typing, and create
+            a record of the procedure that was performed.
+        </p>
+</article>
+<article class="content-card">
+<h3>Safety</h3>
+<p>
+            Administrative scripts should be tested in a laboratory, reviewed carefully, and executed
+            with the minimum privileges necessary because automation can also repeat mistakes quickly.
+        </p>
+</article>
+</div>
+<figure class="lesson-image">
+<img alt="Windows Server Active Directory Module for Windows PowerShell" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/media/upgrade-domain-controllers-to-windows-server-2016/upgrade6.png"/>
+<figcaption>
+                Figure 6. Active Directory management tools available
+                through Server Manager.
+            </figcaption>
+</figure>
+<h3 class="subheading">Common Active Directory Commands</h3>
+<div class="command-grid">
+<article>
+<span>List Users</span>
+<pre><code>Get-ADUser -Filter *</code></pre>
+</article>
+<article>
+<span>List Computers</span>
+<pre><code>Get-ADComputer -Filter *</code></pre>
+</article>
+<article>
+<span>List Groups</span>
+<pre><code>Get-ADGroup -Filter *</code></pre>
+</article>
+<article>
+<span>Display Domain</span>
+<pre><code>Get-ADDomain</code></pre>
+</article>
+<article>
+<span>Display Forest</span>
+<pre><code>Get-ADForest</code></pre>
+</article>
+<article>
+<span>Locate Domain Controller</span>
+<pre><code>Get-ADDomainController</code></pre>
+</article>
+</div>
+<figure class="lesson-image">
+<img alt="PowerShell Get-ADDomain information" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/media/upgrade-domain-controllers-to-windows-server-2016/upgrade8.png"/>
+<figcaption>
+                Figure 7. Active Directory domain information displayed
+                through PowerShell.
+            </figcaption>
+</figure>
+<figure class="lesson-image">
+<img alt="PowerShell Get-ADForest information" loading="lazy" src="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/media/upgrade-domain-controllers-to-windows-server-2016/upgrade9.png"/>
+<figcaption>
+                Figure 8. Active Directory forest information viewed
+                through PowerShell.
+            </figcaption>
+</figure>
+</section>
+<!-- =====================================================
+         19 SECURITY
+    ====================================================== -->
+<section class="lesson-section" id="security">
+<div class="section-heading">
+<span class="section-number">19</span>
+<div>
+<p class="section-kicker">INFRASTRUCTURE PROTECTION</p>
+<h2>Windows Server &amp; AD Security</h2>
+</div>
+</div>
+<p class="section-intro">
+            Active Directory is a critical security component because it
+            controls access to identities, computers, services, and
+            enterprise resources.
+        </p><div class="callout info">
+<strong>Why Active Directory Security Is Critical</strong>
+<p>
+        Active Directory can control access to many systems at once. A compromised privileged account
+        may therefore create much greater risk than the compromise of a normal user account. Security
+        design should reduce unnecessary privilege, protect administrative credentials, keep systems
+        updated, monitor important events, and maintain recoverable backups.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Normal User Account</h3>
+<p>
+            Used for routine work such as documents, approved applications, and ordinary access to
+            organizational resources.
+        </p>
+</article>
+<article class="content-card">
+<h3>Administrative Account</h3>
+<p>
+            Used only when privileged changes are required. Separating administrative activity reduces
+            unnecessary exposure of elevated credentials.
+        </p>
+</article>
+<article class="content-card">
+<h3>Audit and Monitoring</h3>
+<p>
+            Logs help administrators investigate failed sign-ins, account changes, policy events, and
+            other activity that may indicate a configuration problem or security incident.
+        </p>
+</article>
+</div>
+<div class="security-grid">
+<article>
+<span>01</span>
+<h3>Least Privilege</h3>
+<p>
+                    Grant administrators and users only the rights required
+                    for their responsibilities.
+                </p>
+</article>
+<article>
+<span>02</span>
+<h3>Separate Admin Accounts</h3>
+<p>
+                    Use dedicated privileged accounts for administrative
+                    work instead of daily user accounts.
+                </p>
+</article>
+<article>
+<span>03</span>
+<h3>Strong Authentication</h3>
+<p>
+                    Implement appropriate password, lockout, and stronger
+                    authentication controls.
+                </p>
+</article>
+<article>
+<span>04</span>
+<h3>Patch Management</h3>
+<p>
+                    Maintain supported systems and deploy relevant security
+                    updates in a controlled manner.
+                </p>
+</article>
+<article>
+<span>05</span>
+<h3>Monitoring</h3>
+<p>
+                    Review logs, security events, administrative changes,
+                    and authentication activity.
+                </p>
+</article>
+<article>
+<span>06</span>
+<h3>Backups</h3>
+<p>
+                    Maintain tested backups and documented recovery
+                    procedures for critical infrastructure.
+                </p>
+</article>
+</div>
+<div class="callout danger">
+<strong>Critical Security Principle</strong>
+<p>
+                Domain administrator credentials should not be used for
+                ordinary web browsing, email, or routine workstation tasks.
+                Privileged accounts require stronger operational protection.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         20 BACKUP
+    ====================================================== -->
+<section class="lesson-section" id="backup">
+<div class="section-heading">
+<span class="section-number">20</span>
+<div>
+<p class="section-kicker">BUSINESS CONTINUITY</p>
+<h2>Backup and Recovery</h2>
+</div>
+</div>
+<p class="section-intro">
+            A successful infrastructure strategy considers failure before it
+            occurs. Administrators require documented backup, restoration,
+            and disaster-recovery procedures.
+        </p><div class="callout info">
+<strong>A Backup Is Useful Only If It Can Be Restored</strong>
+<p>
+        Copying data is only one part of a recovery strategy. Administrators must know what is included
+        in the backup, where the backup is stored, how it is protected, how long it is retained, and how
+        the organization will restore service after failure. Recovery procedures should be tested
+        before an emergency occurs.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Failure Scenario</h3>
+<p>
+            A server may fail because of hardware problems, corruption, configuration mistakes,
+            ransomware, accidental deletion, or environmental events.
+        </p>
+</article>
+<article class="content-card">
+<h3>Recovery Objective</h3>
+<p>
+            The organization must decide which services are most important and how quickly they must
+            be restored to support operations.
+        </p>
+</article>
+<article class="content-card">
+<h3>Testing</h3>
+<p>
+            A restoration test verifies that backup data is usable and that administrators understand
+            the documented recovery procedure.
+        </p>
+</article>
+</div>
+<div class="backup-flow">
+<article>
+<span>01</span>
+<strong>Identify Critical Services</strong>
+<p>Determine what must be recovered first.</p>
+</article>
+<div class="flow-arrow">→</div>
+<article>
+<span>02</span>
+<strong>Perform Backups</strong>
+<p>Protect required server and directory data.</p>
+</article>
+<div class="flow-arrow">→</div>
+<article>
+<span>03</span>
+<strong>Protect Backup Copies</strong>
+<p>Prevent backup loss or unauthorized modification.</p>
+</article>
+<div class="flow-arrow">→</div>
+<article>
+<span>04</span>
+<strong>Test Recovery</strong>
+<p>Confirm that recovery procedures actually work.</p>
+</article>
+</div>
+<h3 class="subheading">Directory Services Restore Mode</h3>
+<p>
+            During domain-controller promotion, administrators configure a
+            Directory Services Restore Mode password. DSRM is associated
+            with directory recovery and maintenance scenarios and should be
+            securely documented according to organizational security policy.
+        </p>
+</section>
+<!-- =====================================================
+         21 HYBRID CLOUD
+    ====================================================== -->
+<section class="lesson-section" id="cloud">
+<div class="section-heading">
+<span class="section-number">21</span>
+<div>
+<p class="section-kicker">CLOUD &amp; CONTAINERS</p>
+<h2>Windows Server in Hybrid Cloud Infrastructure</h2>
+</div>
+</div>
+<p class="section-intro">
+            Windows Server is no longer limited to traditional on-premises
+            server rooms. Modern environments can combine local Windows
+            Server infrastructure with cloud management and services.
+        </p><div class="callout info">
+<strong>What “Hybrid” Means</strong>
+<p>
+        Hybrid infrastructure means the organization uses both local infrastructure and cloud-based
+        capabilities. A Windows Server can remain physically located in the organization while selected
+        management, monitoring, backup, security, identity, or application services integrate with
+        cloud platforms.
+    </p>
+</div><div class="content-grid two-column">
+<article class="content-card">
+<h3>Why Keep Some Services On-Premises?</h3>
+<p>
+            Organizations may have local applications, data-location requirements, existing hardware,
+            specialized network dependencies, or operational reasons for retaining some workloads
+            on-site.
+        </p>
+</article>
+<article class="content-card">
+<h3>Why Use Cloud Services?</h3>
+<p>
+            Cloud services can provide flexible capacity, centralized management, remote visibility,
+            globally available services, and additional security or monitoring capabilities depending
+            on the organization’s architecture.
+        </p>
+</article>
+</div>
+<div class="hybrid-diagram">
+<div class="hybrid-side">
+<span>ON-PREMISES</span>
+<div>Domain Controllers</div>
+<div>File Servers</div>
+<div>Application Servers</div>
+</div>
+<div class="hybrid-center">
+<span>↔</span>
+<strong>HYBRID</strong>
+<small>
+                    Management<br/>
+                    Monitoring<br/>
+                    Identity<br/>
+                    Security
+                </small>
+</div>
+<div class="hybrid-side">
+<span>CLOUD</span>
+<div>Cloud VMs</div>
+<div>Azure Services</div>
+<div>Cloud Management</div>
+</div>
+</div>
+<h3 class="subheading">Management Approaches</h3>
+<div class="content-grid three-column">
+<article class="content-card">
+<h3>Server Manager</h3>
+<p>
+                    Traditional Windows Server graphical administration.
+                </p>
+</article>
+<article class="content-card">
+<h3>Windows Admin Center</h3>
+<p>
+                    Browser-based server administration and monitoring.
+                </p>
+</article>
+<article class="content-card">
+<h3>Azure Arc</h3>
+<p>
+                    Extends cloud-oriented management capabilities to
+                    servers operating outside Azure.
+                </p>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         22 CONTAINERS
+    ====================================================== -->
+<section class="lesson-section" id="containers">
+<div class="section-heading">
+<span class="section-number">22</span>
+<div>
+<p class="section-kicker">APPLICATION ISOLATION</p>
+<h2>Introduction to Windows Containers</h2>
+</div>
+</div>
+<p class="section-intro">
+            Containers provide an application deployment model that packages
+            applications with their dependencies while providing isolation
+            from other application workloads.
+        </p><div class="callout info">
+<strong>Containers Are Not Small Virtual Machines</strong>
+<p>
+        Both virtual machines and containers provide isolation, but they do so differently. A virtual
+        machine normally includes its own guest operating system. A container packages an application
+        and its dependencies while using the container capabilities of the host environment. This can
+        make containers faster to create and easier to reproduce for suitable application workloads.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Image</h3>
+<p>
+            A container image is a packaged template containing the application and required components
+            used to create container instances.
+        </p>
+</article>
+<article class="content-card">
+<h3>Container</h3>
+<p>
+            A container is a running or created instance based on an image. Multiple containers can be
+            created from the same image.
+        </p>
+</article>
+<article class="content-card">
+<h3>Use Case</h3>
+<p>
+            Containers are commonly used for modern application deployment, development environments,
+            automated testing, and services that benefit from repeatable packaging.
+        </p>
+</article>
+</div>
+<div class="comparison-panel">
+<article>
+<span class="comparison-label">Virtual Machine</span>
+<div class="stack-block application">
+                    Application
+                </div>
+<div class="stack-block os">
+                    Guest Operating System
+                </div>
+<div class="stack-block infrastructure">
+                    Hypervisor
+                </div>
+<div class="stack-block hardware">
+                    Hardware
+                </div>
+</article>
+<article>
+<span class="comparison-label">Container</span>
+<div class="stack-block application">
+                    Application + Dependencies
+                </div>
+<div class="stack-block os">
+                    Container Runtime
+                </div>
+<div class="stack-block infrastructure">
+                    Host Operating System
+                </div>
+<div class="stack-block hardware">
+                    Hardware / VM
+                </div>
+</article>
+</div>
+<h3 class="subheading">Why Containers?</h3>
+<div class="content-grid four-column">
+<article class="mini-card">
+<strong>Consistency</strong>
+<p>
+                    Package application dependencies with the workload.
+                </p>
+</article>
+<article class="mini-card">
+<strong>Isolation</strong>
+<p>
+                    Separate application execution environments.
+                </p>
+</article>
+<article class="mini-card">
+<strong>Portability</strong>
+<p>
+                    Facilitate repeatable deployment across environments.
+                </p>
+</article>
+<article class="mini-card">
+<strong>Automation</strong>
+<p>
+                    Work well with modern deployment pipelines.
+                </p>
+</article>
+</div>
+<div class="callout professional">
+<strong>Important Distinction</strong>
+<p>
+                Active Directory Domain Services is enterprise identity
+                infrastructure, while containers are primarily an
+                application deployment and isolation technology. They solve
+                different infrastructure problems but can coexist within
+                modern Windows environments.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         23 TROUBLESHOOTING
+    ====================================================== -->
+<section class="lesson-section" id="troubleshooting">
+<div class="section-heading">
+<span class="section-number">23</span>
+<div>
+<p class="section-kicker">SYSTEMATIC DIAGNOSIS</p>
+<h2>Windows Server &amp; AD Troubleshooting</h2>
+</div>
+</div>
+<p class="section-intro">
+            Professional troubleshooting should be evidence-based and
+            systematic. Avoid making multiple unrelated configuration
+            changes before identifying the actual failure domain.
+        </p><div class="callout professional">
+<strong>A Professional Troubleshooting Method</strong>
+<p>
+        Start by identifying exactly what is failing, determine the scope, gather evidence, test the
+        simplest likely causes, make one controlled change at a time, verify the result, and document
+        the final resolution. Randomly changing many settings can hide the original cause and create
+        additional problems.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>1. Define the Symptom</h3>
+<p>
+            “The domain is broken” is too broad. A better description is “PC01 cannot resolve
+            <code>corp.example.com</code> using the configured DNS server.”
+        </p>
+</article>
+<article class="content-card">
+<h3>2. Test by Layer</h3>
+<p>
+            Check physical or virtual connectivity, IP configuration, DNS resolution, service
+            availability, credentials, permissions, and policy processing in a logical order.
+        </p>
+</article>
+<article class="content-card">
+<h3>3. Confirm the Fix</h3>
+<p>
+            After correcting the cause, repeat the original test and verify that related services still
+            operate correctly. Record what was changed for future support.
+        </p>
+</article>
+</div>
+<div class="troubleshooting-table">
+<article>
+<div>
+<span>Problem</span>
+<strong>Client cannot join domain</strong>
+</div>
+<div>
+<span>Check</span>
+<p>
+                        DNS configuration, connectivity, domain name,
+                        credentials, and time.
+                    </p>
+</div>
+</article>
+<article>
+<div>
+<span>Problem</span>
+<strong>User cannot sign in</strong>
+</div>
+<div>
+<span>Check</span>
+<p>
+                        Account status, password, network connectivity,
+                        DNS, domain-controller availability, and time.
+                    </p>
+</div>
+</article>
+<article>
+<div>
+<span>Problem</span>
+<strong>GPO does not apply</strong>
+</div>
+<div>
+<span>Check</span>
+<p>
+                        OU placement, GPO links, permissions, filtering,
+                        inheritance, DNS, and policy results.
+                    </p>
+</div>
+</article>
+<article>
+<div>
+<span>Problem</span>
+<strong>Name cannot be resolved</strong>
+</div>
+<div>
+<span>Check</span>
+<p>
+                        DNS server address, DNS zones, records, network
+                        connectivity, and service status.
+                    </p>
+</div>
+</article>
+</div>
+<h3 class="subheading">Useful Diagnostic Commands</h3>
+<div class="command-grid">
+<article>
+<span>IP Configuration</span>
+<pre><code>ipconfig /all</code></pre>
+</article>
+<article>
+<span>DNS Lookup</span>
+<pre><code>nslookup corp.example.com</code></pre>
+</article>
+<article>
+<span>Connectivity</span>
+<pre><code>ping 192.168.10.10</code></pre>
+</article>
+<article>
+<span>Domain Controller</span>
+<pre><code>nltest /dsgetdc:corp.example.com</code></pre>
+</article>
+<article>
+<span>Group Policy</span>
+<pre><code>gpresult /r</code></pre>
+</article>
+<article>
+<span>AD Diagnostics</span>
+<pre><code>dcdiag</code></pre>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         24 LAB
+    ====================================================== -->
+<section class="lesson-section" id="laboratory">
+<div class="section-heading">
+<span class="section-number">24</span>
+<div>
+<p class="section-kicker">PRACTICAL APPLICATION</p>
+<h2>Guided Laboratory Activity</h2>
+</div>
+</div><div class="callout info">
+<strong>How Students Should Approach the Laboratory</strong>
+<p>
+        Do not treat the laboratory as a sequence of clicks to memorize. At every stage, identify what
+        service is being created, what depends on it, and how you will prove that it is working. For
+        example, after configuring DNS, test name resolution. After creating a user, verify that the
+        account appears in the correct OU. After joining the client, confirm domain membership and test
+        a domain sign-in.
+    </p>
+</div><div class="content-grid three-column">
+<article class="content-card">
+<h3>Before Each Change</h3>
+<p>
+            State the objective. Example: “I am configuring PC01 to use DC01 as DNS so the client can
+            locate Active Directory services.”
+        </p>
+</article>
+<article class="content-card">
+<h3>After Each Change</h3>
+<p>
+            Validate the result using the interface, a command, an event log, or a functional test.
+            Successful configuration should produce evidence.
+        </p>
+</article>
+<article class="content-card">
+<h3>Document the Laboratory</h3>
+<p>
+            Record server names, IP addresses, domain names, OU structure, user accounts, policies,
+            commands, screenshots, problems encountered, and how each problem was resolved.
+        </p>
+</article>
+</div>
+<div class="lab-title-box">
+<span>LABORATORY 01</span>
+<h3>
+                Build a Basic Windows Server Active Directory Laboratory
+            </h3>
+<p>
+                This activity allows students to apply the concepts
+                presented throughout the lecture in an isolated educational
+                laboratory.
+            </p>
+</div>
+<h3 class="subheading">Proposed Laboratory Topology</h3>
+<div class="lab-topology">
+<div class="topology-device server-device">
+<span>SERVER</span>
+<strong>DC01</strong>
+<small>192.168.10.10</small>
+<small>AD DS + DNS</small>
+</div>
+<div class="network-line">
+<span>192.168.10.0/24</span>
+</div>
+<div class="topology-device">
+<span>CLIENT</span>
+<strong>PC01</strong>
+<small>192.168.10.20</small>
+<small>Domain Member</small>
+</div>
+</div>
+<h3 class="subheading">Laboratory Tasks</h3>
+<div class="lab-tasks">
+<article>
+<span>Task 01</span>
+<h3>Deploy Windows Server</h3>
+<p>
+                    Install Windows Server in a virtualized classroom
+                    environment.
+                </p>
+</article>
+<article>
+<span>Task 02</span>
+<h3>Rename the Server</h3>
+<p>Rename the server to <code>DC01</code>.</p>
+</article>
+<article>
+<span>Task 03</span>
+<h3>Configure Networking</h3>
+<p>
+                    Configure an appropriate static IP address for the
+                    isolated laboratory.
+                </p>
+</article>
+<article>
+<span>Task 04</span>
+<h3>Install AD DS</h3>
+<p>
+                    Install Active Directory Domain Services and management
+                    tools.
+                </p>
+</article>
+<article>
+<span>Task 05</span>
+<h3>Create a Forest</h3>
+<p>
+                    For the classroom example, create
+                    <code>corp.example.com</code>.
+                </p>
+</article>
+<article>
+<span>Task 06</span>
+<h3>Create Organizational Units</h3>
+<p>
+                    Create Employees, Computers, and Servers OUs.
+                </p>
+</article>
+<article>
+<span>Task 07</span>
+<h3>Create User Accounts</h3>
+<p>Create several demonstration domain users.</p>
+</article>
+<article>
+<span>Task 08</span>
+<h3>Create Security Groups</h3>
+<p>Create departmental groups and assign users.</p>
+</article>
+<article>
+<span>Task 09</span>
+<h3>Prepare Client DNS</h3>
+<p>
+                    Configure the client to use the domain DNS service.
+                </p>
+</article>
+<article>
+<span>Task 10</span>
+<h3>Join the Client</h3>
+<p>
+                    Join PC01 to <code>corp.example.com</code>.
+                </p>
+</article>
+<article>
+<span>Task 11</span>
+<h3>Create a Group Policy</h3>
+<p>
+                    Implement a simple classroom policy and test the result.
+                </p>
+</article>
+<article>
+<span>Task 12</span>
+<h3>Validate the Environment</h3>
+<p>
+                    Verify DNS, authentication, user access, and policy
+                    processing.
+                </p>
+</article>
+</div>
+<div class="callout warning">
+<strong>Laboratory Safety</strong>
+<p>
+                Students should perform domain-controller deployment
+                exercises in an isolated virtual laboratory rather than
+                modifying an organization's production Active Directory
+                environment.
+            </p>
+</div>
+</section>
+<!-- =====================================================
+         25 REVIEW
+    ====================================================== -->
+<section class="lesson-section" id="review">
+<div class="section-heading">
+<span class="section-number">25</span>
+<div>
+<p class="section-kicker">KNOWLEDGE CHECK</p>
+<h2>Review Questions</h2>
+</div>
+</div>
+<div class="question-list">
+<article>
+<span>01</span>
+<p>What is the primary purpose of Windows Server?</p>
+</article>
+<article>
+<span>02</span>
+<p>What does AD DS stand for?</p>
+</article>
+<article>
+<span>03</span>
+<p>What is the purpose of a domain controller?</p>
+</article>
+<article>
+<span>04</span>
+<p>
+                    What is the difference between an Active Directory
+                    forest and a domain?
+                </p>
+</article>
+<article>
+<span>05</span>
+<p>Why is DNS important to Active Directory?</p>
+</article>
+<article>
+<span>06</span>
+<p>What is an Organizational Unit?</p>
+</article>
+<article>
+<span>07</span>
+<p>
+                    Why are security groups preferable for assigning many
+                    resource permissions?
+                </p>
+</article>
+<article>
+<span>08</span>
+<p>What is the purpose of Group Policy?</p>
+</article>
+<article>
+<span>09</span>
+<p>
+                    Why should a domain controller normally use stable
+                    network addressing?
+                </p>
+</article>
+<article>
+<span>10</span>
+<p>
+                    What PowerShell command installs the AD DS server role?
+                </p>
+</article>
+<article>
+<span>11</span>
+<p>
+                    What command can display a client's IP and DNS
+                    configuration?
+                </p>
+</article>
+<article>
+<span>12</span>
+<p>
+                    Explain the principle of least privilege.
+                </p>
+</article>
+<article>
+<span>13</span>
+<p>
+                    What is the difference between a virtual machine and a
+                    container?
+                </p>
+</article>
+<article>
+<span>14</span>
+<p>
+                    What is meant by hybrid Windows Server infrastructure?
+                </p>
+</article>
+<article>
+<span>15</span>
+<p>
+                    Why should backup restoration procedures be tested?
+                </p>
+</article>
+</div>
+</section>
+<!-- =====================================================
+         26 SUMMARY
+    ====================================================== -->
+<section class="lesson-section" id="summary">
+<div class="section-heading">
+<span class="section-number">26</span>
+<div>
+<p class="section-kicker">CONCLUSION</p>
+<h2>Module Summary</h2>
+</div>
+</div>
+<p class="section-intro">
+            Windows Server and Active Directory provide core technologies
+            for building and administering centralized enterprise Windows
+            infrastructure.
+        </p>
+<div class="summary-grid">
+<article>
+<span>01</span>
+<div>
+<strong>Windows Server</strong>
+<p>
+                        Provides an enterprise platform for server workloads
+                        and infrastructure services.
+                    </p>
+</div>
+</article>
+<article>
+<span>02</span>
+<div>
+<strong>Active Directory</strong>
+<p>
+                        Provides centralized identities, authentication,
+                        authorization, and directory management.
+                    </p>
+</div>
+</article>
+<article>
+<span>03</span>
+<div>
+<strong>DNS</strong>
+<p>
+                        Provides name resolution and service discovery
+                        required by Active Directory.
+                    </p>
+</div>
+</article>
+<article>
+<span>04</span>
+<div>
+<strong>Organizational Units</strong>
+<p>
+                        Provide a logical structure for administration and
+                        Group Policy application.
+                    </p>
+</div>
+</article>
+<article>
+<span>05</span>
+<div>
+<strong>Group Policy</strong>
+<p>
+                        Enables centralized configuration and security
+                        management.
+                    </p>
+</div>
+</article>
+<article>
+<span>06</span>
+<div>
+<strong>PowerShell</strong>
+<p>
+                        Provides automation and command-line administration
+                        capabilities.
+                    </p>
+</div>
+</article>
+<article>
+<span>07</span>
+<div>
+<strong>Security</strong>
+<p>
+                        Requires least privilege, monitoring, patching,
+                        controlled administration, and secure authentication.
+                    </p>
+</div>
+</article>
+<article>
+<span>08</span>
+<div>
+<strong>Cloud &amp; Containers</strong>
+<p>
+                        Extend Windows Server concepts into modern hybrid and
+                        application-hosting environments.
+                    </p>
+</div>
+</article>
+</div>
+<div class="final-message">
+<span>END OF MODULE</span>
+<h3>Windows Server &amp; Active Directory</h3>
+<p>
+                Students should now have a structured foundation for
+                progressing into advanced Windows Server administration,
+                Active Directory engineering, Group Policy management,
+                virtualization, cloud integration, automation, and
+                enterprise infrastructure security.
+            </p>
+<a class="btn btn-primary" href="../index.html">
+                Return to Home
+            </a>
+</div>
+</section>
+<!-- =====================================================
+         27 REFERENCES
+    ====================================================== -->
+<section class="lesson-section" id="concept-review">
+<div class="section-heading">
+<span class="section-number">27</span>
+<div>
+<p class="section-kicker">STUDENT UNDERSTANDING</p>
+<h2>Key Concepts Explained in One Scenario</h2>
+</div>
+</div>
+<p class="section-intro">
+        The following scenario connects the major topics in the module so students can see how Windows
+        Server, Active Directory, DNS, users, groups, Group Policy, and permissions work together as one
+        system rather than as unrelated topics.
+    </p>
+<div class="callout professional">
+<strong>Scenario: A New Accounting Employee Joins the Organization</strong>
+<p>
+            Maria Santos is hired by the Accounting department. The administrator must give Maria a
+            secure identity, allow her to use a company computer, provide access to the Accounting
+            shared folder, and apply the organization’s standard workstation policies.
+        </p>
+</div>
+<div class="steps">
+<article class="step">
+<div class="step-number">1</div>
+<div>
+<h3>Create Maria’s Domain User Account</h3>
+<p>
+                    The administrator creates <code>maria.santos</code> in the appropriate Active
+                    Directory OU. This creates Maria’s centralized organizational identity.
+                </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">2</div>
+<div>
+<h3>Add Maria to the Accounting Security Group</h3>
+<p>
+                    Instead of granting folder access directly to Maria, the administrator adds her to
+                    the Accounting group. Permissions can now be managed according to job role.
+                </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">3</div>
+<div>
+<h3>Prepare the Accounting Workstation</h3>
+<p>
+                    The workstation is configured with correct network and DNS settings and is joined to
+                    <code>corp.example.com</code>. Active Directory now recognizes the computer as a
+                    domain member.
+                </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">4</div>
+<div>
+<h3>Maria Signs In</h3>
+<p>
+                    The client uses domain services to authenticate Maria. Successful authentication
+                    proves who she is; authorization then determines what resources she may use.
+                </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">5</div>
+<div>
+<h3>Group Policy Applies</h3>
+<p>
+                    Policies linked to the relevant domain or OU can configure approved workstation and
+                    security settings. The administrator can verify the resulting policy using
+                    <code>gpresult /r</code>.
+                </p>
+</div>
+</article>
+<article class="step">
+<div class="step-number">6</div>
+<div>
+<h3>Maria Opens the Accounting Share</h3>
+<p>
+                    Access is granted because Maria is a member of the Accounting security group and
+                    that group has the required permission. The administrator manages access through
+                    group membership rather than editing every user individually.
+                </p>
+</div>
+</article>
+</div>
+<div class="callout info">
+<strong>The Big Picture</strong>
+<p>
+            DNS helps the workstation locate domain services. Active Directory stores the user and
+            computer identities. The domain controller authenticates the user. Security groups simplify
+            authorization. Group Policy applies centralized settings. File permissions protect the
+            resource. These technologies work together to create a manageable enterprise environment.
+        </p>
+</div>
+</section><section class="lesson-section" id="references">
+<div class="section-heading">
+<span class="section-number">28</span>
+<div>
+<p class="section-kicker">FURTHER READING</p>
+<h2>Official References</h2>
+</div>
+</div>
+<p class="section-intro">
+            Students and instructors should use official Microsoft
+            documentation for current implementation details and changes.
+        </p>
+<div class="reference-list">
+<a href="https://learn.microsoft.com/en-us/windows-server/get-started/overview" rel="noopener noreferrer" target="_blank">
+<span>Microsoft Learn</span>
+<strong>What is Windows Server?</strong>
+<small>Official Windows Server overview</small>
+</a>
+<a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview" rel="noopener noreferrer" target="_blank">
+<span>Microsoft Learn</span>
+<strong>Active Directory Domain Services Overview</strong>
+<small>Official AD DS documentation</small>
+</a>
+<a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services--level-100-" rel="noopener noreferrer" target="_blank">
+<span>Microsoft Learn</span>
+<strong>Install Active Directory Domain Services</strong>
+<small>Server Manager and PowerShell deployment</small>
+</a>
+<a href="https://learn.microsoft.com/en-us/training/paths/active-directory-domain-services/" rel="noopener noreferrer" target="_blank">
+<span>Microsoft Learn</span>
+<strong>Active Directory Domain Services Training</strong>
+<small>Official Microsoft learning path</small>
+</a>
+</div>
+</section>
+<!-- =====================================================
+         FOOTER
+    ====================================================== -->
+<footer class="page-footer">
+<div>
+<strong>Cloud &amp; Containers</strong>
+<p>Windows Server &amp; Active Directory</p>
+</div>
+<a href="../index.html">Home</a>
+</footer>
+</main>
+<!-- =========================================================
+     SMALL JAVASCRIPT FOR MOBILE SIDEBAR
+     No Java application is used.
+========================================================= -->
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+    const sidebarLinks = document.querySelectorAll(".sidebar-nav a");
+
+    function openSidebar() {
+        sidebar.classList.add("active");
+        sidebarOverlay.classList.add("active");
+        sidebarToggle.classList.add("active");
+        sidebarToggle.setAttribute("aria-expanded", "true");
+        document.body.classList.add("sidebar-open");
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove("active");
+        sidebarOverlay.classList.remove("active");
+        sidebarToggle.classList.remove("active");
+        sidebarToggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("sidebar-open");
+    }
+
+    sidebarToggle.addEventListener("click", function () {
+        if (sidebar.classList.contains("active")) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    sidebarOverlay.addEventListener("click", closeSidebar);
+
+    sidebarLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+            if (window.innerWidth <= 1100) {
+                closeSidebar();
+            }
+        });
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeSidebar();
+        }
+    });
+
+    /* Highlight current topic while scrolling */
+    const sections = document.querySelectorAll(".lesson-section");
+
+    const observerOptions = {
+        root: null,
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+                sidebarLinks.forEach(function (link) {
+                    link.classList.remove("active-link");
+                });
+
+                const currentLink = document.querySelector(
+                    '.sidebar-nav a[href="#' + entry.target.id + '"]'
+                );
+
+                if (currentLink) {
+                    currentLink.classList.add("active-link");
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(function (section) {
+        observer.observe(section);
+    });
+</script>
+</body>
+</html>
