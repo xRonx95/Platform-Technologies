@@ -1,0 +1,3518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Learn AWS, Microsoft Azure, Google Cloud, cloud service models, serverless computing, containers, and major cloud platform services."
+    >
+
+    <meta
+        name="keywords"
+        content="AWS, Azure, Google Cloud, Cloud Computing, IaaS, PaaS, SaaS, Containers, Serverless, Platform Technologies"
+    >
+
+    <meta name="author" content="Platform Technologies">
+
+    <title>
+        AWS, Azure & Google Cloud | Cloud & Containers
+    </title>
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        type="image/jpeg"
+        href="../favicon.jpg"
+    >
+
+    <!-- Separate CSS -->
+    <link
+        rel="stylesheet"
+        href="../css/Cloud & Containers/aws.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SKIP LINK
+    ====================================================== -->
+    <a
+        href="#main-content"
+        class="skip-link"
+    >
+        Skip to lesson
+    </a>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a
+                href="../index.html"
+                class="brand"
+                aria-label="Platform Technologies Home"
+            >
+                <div class="brand-icon">
+                    PT
+                </div>
+
+                <div class="brand-text">
+                    <span class="brand-title">
+                        PLATFORM TECHNOLOGIES
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Cloud & Containers
+                    </span>
+                </div>
+            </a>
+
+
+            <nav
+                class="main-nav"
+                aria-label="Main Navigation"
+            >
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a
+                    href="aws.html"
+                    class="active"
+                >
+                    Aws
+                </a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PAGE LAYOUT
+    ====================================================== -->
+    <div class="page-layout">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+        <aside class="sidebar">
+
+            <div class="sidebar-inner">
+
+                <div class="sidebar-heading">
+                    <span class="sidebar-label">
+                        COURSE MODULE
+                    </span>
+
+                    <h2>
+                        Cloud & Containers
+                    </h2>
+
+                    <p>
+                        Platform Technologies
+                    </p>
+                </div>
+
+
+                <nav
+                    class="lesson-navigation"
+                    aria-label="Cloud and Containers Lessons"
+                >
+
+                    <div class="nav-group">
+
+                        <span class="nav-group-title">
+                            Linux Fundamentals
+                        </span>
+
+                        <a href="linux.html">
+                            <span class="lesson-number">01</span>
+                            Linux Distros & Shell
+                        </a>
+
+                        <a href="linux-users.html">
+                            <span class="lesson-number">02</span>
+                            Users, Permissions & Packages
+                        </a>
+
+                    </div>
+
+
+                    <div class="nav-group">
+
+                        <span class="nav-group-title">
+                            Virtualization
+                        </span>
+
+                        <a href="typehypervisor.html">
+                            <span class="lesson-number">03</span>
+                            Type 1 vs Type 2 Hypervisors
+                        </a>
+
+                        <a href="Virualbox.html">
+                            <span class="lesson-number">04</span>
+                            VirtualBox & VMware
+                        </a>
+
+                        <a href="VM.html">
+                            <span class="lesson-number">05</span>
+                            Building Virtual Machines
+                        </a>
+
+                        <a href="VNetworking.html">
+                            <span class="lesson-number">06</span>
+                            Virtual Networking
+                        </a>
+
+                    </div>
+
+
+                    <div class="nav-group">
+
+                        <span class="nav-group-title">
+                            Cloud Computing
+                        </span>
+
+                        <a href="iaas.html">
+                            <span class="lesson-number">07</span>
+                            IaaS, PaaS & SaaS
+                        </a>
+
+                        <a
+                            href="aws.html"
+                            class="active"
+                            aria-current="page"
+                        >
+                            <span class="lesson-number">08</span>
+                            AWS, Azure & Google Cloud
+                        </a>
+
+                    </div>
+
+                </nav>
+
+
+                <div class="sidebar-progress">
+
+                    <div class="progress-heading">
+                        <span>Module Progress</span>
+                        <strong>8 / 8</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-value"></div>
+                    </div>
+
+                    <p>
+                        Major Cloud Platforms
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+        <main
+            id="main-content"
+            class="main-content"
+        >
+
+
+            <!-- =================================================
+                 HERO
+            ================================================== -->
+            <section class="lesson-hero">
+
+                <div class="hero-breadcrumb">
+                    <a href="../index.html">
+                        Home
+                    </a>
+
+                    <span>/</span>
+
+                    <a href="linux.html">
+                        Cloud & Containers
+                    </a>
+
+                    <span>/</span>
+
+                    <strong>
+                        Major Cloud Platforms
+                    </strong>
+                </div>
+
+
+                <div class="hero-grid">
+
+                    <div class="hero-content">
+
+                        <span class="lesson-badge">
+                            LESSON 08
+                        </span>
+
+                        <h1>
+                            AWS, Azure &
+                            <span>Google Cloud</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            Survey the world's major cloud computing
+                            platforms and learn how Amazon Web Services,
+                            Microsoft Azure, and Google Cloud provide
+                            computing, storage, networking, databases,
+                            containers, serverless computing, and other
+                            cloud services.
+                        </p>
+
+
+                        <div class="hero-meta">
+
+                            <div class="meta-item">
+                                <strong>Topic</strong>
+                                <span>Major Cloud Platforms</span>
+                            </div>
+
+                            <div class="meta-item">
+                                <strong>Level</strong>
+                                <span>Beginner</span>
+                            </div>
+
+                            <div class="meta-item">
+                                <strong>Subject</strong>
+                                <span>Platform Technologies</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="cloud-visual">
+
+                        <div class="center-cloud">
+                            <span class="cloud-symbol">☁</span>
+                            <strong>CLOUD</strong>
+                            <small>COMPUTING</small>
+                        </div>
+
+                        <div class="provider provider-aws">
+                            <strong>AWS</strong>
+                            <span>Amazon</span>
+                        </div>
+
+                        <div class="provider provider-azure">
+                            <strong>Azure</strong>
+                            <span>Microsoft</span>
+                        </div>
+
+                        <div class="provider provider-gcp">
+                            <strong>GCP</strong>
+                            <span>Google</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LEARNING OBJECTIVES
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="objectives"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            LEARNING OBJECTIVES
+                        </span>
+
+                        <h2>
+                            What You Will Learn
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p class="section-intro">
+                    At the end of this lesson, students should be able
+                    to:
+                </p>
+
+
+                <div class="objective-grid">
+
+                    <article class="objective-card">
+                        <span class="objective-icon">01</span>
+
+                        <h3>
+                            Identify
+                        </h3>
+
+                        <p>
+                            Identify the three major cloud platforms:
+                            Amazon Web Services, Microsoft Azure, and
+                            Google Cloud.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span class="objective-icon">02</span>
+
+                        <h3>
+                            Explain
+                        </h3>
+
+                        <p>
+                            Explain how cloud providers deliver compute,
+                            storage, networking, databases, and
+                            application platforms.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span class="objective-icon">03</span>
+
+                        <h3>
+                            Compare
+                        </h3>
+
+                        <p>
+                            Compare similar services available in AWS,
+                            Azure, and Google Cloud.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span class="objective-icon">04</span>
+
+                        <h3>
+                            Classify
+                        </h3>
+
+                        <p>
+                            Classify cloud services according to IaaS,
+                            PaaS, SaaS, containers, and serverless
+                            computing.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span class="objective-icon">05</span>
+
+                        <h3>
+                            Evaluate
+                        </h3>
+
+                        <p>
+                            Evaluate which cloud platform or service
+                            model is appropriate for a given computing
+                            requirement.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span class="objective-icon">06</span>
+
+                        <h3>
+                            Apply
+                        </h3>
+
+                        <p>
+                            Select appropriate cloud services for a
+                            simple website, application, database, or
+                            containerized system.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RECALL CLOUD COMPUTING
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="cloud-review"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            REVIEW
+                        </span>
+
+                        <h2>
+                            What Is Cloud Computing?
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="definition-box">
+
+                    <div class="definition-icon">
+                        ☁
+                    </div>
+
+                    <div>
+                        <h3>
+                            Cloud Computing
+                        </h3>
+
+                        <p>
+                            Cloud computing is the delivery of computing
+                            resources such as servers, storage,
+                            databases, networking, software, and
+                            application platforms over a network,
+                            typically the Internet.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Instead of purchasing and maintaining every physical
+                    server yourself, you can obtain computing resources
+                    from a <strong>cloud service provider</strong>.
+                    Resources can usually be provisioned when they are
+                    needed and scaled according to demand.
+                </p>
+
+
+                <div class="concept-grid">
+
+                    <article class="concept-card">
+
+                        <span class="concept-icon">
+                            ⚡
+                        </span>
+
+                        <h3>
+                            On Demand
+                        </h3>
+
+                        <p>
+                            Resources can be created when they are
+                            required instead of waiting for new physical
+                            hardware.
+                        </p>
+
+                    </article>
+
+
+                    <article class="concept-card">
+
+                        <span class="concept-icon">
+                            ↕
+                        </span>
+
+                        <h3>
+                            Scalable
+                        </h3>
+
+                        <p>
+                            Computing resources can grow or shrink based
+                            on application demand.
+                        </p>
+
+                    </article>
+
+
+                    <article class="concept-card">
+
+                        <span class="concept-icon">
+                            ₱
+                        </span>
+
+                        <h3>
+                            Usage Based
+                        </h3>
+
+                        <p>
+                            Many cloud services use consumption-based
+                            pricing where organizations pay for the
+                            resources they consume.
+                        </p>
+
+                    </article>
+
+
+                    <article class="concept-card">
+
+                        <span class="concept-icon">
+                            🌐
+                        </span>
+
+                        <h3>
+                            Accessible
+                        </h3>
+
+                        <p>
+                            Cloud resources can be managed remotely
+                            through web consoles, APIs, command-line
+                            tools, and development tools.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CLOUD SERVICE PROVIDER
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="cloud-provider"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        03
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            CLOUD PROVIDERS
+                        </span>
+
+                        <h2>
+                            What Is a Cloud Service Provider?
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    A <strong>Cloud Service Provider (CSP)</strong> is a
+                    company that operates cloud infrastructure and makes
+                    computing resources available to customers.
+                </p>
+
+
+                <div class="provider-flow">
+
+                    <div class="flow-box">
+                        <span>🏢</span>
+                        <strong>Cloud Provider</strong>
+                        <small>
+                            Operates data centers
+                        </small>
+                    </div>
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+                    <div class="flow-box">
+                        <span>☁</span>
+                        <strong>Cloud Services</strong>
+                        <small>
+                            Compute, storage, database
+                        </small>
+                    </div>
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+                    <div class="flow-box">
+                        <span>💻</span>
+                        <strong>Customer</strong>
+                        <small>
+                            Uses the resources
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="note-box">
+
+                    <strong>
+                        Teacher's Explanation
+                    </strong>
+
+                    <p>
+                        Think of cloud computing like renting computing
+                        resources. You do not necessarily need to own the
+                        physical server. Instead, a provider maintains
+                        large data centers while customers select and use
+                        the services they need.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MAJOR PROVIDERS
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="major-providers"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        04
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            MAJOR PLATFORMS
+                        </span>
+
+                        <h2>
+                            The Three Major Cloud Platforms
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p class="section-intro">
+                    Although many cloud providers exist, three major
+                    platforms commonly encountered in enterprise and
+                    software development environments are:
+                </p>
+
+
+                <div class="major-provider-grid">
+
+                    <!-- AWS -->
+                    <article class="major-provider-card aws-card">
+
+                        <div class="provider-logo aws-logo">
+                            AWS
+                        </div>
+
+                        <span class="provider-company">
+                            AMAZON
+                        </span>
+
+                        <h3>
+                            Amazon Web Services
+                        </h3>
+
+                        <p>
+                            AWS is Amazon's cloud computing platform. It
+                            provides services for virtual machines,
+                            storage, databases, networking, containers,
+                            serverless computing, analytics, artificial
+                            intelligence, security, and many other
+                            workloads.
+                        </p>
+
+                        <div class="provider-tag-list">
+                            <span>EC2</span>
+                            <span>S3</span>
+                            <span>RDS</span>
+                            <span>Lambda</span>
+                            <span>ECS</span>
+                            <span>EKS</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- AZURE -->
+                    <article class="major-provider-card azure-card">
+
+                        <div class="provider-logo azure-logo">
+                            AZ
+                        </div>
+
+                        <span class="provider-company">
+                            MICROSOFT
+                        </span>
+
+                        <h3>
+                            Microsoft Azure
+                        </h3>
+
+                        <p>
+                            Microsoft Azure is Microsoft's cloud
+                            platform. It provides infrastructure,
+                            application platforms, databases, AI,
+                            identity, containers, networking, storage,
+                            and strong integration with Microsoft
+                            technologies.
+                        </p>
+
+                        <div class="provider-tag-list">
+                            <span>Virtual Machines</span>
+                            <span>Blob Storage</span>
+                            <span>App Service</span>
+                            <span>Functions</span>
+                            <span>AKS</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- GOOGLE CLOUD -->
+                    <article class="major-provider-card gcp-card">
+
+                        <div class="provider-logo gcp-logo">
+                            GCP
+                        </div>
+
+                        <span class="provider-company">
+                            GOOGLE
+                        </span>
+
+                        <h3>
+                            Google Cloud
+                        </h3>
+
+                        <p>
+                            Google Cloud provides infrastructure,
+                            application platforms, data analytics,
+                            machine learning, networking, databases,
+                            Kubernetes, serverless computing, and
+                            container services using Google's cloud
+                            infrastructure.
+                        </p>
+
+                        <div class="provider-tag-list">
+                            <span>Compute Engine</span>
+                            <span>Cloud Storage</span>
+                            <span>Cloud SQL</span>
+                            <span>Cloud Run</span>
+                            <span>GKE</span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AWS
+            ================================================== -->
+            <section
+                class="lesson-section provider-detail-section"
+                id="aws"
+            >
+
+                <div class="provider-section-header aws-section-header">
+
+                    <div class="provider-big-logo">
+                        AWS
+                    </div>
+
+                    <div>
+                        <span class="eyebrow">
+                            AMAZON WEB SERVICES
+                        </span>
+
+                        <h2>
+                            Exploring AWS
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    <strong>Amazon Web Services (AWS)</strong> provides a
+                    large portfolio of cloud products covering compute,
+                    storage, databases, networking, containers,
+                    serverless applications, security, analytics,
+                    artificial intelligence, and other technology
+                    categories.
+                </p>
+
+
+                <div class="service-grid">
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            🖥
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                COMPUTE
+                            </span>
+
+                            <h3>
+                                Amazon EC2
+                            </h3>
+
+                            <p>
+                                Amazon Elastic Compute Cloud provides
+                                configurable virtual servers in AWS.
+                            </p>
+
+                            <span class="service-model">
+                                IaaS
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            📦
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                STORAGE
+                            </span>
+
+                            <h3>
+                                Amazon S3
+                            </h3>
+
+                            <p>
+                                Amazon Simple Storage Service provides
+                                cloud-based object storage for files,
+                                backups, application assets, and data.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            🗄
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                DATABASE
+                            </span>
+
+                            <h3>
+                                Amazon RDS
+                            </h3>
+
+                            <p>
+                                A managed relational database service
+                                used to create, operate, and scale
+                                relational databases.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            λ
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                SERVERLESS
+                            </span>
+
+                            <h3>
+                                AWS Lambda
+                            </h3>
+
+                            <p>
+                                Executes application code without the
+                                developer having to provision and manage
+                                traditional servers.
+                            </p>
+
+                            <span class="service-model">
+                                FaaS
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            ◫
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                CONTAINERS
+                            </span>
+
+                            <h3>
+                                Amazon ECS
+                            </h3>
+
+                            <p>
+                                Amazon Elastic Container Service is a
+                                managed container orchestration service
+                                for running containerized applications.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            ☸
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                KUBERNETES
+                            </span>
+
+                            <h3>
+                                Amazon EKS
+                            </h3>
+
+                            <p>
+                                Amazon Elastic Kubernetes Service
+                                provides managed Kubernetes for
+                                containerized workloads.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="example-box">
+
+                    <span class="example-label">
+                        CLASSROOM EXAMPLE
+                    </span>
+
+                    <h3>
+                        Student Enrollment Website on AWS
+                    </h3>
+
+                    <p>
+                        Suppose a school wants to deploy an online
+                        enrollment application.
+                    </p>
+
+                    <div class="architecture-flow">
+
+                        <div class="architecture-item">
+                            <strong>Website</strong>
+                            <span>EC2 / App Platform</span>
+                        </div>
+
+                        <span>→</span>
+
+                        <div class="architecture-item">
+                            <strong>Database</strong>
+                            <span>Amazon RDS</span>
+                        </div>
+
+                        <span>→</span>
+
+                        <div class="architecture-item">
+                            <strong>Files</strong>
+                            <span>Amazon S3</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AZURE
+            ================================================== -->
+            <section
+                class="lesson-section provider-detail-section"
+                id="azure"
+            >
+
+                <div class="provider-section-header azure-section-header">
+
+                    <div class="provider-big-logo">
+                        AZ
+                    </div>
+
+                    <div>
+                        <span class="eyebrow">
+                            MICROSOFT AZURE
+                        </span>
+
+                        <h2>
+                            Exploring Microsoft Azure
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    <strong>Microsoft Azure</strong> provides cloud
+                    infrastructure and application services with
+                    extensive support for Windows, Linux, .NET, Java,
+                    Python, Node.js, databases, containers, artificial
+                    intelligence, networking, and enterprise systems.
+                </p>
+
+
+                <div class="service-grid">
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            🖥
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                COMPUTE
+                            </span>
+
+                            <h3>
+                                Azure Virtual Machines
+                            </h3>
+
+                            <p>
+                                Provides configurable Windows and Linux
+                                virtual machines running in Microsoft
+                                Azure.
+                            </p>
+
+                            <span class="service-model">
+                                IaaS
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            📦
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                STORAGE
+                            </span>
+
+                            <h3>
+                                Azure Blob Storage
+                            </h3>
+
+                            <p>
+                                Object storage for documents, media,
+                                backups, application files, logs, and
+                                large amounts of unstructured data.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            🗄
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                DATABASE
+                            </span>
+
+                            <h3>
+                                Azure SQL Database
+                            </h3>
+
+                            <p>
+                                A managed relational database service
+                                based on Microsoft SQL technologies.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            &lt;/&gt;
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                APPLICATION PLATFORM
+                            </span>
+
+                            <h3>
+                                Azure App Service
+                            </h3>
+
+                            <p>
+                                A managed PaaS environment for building,
+                                deploying, and scaling web applications
+                                and APIs.
+                            </p>
+
+                            <span class="service-model">
+                                PaaS
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            ƒ
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                SERVERLESS
+                            </span>
+
+                            <h3>
+                                Azure Functions
+                            </h3>
+
+                            <p>
+                                Runs event-driven application code using
+                                a serverless execution model.
+                            </p>
+
+                            <span class="service-model">
+                                FaaS
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            ☸
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                KUBERNETES
+                            </span>
+
+                            <h3>
+                                Azure Kubernetes Service
+                            </h3>
+
+                            <p>
+                                AKS provides managed Kubernetes clusters
+                                for deploying and operating
+                                containerized applications.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="example-box">
+
+                    <span class="example-label">
+                        CLASSROOM EXAMPLE
+                    </span>
+
+                    <h3>
+                        School Web Application on Azure
+                    </h3>
+
+                    <p>
+                        A school development team can deploy its website
+                        using Azure App Service without manually
+                        administering the underlying web server.
+                    </p>
+
+                    <div class="architecture-flow">
+
+                        <div class="architecture-item">
+                            <strong>Web App</strong>
+                            <span>Azure App Service</span>
+                        </div>
+
+                        <span>→</span>
+
+                        <div class="architecture-item">
+                            <strong>Database</strong>
+                            <span>Azure SQL</span>
+                        </div>
+
+                        <span>→</span>
+
+                        <div class="architecture-item">
+                            <strong>Files</strong>
+                            <span>Blob Storage</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 GOOGLE CLOUD
+            ================================================== -->
+            <section
+                class="lesson-section provider-detail-section"
+                id="gcp"
+            >
+
+                <div class="provider-section-header gcp-section-header">
+
+                    <div class="provider-big-logo">
+                        GCP
+                    </div>
+
+                    <div>
+                        <span class="eyebrow">
+                            GOOGLE CLOUD
+                        </span>
+
+                        <h2>
+                            Exploring Google Cloud
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    <strong>Google Cloud</strong> provides virtual
+                    computing infrastructure, storage, databases,
+                    container platforms, Kubernetes, serverless
+                    application hosting, data analytics, machine
+                    learning, and networking services.
+                </p>
+
+
+                <div class="service-grid">
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            🖥
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                COMPUTE
+                            </span>
+
+                            <h3>
+                                Compute Engine
+                            </h3>
+
+                            <p>
+                                Provides configurable virtual machines
+                                running on Google Cloud infrastructure.
+                            </p>
+
+                            <span class="service-model">
+                                IaaS
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            📦
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                STORAGE
+                            </span>
+
+                            <h3>
+                                Cloud Storage
+                            </h3>
+
+                            <p>
+                                Object storage for files, application
+                                assets, backups, archives, multimedia,
+                                and datasets.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            🗄
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                DATABASE
+                            </span>
+
+                            <h3>
+                                Cloud SQL
+                            </h3>
+
+                            <p>
+                                A managed relational database service for
+                                supported SQL database engines.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            ▶
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                SERVERLESS CONTAINERS
+                            </span>
+
+                            <h3>
+                                Cloud Run
+                            </h3>
+
+                            <p>
+                                A managed platform for running
+                                containerized applications without
+                                manually managing servers.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            ƒ
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                SERVERLESS FUNCTIONS
+                            </span>
+
+                            <h3>
+                                Cloud Run functions
+                            </h3>
+
+                            <p>
+                                Runs event-driven functions using
+                                Google's serverless Cloud Run
+                                infrastructure.
+                            </p>
+
+                            <span class="service-model">
+                                FaaS
+                            </span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            ☸
+                        </div>
+
+                        <div>
+                            <span class="service-category">
+                                KUBERNETES
+                            </span>
+
+                            <h3>
+                                Google Kubernetes Engine
+                            </h3>
+
+                            <p>
+                                GKE provides a managed environment for
+                                deploying and operating applications
+                                using Kubernetes.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="important-box">
+
+                    <div class="important-icon">
+                        i
+                    </div>
+
+                    <div>
+                        <strong>
+                            Current Google Cloud Terminology
+                        </strong>
+
+                        <p>
+                            Google Cloud's newer terminology uses
+                            <strong>Cloud Run functions</strong> for the
+                            product previously known as Cloud Functions
+                            second generation.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="example-box">
+
+                    <span class="example-label">
+                        CLASSROOM EXAMPLE
+                    </span>
+
+                    <h3>
+                        Containerized Student Portal
+                    </h3>
+
+                    <p>
+                        If students package a web application inside a
+                        Docker container, the application can be
+                        deployed using Cloud Run without manually
+                        operating a virtual machine.
+                    </p>
+
+                    <div class="architecture-flow">
+
+                        <div class="architecture-item">
+                            <strong>Docker</strong>
+                            <span>Container Image</span>
+                        </div>
+
+                        <span>→</span>
+
+                        <div class="architecture-item">
+                            <strong>Cloud Run</strong>
+                            <span>Application Hosting</span>
+                        </div>
+
+                        <span>→</span>
+
+                        <div class="architecture-item">
+                            <strong>Users</strong>
+                            <span>Web Browser</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SERVICE COMPARISON
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="comparison"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        08
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            PLATFORM COMPARISON
+                        </span>
+
+                        <h2>
+                            Equivalent Services
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    The three providers often offer services that solve
+                    similar technical problems, although their exact
+                    capabilities, configuration, terminology, and
+                    pricing models differ.
+                </p>
+
+
+                <div class="table-wrapper">
+
+                    <table class="comparison-table">
+
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>AWS</th>
+                                <th>Microsoft Azure</th>
+                                <th>Google Cloud</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <strong>Virtual Machines</strong>
+                                </td>
+
+                                <td>
+                                    Amazon EC2
+                                </td>
+
+                                <td>
+                                    Azure Virtual Machines
+                                </td>
+
+                                <td>
+                                    Compute Engine
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <strong>Object Storage</strong>
+                                </td>
+
+                                <td>
+                                    Amazon S3
+                                </td>
+
+                                <td>
+                                    Azure Blob Storage
+                                </td>
+
+                                <td>
+                                    Cloud Storage
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <strong>
+                                        Managed Relational Database
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    Amazon RDS
+                                </td>
+
+                                <td>
+                                    Azure SQL Database
+                                </td>
+
+                                <td>
+                                    Cloud SQL
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <strong>
+                                        Managed Application Platform
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    AWS Elastic Beanstalk
+                                </td>
+
+                                <td>
+                                    Azure App Service
+                                </td>
+
+                                <td>
+                                    App Engine
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <strong>
+                                        Serverless Functions
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    AWS Lambda
+                                </td>
+
+                                <td>
+                                    Azure Functions
+                                </td>
+
+                                <td>
+                                    Cloud Run functions
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <strong>
+                                        Managed Kubernetes
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    Amazon EKS
+                                </td>
+
+                                <td>
+                                    Azure Kubernetes Service
+                                </td>
+
+                                <td>
+                                    Google Kubernetes Engine
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <strong>
+                                        Container Platform
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    Amazon ECS / AWS Fargate
+                                </td>
+
+                                <td>
+                                    Azure Container Apps / AKS
+                                </td>
+
+                                <td>
+                                    Cloud Run / GKE
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="warning-box">
+
+                    <strong>
+                        Important
+                    </strong>
+
+                    <p>
+                        Equivalent does not mean identical. Two cloud
+                        services may belong to the same category but
+                        differ in features, supported technologies,
+                        management responsibility, pricing, performance,
+                        and integration.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SERVICE MODELS
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="service-models"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        09
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            CLOUD SERVICE MODELS
+                        </span>
+
+                        <h2>
+                            Where Do These Services Fit?
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="model-stack">
+
+                    <article class="model-row">
+
+                        <div class="model-label iaas-label">
+                            IaaS
+                        </div>
+
+                        <div class="model-content">
+                            <h3>
+                                Infrastructure as a Service
+                            </h3>
+
+                            <p>
+                                Provides infrastructure such as virtual
+                                machines, networking, and storage.
+                                Customers maintain more control over the
+                                operating system and applications.
+                            </p>
+
+                            <div class="model-examples">
+                                <span>Amazon EC2</span>
+                                <span>Azure Virtual Machines</span>
+                                <span>Compute Engine</span>
+                            </div>
+                        </div>
+
+                    </article>
+
+
+                    <article class="model-row">
+
+                        <div class="model-label paas-label">
+                            PaaS
+                        </div>
+
+                        <div class="model-content">
+                            <h3>
+                                Platform as a Service
+                            </h3>
+
+                            <p>
+                                Provides a managed platform for
+                                developing and deploying applications
+                                while reducing the need to manage the
+                                underlying infrastructure.
+                            </p>
+
+                            <div class="model-examples">
+                                <span>AWS Elastic Beanstalk</span>
+                                <span>Azure App Service</span>
+                                <span>Google App Engine</span>
+                            </div>
+                        </div>
+
+                    </article>
+
+
+                    <article class="model-row">
+
+                        <div class="model-label saas-label">
+                            SaaS
+                        </div>
+
+                        <div class="model-content">
+                            <h3>
+                                Software as a Service
+                            </h3>
+
+                            <p>
+                                Provides complete applications that are
+                                accessed and used by customers while the
+                                provider manages the application and its
+                                supporting infrastructure.
+                            </p>
+
+                            <div class="model-examples">
+                                <span>Microsoft 365</span>
+                                <span>Google Workspace</span>
+                                <span>Online CRM Systems</span>
+                            </div>
+                        </div>
+
+                    </article>
+
+
+                    <article class="model-row">
+
+                        <div class="model-label faas-label">
+                            FaaS
+                        </div>
+
+                        <div class="model-content">
+                            <h3>
+                                Function as a Service
+                            </h3>
+
+                            <p>
+                                Developers deploy individual functions
+                                that execute when requests or events
+                                occur without directly managing
+                                traditional servers.
+                            </p>
+
+                            <div class="model-examples">
+                                <span>AWS Lambda</span>
+                                <span>Azure Functions</span>
+                                <span>Cloud Run functions</span>
+                            </div>
+                        </div>
+
+                    </article>
+
+
+                    <article class="model-row">
+
+                        <div class="model-label caas-label">
+                            CaaS
+                        </div>
+
+                        <div class="model-content">
+                            <h3>
+                                Containers as a Service
+                            </h3>
+
+                            <p>
+                                Provides cloud infrastructure and
+                                management capabilities designed for
+                                containerized applications.
+                            </p>
+
+                            <div class="model-examples">
+                                <span>Amazon ECS / EKS</span>
+                                <span>Azure AKS</span>
+                                <span>Google GKE</span>
+                            </div>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RESPONSIBILITY
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="responsibility"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        10
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            RESPONSIBILITY
+                        </span>
+
+                        <h2>
+                            Control vs Convenience
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    One important difference between cloud service
+                    models is the amount of the technology stack that
+                    the customer must manage.
+                </p>
+
+
+                <div class="responsibility-table-wrapper">
+
+                    <table class="responsibility-table">
+
+                        <thead>
+                            <tr>
+                                <th>Layer</th>
+                                <th>On-Premises</th>
+                                <th>IaaS</th>
+                                <th>PaaS</th>
+                                <th>SaaS</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Applications</td>
+                                <td class="customer">You</td>
+                                <td class="customer">You</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                            <tr>
+                                <td>Data</td>
+                                <td class="customer">You</td>
+                                <td class="customer">You</td>
+                                <td class="customer">You</td>
+                                <td class="shared">Shared</td>
+                            </tr>
+
+                            <tr>
+                                <td>Runtime</td>
+                                <td class="customer">You</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                            <tr>
+                                <td>Middleware</td>
+                                <td class="customer">You</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                            <tr>
+                                <td>Operating System</td>
+                                <td class="customer">You</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                            <tr>
+                                <td>Virtualization</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                            <tr>
+                                <td>Servers</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                            <tr>
+                                <td>Storage</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                            <tr>
+                                <td>Networking</td>
+                                <td class="customer">You</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                                <td class="provider-managed">Provider</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="responsibility-legend">
+
+                    <span>
+                        <i class="legend-you"></i>
+                        Customer Managed
+                    </span>
+
+                    <span>
+                        <i class="legend-provider"></i>
+                        Provider Managed
+                    </span>
+
+                    <span>
+                        <i class="legend-shared"></i>
+                        Shared Responsibility
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CONTAINERS
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="containers"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        11
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            CLOUD + CONTAINERS
+                        </span>
+
+                        <h2>
+                            How Containers Fit Into Cloud Platforms
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Containers package an application together with its
+                    required dependencies so that it can run
+                    consistently in different environments.
+                </p>
+
+
+                <div class="container-process">
+
+                    <div class="process-item">
+                        <span>1</span>
+                        <strong>Application</strong>
+                        <small>
+                            Write your application
+                        </small>
+                    </div>
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+                    <div class="process-item">
+                        <span>2</span>
+                        <strong>Container</strong>
+                        <small>
+                            Package dependencies
+                        </small>
+                    </div>
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+                    <div class="process-item">
+                        <span>3</span>
+                        <strong>Registry</strong>
+                        <small>
+                            Store the image
+                        </small>
+                    </div>
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+                    <div class="process-item">
+                        <span>4</span>
+                        <strong>Cloud</strong>
+                        <small>
+                            Deploy and scale
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="three-column-table">
+
+                    <article>
+                        <span class="mini-provider aws-mini">
+                            AWS
+                        </span>
+
+                        <h3>
+                            AWS Containers
+                        </h3>
+
+                        <ul>
+                            <li>Amazon ECR</li>
+                            <li>Amazon ECS</li>
+                            <li>Amazon EKS</li>
+                            <li>AWS Fargate</li>
+                        </ul>
+                    </article>
+
+
+                    <article>
+                        <span class="mini-provider azure-mini">
+                            AZURE
+                        </span>
+
+                        <h3>
+                            Azure Containers
+                        </h3>
+
+                        <ul>
+                            <li>Azure Container Registry</li>
+                            <li>Azure Container Apps</li>
+                            <li>Azure Kubernetes Service</li>
+                        </ul>
+                    </article>
+
+
+                    <article>
+                        <span class="mini-provider gcp-mini">
+                            GOOGLE
+                        </span>
+
+                        <h3>
+                            Google Containers
+                        </h3>
+
+                        <ul>
+                            <li>Artifact Registry</li>
+                            <li>Cloud Run</li>
+                            <li>Google Kubernetes Engine</li>
+                        </ul>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SERVERLESS
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="serverless"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        12
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            SERVERLESS COMPUTING
+                        </span>
+
+                        <h2>
+                            Does Serverless Mean No Servers?
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="question-callout">
+
+                    <div class="question-mark">
+                        ?
+                    </div>
+
+                    <div>
+                        <h3>
+                            No.
+                        </h3>
+
+                        <p>
+                            Servers still exist. The term
+                            <strong>serverless</strong> means that the
+                            cloud provider handles much of the server
+                            provisioning and infrastructure management
+                            for the developer.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="serverless-grid">
+
+                    <article>
+                        <span>AWS</span>
+                        <strong>Lambda</strong>
+                    </article>
+
+                    <article>
+                        <span>Azure</span>
+                        <strong>Functions</strong>
+                    </article>
+
+                    <article>
+                        <span>Google Cloud</span>
+                        <strong>Cloud Run functions</strong>
+                    </article>
+
+                </div>
+
+
+                <div class="scenario-card">
+
+                    <span class="scenario-title">
+                        Example
+                    </span>
+
+                    <h3>
+                        Automatic Image Processing
+                    </h3>
+
+                    <p>
+                        Imagine that a student uploads a profile picture.
+                        A serverless function could automatically resize
+                        the image immediately after it is uploaded.
+                    </p>
+
+                    <div class="scenario-flow">
+                        <span>User Upload</span>
+                        <b>→</b>
+                        <span>Cloud Storage</span>
+                        <b>→</b>
+                        <span>Event Trigger</span>
+                        <b>→</b>
+                        <span>Function Runs</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DEPLOYMENT MODELS
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="deployment-models"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        13
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            DEPLOYMENT MODELS
+                        </span>
+
+                        <h2>
+                            Public, Private, Hybrid & Multi-Cloud
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="deployment-grid">
+
+                    <article>
+
+                        <div class="deployment-icon">
+                            🌍
+                        </div>
+
+                        <h3>
+                            Public Cloud
+                        </h3>
+
+                        <p>
+                            Computing resources are delivered using
+                            infrastructure operated by a public cloud
+                            provider.
+                        </p>
+
+                        <strong>
+                            Example
+                        </strong>
+
+                        <span>
+                            Application hosted entirely on AWS.
+                        </span>
+
+                    </article>
+
+
+                    <article>
+
+                        <div class="deployment-icon">
+                            🏢
+                        </div>
+
+                        <h3>
+                            Private Cloud
+                        </h3>
+
+                        <p>
+                            Cloud infrastructure is dedicated to a
+                            particular organization.
+                        </p>
+
+                        <strong>
+                            Example
+                        </strong>
+
+                        <span>
+                            An organization's internal cloud
+                            environment.
+                        </span>
+
+                    </article>
+
+
+                    <article>
+
+                        <div class="deployment-icon">
+                            🔗
+                        </div>
+
+                        <h3>
+                            Hybrid Cloud
+                        </h3>
+
+                        <p>
+                            Combines private or on-premises
+                            infrastructure with public cloud resources.
+                        </p>
+
+                        <strong>
+                            Example
+                        </strong>
+
+                        <span>
+                            Local database plus cloud-hosted web
+                            services.
+                        </span>
+
+                    </article>
+
+
+                    <article>
+
+                        <div class="deployment-icon">
+                            ☁☁
+                        </div>
+
+                        <h3>
+                            Multi-Cloud
+                        </h3>
+
+                        <p>
+                            Uses cloud services from more than one cloud
+                            provider.
+                        </p>
+
+                        <strong>
+                            Example
+                        </strong>
+
+                        <span>
+                            Using both Azure and Google Cloud services.
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CHOOSING PROVIDER
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="choosing"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        14
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            DECISION MAKING
+                        </span>
+
+                        <h2>
+                            How Do We Choose a Cloud Platform?
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <p>
+                    There is no single cloud platform that is always the
+                    correct choice. Organizations should evaluate their
+                    technical and business requirements.
+                </p>
+
+
+                <div class="decision-grid">
+
+                    <article>
+                        <span>01</span>
+                        <h3>Application Requirements</h3>
+                        <p>
+                            What operating system, programming
+                            languages, frameworks, databases, and
+                            services are required?
+                        </p>
+                    </article>
+
+
+                    <article>
+                        <span>02</span>
+                        <h3>Cost</h3>
+                        <p>
+                            What resources will be consumed and what
+                            pricing model is appropriate for the
+                            workload?
+                        </p>
+                    </article>
+
+
+                    <article>
+                        <span>03</span>
+                        <h3>Scalability</h3>
+                        <p>
+                            Can the platform efficiently handle changes
+                            in traffic and workload demand?
+                        </p>
+                    </article>
+
+
+                    <article>
+                        <span>04</span>
+                        <h3>Region & Availability</h3>
+                        <p>
+                            Are the required services available in
+                            regions appropriate for the organization and
+                            its users?
+                        </p>
+                    </article>
+
+
+                    <article>
+                        <span>05</span>
+                        <h3>Security</h3>
+                        <p>
+                            What identity, access control, encryption,
+                            network security, logging, and compliance
+                            capabilities are required?
+                        </p>
+                    </article>
+
+
+                    <article>
+                        <span>06</span>
+                        <h3>Team Skills</h3>
+                        <p>
+                            Which technologies and cloud platforms does
+                            the development or IT team already
+                            understand?
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PRACTICAL SCENARIOS
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="scenarios"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        15
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            PRACTICAL APPLICATION
+                        </span>
+
+                        <h2>
+                            Which Service Would You Choose?
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="scenario-list">
+
+                    <article class="scenario-question">
+
+                        <span class="scenario-number">
+                            Scenario 1
+                        </span>
+
+                        <h3>
+                            You need full control of a Linux server.
+                        </h3>
+
+                        <p>
+                            You need to install your own operating-system
+                            packages and configure the server manually.
+                        </p>
+
+                        <div class="recommended-services">
+                            <span>Amazon EC2</span>
+                            <span>Azure Virtual Machines</span>
+                            <span>Compute Engine</span>
+                        </div>
+
+                        <strong class="answer-type">
+                            Recommended model: IaaS
+                        </strong>
+
+                    </article>
+
+
+                    <article class="scenario-question">
+
+                        <span class="scenario-number">
+                            Scenario 2
+                        </span>
+
+                        <h3>
+                            You want to deploy a web application quickly.
+                        </h3>
+
+                        <p>
+                            Your team wants to concentrate on programming
+                            instead of managing the operating system.
+                        </p>
+
+                        <div class="recommended-services">
+                            <span>Elastic Beanstalk</span>
+                            <span>Azure App Service</span>
+                            <span>Google App Engine</span>
+                        </div>
+
+                        <strong class="answer-type">
+                            Recommended model: PaaS
+                        </strong>
+
+                    </article>
+
+
+                    <article class="scenario-question">
+
+                        <span class="scenario-number">
+                            Scenario 3
+                        </span>
+
+                        <h3>
+                            You have a Docker application.
+                        </h3>
+
+                        <p>
+                            The application is already packaged as a
+                            container and needs cloud deployment.
+                        </p>
+
+                        <div class="recommended-services">
+                            <span>Amazon ECS / EKS</span>
+                            <span>Azure Container Apps / AKS</span>
+                            <span>Cloud Run / GKE</span>
+                        </div>
+
+                        <strong class="answer-type">
+                            Recommended model: Container Platform
+                        </strong>
+
+                    </article>
+
+
+                    <article class="scenario-question">
+
+                        <span class="scenario-number">
+                            Scenario 4
+                        </span>
+
+                        <h3>
+                            Code should execute only when an event occurs.
+                        </h3>
+
+                        <p>
+                            For example, code should execute whenever a
+                            user uploads a file.
+                        </p>
+
+                        <div class="recommended-services">
+                            <span>AWS Lambda</span>
+                            <span>Azure Functions</span>
+                            <span>Cloud Run functions</span>
+                        </div>
+
+                        <strong class="answer-type">
+                            Recommended model: FaaS / Serverless
+                        </strong>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CLASSROOM ACTIVITY
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="activity"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        16
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            CLASSROOM ACTIVITY
+                        </span>
+
+                        <h2>
+                            Cloud Platform Survey
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-box">
+
+                    <div class="activity-header">
+
+                        <span class="activity-badge">
+                            GROUP ACTIVITY
+                        </span>
+
+                        <h3>
+                            Compare AWS, Azure, and Google Cloud
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+                        Divide the class into three groups.
+                    </p>
+
+
+                    <div class="group-grid">
+
+                        <article>
+                            <span>GROUP 1</span>
+                            <strong>AWS</strong>
+                        </article>
+
+                        <article>
+                            <span>GROUP 2</span>
+                            <strong>Microsoft Azure</strong>
+                        </article>
+
+                        <article>
+                            <span>GROUP 3</span>
+                            <strong>Google Cloud</strong>
+                        </article>
+
+                    </div>
+
+
+                    <h4>
+                        Each group should identify:
+                    </h4>
+
+                    <ol class="activity-steps">
+                        <li>
+                            The provider's virtual machine service.
+                        </li>
+
+                        <li>
+                            Object storage service.
+                        </li>
+
+                        <li>
+                            Managed database service.
+                        </li>
+
+                        <li>
+                            Serverless function service.
+                        </li>
+
+                        <li>
+                            Kubernetes service.
+                        </li>
+
+                        <li>
+                            Container hosting service.
+                        </li>
+
+                        <li>
+                            One possible real-world use case.
+                        </li>
+                    </ol>
+
+
+                    <div class="activity-output">
+
+                        <strong>
+                            Expected Output
+                        </strong>
+
+                        <p>
+                            Each group presents a short comparison chart
+                            explaining the services offered by its
+                            assigned cloud provider.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PRACTICE TABLE
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="practice"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        17
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            PRACTICE
+                        </span>
+
+                        <h2>
+                            Complete the Cloud Service Mapping
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="practice-table">
+
+                        <thead>
+                            <tr>
+                                <th>Requirement</th>
+                                <th>AWS</th>
+                                <th>Azure</th>
+                                <th>Google Cloud</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Virtual Machine</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                            </tr>
+
+                            <tr>
+                                <td>Object Storage</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                            </tr>
+
+                            <tr>
+                                <td>Serverless Function</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                            </tr>
+
+                            <tr>
+                                <td>Kubernetes</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                            </tr>
+
+                            <tr>
+                                <td>Relational Database</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                                <td>_______________</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <details class="answer-details">
+
+                    <summary>
+                        Show Suggested Answers
+                    </summary>
+
+                    <div class="answer-content">
+
+                        <ul>
+                            <li>
+                                <strong>Virtual Machine:</strong>
+                                EC2 / Azure Virtual Machines /
+                                Compute Engine
+                            </li>
+
+                            <li>
+                                <strong>Object Storage:</strong>
+                                S3 / Blob Storage / Cloud Storage
+                            </li>
+
+                            <li>
+                                <strong>Serverless:</strong>
+                                Lambda / Azure Functions /
+                                Cloud Run functions
+                            </li>
+
+                            <li>
+                                <strong>Kubernetes:</strong>
+                                EKS / AKS / GKE
+                            </li>
+
+                            <li>
+                                <strong>Relational Database:</strong>
+                                RDS / Azure SQL Database / Cloud SQL
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </details>
+
+            </section>
+
+
+            <!-- =================================================
+                 REVIEW QUESTIONS
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="review"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        18
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            KNOWLEDGE CHECK
+                        </span>
+
+                        <h2>
+                            Review Questions
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="quiz-list">
+
+                    <!-- QUESTION 1 -->
+                    <article class="quiz-card">
+
+                        <span class="quiz-number">
+                            01
+                        </span>
+
+                        <h3>
+                            What does AWS stand for?
+                        </h3>
+
+                        <ul class="quiz-options">
+                            <li>A. Advanced Web Server</li>
+                            <li>B. Amazon Web Services</li>
+                            <li>C. Automated Web System</li>
+                            <li>D. Application Web Services</li>
+                        </ul>
+
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p>
+                                <strong>Answer: B.</strong>
+                                Amazon Web Services.
+                            </p>
+                        </details>
+
+                    </article>
+
+
+                    <!-- QUESTION 2 -->
+                    <article class="quiz-card">
+
+                        <span class="quiz-number">
+                            02
+                        </span>
+
+                        <h3>
+                            Which Microsoft product is a major cloud
+                            platform?
+                        </h3>
+
+                        <ul class="quiz-options">
+                            <li>A. Azure</li>
+                            <li>B. Android</li>
+                            <li>C. Safari</li>
+                            <li>D. Ubuntu</li>
+                        </ul>
+
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p>
+                                <strong>Answer: A.</strong>
+                                Microsoft Azure.
+                            </p>
+                        </details>
+
+                    </article>
+
+
+                    <!-- QUESTION 3 -->
+                    <article class="quiz-card">
+
+                        <span class="quiz-number">
+                            03
+                        </span>
+
+                        <h3>
+                            Which AWS service provides virtual machines?
+                        </h3>
+
+                        <ul class="quiz-options">
+                            <li>A. S3</li>
+                            <li>B. EC2</li>
+                            <li>C. RDS</li>
+                            <li>D. Lambda</li>
+                        </ul>
+
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p>
+                                <strong>Answer: B.</strong>
+                                Amazon EC2.
+                            </p>
+                        </details>
+
+                    </article>
+
+
+                    <!-- QUESTION 4 -->
+                    <article class="quiz-card">
+
+                        <span class="quiz-number">
+                            04
+                        </span>
+
+                        <h3>
+                            What is the Google Cloud equivalent category
+                            to Amazon EC2?
+                        </h3>
+
+                        <ul class="quiz-options">
+                            <li>A. Compute Engine</li>
+                            <li>B. Cloud Storage</li>
+                            <li>C. Cloud SQL</li>
+                            <li>D. GKE</li>
+                        </ul>
+
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p>
+                                <strong>Answer: A.</strong>
+                                Compute Engine provides virtual machine
+                                infrastructure.
+                            </p>
+                        </details>
+
+                    </article>
+
+
+                    <!-- QUESTION 5 -->
+                    <article class="quiz-card">
+
+                        <span class="quiz-number">
+                            05
+                        </span>
+
+                        <h3>
+                            Which service model gives customers the most
+                            control over the operating system?
+                        </h3>
+
+                        <ul class="quiz-options">
+                            <li>A. SaaS</li>
+                            <li>B. IaaS</li>
+                            <li>C. Email as a Service</li>
+                            <li>D. None of the above</li>
+                        </ul>
+
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p>
+                                <strong>Answer: B.</strong>
+                                IaaS generally provides customers with
+                                control of the operating system and
+                                applications while the provider manages
+                                the underlying physical infrastructure.
+                            </p>
+                        </details>
+
+                    </article>
+
+
+                    <!-- QUESTION 6 -->
+                    <article class="quiz-card">
+
+                        <span class="quiz-number">
+                            06
+                        </span>
+
+                        <h3>
+                            Which technology is commonly used for
+                            orchestrating containers?
+                        </h3>
+
+                        <ul class="quiz-options">
+                            <li>A. HTML</li>
+                            <li>B. CSS</li>
+                            <li>C. Kubernetes</li>
+                            <li>D. JPEG</li>
+                        </ul>
+
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p>
+                                <strong>Answer: C.</strong>
+                                Kubernetes.
+                            </p>
+                        </details>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DISCUSSION
+            ================================================== -->
+            <section
+                class="lesson-section"
+                id="discussion"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        19
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            CLASS DISCUSSION
+                        </span>
+
+                        <h2>
+                            Discussion Questions
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="discussion-box">
+
+                    <ol>
+                        <li>
+                            Why might a company choose cloud computing
+                            instead of purchasing its own physical
+                            servers?
+                        </li>
+
+                        <li>
+                            What is the difference between Amazon EC2 and
+                            AWS Lambda?
+                        </li>
+
+                        <li>
+                            Why would a developer choose PaaS instead of
+                            IaaS?
+                        </li>
+
+                        <li>
+                            What advantages can containers provide when
+                            deploying applications to the cloud?
+                        </li>
+
+                        <li>
+                            Why might an organization use more than one
+                            cloud provider?
+                        </li>
+
+                        <li>
+                            If you created a student information system,
+                            what cloud services would you need?
+                        </li>
+                    </ol>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+            <section
+                class="lesson-section summary-section"
+                id="summary"
+            >
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        20
+                    </span>
+
+                    <div>
+                        <span class="eyebrow">
+                            LESSON SUMMARY
+                        </span>
+
+                        <h2>
+                            Key Takeaways
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <article>
+
+                        <span>
+                            01
+                        </span>
+
+                        <p>
+                            <strong>AWS</strong>,
+                            <strong>Microsoft Azure</strong>, and
+                            <strong>Google Cloud</strong> are major
+                            public cloud computing platforms.
+                        </p>
+
+                    </article>
+
+
+                    <article>
+
+                        <span>
+                            02
+                        </span>
+
+                        <p>
+                            All three provide services for compute,
+                            storage, databases, networking, containers,
+                            serverless computing, security, and other
+                            workloads.
+                        </p>
+
+                    </article>
+
+
+                    <article>
+
+                        <span>
+                            03
+                        </span>
+
+                        <p>
+                            <strong>IaaS</strong> provides infrastructure,
+                            <strong>PaaS</strong> provides application
+                            platforms, and <strong>SaaS</strong> provides
+                            complete applications.
+                        </p>
+
+                    </article>
+
+
+                    <article>
+
+                        <span>
+                            04
+                        </span>
+
+                        <p>
+                            Serverless computing reduces direct
+                            infrastructure management but does not mean
+                            that physical servers no longer exist.
+                        </p>
+
+                    </article>
+
+
+                    <article>
+
+                        <span>
+                            05
+                        </span>
+
+                        <p>
+                            Containers can be deployed through managed
+                            cloud container and Kubernetes services such
+                            as ECS, EKS, AKS, GKE, and Cloud Run.
+                        </p>
+
+                    </article>
+
+
+                    <article>
+
+                        <span>
+                            06
+                        </span>
+
+                        <p>
+                            Selecting a cloud platform depends on
+                            application requirements, cost, scalability,
+                            security, available regions, integrations,
+                            and team expertise.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FINAL TAKEAWAY
+            ================================================== -->
+            <section class="final-takeaway">
+
+                <span class="takeaway-label">
+                    REMEMBER
+                </span>
+
+                <h2>
+                    AWS, Azure, and Google Cloud solve many of the same
+                    problems using different service names.
+                </h2>
+
+                <p>
+                    Do not memorize only the product names. Understand
+                    the <strong>problem each cloud service solves</strong>.
+                    Once you understand compute, storage, databases,
+                    networking, PaaS, containers, and serverless
+                    computing, comparing cloud providers becomes much
+                    easier.
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+                 PREVIOUS / NEXT
+            ================================================== -->
+            <nav
+                class="lesson-pagination"
+                aria-label="Lesson navigation"
+            >
+
+                <a
+                    href="iaas.html"
+                    class="lesson-prev"
+                >
+                    <span>
+                        ← Previous Lesson
+                    </span>
+
+                    <strong>
+                        IaaS, PaaS & SaaS
+                    </strong>
+                </a>
+
+
+                <a
+                    href="../index.html"
+                    class="lesson-next"
+                >
+                    <span>
+                        Course Home →
+                    </span>
+
+                    <strong>
+                        Platform Technologies
+                    </strong>
+                </a>
+
+            </nav>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div>
+                <strong>
+                    Platform Technologies
+                </strong>
+
+                <p>
+                    Cloud & Containers Learning Module
+                </p>
+            </div>
+
+            <p>
+                AWS • Microsoft Azure • Google Cloud
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
