@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="STACKFORGE Docker Lab Studio — a browser-based Docker and Docker Compose practice environment for IT 211 Platform Technologies." />
+  <meta name="theme-color" content="#07111f" />
+  <title>Docker Lab Studio | STACKFORGE</title>
+  <link rel="icon" type="image/jpeg" href="../img/favicon.jpg" />
+  <link rel="stylesheet" href="../css/docker-playground.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="header-left">
+        <a class="brand" href="../index.html" aria-label="STACKFORGE home">
+          <span class="brand-mark" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </span>
+          <span class="brand-copy">
+            <strong>STACKFORGE</strong>
+            <small>IT 211 • PLATFORM TECHNOLOGIES</small>
+          </span>
+        </a>
+
+        <span class="header-divider" aria-hidden="true"></span>
+        <div class="product-name">
+          <span>Docker Lab Studio</span>
+          <span class="product-badge">SIMULATOR</span>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <button class="command-search" id="commandPaletteBtn" type="button" aria-label="Open command palette">
+          <span class="search-icon">⌕</span>
+          <span>Search commands, files, and labs</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <span class="save-indicator" id="saveIndicator"><i></i> Saved</span>
+        <button class="icon-button" id="themeBtn" type="button" title="Toggle interface density" aria-label="Toggle interface density">◫</button>
+        <button class="icon-button" id="fullscreenBtn" type="button" title="Fullscreen" aria-label="Toggle fullscreen">⛶</button>
+        <button class="primary-action" id="startLabBtn" type="button">Start Lab</button>
+      </div>
+    </header>
+
+    <nav class="course-nav" aria-label="Course navigation">
+      <div class="course-nav-inner">
+        <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-expanded="false">☰ Menu</button>
+        <div class="course-links" id="courseLinks">
+          <a href="../index.html">Course Home</a>
+          <a href="../Cloud & Containers/docker.html">Docker Fundamentals</a>
+          <a href="../Cloud & Containers/docker-compose.html">Docker Compose</a>
+          <a href="../Cloud & Containers/iaas.html">Cloud Models</a>
+          <a class="active" href="../Cloud & Containers/docker-playground.html">Practice Lab</a>
+        </div>
+        <div class="course-context"><span class="live-dot"></span> Local browser lab</div>
+      </div>
+    </nav>
+
+    <main class="lab-main">
+      <aside class="activity-bar" aria-label="Workspace sections">
+        <button class="activity-button active" type="button" data-view="explorer" title="Explorer">
+          <span>▱</span><small>Files</small>
+        </button>
+        <button class="activity-button" type="button" data-view="challenges" title="Challenges">
+          <span>✓</span><small>Tasks</small>
+          <b id="taskBadge">0</b>
+        </button>
+        <button class="activity-button" type="button" data-view="docker" title="Docker resources">
+          <span>⬡</span><small>Docker</small>
+        </button>
+        <button class="activity-button" type="button" data-view="learn" title="Learning guide">
+          <span>?</span><small>Guide</small>
+        </button>
+        <div class="activity-spacer"></div>
+        <button class="activity-button" id="resetLabBtn" type="button" title="Reset lab">
+          <span>↻</span><small>Reset</small>
+        </button>
+      </aside>
+
+      <aside class="side-panel" id="sidePanel">
+        <section class="side-view active" data-side-view="explorer">
+          <div class="side-panel-header">
+            <div>
+              <p>EXPLORER</p>
+              <strong>docker-lab</strong>
+            </div>
+            <div class="mini-actions">
+              <button id="newFileBtn" type="button" title="New file">＋</button>
+              <button id="saveAllBtn" type="button" title="Save all">⌁</button>
+            </div>
+          </div>
+
+          <div class="workspace-tree">
+            <button class="tree-root expanded" type="button" id="treeRootBtn"><span>⌄</span> STACKFORGE-DOCKER-LAB</button>
+            <div class="tree-files" id="treeFiles"></div>
+          </div>
+
+          <div class="side-section">
+            <button class="side-section-title expanded" type="button"><span>⌄</span> WORKSPACE</button>
+            <div class="side-section-content stat-stack">
+              <div><span>Image</span><strong id="workspaceImageCount">0</strong></div>
+              <div><span>Containers</span><strong id="workspaceContainerCount">0</strong></div>
+              <div><span>Volumes</span><strong id="workspaceVolumeCount">1</strong></div>
+              <div><span>Networks</span><strong id="workspaceNetworkCount">1</strong></div>
+            </div>
+          </div>
+
+          <div class="side-section">
+            <button class="side-section-title expanded" type="button"><span>⌄</span> LAB PROGRESS</button>
+            <div class="side-section-content compact-progress">
+              <div class="progress-meta"><span id="sideProgressText">0 of 100 tasks</span><strong id="sideProgressPercent">0%</strong></div>
+              <div class="progress-track"><i id="sideProgressBar"></i></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-view" data-side-view="challenges">
+          <div class="side-panel-header">
+            <div>
+              <p>LEARNING PATH</p>
+              <strong>Docker Mastery · 100 Tasks</strong>
+            </div>
+            <span class="level-pill" id="levelPill">Beginner</span>
+          </div>
+
+          <div class="challenge-overview">
+            <div class="challenge-score-ring" id="scoreRing"><span id="scorePercent">0%</span></div>
+            <div>
+              <strong id="challengeScoreText">0 / 100 complete</strong>
+              <small>10 mastery modules • 100 guided tasks • 10,000 XP</small>
+            </div>
+          </div>
+
+          <ol class="challenge-list" id="challengeList"></ol>
+        </section>
+
+        <section class="side-view" data-side-view="docker">
+          <div class="side-panel-header">
+            <div>
+              <p>DOCKER</p>
+              <strong>Resources</strong>
+            </div>
+            <span class="daemon-status"><i></i> Running</span>
+          </div>
+
+          <div class="resource-tabs" role="tablist" aria-label="Docker resources">
+            <button class="active" type="button" data-resource-tab="containers">Containers</button>
+            <button type="button" data-resource-tab="images">Images</button>
+            <button type="button" data-resource-tab="volumes">Volumes</button>
+            <button type="button" data-resource-tab="networks">Networks</button>
+          </div>
+
+          <div class="resource-list" id="resourceList"></div>
+        </section>
+
+        <section class="side-view" data-side-view="learn">
+          <div class="side-panel-header">
+            <div>
+              <p>DOCKER GUIDE</p>
+              <strong>Quick Learning</strong>
+            </div>
+          </div>
+
+          <div class="learning-cards">
+            <article>
+              <span class="lesson-number">01</span>
+              <div><strong>Images</strong><p>Read-only templates used to create containers.</p></div>
+            </article>
+            <article>
+              <span class="lesson-number">02</span>
+              <div><strong>Containers</strong><p>Runnable instances of Docker images.</p></div>
+            </article>
+            <article>
+              <span class="lesson-number">03</span>
+              <div><strong>Ports</strong><p>Publish container services to the host machine.</p></div>
+            </article>
+            <article>
+              <span class="lesson-number">04</span>
+              <div><strong>Volumes</strong><p>Persist data independently of container lifecycle.</p></div>
+            </article>
+            <article>
+              <span class="lesson-number">05</span>
+              <div><strong>Networks</strong><p>Allow containers to communicate by service name.</p></div>
+            </article>
+            <article>
+              <span class="lesson-number">06</span>
+              <div><strong>Compose</strong><p>Define and run multi-container applications with YAML.</p></div>
+            </article>
+          </div>
+
+          <div class="safety-note">
+            <strong>Safe classroom environment</strong>
+            <p>This page simulates Docker locally in the browser. It does not execute containers on the student's computer or your web server.</p>
+          </div>
+        </section>
+      </aside>
+
+      <section class="ide-workspace">
+        <div class="workspace-topbar">
+          <div class="breadcrumbs" id="breadcrumbs">
+            <span>docker-lab</span><b>›</b><strong>Dockerfile</strong>
+          </div>
+          <div class="workspace-top-actions">
+            <button id="formatBtn" type="button">Format</button>
+            <button id="copyEditorBtn" type="button">Copy</button>
+            <button class="run-button" id="focusTerminalBtn" type="button"><span>&gt;_</span> Open Terminal</button>
+          </div>
+        </div>
+
+        <div class="editor-area">
+          <div class="editor-tabs" id="editorTabs" role="tablist" aria-label="Open files"></div>
+
+          <div class="editor-layout">
+            <div class="editor-gutter" id="lineNumbers" aria-hidden="true"></div>
+            <textarea id="codeEditor" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Code editor"></textarea>
+          </div>
+
+          <div class="editor-status">
+            <div>
+              <span id="gitBranch">⑂ main*</span>
+              <span>◉ 0 errors</span>
+              <span>△ 0 warnings</span>
+            </div>
+            <div>
+              <span id="currentLanguage">Dockerfile</span>
+              <span>UTF-8</span>
+              <span>LF</span>
+              <span>Spaces: 2</span>
+              <span id="cursorPosition">Ln 1, Col 1</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="bottom-panel" id="bottomPanel">
+          <div class="bottom-tabs">
+            <div>
+              <button class="active" type="button" data-bottom-tab="terminal">TERMINAL</button>
+              <button type="button" data-bottom-tab="problems">PROBLEMS <span id="problemCount">0</span></button>
+              <button type="button" data-bottom-tab="output">OUTPUT</button>
+              <button type="button" data-bottom-tab="preview">APP PREVIEW</button>
+            </div>
+            <div class="bottom-actions">
+              <button id="newTerminalBtn" type="button" title="New terminal">＋</button>
+              <button id="clearTerminalBtn" type="button" title="Clear terminal">⌫</button>
+              <button id="togglePanelBtn" type="button" title="Minimize panel">⌄</button>
+            </div>
+          </div>
+
+          <div class="bottom-content active" data-bottom-view="terminal">
+            <div class="terminal-toolbar">
+              <div class="terminal-selector"><span class="terminal-status-dot"></span> bash <small>student@stackforge</small></div>
+              <div>
+                <button id="terminalHelpBtn" type="button">Command help</button>
+                <button id="historyBtn" type="button">History</button>
+              </div>
+            </div>
+            <div class="terminal-output" id="terminalOutput" aria-live="polite"></div>
+            <form class="terminal-input-row" id="terminalForm" autocomplete="off">
+              <span class="terminal-prompt"><b>student@stackforge</b>:<i>~/docker-lab</i>$</span>
+              <input id="terminalInput" type="text" autocomplete="off" spellcheck="false" aria-label="Docker terminal command" />
+            </form>
+          </div>
+
+          <div class="bottom-content" data-bottom-view="problems">
+            <div class="problems-view" id="problemsView">
+              <div class="empty-state compact"><span>✓</span><strong>No problems detected</strong><p>Your lab files passed the current simulator checks.</p></div>
+            </div>
+          </div>
+
+          <div class="bottom-content" data-bottom-view="output">
+            <div class="output-log" id="outputLog"></div>
+          </div>
+
+          <div class="bottom-content" data-bottom-view="preview">
+            <div class="browser-preview">
+              <div class="browser-toolbar">
+                <div class="traffic-lights"><i></i><i></i><i></i></div>
+                <div class="browser-address"><span>⌁</span><span id="previewUrl">http://localhost:8080</span></div>
+                <button id="refreshPreviewBtn" type="button">↻</button>
+              </div>
+              <div class="preview-content" id="previewContent"></div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="inspector-panel" id="inspectorPanel">
+        <div class="inspector-header">
+          <div>
+            <p>CURRENT CHALLENGE</p>
+            <strong id="currentTaskTitle">001 • Workspace Path</strong>
+          </div>
+          <button id="closeInspectorBtn" type="button" title="Close challenge panel">×</button>
+        </div>
+
+        <div class="task-status-card">
+          <div class="task-icon" id="taskIcon">001</div>
+          <div>
+            <span class="difficulty" id="taskDifficulty">BEGINNER</span>
+            <h2 id="taskHeading">Locate the Docker lab workspace</h2>
+            <p id="taskDescription">Confirm your current working directory before running Docker commands.</p>
+          </div>
+        </div>
+
+        <div class="task-detail-block">
+          <h3>Objective</h3>
+          <p id="taskObjective">Identify and display the directory where the Docker lab project is currently located.</p>
+        </div>
+
+        <div class="task-detail-block">
+          <h3>Concept</h3>
+          <p id="taskConcept">A predictable working directory helps you understand build contexts, relative paths, and where Dockerfile assets are located.</p>
+        </div>
+
+        <div class="task-feedback" id="taskFeedback">
+          <span>⌁</span>
+          <p>Work out the command in the terminal, then select <strong>Check Task</strong>. Use <strong>Show Hint</strong> only when you need guidance.</p>
+        </div>
+
+        <div class="inspector-actions">
+          <button class="secondary-button" id="showHintBtn" type="button">Show Hint</button>
+          <button class="primary-button" id="checkTaskBtn" type="button">Check Task</button>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-statusbar">
+      <div>
+        <span class="connection-status"><i></i> Simulator ready</span>
+        <span>Docker Engine 27.2.0</span>
+        <span>Linux/amd64</span>
+      </div>
+      <div>
+        <span id="sessionScore">0 XP</span>
+        <span id="sessionTimer">00:00</span>
+        <span>STACKFORGE Lab v2.1 · Assessment Mode</span>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop" id="commandPalette" hidden>
+    <section class="palette-dialog" role="dialog" aria-modal="true" aria-labelledby="paletteTitle">
+      <div class="palette-input-wrap">
+        <span>⌕</span>
+        <input id="paletteInput" type="text" placeholder="Type a command or search..." aria-labelledby="paletteTitle" />
+        <kbd>Esc</kbd>
+      </div>
+      <h2 id="paletteTitle" class="sr-only">Command Palette</h2>
+      <div class="palette-results" id="paletteResults"></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="newFileModal" hidden>
+    <section class="small-dialog" role="dialog" aria-modal="true" aria-labelledby="newFileTitle">
+      <h2 id="newFileTitle">Create practice file</h2>
+      <p>Add a text file to this browser-only workspace.</p>
+      <label for="newFileName">File name</label>
+      <input id="newFileName" type="text" placeholder="example.txt" />
+      <div class="dialog-actions">
+        <button class="secondary-button" id="cancelNewFileBtn" type="button">Cancel</button>
+        <button class="primary-button" id="createNewFileBtn" type="button">Create File</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="completionModal" hidden>
+    <section class="completion-dialog" role="dialog" aria-modal="true" aria-labelledby="completionTitle">
+      <div class="completion-badge">★</div>
+      <p class="completion-kicker">LAB COMPLETED</p>
+      <h2 id="completionTitle">Docker Mastery Path Complete</h2>
+      <p>You completed all 100 guided Docker mastery tasks across CLI, images, builds, containers, volumes, networks, Compose, operations, and capstone deployment.</p>
+      <div class="completion-stats">
+        <div><strong id="completionScore">10000</strong><span>XP earned</span></div>
+        <div><strong id="completionTime">00:00</strong><span>Lab time</span></div>
+        <div><strong id="completionTasks">100/100</strong><span>Tasks</span></div>
+      </div>
+      <div class="dialog-actions centered">
+        <button class="secondary-button" id="closeCompletionBtn" type="button">Review Lab</button>
+        <button class="primary-button" id="restartCompletionBtn" type="button">Practice Again</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../js/docker-playground.js"></script>
+</body>
+</html>
