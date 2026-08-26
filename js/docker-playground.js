@@ -1,8 +1,12 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "stackforge_docker_lab_studio_v3";
-  const SESSION_KEY = "stackforge_docker_lab_session_v3";
+  const STORAGE_KEY = "stackforge_docker_lab_studio_v4";
+  const SESSION_KEY = "stackforge_docker_lab_session_v4";
+  const LEGACY_STORAGE_KEYS = ["stackforge_docker_lab_studio_v3"];
+  const PROJECT_FORMAT = "stackforge-docker-lab-project";
+  const PROJECT_VERSION = 1;
+  let autoSaveTimer = null;
 
   const defaultFiles = {
     "Dockerfile": `# STACKFORGE Docker Lab
@@ -1607,21 +1611,27 @@ This browser workspace is used for Docker practice in IT 211 Platform Technologi
       completionTime: $("#completionTime"),
       completionTasks: $("#completionTasks"),
       mobileNavToggle: $("#mobileNavToggle"),
-      courseLinks: $("#courseLinks")
+      courseLinks: $("#courseLinks"),
+      projectFileInput: $("#projectFileInput")
     });
   }
 
-  function saveState({ toast = false } = {}) {
+  function buildSavePayload() {
     syncCurrentEditor();
-    const payload = {
-      files: state.files,
+    return {
+      format: PROJECT_FORMAT,
+      version: PROJECT_VERSION,
+      savedAt: new Date().toISOString(),
+      files: structuredCloneSafe(state.files),
       currentFile: state.currentFile,
-      openFiles: state.openFiles,
-      images: state.images,
-      containers: state.containers,
-      volumes: state.volumes,
-      networks: state.networks,
+      openFiles: [...state.openFiles],
+      images: structuredCloneSafe(state.images),
+      containers: structuredCloneSafe(state.containers),
+      volumes: structuredCloneSafe(state.volumes),
+      networks: structuredCloneSafe(state.networks),
       composeRunning: state.composeRunning,
+      composeValid: state.composeValid,
+      commandHistory: state.commandHistory.slice(-100),
       executedCommands: state.executedCommands.slice(-120),
       completed: [...state.completed],
       activeTask: state.activeTask,
@@ -1633,47 +1643,115 @@ This browser workspace is used for Docker practice in IT 211 Platform Technologi
       started: state.started,
       sessionStartedAt: state.sessionStartedAt
     };
+  }
+
+  function applySavedState(saved) {
+    if (!saved || typeof saved !== "object") throw new Error("Invalid project data.");
+    state.files = { ...structuredCloneSafe(defaultFiles), ...(saved.files || {}) };
+    state.currentFile = state.files[saved.currentFile] !== undefined ? saved.currentFile : "Dockerfile";
+    state.openFiles = Array.isArray(saved.openFiles) ? saved.openFiles.filter((f) => state.files[f] !== undefined) : ["Dockerfile"];
+    if (!state.openFiles.length) state.openFiles = [state.currentFile];
+    if (!state.openFiles.includes(state.currentFile)) state.openFiles.push(state.currentFile);
+    state.images = Array.isArray(saved.images) ? saved.images : [];
+    state.containers = Array.isArray(saved.containers) ? saved.containers : [];
+    state.volumes = Array.isArray(saved.volumes) && saved.volumes.length ? saved.volumes : [{ name: "local-cache", driver: "local", scope: "local", created: "classroom default" }];
+    state.networks = Array.isArray(saved.networks) && saved.networks.length ? saved.networks : [{ name: "bridge", id: randomHex(12), driver: "bridge", scope: "local", created: "Docker default" }];
+    state.composeRunning = Boolean(saved.composeRunning);
+    state.composeValid = saved.composeValid !== false;
+    state.commandHistory = Array.isArray(saved.commandHistory) ? saved.commandHistory.slice(-100) : [];
+    state.historyIndex = state.commandHistory.length;
+    state.executedCommands = Array.isArray(saved.executedCommands) ? saved.executedCommands : [];
+    const validChallengeIds = new Set(challenges.map((task) => task.id));
+    state.completed = new Set((Array.isArray(saved.completed) ? saved.completed : []).filter((id) => validChallengeIds.has(id)));
+    state.activeTask = Number.isInteger(saved.activeTask) ? Math.max(0, Math.min(saved.activeTask, challenges.length - 1)) : 0;
+    state.xp = state.completed.size * 100;
+    state.activeResourceTab = saved.activeResourceTab || "containers";
+    state.outputEvents = Array.isArray(saved.outputEvents) ? saved.outputEvents : [];
+    state.sideView = saved.sideView || "explorer";
+    state.bottomView = saved.bottomView || "terminal";
+    state.started = Boolean(saved.started);
+    state.sessionStartedAt = Number(saved.sessionStartedAt) || Date.now();
+    state.dirtyFiles = new Set();
+  }
+
+  function saveState({ toast = false, auto = false } = {}) {
+    const payload = buildSavePayload();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
     state.dirtyFiles.clear();
     renderFiles();
-    updateSaveIndicator();
-    if (toast) showToast("Workspace saved locally in this browser.");
+    updateSaveIndicator(auto ? "autosaved" : "saved");
+    if (toast) showToast("Progress saved. You can close this page and continue later on this browser.");
+    return payload;
+  }
+
+  function scheduleAutoSave() {
+    clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(() => saveState({ auto: true }), 900);
   }
 
   function loadState() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const saved = JSON.parse(raw);
-      state.files = { ...structuredCloneSafe(defaultFiles), ...(saved.files || {}) };
-      state.currentFile = state.files[saved.currentFile] !== undefined ? saved.currentFile : "Dockerfile";
-      state.openFiles = Array.isArray(saved.openFiles) ? saved.openFiles.filter((f) => state.files[f] !== undefined) : ["Dockerfile"];
-      if (!state.openFiles.length) state.openFiles = [state.currentFile];
-      if (!state.openFiles.includes(state.currentFile)) state.openFiles.push(state.currentFile);
-      state.images = Array.isArray(saved.images) ? saved.images : [];
-      state.containers = Array.isArray(saved.containers) ? saved.containers : [];
-      state.volumes = Array.isArray(saved.volumes) && saved.volumes.length ? saved.volumes : state.volumes;
-      state.networks = Array.isArray(saved.networks) && saved.networks.length ? saved.networks : state.networks;
-      state.composeRunning = Boolean(saved.composeRunning);
-      state.executedCommands = Array.isArray(saved.executedCommands) ? saved.executedCommands : [];
-      const validChallengeIds = new Set(challenges.map((task) => task.id));
-      state.completed = new Set((Array.isArray(saved.completed) ? saved.completed : []).filter((id) => validChallengeIds.has(id)));
-      state.activeTask = Number.isInteger(saved.activeTask) ? Math.min(saved.activeTask, challenges.length - 1) : 0;
-      state.xp = state.completed.size * 100;
-      state.activeResourceTab = saved.activeResourceTab || "containers";
-      state.outputEvents = Array.isArray(saved.outputEvents) ? saved.outputEvents : [];
-      state.sideView = saved.sideView || "explorer";
-      state.bottomView = saved.bottomView || "terminal";
-      state.started = Boolean(saved.started);
-      state.sessionStartedAt = Number(saved.sessionStartedAt) || Date.now();
+      let raw = localStorage.getItem(STORAGE_KEY);
+      let migrated = false;
+      if (!raw) {
+        for (const key of LEGACY_STORAGE_KEYS) {
+          raw = localStorage.getItem(key);
+          if (raw) { migrated = true; break; }
+        }
+      }
+      if (!raw) return false;
+      applySavedState(JSON.parse(raw));
+      if (migrated) localStorage.setItem(STORAGE_KEY, JSON.stringify(buildSavePayload()));
+      return true;
     } catch (error) {
       console.warn("Unable to load saved Docker lab state", error);
       localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+  }
+
+  function exportProject() {
+    const payload = saveState();
+    const stamp = new Date().toISOString().slice(0, 10);
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `stackforge-docker-lab-${stamp}.dockerlab`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    showToast("Project file saved. Keep it so you can open and continue on another device.");
+  }
+
+  function openProjectPicker() {
+    el.projectFileInput.value = "";
+    el.projectFileInput.click();
+  }
+
+  async function importProjectFile(file) {
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const saved = JSON.parse(text);
+      if (saved.format && saved.format !== PROJECT_FORMAT) throw new Error("This is not a STACKFORGE Docker Lab project file.");
+      applySavedState(saved);
+      el.codeEditor.value = state.files[state.currentFile];
+      bootTerminal();
+      updateAll();
+      saveState();
+      writeTerminal(`Project restored from ${file.name}`, "success");
+      showToast(`Project opened. Restored ${state.completed.size}/100 completed tasks.`);
+    } catch (error) {
+      console.error(error);
+      showToast(error.message || "Unable to open this project file.");
     }
   }
 
   function clearSavedState() {
     localStorage.removeItem(STORAGE_KEY);
+    LEGACY_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key));
     sessionStorage.removeItem(SESSION_KEY);
   }
 
@@ -1689,11 +1767,14 @@ This browser workspace is used for Docker practice in IT 211 Platform Technologi
     renderFiles();
     renderEditorTabs();
     validateWorkspace();
+    scheduleAutoSave();
   }
 
-  function updateSaveIndicator() {
+  function updateSaveIndicator(mode = "saved") {
     if (state.dirtyFiles.size) {
       el.saveIndicator.innerHTML = "<i style=\"background:#f5b942\"></i> Unsaved";
+    } else if (mode === "autosaved") {
+      el.saveIndicator.innerHTML = "<i></i> Autosaved";
     } else {
       el.saveIndicator.innerHTML = "<i></i> Saved";
     }
@@ -2876,6 +2957,8 @@ This browser workspace is used for Docker practice in IT 211 Platform Technologi
     { icon: ">_", title: "Focus practice terminal", detail: "Open the terminal without revealing the answer", keyword: "terminal practice task", action: focusPracticeTerminal },
     { icon: "✓", title: "Check current challenge", detail: "Validate the current task", keyword: "check validate task", action: () => checkTask() },
     { icon: "⌁", title: "Save workspace", detail: "Persist files and lab state in this browser", keyword: "save files", action: () => saveState({ toast: true }) },
+    { icon: "⇩", title: "Save project file", detail: "Download a portable project backup", keyword: "save export backup download", action: exportProject },
+    { icon: "⇧", title: "Open project file", detail: "Restore a previously saved Docker Lab project", keyword: "open import restore project", action: openProjectPicker },
     { icon: "＋", title: "Create new file", detail: "Add a practice file to the Explorer", keyword: "new file", action: () => { closePalette(); el.newFileModal.hidden = false; setTimeout(() => el.newFileName.focus(), 0); } },
     { icon: "⬡", title: "Docker: list containers", detail: "docker ps", keyword: "docker ps containers", code: "docker ps", action: () => runCommandFromPalette("docker ps") },
     { icon: "▰", title: "Docker: list images", detail: "docker images", keyword: "docker images", code: "docker images", action: () => runCommandFromPalette("docker images") },
@@ -2923,6 +3006,11 @@ This browser workspace is used for Docker practice in IT 211 Platform Technologi
     $("#startLabBtn").addEventListener("click", startLab);
     $("#resetLabBtn").addEventListener("click", resetLab);
     $("#saveAllBtn").addEventListener("click", () => saveState({ toast: true }));
+    $("#saveProjectBtn").addEventListener("click", exportProject);
+    $("#openProjectBtn").addEventListener("click", openProjectPicker);
+    $("#saveProjectSideBtn").addEventListener("click", exportProject);
+    $("#openProjectSideBtn").addEventListener("click", openProjectPicker);
+    el.projectFileInput.addEventListener("change", () => importProjectFile(el.projectFileInput.files?.[0]));
     $("#formatBtn").addEventListener("click", formatCurrentFile);
     $("#copyEditorBtn").addEventListener("click", copyEditor);
     $("#focusTerminalBtn").addEventListener("click", focusPracticeTerminal);
@@ -2999,8 +3087,7 @@ This browser workspace is used for Docker practice in IT 211 Platform Technologi
       if (event.key === "ArrowDown") { event.preventDefault(); cycleHistory(1); }
       if (event.key === "Tab") {
         event.preventDefault();
-        const task = challenges[state.activeTask];
-        if (!el.terminalInput.value.trim()) el.terminalInput.value = task.command;
+        showToast("Command autocomplete is disabled in Assessment Mode. Use Show Hint if you need guidance.");
       }
     });
 
@@ -3086,13 +3173,16 @@ This browser workspace is used for Docker practice in IT 211 Platform Technologi
 
   function initialize() {
     cacheElements();
-    loadState();
+    const restored = loadState();
     el.codeEditor.value = state.files[state.currentFile];
     bootTerminal();
     bindEvents();
     updateAll();
     startTimer();
     logOutput("Docker Lab Studio loaded successfully", "SYSTEM");
+    if (restored) {
+      setTimeout(() => showToast(`Welcome back. Restored ${state.completed.size}/100 completed tasks and your saved files.`), 350);
+    }
     setTimeout(() => el.terminalInput.focus(), 150);
   }
 

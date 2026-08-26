@@ -26,7 +26,7 @@
         <span class="header-divider" aria-hidden="true"></span>
         <div class="product-name">
           <span>Docker Lab Studio</span>
-          <span class="product-badge">SIMULATOR</span>
+          <span class="product-badge">SAVE & RESUME</span>
         </div>
       </div>
 
@@ -40,6 +40,8 @@
 
       <div class="header-right">
         <span class="save-indicator" id="saveIndicator"><i></i> Saved</span>
+        <button class="header-project-button" id="openProjectBtn" type="button" title="Open a saved Docker Lab project"><span>⇧</span><b>Open</b></button>
+        <button class="header-project-button save-project" id="saveProjectBtn" type="button" title="Save a portable Docker Lab project"><span>⇩</span><b>Save</b></button>
         <button class="icon-button" id="themeBtn" type="button" title="Toggle interface density" aria-label="Toggle interface density">◫</button>
         <button class="icon-button" id="fullscreenBtn" type="button" title="Fullscreen" aria-label="Toggle fullscreen">⛶</button>
         <button class="primary-action" id="startLabBtn" type="button">Start Lab</button>
@@ -51,10 +53,10 @@
         <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-expanded="false">☰ Menu</button>
         <div class="course-links" id="courseLinks">
           <a href="../index.html">Course Home</a>
-          <a href="../Cloud & Containers/docker.html">Docker Fundamentals</a>
-          <a href="../Cloud & Containers/docker-compose.html">Docker Compose</a>
-          <a href="../Cloud & Containers/iaas.html">Cloud Models</a>
-          <a class="active" href="../Cloud & Containers/docker-playground.html">Practice Lab</a>
+          <a href="docker.html">Docker Fundamentals</a>
+          <a href="docker-compose.html">Docker Compose</a>
+          <a href="iaas.html">Cloud Models</a>
+          <a class="active" href="docker-playground.html">Practice Lab</a>
         </div>
         <div class="course-context"><span class="live-dot"></span> Local browser lab</div>
       </div>
@@ -90,7 +92,9 @@
             </div>
             <div class="mini-actions">
               <button id="newFileBtn" type="button" title="New file">＋</button>
-              <button id="saveAllBtn" type="button" title="Save all">⌁</button>
+              <button id="saveAllBtn" type="button" title="Save in browser">⌁</button>
+              <button id="openProjectSideBtn" type="button" title="Open saved project">⇧</button>
+              <button id="saveProjectSideBtn" type="button" title="Download project backup">⇩</button>
             </div>
           </div>
 
@@ -388,5 +392,6 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="../js/docker-playground.js"></script>
+  <input id="projectFileInput" class="sr-only" type="file" accept=".dockerlab,.json,application/json" aria-label="Open Docker Lab project file" />
 </body>
 </html>
