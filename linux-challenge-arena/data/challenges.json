@@ -1,0 +1,3547 @@
+[
+  {
+    "id": "LNX-001",
+    "number": 1,
+    "level": "Basic",
+    "category": "Navigation",
+    "title": "Create the alpha workspace",
+    "description": "Practice directory creation and navigation in a clean Linux workspace.",
+    "objective": "Create a directory named `alpha` inside `/root/lab` and enter it.",
+    "setup": "cd /root/lab",
+    "check": "[ -d /root/lab/alpha ] && [ \"$PWD\" = \"/root/lab/alpha\" ]",
+    "hints": [
+      "Use mkdir to create a directory.",
+      "Use cd to move into a directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_001}",
+    "commandHint": "mkdir alpha && cd alpha"
+  },
+  {
+    "id": "LNX-002",
+    "number": 2,
+    "level": "Basic",
+    "category": "Navigation",
+    "title": "Create the bravo workspace",
+    "description": "Practice directory creation and navigation in a clean Linux workspace.",
+    "objective": "Create a directory named `bravo` inside `/root/lab` and enter it.",
+    "setup": "cd /root/lab",
+    "check": "[ -d /root/lab/bravo ] && [ \"$PWD\" = \"/root/lab/bravo\" ]",
+    "hints": [
+      "Use mkdir to create a directory.",
+      "Use cd to move into a directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_002}",
+    "commandHint": "mkdir bravo && cd bravo"
+  },
+  {
+    "id": "LNX-003",
+    "number": 3,
+    "level": "Basic",
+    "category": "Navigation",
+    "title": "Create the charlie workspace",
+    "description": "Practice directory creation and navigation in a clean Linux workspace.",
+    "objective": "Create a directory named `charlie` inside `/root/lab` and enter it.",
+    "setup": "cd /root/lab",
+    "check": "[ -d /root/lab/charlie ] && [ \"$PWD\" = \"/root/lab/charlie\" ]",
+    "hints": [
+      "Use mkdir to create a directory.",
+      "Use cd to move into a directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_003}",
+    "commandHint": "mkdir charlie && cd charlie"
+  },
+  {
+    "id": "LNX-004",
+    "number": 4,
+    "level": "Basic",
+    "category": "Navigation",
+    "title": "Create the delta workspace",
+    "description": "Practice directory creation and navigation in a clean Linux workspace.",
+    "objective": "Create a directory named `delta` inside `/root/lab` and enter it.",
+    "setup": "cd /root/lab",
+    "check": "[ -d /root/lab/delta ] && [ \"$PWD\" = \"/root/lab/delta\" ]",
+    "hints": [
+      "Use mkdir to create a directory.",
+      "Use cd to move into a directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_004}",
+    "commandHint": "mkdir delta && cd delta"
+  },
+  {
+    "id": "LNX-005",
+    "number": 5,
+    "level": "Basic",
+    "category": "Navigation",
+    "title": "Create the echo workspace",
+    "description": "Practice directory creation and navigation in a clean Linux workspace.",
+    "objective": "Create a directory named `echo` inside `/root/lab` and enter it.",
+    "setup": "cd /root/lab",
+    "check": "[ -d /root/lab/echo ] && [ \"$PWD\" = \"/root/lab/echo\" ]",
+    "hints": [
+      "Use mkdir to create a directory.",
+      "Use cd to move into a directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_005}",
+    "commandHint": "mkdir echo && cd echo"
+  },
+  {
+    "id": "LNX-006",
+    "number": 6,
+    "level": "Basic",
+    "category": "Files",
+    "title": "Create notes.txt",
+    "description": "Create an empty file using standard shell utilities.",
+    "objective": "Create an empty file named `notes.txt` in `/root/lab`.",
+    "setup": "cd /root/lab",
+    "check": "[ -f /root/lab/notes.txt ]",
+    "hints": [
+      "touch creates an empty file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_006}",
+    "commandHint": "touch notes.txt"
+  },
+  {
+    "id": "LNX-007",
+    "number": 7,
+    "level": "Basic",
+    "category": "Files",
+    "title": "Create report.txt",
+    "description": "Create an empty file using standard shell utilities.",
+    "objective": "Create an empty file named `report.txt` in `/root/lab`.",
+    "setup": "cd /root/lab",
+    "check": "[ -f /root/lab/report.txt ]",
+    "hints": [
+      "touch creates an empty file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_007}",
+    "commandHint": "touch report.txt"
+  },
+  {
+    "id": "LNX-008",
+    "number": 8,
+    "level": "Basic",
+    "category": "Files",
+    "title": "Create draft.txt",
+    "description": "Create an empty file using standard shell utilities.",
+    "objective": "Create an empty file named `draft.txt` in `/root/lab`.",
+    "setup": "cd /root/lab",
+    "check": "[ -f /root/lab/draft.txt ]",
+    "hints": [
+      "touch creates an empty file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_008}",
+    "commandHint": "touch draft.txt"
+  },
+  {
+    "id": "LNX-009",
+    "number": 9,
+    "level": "Basic",
+    "category": "Files",
+    "title": "Create backup.txt",
+    "description": "Create an empty file using standard shell utilities.",
+    "objective": "Create an empty file named `backup.txt` in `/root/lab`.",
+    "setup": "cd /root/lab",
+    "check": "[ -f /root/lab/backup.txt ]",
+    "hints": [
+      "touch creates an empty file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_009}",
+    "commandHint": "touch backup.txt"
+  },
+  {
+    "id": "LNX-010",
+    "number": 10,
+    "level": "Basic",
+    "category": "Files",
+    "title": "Create config.txt",
+    "description": "Create an empty file using standard shell utilities.",
+    "objective": "Create an empty file named `config.txt` in `/root/lab`.",
+    "setup": "cd /root/lab",
+    "check": "[ -f /root/lab/config.txt ]",
+    "hints": [
+      "touch creates an empty file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_010}",
+    "commandHint": "touch config.txt"
+  },
+  {
+    "id": "LNX-011",
+    "number": 11,
+    "level": "Basic",
+    "category": "Redirection",
+    "title": "Write message 1",
+    "description": "Use output redirection to place text into a file.",
+    "objective": "Create `message1.txt` containing exactly: `Linux powers servers`",
+    "setup": "cd /root/lab",
+    "check": "printf %s \"Linux powers servers\" | cmp -s - /root/lab/message1.txt",
+    "hints": [
+      "echo can print text.",
+      "Use > to write output to a file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_011}",
+    "commandHint": "echo \"Linux powers servers\" > message1.txt"
+  },
+  {
+    "id": "LNX-012",
+    "number": 12,
+    "level": "Basic",
+    "category": "Redirection",
+    "title": "Write message 2",
+    "description": "Use output redirection to place text into a file.",
+    "objective": "Create `message2.txt` containing exactly: `permissions matter`",
+    "setup": "cd /root/lab",
+    "check": "printf %s \"permissions matter\" | cmp -s - /root/lab/message2.txt",
+    "hints": [
+      "echo can print text.",
+      "Use > to write output to a file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_012}",
+    "commandHint": "echo \"permissions matter\" > message2.txt"
+  },
+  {
+    "id": "LNX-013",
+    "number": 13,
+    "level": "Basic",
+    "category": "Redirection",
+    "title": "Write message 3",
+    "description": "Use output redirection to place text into a file.",
+    "objective": "Create `message3.txt` containing exactly: `logs tell stories`",
+    "setup": "cd /root/lab",
+    "check": "printf %s \"logs tell stories\" | cmp -s - /root/lab/message3.txt",
+    "hints": [
+      "echo can print text.",
+      "Use > to write output to a file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_013}",
+    "commandHint": "echo \"logs tell stories\" > message3.txt"
+  },
+  {
+    "id": "LNX-014",
+    "number": 14,
+    "level": "Basic",
+    "category": "Redirection",
+    "title": "Write message 4",
+    "description": "Use output redirection to place text into a file.",
+    "objective": "Create `message4.txt` containing exactly: `backups reduce risk`",
+    "setup": "cd /root/lab",
+    "check": "printf %s \"backups reduce risk\" | cmp -s - /root/lab/message4.txt",
+    "hints": [
+      "echo can print text.",
+      "Use > to write output to a file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_014}",
+    "commandHint": "echo \"backups reduce risk\" > message4.txt"
+  },
+  {
+    "id": "LNX-015",
+    "number": 15,
+    "level": "Basic",
+    "category": "Redirection",
+    "title": "Write message 5",
+    "description": "Use output redirection to place text into a file.",
+    "objective": "Create `message5.txt` containing exactly: `shells automate work`",
+    "setup": "cd /root/lab",
+    "check": "printf %s \"shells automate work\" | cmp -s - /root/lab/message5.txt",
+    "hints": [
+      "echo can print text.",
+      "Use > to write output to a file."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_015}",
+    "commandHint": "echo \"shells automate work\" > message5.txt"
+  },
+  {
+    "id": "LNX-016",
+    "number": 16,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Copy file #1",
+    "description": "Practice copying files without changing the source.",
+    "objective": "Copy `source1.txt` to `copy1.txt`.",
+    "setup": "cd /root/lab; printf %s \"asset-1-stackforge\" > source1.txt",
+    "check": "[ -f /root/lab/copy1.txt ] && cmp -s /root/lab/source1.txt /root/lab/copy1.txt",
+    "hints": [
+      "Use cp SOURCE DESTINATION."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_016}",
+    "commandHint": "cp source1.txt copy1.txt"
+  },
+  {
+    "id": "LNX-017",
+    "number": 17,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Copy file #2",
+    "description": "Practice copying files without changing the source.",
+    "objective": "Copy `source2.txt` to `copy2.txt`.",
+    "setup": "cd /root/lab; printf %s \"asset-2-stackforge\" > source2.txt",
+    "check": "[ -f /root/lab/copy2.txt ] && cmp -s /root/lab/source2.txt /root/lab/copy2.txt",
+    "hints": [
+      "Use cp SOURCE DESTINATION."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_017}",
+    "commandHint": "cp source2.txt copy2.txt"
+  },
+  {
+    "id": "LNX-018",
+    "number": 18,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Copy file #3",
+    "description": "Practice copying files without changing the source.",
+    "objective": "Copy `source3.txt` to `copy3.txt`.",
+    "setup": "cd /root/lab; printf %s \"asset-3-stackforge\" > source3.txt",
+    "check": "[ -f /root/lab/copy3.txt ] && cmp -s /root/lab/source3.txt /root/lab/copy3.txt",
+    "hints": [
+      "Use cp SOURCE DESTINATION."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_018}",
+    "commandHint": "cp source3.txt copy3.txt"
+  },
+  {
+    "id": "LNX-019",
+    "number": 19,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Copy file #4",
+    "description": "Practice copying files without changing the source.",
+    "objective": "Copy `source4.txt` to `copy4.txt`.",
+    "setup": "cd /root/lab; printf %s \"asset-4-stackforge\" > source4.txt",
+    "check": "[ -f /root/lab/copy4.txt ] && cmp -s /root/lab/source4.txt /root/lab/copy4.txt",
+    "hints": [
+      "Use cp SOURCE DESTINATION."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_019}",
+    "commandHint": "cp source4.txt copy4.txt"
+  },
+  {
+    "id": "LNX-020",
+    "number": 20,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Copy file #5",
+    "description": "Practice copying files without changing the source.",
+    "objective": "Copy `source5.txt` to `copy5.txt`.",
+    "setup": "cd /root/lab; printf %s \"asset-5-stackforge\" > source5.txt",
+    "check": "[ -f /root/lab/copy5.txt ] && cmp -s /root/lab/source5.txt /root/lab/copy5.txt",
+    "hints": [
+      "Use cp SOURCE DESTINATION."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_020}",
+    "commandHint": "cp source5.txt copy5.txt"
+  },
+  {
+    "id": "LNX-021",
+    "number": 21,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Rename log #1",
+    "description": "Use mv to rename a file.",
+    "objective": "Rename `old1.log` to `archive1.log`.",
+    "setup": "cd /root/lab; printf %s \"log-entry-1\" > old1.log",
+    "check": "[ ! -e /root/lab/old1.log ] && [ -f /root/lab/archive1.log ] && grep -qx \"log-entry-1\" /root/lab/archive1.log",
+    "hints": [
+      "mv can rename files in the same directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_021}",
+    "commandHint": "mv old1.log archive1.log"
+  },
+  {
+    "id": "LNX-022",
+    "number": 22,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Rename log #2",
+    "description": "Use mv to rename a file.",
+    "objective": "Rename `old2.log` to `archive2.log`.",
+    "setup": "cd /root/lab; printf %s \"log-entry-2\" > old2.log",
+    "check": "[ ! -e /root/lab/old2.log ] && [ -f /root/lab/archive2.log ] && grep -qx \"log-entry-2\" /root/lab/archive2.log",
+    "hints": [
+      "mv can rename files in the same directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_022}",
+    "commandHint": "mv old2.log archive2.log"
+  },
+  {
+    "id": "LNX-023",
+    "number": 23,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Rename log #3",
+    "description": "Use mv to rename a file.",
+    "objective": "Rename `old3.log` to `archive3.log`.",
+    "setup": "cd /root/lab; printf %s \"log-entry-3\" > old3.log",
+    "check": "[ ! -e /root/lab/old3.log ] && [ -f /root/lab/archive3.log ] && grep -qx \"log-entry-3\" /root/lab/archive3.log",
+    "hints": [
+      "mv can rename files in the same directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_023}",
+    "commandHint": "mv old3.log archive3.log"
+  },
+  {
+    "id": "LNX-024",
+    "number": 24,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Rename log #4",
+    "description": "Use mv to rename a file.",
+    "objective": "Rename `old4.log` to `archive4.log`.",
+    "setup": "cd /root/lab; printf %s \"log-entry-4\" > old4.log",
+    "check": "[ ! -e /root/lab/old4.log ] && [ -f /root/lab/archive4.log ] && grep -qx \"log-entry-4\" /root/lab/archive4.log",
+    "hints": [
+      "mv can rename files in the same directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_024}",
+    "commandHint": "mv old4.log archive4.log"
+  },
+  {
+    "id": "LNX-025",
+    "number": 25,
+    "level": "Basic",
+    "category": "Copy & Move",
+    "title": "Rename log #5",
+    "description": "Use mv to rename a file.",
+    "objective": "Rename `old5.log` to `archive5.log`.",
+    "setup": "cd /root/lab; printf %s \"log-entry-5\" > old5.log",
+    "check": "[ ! -e /root/lab/old5.log ] && [ -f /root/lab/archive5.log ] && grep -qx \"log-entry-5\" /root/lab/archive5.log",
+    "hints": [
+      "mv can rename files in the same directory."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_025}",
+    "commandHint": "mv old5.log archive5.log"
+  },
+  {
+    "id": "LNX-026",
+    "number": 26,
+    "level": "Basic",
+    "category": "Cleanup",
+    "title": "Remove temporary file #1",
+    "description": "Remove a file that is no longer needed.",
+    "objective": "Delete `temp1.tmp`.",
+    "setup": "cd /root/lab; echo temporary > temp1.tmp",
+    "check": "[ ! -e /root/lab/temp1.tmp ]",
+    "hints": [
+      "Use rm FILE."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_026}",
+    "commandHint": "rm temp1.tmp"
+  },
+  {
+    "id": "LNX-027",
+    "number": 27,
+    "level": "Basic",
+    "category": "Cleanup",
+    "title": "Remove temporary file #2",
+    "description": "Remove a file that is no longer needed.",
+    "objective": "Delete `temp2.tmp`.",
+    "setup": "cd /root/lab; echo temporary > temp2.tmp",
+    "check": "[ ! -e /root/lab/temp2.tmp ]",
+    "hints": [
+      "Use rm FILE."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_027}",
+    "commandHint": "rm temp2.tmp"
+  },
+  {
+    "id": "LNX-028",
+    "number": 28,
+    "level": "Basic",
+    "category": "Cleanup",
+    "title": "Remove temporary file #3",
+    "description": "Remove a file that is no longer needed.",
+    "objective": "Delete `temp3.tmp`.",
+    "setup": "cd /root/lab; echo temporary > temp3.tmp",
+    "check": "[ ! -e /root/lab/temp3.tmp ]",
+    "hints": [
+      "Use rm FILE."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_028}",
+    "commandHint": "rm temp3.tmp"
+  },
+  {
+    "id": "LNX-029",
+    "number": 29,
+    "level": "Basic",
+    "category": "Cleanup",
+    "title": "Remove temporary file #4",
+    "description": "Remove a file that is no longer needed.",
+    "objective": "Delete `temp4.tmp`.",
+    "setup": "cd /root/lab; echo temporary > temp4.tmp",
+    "check": "[ ! -e /root/lab/temp4.tmp ]",
+    "hints": [
+      "Use rm FILE."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_029}",
+    "commandHint": "rm temp4.tmp"
+  },
+  {
+    "id": "LNX-030",
+    "number": 30,
+    "level": "Basic",
+    "category": "Cleanup",
+    "title": "Remove temporary file #5",
+    "description": "Remove a file that is no longer needed.",
+    "objective": "Delete `temp5.tmp`.",
+    "setup": "cd /root/lab; echo temporary > temp5.tmp",
+    "check": "[ ! -e /root/lab/temp5.tmp ]",
+    "hints": [
+      "Use rm FILE."
+    ],
+    "points": 10,
+    "flag": "FLAG{STACKFORGE_030}",
+    "commandHint": "rm temp5.tmp"
+  },
+  {
+    "id": "LNX-031",
+    "number": 31,
+    "level": "Basic",
+    "category": "Text Inspection",
+    "title": "Count lines #1",
+    "description": "Use wc to count lines in a text file.",
+    "objective": "Write the number of lines in `inventory1.txt` to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'item-1-1\\nitem-1-2\\nitem-1-3\\nitem-1-4\\n' > inventory1.txt",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"4\" ]",
+    "hints": [
+      "wc -l FILE prints the line count.",
+      "Redirect only the number into answer.txt, e.g. with awk."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_031}",
+    "commandHint": "wc -l inventory1.txt"
+  },
+  {
+    "id": "LNX-032",
+    "number": 32,
+    "level": "Basic",
+    "category": "Text Inspection",
+    "title": "Count lines #2",
+    "description": "Use wc to count lines in a text file.",
+    "objective": "Write the number of lines in `inventory2.txt` to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'item-2-1\\nitem-2-2\\nitem-2-3\\nitem-2-4\\nitem-2-5\\n' > inventory2.txt",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"5\" ]",
+    "hints": [
+      "wc -l FILE prints the line count.",
+      "Redirect only the number into answer.txt, e.g. with awk."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_032}",
+    "commandHint": "wc -l inventory2.txt"
+  },
+  {
+    "id": "LNX-033",
+    "number": 33,
+    "level": "Basic",
+    "category": "Text Inspection",
+    "title": "Count lines #3",
+    "description": "Use wc to count lines in a text file.",
+    "objective": "Write the number of lines in `inventory3.txt` to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'item-3-1\\nitem-3-2\\nitem-3-3\\nitem-3-4\\nitem-3-5\\nitem-3-6\\n' > inventory3.txt",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"6\" ]",
+    "hints": [
+      "wc -l FILE prints the line count.",
+      "Redirect only the number into answer.txt, e.g. with awk."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_033}",
+    "commandHint": "wc -l inventory3.txt"
+  },
+  {
+    "id": "LNX-034",
+    "number": 34,
+    "level": "Basic",
+    "category": "Text Inspection",
+    "title": "Count lines #4",
+    "description": "Use wc to count lines in a text file.",
+    "objective": "Write the number of lines in `inventory4.txt` to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'item-4-1\\nitem-4-2\\nitem-4-3\\nitem-4-4\\nitem-4-5\\nitem-4-6\\nitem-4-7\\n' > inventory4.txt",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"7\" ]",
+    "hints": [
+      "wc -l FILE prints the line count.",
+      "Redirect only the number into answer.txt, e.g. with awk."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_034}",
+    "commandHint": "wc -l inventory4.txt"
+  },
+  {
+    "id": "LNX-035",
+    "number": 35,
+    "level": "Basic",
+    "category": "Text Inspection",
+    "title": "Count lines #5",
+    "description": "Use wc to count lines in a text file.",
+    "objective": "Write the number of lines in `inventory5.txt` to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'item-5-1\\nitem-5-2\\nitem-5-3\\nitem-5-4\\nitem-5-5\\nitem-5-6\\nitem-5-7\\nitem-5-8\\n' > inventory5.txt",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"8\" ]",
+    "hints": [
+      "wc -l FILE prints the line count.",
+      "Redirect only the number into answer.txt, e.g. with awk."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_035}",
+    "commandHint": "wc -l inventory5.txt"
+  },
+  {
+    "id": "LNX-036",
+    "number": 36,
+    "level": "Basic",
+    "category": "Search",
+    "title": "Find the matching line #1",
+    "description": "Search text using grep.",
+    "objective": "Find the line containing `needle1` in `search1.log` and save the full matching line to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'noise-a\\nservice=needle1 status=ok\\nnoise-b\\n' > search1.log",
+    "check": "grep -qx \"service=needle1 status=ok\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use grep PATTERN FILE.",
+      "Redirect grep output with > answer.txt."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_036}",
+    "commandHint": "grep needle1 search1.log > answer.txt"
+  },
+  {
+    "id": "LNX-037",
+    "number": 37,
+    "level": "Basic",
+    "category": "Search",
+    "title": "Find the matching line #2",
+    "description": "Search text using grep.",
+    "objective": "Find the line containing `needle2` in `search2.log` and save the full matching line to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'noise-a\\nservice=needle2 status=ok\\nnoise-b\\n' > search2.log",
+    "check": "grep -qx \"service=needle2 status=ok\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use grep PATTERN FILE.",
+      "Redirect grep output with > answer.txt."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_037}",
+    "commandHint": "grep needle2 search2.log > answer.txt"
+  },
+  {
+    "id": "LNX-038",
+    "number": 38,
+    "level": "Basic",
+    "category": "Search",
+    "title": "Find the matching line #3",
+    "description": "Search text using grep.",
+    "objective": "Find the line containing `needle3` in `search3.log` and save the full matching line to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'noise-a\\nservice=needle3 status=ok\\nnoise-b\\n' > search3.log",
+    "check": "grep -qx \"service=needle3 status=ok\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use grep PATTERN FILE.",
+      "Redirect grep output with > answer.txt."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_038}",
+    "commandHint": "grep needle3 search3.log > answer.txt"
+  },
+  {
+    "id": "LNX-039",
+    "number": 39,
+    "level": "Basic",
+    "category": "Search",
+    "title": "Find the matching line #4",
+    "description": "Search text using grep.",
+    "objective": "Find the line containing `needle4` in `search4.log` and save the full matching line to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'noise-a\\nservice=needle4 status=ok\\nnoise-b\\n' > search4.log",
+    "check": "grep -qx \"service=needle4 status=ok\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use grep PATTERN FILE.",
+      "Redirect grep output with > answer.txt."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_039}",
+    "commandHint": "grep needle4 search4.log > answer.txt"
+  },
+  {
+    "id": "LNX-040",
+    "number": 40,
+    "level": "Basic",
+    "category": "Search",
+    "title": "Find the matching line #5",
+    "description": "Search text using grep.",
+    "objective": "Find the line containing `needle5` in `search5.log` and save the full matching line to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'noise-a\\nservice=needle5 status=ok\\nnoise-b\\n' > search5.log",
+    "check": "grep -qx \"service=needle5 status=ok\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use grep PATTERN FILE.",
+      "Redirect grep output with > answer.txt."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_040}",
+    "commandHint": "grep needle5 search5.log > answer.txt"
+  },
+  {
+    "id": "LNX-041",
+    "number": 41,
+    "level": "Basic",
+    "category": "Pipelines",
+    "title": "Sort numeric data #1",
+    "description": "Practice sorting numerical text data.",
+    "objective": "Sort `numbers1.txt` numerically and save the result to `answer.txt`.",
+    "setup": "cd /root/lab; printf '4\\n1\\n8\\n2\\n' > numbers1.txt",
+    "check": "printf '1\\n2\\n4\\n8\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "Use sort -n for numeric sorting."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_041}",
+    "commandHint": "sort -n numbers1.txt > answer.txt"
+  },
+  {
+    "id": "LNX-042",
+    "number": 42,
+    "level": "Basic",
+    "category": "Pipelines",
+    "title": "Sort numeric data #2",
+    "description": "Practice sorting numerical text data.",
+    "objective": "Sort `numbers2.txt` numerically and save the result to `answer.txt`.",
+    "setup": "cd /root/lab; printf '5\\n2\\n9\\n3\\n' > numbers2.txt",
+    "check": "printf '2\\n3\\n5\\n9\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "Use sort -n for numeric sorting."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_042}",
+    "commandHint": "sort -n numbers2.txt > answer.txt"
+  },
+  {
+    "id": "LNX-043",
+    "number": 43,
+    "level": "Basic",
+    "category": "Pipelines",
+    "title": "Sort numeric data #3",
+    "description": "Practice sorting numerical text data.",
+    "objective": "Sort `numbers3.txt` numerically and save the result to `answer.txt`.",
+    "setup": "cd /root/lab; printf '6\\n3\\n10\\n4\\n' > numbers3.txt",
+    "check": "printf '3\\n4\\n6\\n10\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "Use sort -n for numeric sorting."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_043}",
+    "commandHint": "sort -n numbers3.txt > answer.txt"
+  },
+  {
+    "id": "LNX-044",
+    "number": 44,
+    "level": "Basic",
+    "category": "Pipelines",
+    "title": "Sort numeric data #4",
+    "description": "Practice sorting numerical text data.",
+    "objective": "Sort `numbers4.txt` numerically and save the result to `answer.txt`.",
+    "setup": "cd /root/lab; printf '7\\n4\\n11\\n5\\n' > numbers4.txt",
+    "check": "printf '4\\n5\\n7\\n11\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "Use sort -n for numeric sorting."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_044}",
+    "commandHint": "sort -n numbers4.txt > answer.txt"
+  },
+  {
+    "id": "LNX-045",
+    "number": 45,
+    "level": "Basic",
+    "category": "Pipelines",
+    "title": "Sort numeric data #5",
+    "description": "Practice sorting numerical text data.",
+    "objective": "Sort `numbers5.txt` numerically and save the result to `answer.txt`.",
+    "setup": "cd /root/lab; printf '8\\n5\\n12\\n6\\n' > numbers5.txt",
+    "check": "printf '5\\n6\\n8\\n12\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "Use sort -n for numeric sorting."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_045}",
+    "commandHint": "sort -n numbers5.txt > answer.txt"
+  },
+  {
+    "id": "LNX-046",
+    "number": 46,
+    "level": "Basic",
+    "category": "Find",
+    "title": "Locate a file #1",
+    "description": "Use find to locate a file within a directory tree.",
+    "objective": "Find `doc1_2.txt` under `/root/lab/docs` and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p docs; echo file1 > docs/doc1_1.txt; echo file2 > docs/doc1_2.txt; echo file3 > docs/doc1_3.txt",
+    "check": "grep -qx \"/root/lab/docs/doc1_2.txt\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find START -name FILENAME."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_046}",
+    "commandHint": "find /root/lab/docs -name doc1_2.txt > answer.txt"
+  },
+  {
+    "id": "LNX-047",
+    "number": 47,
+    "level": "Basic",
+    "category": "Find",
+    "title": "Locate a file #2",
+    "description": "Use find to locate a file within a directory tree.",
+    "objective": "Find `doc2_2.txt` under `/root/lab/docs` and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p docs; echo file1 > docs/doc2_1.txt; echo file2 > docs/doc2_2.txt; echo file3 > docs/doc2_3.txt",
+    "check": "grep -qx \"/root/lab/docs/doc2_2.txt\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find START -name FILENAME."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_047}",
+    "commandHint": "find /root/lab/docs -name doc2_2.txt > answer.txt"
+  },
+  {
+    "id": "LNX-048",
+    "number": 48,
+    "level": "Basic",
+    "category": "Find",
+    "title": "Locate a file #3",
+    "description": "Use find to locate a file within a directory tree.",
+    "objective": "Find `doc3_2.txt` under `/root/lab/docs` and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p docs; echo file1 > docs/doc3_1.txt; echo file2 > docs/doc3_2.txt; echo file3 > docs/doc3_3.txt",
+    "check": "grep -qx \"/root/lab/docs/doc3_2.txt\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find START -name FILENAME."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_048}",
+    "commandHint": "find /root/lab/docs -name doc3_2.txt > answer.txt"
+  },
+  {
+    "id": "LNX-049",
+    "number": 49,
+    "level": "Basic",
+    "category": "Find",
+    "title": "Locate a file #4",
+    "description": "Use find to locate a file within a directory tree.",
+    "objective": "Find `doc4_2.txt` under `/root/lab/docs` and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p docs; echo file1 > docs/doc4_1.txt; echo file2 > docs/doc4_2.txt; echo file3 > docs/doc4_3.txt",
+    "check": "grep -qx \"/root/lab/docs/doc4_2.txt\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find START -name FILENAME."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_049}",
+    "commandHint": "find /root/lab/docs -name doc4_2.txt > answer.txt"
+  },
+  {
+    "id": "LNX-050",
+    "number": 50,
+    "level": "Basic",
+    "category": "Find",
+    "title": "Locate a file #5",
+    "description": "Use find to locate a file within a directory tree.",
+    "objective": "Find `doc5_2.txt` under `/root/lab/docs` and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p docs; echo file1 > docs/doc5_1.txt; echo file2 > docs/doc5_2.txt; echo file3 > docs/doc5_3.txt",
+    "check": "grep -qx \"/root/lab/docs/doc5_2.txt\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find START -name FILENAME."
+    ],
+    "points": 15,
+    "flag": "FLAG{STACKFORGE_050}",
+    "commandHint": "find /root/lab/docs -name doc5_2.txt > answer.txt"
+  },
+  {
+    "id": "LNX-051",
+    "number": 51,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Set permission mode 640",
+    "description": "Apply precise POSIX permissions to a file.",
+    "objective": "Set `secure1.dat` to mode `640`.",
+    "setup": "cd /root/lab; echo secret > secure1.dat; chmod 666 secure1.dat",
+    "check": "[ \"$(stat -c %a /root/lab/secure1.dat)\" = \"640\" ]",
+    "hints": [
+      "chmod accepts octal modes such as 640."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_051}",
+    "commandHint": "chmod 640 secure1.dat"
+  },
+  {
+    "id": "LNX-052",
+    "number": 52,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Set permission mode 600",
+    "description": "Apply precise POSIX permissions to a file.",
+    "objective": "Set `secure2.dat` to mode `600`.",
+    "setup": "cd /root/lab; echo secret > secure2.dat; chmod 666 secure2.dat",
+    "check": "[ \"$(stat -c %a /root/lab/secure2.dat)\" = \"600\" ]",
+    "hints": [
+      "chmod accepts octal modes such as 640."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_052}",
+    "commandHint": "chmod 600 secure2.dat"
+  },
+  {
+    "id": "LNX-053",
+    "number": 53,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Set permission mode 644",
+    "description": "Apply precise POSIX permissions to a file.",
+    "objective": "Set `secure3.dat` to mode `644`.",
+    "setup": "cd /root/lab; echo secret > secure3.dat; chmod 666 secure3.dat",
+    "check": "[ \"$(stat -c %a /root/lab/secure3.dat)\" = \"644\" ]",
+    "hints": [
+      "chmod accepts octal modes such as 640."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_053}",
+    "commandHint": "chmod 644 secure3.dat"
+  },
+  {
+    "id": "LNX-054",
+    "number": 54,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Set permission mode 750",
+    "description": "Apply precise POSIX permissions to a file.",
+    "objective": "Set `secure4.dat` to mode `750`.",
+    "setup": "cd /root/lab; echo secret > secure4.dat; chmod 666 secure4.dat",
+    "check": "[ \"$(stat -c %a /root/lab/secure4.dat)\" = \"750\" ]",
+    "hints": [
+      "chmod accepts octal modes such as 640."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_054}",
+    "commandHint": "chmod 750 secure4.dat"
+  },
+  {
+    "id": "LNX-055",
+    "number": 55,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Set permission mode 700",
+    "description": "Apply precise POSIX permissions to a file.",
+    "objective": "Set `secure5.dat` to mode `700`.",
+    "setup": "cd /root/lab; echo secret > secure5.dat; chmod 666 secure5.dat",
+    "check": "[ \"$(stat -c %a /root/lab/secure5.dat)\" = \"700\" ]",
+    "hints": [
+      "chmod accepts octal modes such as 640."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_055}",
+    "commandHint": "chmod 700 secure5.dat"
+  },
+  {
+    "id": "LNX-056",
+    "number": 56,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Make script executable #1",
+    "description": "Add execute permission while preserving the script.",
+    "objective": "Make `job1.sh` executable by the owner.",
+    "setup": "cd /root/lab; printf '#!/bin/sh\\necho job-1\\n' > job1.sh; chmod 600 job1.sh",
+    "check": "[ -x /root/lab/job1.sh ]",
+    "hints": [
+      "Use chmod u+x FILE."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_056}",
+    "commandHint": "chmod u+x job1.sh"
+  },
+  {
+    "id": "LNX-057",
+    "number": 57,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Make script executable #2",
+    "description": "Add execute permission while preserving the script.",
+    "objective": "Make `job2.sh` executable by the owner.",
+    "setup": "cd /root/lab; printf '#!/bin/sh\\necho job-2\\n' > job2.sh; chmod 600 job2.sh",
+    "check": "[ -x /root/lab/job2.sh ]",
+    "hints": [
+      "Use chmod u+x FILE."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_057}",
+    "commandHint": "chmod u+x job2.sh"
+  },
+  {
+    "id": "LNX-058",
+    "number": 58,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Make script executable #3",
+    "description": "Add execute permission while preserving the script.",
+    "objective": "Make `job3.sh` executable by the owner.",
+    "setup": "cd /root/lab; printf '#!/bin/sh\\necho job-3\\n' > job3.sh; chmod 600 job3.sh",
+    "check": "[ -x /root/lab/job3.sh ]",
+    "hints": [
+      "Use chmod u+x FILE."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_058}",
+    "commandHint": "chmod u+x job3.sh"
+  },
+  {
+    "id": "LNX-059",
+    "number": 59,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Make script executable #4",
+    "description": "Add execute permission while preserving the script.",
+    "objective": "Make `job4.sh` executable by the owner.",
+    "setup": "cd /root/lab; printf '#!/bin/sh\\necho job-4\\n' > job4.sh; chmod 600 job4.sh",
+    "check": "[ -x /root/lab/job4.sh ]",
+    "hints": [
+      "Use chmod u+x FILE."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_059}",
+    "commandHint": "chmod u+x job4.sh"
+  },
+  {
+    "id": "LNX-060",
+    "number": 60,
+    "level": "Intermediate",
+    "category": "Permissions",
+    "title": "Make script executable #5",
+    "description": "Add execute permission while preserving the script.",
+    "objective": "Make `job5.sh` executable by the owner.",
+    "setup": "cd /root/lab; printf '#!/bin/sh\\necho job-5\\n' > job5.sh; chmod 600 job5.sh",
+    "check": "[ -x /root/lab/job5.sh ]",
+    "hints": [
+      "Use chmod u+x FILE."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_060}",
+    "commandHint": "chmod u+x job5.sh"
+  },
+  {
+    "id": "LNX-061",
+    "number": 61,
+    "level": "Intermediate",
+    "category": "Links",
+    "title": "Create symbolic link #1",
+    "description": "Use symbolic links to reference a canonical file.",
+    "objective": "Create a symbolic link `current1.conf` pointing to `releases/config1.conf`.",
+    "setup": "cd /root/lab; mkdir -p releases; echo version=1 > releases/config1.conf",
+    "check": "[ -L /root/lab/current1.conf ] && [ \"$(readlink /root/lab/current1.conf)\" = \"releases/config1.conf\" ]",
+    "hints": [
+      "Use ln -s TARGET LINKNAME."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_061}",
+    "commandHint": "ln -s releases/config1.conf current1.conf"
+  },
+  {
+    "id": "LNX-062",
+    "number": 62,
+    "level": "Intermediate",
+    "category": "Links",
+    "title": "Create symbolic link #2",
+    "description": "Use symbolic links to reference a canonical file.",
+    "objective": "Create a symbolic link `current2.conf` pointing to `releases/config2.conf`.",
+    "setup": "cd /root/lab; mkdir -p releases; echo version=2 > releases/config2.conf",
+    "check": "[ -L /root/lab/current2.conf ] && [ \"$(readlink /root/lab/current2.conf)\" = \"releases/config2.conf\" ]",
+    "hints": [
+      "Use ln -s TARGET LINKNAME."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_062}",
+    "commandHint": "ln -s releases/config2.conf current2.conf"
+  },
+  {
+    "id": "LNX-063",
+    "number": 63,
+    "level": "Intermediate",
+    "category": "Links",
+    "title": "Create symbolic link #3",
+    "description": "Use symbolic links to reference a canonical file.",
+    "objective": "Create a symbolic link `current3.conf` pointing to `releases/config3.conf`.",
+    "setup": "cd /root/lab; mkdir -p releases; echo version=3 > releases/config3.conf",
+    "check": "[ -L /root/lab/current3.conf ] && [ \"$(readlink /root/lab/current3.conf)\" = \"releases/config3.conf\" ]",
+    "hints": [
+      "Use ln -s TARGET LINKNAME."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_063}",
+    "commandHint": "ln -s releases/config3.conf current3.conf"
+  },
+  {
+    "id": "LNX-064",
+    "number": 64,
+    "level": "Intermediate",
+    "category": "Links",
+    "title": "Create symbolic link #4",
+    "description": "Use symbolic links to reference a canonical file.",
+    "objective": "Create a symbolic link `current4.conf` pointing to `releases/config4.conf`.",
+    "setup": "cd /root/lab; mkdir -p releases; echo version=4 > releases/config4.conf",
+    "check": "[ -L /root/lab/current4.conf ] && [ \"$(readlink /root/lab/current4.conf)\" = \"releases/config4.conf\" ]",
+    "hints": [
+      "Use ln -s TARGET LINKNAME."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_064}",
+    "commandHint": "ln -s releases/config4.conf current4.conf"
+  },
+  {
+    "id": "LNX-065",
+    "number": 65,
+    "level": "Intermediate",
+    "category": "Links",
+    "title": "Create symbolic link #5",
+    "description": "Use symbolic links to reference a canonical file.",
+    "objective": "Create a symbolic link `current5.conf` pointing to `releases/config5.conf`.",
+    "setup": "cd /root/lab; mkdir -p releases; echo version=5 > releases/config5.conf",
+    "check": "[ -L /root/lab/current5.conf ] && [ \"$(readlink /root/lab/current5.conf)\" = \"releases/config5.conf\" ]",
+    "hints": [
+      "Use ln -s TARGET LINKNAME."
+    ],
+    "points": 25,
+    "flag": "FLAG{STACKFORGE_065}",
+    "commandHint": "ln -s releases/config5.conf current5.conf"
+  },
+  {
+    "id": "LNX-066",
+    "number": 66,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Create tar archive #1",
+    "description": "Bundle a directory tree into a tar archive.",
+    "objective": "Create `backup1.tar` containing the `project1` directory.",
+    "setup": "cd /root/lab; mkdir -p project1; echo a > project1/a.txt; echo b > project1/b.txt",
+    "check": "[ -f /root/lab/backup1.tar ] && tar tf /root/lab/backup1.tar | grep -q \"project1/a.txt\" && tar tf /root/lab/backup1.tar | grep -q \"project1/b.txt\"",
+    "hints": [
+      "Use tar cf ARCHIVE DIRECTORY."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_066}",
+    "commandHint": "tar cf backup1.tar project1"
+  },
+  {
+    "id": "LNX-067",
+    "number": 67,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Create tar archive #2",
+    "description": "Bundle a directory tree into a tar archive.",
+    "objective": "Create `backup2.tar` containing the `project2` directory.",
+    "setup": "cd /root/lab; mkdir -p project2; echo a > project2/a.txt; echo b > project2/b.txt",
+    "check": "[ -f /root/lab/backup2.tar ] && tar tf /root/lab/backup2.tar | grep -q \"project2/a.txt\" && tar tf /root/lab/backup2.tar | grep -q \"project2/b.txt\"",
+    "hints": [
+      "Use tar cf ARCHIVE DIRECTORY."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_067}",
+    "commandHint": "tar cf backup2.tar project2"
+  },
+  {
+    "id": "LNX-068",
+    "number": 68,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Create tar archive #3",
+    "description": "Bundle a directory tree into a tar archive.",
+    "objective": "Create `backup3.tar` containing the `project3` directory.",
+    "setup": "cd /root/lab; mkdir -p project3; echo a > project3/a.txt; echo b > project3/b.txt",
+    "check": "[ -f /root/lab/backup3.tar ] && tar tf /root/lab/backup3.tar | grep -q \"project3/a.txt\" && tar tf /root/lab/backup3.tar | grep -q \"project3/b.txt\"",
+    "hints": [
+      "Use tar cf ARCHIVE DIRECTORY."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_068}",
+    "commandHint": "tar cf backup3.tar project3"
+  },
+  {
+    "id": "LNX-069",
+    "number": 69,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Create tar archive #4",
+    "description": "Bundle a directory tree into a tar archive.",
+    "objective": "Create `backup4.tar` containing the `project4` directory.",
+    "setup": "cd /root/lab; mkdir -p project4; echo a > project4/a.txt; echo b > project4/b.txt",
+    "check": "[ -f /root/lab/backup4.tar ] && tar tf /root/lab/backup4.tar | grep -q \"project4/a.txt\" && tar tf /root/lab/backup4.tar | grep -q \"project4/b.txt\"",
+    "hints": [
+      "Use tar cf ARCHIVE DIRECTORY."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_069}",
+    "commandHint": "tar cf backup4.tar project4"
+  },
+  {
+    "id": "LNX-070",
+    "number": 70,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Create tar archive #5",
+    "description": "Bundle a directory tree into a tar archive.",
+    "objective": "Create `backup5.tar` containing the `project5` directory.",
+    "setup": "cd /root/lab; mkdir -p project5; echo a > project5/a.txt; echo b > project5/b.txt",
+    "check": "[ -f /root/lab/backup5.tar ] && tar tf /root/lab/backup5.tar | grep -q \"project5/a.txt\" && tar tf /root/lab/backup5.tar | grep -q \"project5/b.txt\"",
+    "hints": [
+      "Use tar cf ARCHIVE DIRECTORY."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_070}",
+    "commandHint": "tar cf backup5.tar project5"
+  },
+  {
+    "id": "LNX-071",
+    "number": 71,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Compress a file #1",
+    "description": "Use gzip compression and preserve the compressed artifact.",
+    "objective": "Compress `dataset1.txt` so `dataset1.txt.gz` exists.",
+    "setup": "cd /root/lab; yes \"row-1\" | head -n 20 > dataset1.txt",
+    "check": "[ -f /root/lab/dataset1.txt.gz ]",
+    "hints": [
+      "Use gzip FILE."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_071}",
+    "commandHint": "gzip dataset1.txt"
+  },
+  {
+    "id": "LNX-072",
+    "number": 72,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Compress a file #2",
+    "description": "Use gzip compression and preserve the compressed artifact.",
+    "objective": "Compress `dataset2.txt` so `dataset2.txt.gz` exists.",
+    "setup": "cd /root/lab; yes \"row-2\" | head -n 20 > dataset2.txt",
+    "check": "[ -f /root/lab/dataset2.txt.gz ]",
+    "hints": [
+      "Use gzip FILE."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_072}",
+    "commandHint": "gzip dataset2.txt"
+  },
+  {
+    "id": "LNX-073",
+    "number": 73,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Compress a file #3",
+    "description": "Use gzip compression and preserve the compressed artifact.",
+    "objective": "Compress `dataset3.txt` so `dataset3.txt.gz` exists.",
+    "setup": "cd /root/lab; yes \"row-3\" | head -n 20 > dataset3.txt",
+    "check": "[ -f /root/lab/dataset3.txt.gz ]",
+    "hints": [
+      "Use gzip FILE."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_073}",
+    "commandHint": "gzip dataset3.txt"
+  },
+  {
+    "id": "LNX-074",
+    "number": 74,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Compress a file #4",
+    "description": "Use gzip compression and preserve the compressed artifact.",
+    "objective": "Compress `dataset4.txt` so `dataset4.txt.gz` exists.",
+    "setup": "cd /root/lab; yes \"row-4\" | head -n 20 > dataset4.txt",
+    "check": "[ -f /root/lab/dataset4.txt.gz ]",
+    "hints": [
+      "Use gzip FILE."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_074}",
+    "commandHint": "gzip dataset4.txt"
+  },
+  {
+    "id": "LNX-075",
+    "number": 75,
+    "level": "Intermediate",
+    "category": "Archives",
+    "title": "Compress a file #5",
+    "description": "Use gzip compression and preserve the compressed artifact.",
+    "objective": "Compress `dataset5.txt` so `dataset5.txt.gz` exists.",
+    "setup": "cd /root/lab; yes \"row-5\" | head -n 20 > dataset5.txt",
+    "check": "[ -f /root/lab/dataset5.txt.gz ]",
+    "hints": [
+      "Use gzip FILE."
+    ],
+    "points": 30,
+    "flag": "FLAG{STACKFORGE_075}",
+    "commandHint": "gzip dataset5.txt"
+  },
+  {
+    "id": "LNX-076",
+    "number": 76,
+    "level": "Intermediate",
+    "category": "AWK",
+    "title": "Find highest value #1",
+    "description": "Extract and compare CSV-style values using awk or shell pipelines.",
+    "objective": "From `usage1.csv`, write only the username with the highest numeric value to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ana,11\\nben,21\\ncara,16\\n' > usage1.csv",
+    "check": "grep -qx \"ben\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "The file uses comma as the field separator.",
+      "awk -F, can parse comma-separated fields."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_076}",
+    "commandHint": "awk -F, 'NR==1{m=$2;u=$1} $2>m{m=$2;u=$1} END{print u}' usage1.csv > answer.txt"
+  },
+  {
+    "id": "LNX-077",
+    "number": 77,
+    "level": "Intermediate",
+    "category": "AWK",
+    "title": "Find highest value #2",
+    "description": "Extract and compare CSV-style values using awk or shell pipelines.",
+    "objective": "From `usage2.csv`, write only the username with the highest numeric value to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ana,12\\nben,22\\ncara,17\\n' > usage2.csv",
+    "check": "grep -qx \"ben\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "The file uses comma as the field separator.",
+      "awk -F, can parse comma-separated fields."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_077}",
+    "commandHint": "awk -F, 'NR==1{m=$2;u=$1} $2>m{m=$2;u=$1} END{print u}' usage2.csv > answer.txt"
+  },
+  {
+    "id": "LNX-078",
+    "number": 78,
+    "level": "Intermediate",
+    "category": "AWK",
+    "title": "Find highest value #3",
+    "description": "Extract and compare CSV-style values using awk or shell pipelines.",
+    "objective": "From `usage3.csv`, write only the username with the highest numeric value to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ana,13\\nben,23\\ncara,18\\n' > usage3.csv",
+    "check": "grep -qx \"ben\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "The file uses comma as the field separator.",
+      "awk -F, can parse comma-separated fields."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_078}",
+    "commandHint": "awk -F, 'NR==1{m=$2;u=$1} $2>m{m=$2;u=$1} END{print u}' usage3.csv > answer.txt"
+  },
+  {
+    "id": "LNX-079",
+    "number": 79,
+    "level": "Intermediate",
+    "category": "AWK",
+    "title": "Find highest value #4",
+    "description": "Extract and compare CSV-style values using awk or shell pipelines.",
+    "objective": "From `usage4.csv`, write only the username with the highest numeric value to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ana,14\\nben,24\\ncara,19\\n' > usage4.csv",
+    "check": "grep -qx \"ben\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "The file uses comma as the field separator.",
+      "awk -F, can parse comma-separated fields."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_079}",
+    "commandHint": "awk -F, 'NR==1{m=$2;u=$1} $2>m{m=$2;u=$1} END{print u}' usage4.csv > answer.txt"
+  },
+  {
+    "id": "LNX-080",
+    "number": 80,
+    "level": "Intermediate",
+    "category": "AWK",
+    "title": "Find highest value #5",
+    "description": "Extract and compare CSV-style values using awk or shell pipelines.",
+    "objective": "From `usage5.csv`, write only the username with the highest numeric value to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ana,15\\nben,25\\ncara,20\\n' > usage5.csv",
+    "check": "grep -qx \"ben\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "The file uses comma as the field separator.",
+      "awk -F, can parse comma-separated fields."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_080}",
+    "commandHint": "awk -F, 'NR==1{m=$2;u=$1} $2>m{m=$2;u=$1} END{print u}' usage5.csv > answer.txt"
+  },
+  {
+    "id": "LNX-081",
+    "number": 81,
+    "level": "Intermediate",
+    "category": "SED",
+    "title": "Replace configuration value #1",
+    "description": "Edit a configuration file non-interactively.",
+    "objective": "Replace `10.0.1.1` with `10.10.1.1` in `app1.conf`.",
+    "setup": "cd /root/lab; printf 'host=10.0.1.1\\nport=8080\\n' > app1.conf",
+    "check": "grep -qx \"host=10.10.1.1\" /root/lab/app1.conf && ! grep -q \"10.0.1.1\" /root/lab/app1.conf",
+    "hints": [
+      "sed -i can edit a file in place."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_081}",
+    "commandHint": "sed -i 's/10.0.1.1/10.10.1.1/' app1.conf"
+  },
+  {
+    "id": "LNX-082",
+    "number": 82,
+    "level": "Intermediate",
+    "category": "SED",
+    "title": "Replace configuration value #2",
+    "description": "Edit a configuration file non-interactively.",
+    "objective": "Replace `10.0.2.1` with `10.10.2.1` in `app2.conf`.",
+    "setup": "cd /root/lab; printf 'host=10.0.2.1\\nport=8080\\n' > app2.conf",
+    "check": "grep -qx \"host=10.10.2.1\" /root/lab/app2.conf && ! grep -q \"10.0.2.1\" /root/lab/app2.conf",
+    "hints": [
+      "sed -i can edit a file in place."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_082}",
+    "commandHint": "sed -i 's/10.0.2.1/10.10.2.1/' app2.conf"
+  },
+  {
+    "id": "LNX-083",
+    "number": 83,
+    "level": "Intermediate",
+    "category": "SED",
+    "title": "Replace configuration value #3",
+    "description": "Edit a configuration file non-interactively.",
+    "objective": "Replace `10.0.3.1` with `10.10.3.1` in `app3.conf`.",
+    "setup": "cd /root/lab; printf 'host=10.0.3.1\\nport=8080\\n' > app3.conf",
+    "check": "grep -qx \"host=10.10.3.1\" /root/lab/app3.conf && ! grep -q \"10.0.3.1\" /root/lab/app3.conf",
+    "hints": [
+      "sed -i can edit a file in place."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_083}",
+    "commandHint": "sed -i 's/10.0.3.1/10.10.3.1/' app3.conf"
+  },
+  {
+    "id": "LNX-084",
+    "number": 84,
+    "level": "Intermediate",
+    "category": "SED",
+    "title": "Replace configuration value #4",
+    "description": "Edit a configuration file non-interactively.",
+    "objective": "Replace `10.0.4.1` with `10.10.4.1` in `app4.conf`.",
+    "setup": "cd /root/lab; printf 'host=10.0.4.1\\nport=8080\\n' > app4.conf",
+    "check": "grep -qx \"host=10.10.4.1\" /root/lab/app4.conf && ! grep -q \"10.0.4.1\" /root/lab/app4.conf",
+    "hints": [
+      "sed -i can edit a file in place."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_084}",
+    "commandHint": "sed -i 's/10.0.4.1/10.10.4.1/' app4.conf"
+  },
+  {
+    "id": "LNX-085",
+    "number": 85,
+    "level": "Intermediate",
+    "category": "SED",
+    "title": "Replace configuration value #5",
+    "description": "Edit a configuration file non-interactively.",
+    "objective": "Replace `10.0.5.1` with `10.10.5.1` in `app5.conf`.",
+    "setup": "cd /root/lab; printf 'host=10.0.5.1\\nport=8080\\n' > app5.conf",
+    "check": "grep -qx \"host=10.10.5.1\" /root/lab/app5.conf && ! grep -q \"10.0.5.1\" /root/lab/app5.conf",
+    "hints": [
+      "sed -i can edit a file in place."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_085}",
+    "commandHint": "sed -i 's/10.0.5.1/10.10.5.1/' app5.conf"
+  },
+  {
+    "id": "LNX-086",
+    "number": 86,
+    "level": "Intermediate",
+    "category": "Shell Scripts",
+    "title": "Write a backup script #1",
+    "description": "Create a small executable shell script with predictable output.",
+    "objective": "Create executable `check1.sh` that prints exactly `READY-1` when run.",
+    "setup": "cd /root/lab",
+    "check": "[ -x /root/lab/check1.sh ] && [ \"$(/root/lab/check1.sh)\" = \"READY-1\" ]",
+    "hints": [
+      "Start with #!/bin/sh.",
+      "Use echo to print the required text, then chmod +x."
+    ],
+    "points": 40,
+    "flag": "FLAG{STACKFORGE_086}",
+    "commandHint": "printf '#!/bin/sh\\necho READY-1\\n' > check1.sh && chmod +x check1.sh"
+  },
+  {
+    "id": "LNX-087",
+    "number": 87,
+    "level": "Intermediate",
+    "category": "Shell Scripts",
+    "title": "Write a backup script #2",
+    "description": "Create a small executable shell script with predictable output.",
+    "objective": "Create executable `check2.sh` that prints exactly `READY-2` when run.",
+    "setup": "cd /root/lab",
+    "check": "[ -x /root/lab/check2.sh ] && [ \"$(/root/lab/check2.sh)\" = \"READY-2\" ]",
+    "hints": [
+      "Start with #!/bin/sh.",
+      "Use echo to print the required text, then chmod +x."
+    ],
+    "points": 40,
+    "flag": "FLAG{STACKFORGE_087}",
+    "commandHint": "printf '#!/bin/sh\\necho READY-2\\n' > check2.sh && chmod +x check2.sh"
+  },
+  {
+    "id": "LNX-088",
+    "number": 88,
+    "level": "Intermediate",
+    "category": "Shell Scripts",
+    "title": "Write a backup script #3",
+    "description": "Create a small executable shell script with predictable output.",
+    "objective": "Create executable `check3.sh` that prints exactly `READY-3` when run.",
+    "setup": "cd /root/lab",
+    "check": "[ -x /root/lab/check3.sh ] && [ \"$(/root/lab/check3.sh)\" = \"READY-3\" ]",
+    "hints": [
+      "Start with #!/bin/sh.",
+      "Use echo to print the required text, then chmod +x."
+    ],
+    "points": 40,
+    "flag": "FLAG{STACKFORGE_088}",
+    "commandHint": "printf '#!/bin/sh\\necho READY-3\\n' > check3.sh && chmod +x check3.sh"
+  },
+  {
+    "id": "LNX-089",
+    "number": 89,
+    "level": "Intermediate",
+    "category": "Shell Scripts",
+    "title": "Write a backup script #4",
+    "description": "Create a small executable shell script with predictable output.",
+    "objective": "Create executable `check4.sh` that prints exactly `READY-4` when run.",
+    "setup": "cd /root/lab",
+    "check": "[ -x /root/lab/check4.sh ] && [ \"$(/root/lab/check4.sh)\" = \"READY-4\" ]",
+    "hints": [
+      "Start with #!/bin/sh.",
+      "Use echo to print the required text, then chmod +x."
+    ],
+    "points": 40,
+    "flag": "FLAG{STACKFORGE_089}",
+    "commandHint": "printf '#!/bin/sh\\necho READY-4\\n' > check4.sh && chmod +x check4.sh"
+  },
+  {
+    "id": "LNX-090",
+    "number": 90,
+    "level": "Intermediate",
+    "category": "Shell Scripts",
+    "title": "Write a backup script #5",
+    "description": "Create a small executable shell script with predictable output.",
+    "objective": "Create executable `check5.sh` that prints exactly `READY-5` when run.",
+    "setup": "cd /root/lab",
+    "check": "[ -x /root/lab/check5.sh ] && [ \"$(/root/lab/check5.sh)\" = \"READY-5\" ]",
+    "hints": [
+      "Start with #!/bin/sh.",
+      "Use echo to print the required text, then chmod +x."
+    ],
+    "points": 40,
+    "flag": "FLAG{STACKFORGE_090}",
+    "commandHint": "printf '#!/bin/sh\\necho READY-5\\n' > check5.sh && chmod +x check5.sh"
+  },
+  {
+    "id": "LNX-091",
+    "number": 91,
+    "level": "Intermediate",
+    "category": "Logs",
+    "title": "Count error records #1",
+    "description": "Combine grep and wc to summarize log data.",
+    "objective": "Count lines beginning with `ERROR` in `service1.log`; save only the number to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ERROR event-1\\nINFO event-2\\n' > service1.log",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"1\" ]",
+    "hints": [
+      "grep can select matching lines.",
+      "Pipe into wc -l."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_091}",
+    "commandHint": "grep '^ERROR' service1.log | wc -l > answer.txt"
+  },
+  {
+    "id": "LNX-092",
+    "number": 92,
+    "level": "Intermediate",
+    "category": "Logs",
+    "title": "Count error records #2",
+    "description": "Combine grep and wc to summarize log data.",
+    "objective": "Count lines beginning with `ERROR` in `service2.log`; save only the number to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ERROR event-1\\nINFO event-2\\nERROR event-3\\n' > service2.log",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"2\" ]",
+    "hints": [
+      "grep can select matching lines.",
+      "Pipe into wc -l."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_092}",
+    "commandHint": "grep '^ERROR' service2.log | wc -l > answer.txt"
+  },
+  {
+    "id": "LNX-093",
+    "number": 93,
+    "level": "Intermediate",
+    "category": "Logs",
+    "title": "Count error records #3",
+    "description": "Combine grep and wc to summarize log data.",
+    "objective": "Count lines beginning with `ERROR` in `service3.log`; save only the number to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ERROR event-1\\nINFO event-2\\nERROR event-3\\nWARN event-4\\n' > service3.log",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"2\" ]",
+    "hints": [
+      "grep can select matching lines.",
+      "Pipe into wc -l."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_093}",
+    "commandHint": "grep '^ERROR' service3.log | wc -l > answer.txt"
+  },
+  {
+    "id": "LNX-094",
+    "number": 94,
+    "level": "Intermediate",
+    "category": "Logs",
+    "title": "Count error records #4",
+    "description": "Combine grep and wc to summarize log data.",
+    "objective": "Count lines beginning with `ERROR` in `service4.log`; save only the number to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ERROR event-1\\nINFO event-2\\nERROR event-3\\nWARN event-4\\nERROR event-5\\n' > service4.log",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"3\" ]",
+    "hints": [
+      "grep can select matching lines.",
+      "Pipe into wc -l."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_094}",
+    "commandHint": "grep '^ERROR' service4.log | wc -l > answer.txt"
+  },
+  {
+    "id": "LNX-095",
+    "number": 95,
+    "level": "Intermediate",
+    "category": "Logs",
+    "title": "Count error records #5",
+    "description": "Combine grep and wc to summarize log data.",
+    "objective": "Count lines beginning with `ERROR` in `service5.log`; save only the number to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'ERROR event-1\\nINFO event-2\\nERROR event-3\\nWARN event-4\\nERROR event-5\\n' > service5.log",
+    "check": "[ \"$(cat /root/lab/answer.txt 2>/dev/null | tr -d \" \\n\\r\")\" = \"3\" ]",
+    "hints": [
+      "grep can select matching lines.",
+      "Pipe into wc -l."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_095}",
+    "commandHint": "grep '^ERROR' service5.log | wc -l > answer.txt"
+  },
+  {
+    "id": "LNX-096",
+    "number": 96,
+    "level": "Intermediate",
+    "category": "Pipelines",
+    "title": "Sort and deduplicate #1",
+    "description": "Build a pipeline that sorts text and removes duplicates.",
+    "objective": "Sort `names1.txt`, remove duplicates, and save the result in `answer.txt`.",
+    "setup": "cd /root/lab; printf 'gamma1\\nalpha1\\nbeta1\\nalpha1\\n' > names1.txt",
+    "check": "printf 'alpha1\\nbeta1\\ngamma1\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "sort first, then uniq."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_096}",
+    "commandHint": "sort names1.txt | uniq > answer.txt"
+  },
+  {
+    "id": "LNX-097",
+    "number": 97,
+    "level": "Intermediate",
+    "category": "Pipelines",
+    "title": "Sort and deduplicate #2",
+    "description": "Build a pipeline that sorts text and removes duplicates.",
+    "objective": "Sort `names2.txt`, remove duplicates, and save the result in `answer.txt`.",
+    "setup": "cd /root/lab; printf 'gamma2\\nalpha2\\nbeta2\\nalpha2\\n' > names2.txt",
+    "check": "printf 'alpha2\\nbeta2\\ngamma2\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "sort first, then uniq."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_097}",
+    "commandHint": "sort names2.txt | uniq > answer.txt"
+  },
+  {
+    "id": "LNX-098",
+    "number": 98,
+    "level": "Intermediate",
+    "category": "Pipelines",
+    "title": "Sort and deduplicate #3",
+    "description": "Build a pipeline that sorts text and removes duplicates.",
+    "objective": "Sort `names3.txt`, remove duplicates, and save the result in `answer.txt`.",
+    "setup": "cd /root/lab; printf 'gamma3\\nalpha3\\nbeta3\\nalpha3\\n' > names3.txt",
+    "check": "printf 'alpha3\\nbeta3\\ngamma3\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "sort first, then uniq."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_098}",
+    "commandHint": "sort names3.txt | uniq > answer.txt"
+  },
+  {
+    "id": "LNX-099",
+    "number": 99,
+    "level": "Intermediate",
+    "category": "Pipelines",
+    "title": "Sort and deduplicate #4",
+    "description": "Build a pipeline that sorts text and removes duplicates.",
+    "objective": "Sort `names4.txt`, remove duplicates, and save the result in `answer.txt`.",
+    "setup": "cd /root/lab; printf 'gamma4\\nalpha4\\nbeta4\\nalpha4\\n' > names4.txt",
+    "check": "printf 'alpha4\\nbeta4\\ngamma4\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "sort first, then uniq."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_099}",
+    "commandHint": "sort names4.txt | uniq > answer.txt"
+  },
+  {
+    "id": "LNX-100",
+    "number": 100,
+    "level": "Intermediate",
+    "category": "Pipelines",
+    "title": "Sort and deduplicate #5",
+    "description": "Build a pipeline that sorts text and removes duplicates.",
+    "objective": "Sort `names5.txt`, remove duplicates, and save the result in `answer.txt`.",
+    "setup": "cd /root/lab; printf 'gamma5\\nalpha5\\nbeta5\\nalpha5\\n' > names5.txt",
+    "check": "printf 'alpha5\\nbeta5\\ngamma5\\n' | cmp -s - /root/lab/answer.txt",
+    "hints": [
+      "sort first, then uniq."
+    ],
+    "points": 35,
+    "flag": "FLAG{STACKFORGE_100}",
+    "commandHint": "sort names5.txt | uniq > answer.txt"
+  },
+  {
+    "id": "LNX-101",
+    "number": 101,
+    "level": "Advanced",
+    "category": "Incident Response",
+    "title": "Locate suspicious login #1",
+    "description": "Analyze a simulated authentication log and extract a local training flag.",
+    "objective": "Find the flag on the line with a failed root login and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'INFO user=ana login=ok\\nWARN user=root login=failed src=lab1 flag=FLAG{LOG_1_ANOMALY}\\nINFO user=ben login=ok\\n' > auth.log",
+    "check": "grep -qx \"FLAG{LOG_1_ANOMALY}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Search for root and failed.",
+      "Extract the flag= field with awk/cut."
+    ],
+    "points": 50,
+    "flag": "FLAG{LOG_1_ANOMALY}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-102",
+    "number": 102,
+    "level": "Advanced",
+    "category": "Incident Response",
+    "title": "Locate suspicious login #2",
+    "description": "Analyze a simulated authentication log and extract a local training flag.",
+    "objective": "Find the flag on the line with a failed root login and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'INFO user=ana login=ok\\nWARN user=root login=failed src=lab2 flag=FLAG{LOG_2_ANOMALY}\\nINFO user=ben login=ok\\n' > auth.log",
+    "check": "grep -qx \"FLAG{LOG_2_ANOMALY}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Search for root and failed.",
+      "Extract the flag= field with awk/cut."
+    ],
+    "points": 50,
+    "flag": "FLAG{LOG_2_ANOMALY}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-103",
+    "number": 103,
+    "level": "Advanced",
+    "category": "Incident Response",
+    "title": "Locate suspicious login #3",
+    "description": "Analyze a simulated authentication log and extract a local training flag.",
+    "objective": "Find the flag on the line with a failed root login and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'INFO user=ana login=ok\\nWARN user=root login=failed src=lab3 flag=FLAG{LOG_3_ANOMALY}\\nINFO user=ben login=ok\\n' > auth.log",
+    "check": "grep -qx \"FLAG{LOG_3_ANOMALY}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Search for root and failed.",
+      "Extract the flag= field with awk/cut."
+    ],
+    "points": 50,
+    "flag": "FLAG{LOG_3_ANOMALY}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-104",
+    "number": 104,
+    "level": "Advanced",
+    "category": "Incident Response",
+    "title": "Locate suspicious login #4",
+    "description": "Analyze a simulated authentication log and extract a local training flag.",
+    "objective": "Find the flag on the line with a failed root login and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'INFO user=ana login=ok\\nWARN user=root login=failed src=lab4 flag=FLAG{LOG_4_ANOMALY}\\nINFO user=ben login=ok\\n' > auth.log",
+    "check": "grep -qx \"FLAG{LOG_4_ANOMALY}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Search for root and failed.",
+      "Extract the flag= field with awk/cut."
+    ],
+    "points": 50,
+    "flag": "FLAG{LOG_4_ANOMALY}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-105",
+    "number": 105,
+    "level": "Advanced",
+    "category": "Incident Response",
+    "title": "Locate suspicious login #5",
+    "description": "Analyze a simulated authentication log and extract a local training flag.",
+    "objective": "Find the flag on the line with a failed root login and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; printf 'INFO user=ana login=ok\\nWARN user=root login=failed src=lab5 flag=FLAG{LOG_5_ANOMALY}\\nINFO user=ben login=ok\\n' > auth.log",
+    "check": "grep -qx \"FLAG{LOG_5_ANOMALY}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Search for root and failed.",
+      "Extract the flag= field with awk/cut."
+    ],
+    "points": 50,
+    "flag": "FLAG{LOG_5_ANOMALY}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-106",
+    "number": 106,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Find world-writable sensitive file #1",
+    "description": "Audit a local directory tree for unsafe permissions.",
+    "objective": "Find the `.key` file that is world-writable and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo safe > audit/normal1.txt; echo key > audit/secret1.key; chmod 644 audit/normal1.txt; chmod 666 audit/secret1.key",
+    "check": "grep -qx \"/root/lab/audit/secret1.key\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find with a permission test.",
+      "World-writable means the other-write bit is set."
+    ],
+    "points": 55,
+    "flag": "FLAG{STACKFORGE_106}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-107",
+    "number": 107,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Find world-writable sensitive file #2",
+    "description": "Audit a local directory tree for unsafe permissions.",
+    "objective": "Find the `.key` file that is world-writable and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo safe > audit/normal2.txt; echo key > audit/secret2.key; chmod 644 audit/normal2.txt; chmod 666 audit/secret2.key",
+    "check": "grep -qx \"/root/lab/audit/secret2.key\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find with a permission test.",
+      "World-writable means the other-write bit is set."
+    ],
+    "points": 55,
+    "flag": "FLAG{STACKFORGE_107}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-108",
+    "number": 108,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Find world-writable sensitive file #3",
+    "description": "Audit a local directory tree for unsafe permissions.",
+    "objective": "Find the `.key` file that is world-writable and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo safe > audit/normal3.txt; echo key > audit/secret3.key; chmod 644 audit/normal3.txt; chmod 666 audit/secret3.key",
+    "check": "grep -qx \"/root/lab/audit/secret3.key\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find with a permission test.",
+      "World-writable means the other-write bit is set."
+    ],
+    "points": 55,
+    "flag": "FLAG{STACKFORGE_108}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-109",
+    "number": 109,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Find world-writable sensitive file #4",
+    "description": "Audit a local directory tree for unsafe permissions.",
+    "objective": "Find the `.key` file that is world-writable and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo safe > audit/normal4.txt; echo key > audit/secret4.key; chmod 644 audit/normal4.txt; chmod 666 audit/secret4.key",
+    "check": "grep -qx \"/root/lab/audit/secret4.key\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find with a permission test.",
+      "World-writable means the other-write bit is set."
+    ],
+    "points": 55,
+    "flag": "FLAG{STACKFORGE_109}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-110",
+    "number": 110,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Find world-writable sensitive file #5",
+    "description": "Audit a local directory tree for unsafe permissions.",
+    "objective": "Find the `.key` file that is world-writable and save its full path to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo safe > audit/normal5.txt; echo key > audit/secret5.key; chmod 644 audit/normal5.txt; chmod 666 audit/secret5.key",
+    "check": "grep -qx \"/root/lab/audit/secret5.key\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find with a permission test.",
+      "World-writable means the other-write bit is set."
+    ],
+    "points": 55,
+    "flag": "FLAG{STACKFORGE_110}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-111",
+    "number": 111,
+    "level": "Advanced",
+    "category": "Integrity",
+    "title": "Verify SHA-256 #1",
+    "description": "Use a cryptographic checksum for local integrity verification.",
+    "objective": "Compute the SHA-256 of `artifact1.bin` and write only the hex digest to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'stackforge-integrity-1' > artifact1.bin",
+    "check": "grep -qx \"9becbbe35c36f33620cae607bc58fb7eae530c7c6a9b57559eb2c4afcaa823a7\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use sha256sum FILE.",
+      "Keep only the first field."
+    ],
+    "points": 55,
+    "flag": "FLAG{SHA256_1}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-112",
+    "number": 112,
+    "level": "Advanced",
+    "category": "Integrity",
+    "title": "Verify SHA-256 #2",
+    "description": "Use a cryptographic checksum for local integrity verification.",
+    "objective": "Compute the SHA-256 of `artifact2.bin` and write only the hex digest to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'stackforge-integrity-2' > artifact2.bin",
+    "check": "grep -qx \"43b9e15688541de4d3c23981f2f41ffb8f15698a250259e6b4e432e3512887b9\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use sha256sum FILE.",
+      "Keep only the first field."
+    ],
+    "points": 55,
+    "flag": "FLAG{SHA256_2}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-113",
+    "number": 113,
+    "level": "Advanced",
+    "category": "Integrity",
+    "title": "Verify SHA-256 #3",
+    "description": "Use a cryptographic checksum for local integrity verification.",
+    "objective": "Compute the SHA-256 of `artifact3.bin` and write only the hex digest to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'stackforge-integrity-3' > artifact3.bin",
+    "check": "grep -qx \"2c63941ed6f0af1148fdc900c2ab759bbc057b73be8e4301d2c70f30aad5bfbb\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use sha256sum FILE.",
+      "Keep only the first field."
+    ],
+    "points": 55,
+    "flag": "FLAG{SHA256_3}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-114",
+    "number": 114,
+    "level": "Advanced",
+    "category": "Integrity",
+    "title": "Verify SHA-256 #4",
+    "description": "Use a cryptographic checksum for local integrity verification.",
+    "objective": "Compute the SHA-256 of `artifact4.bin` and write only the hex digest to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'stackforge-integrity-4' > artifact4.bin",
+    "check": "grep -qx \"797cc5985448ec29e851df3c61b2bcd088207b48f1fefc31e4e4e431f0a76b2f\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use sha256sum FILE.",
+      "Keep only the first field."
+    ],
+    "points": 55,
+    "flag": "FLAG{SHA256_4}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-115",
+    "number": 115,
+    "level": "Advanced",
+    "category": "Integrity",
+    "title": "Verify SHA-256 #5",
+    "description": "Use a cryptographic checksum for local integrity verification.",
+    "objective": "Compute the SHA-256 of `artifact5.bin` and write only the hex digest to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'stackforge-integrity-5' > artifact5.bin",
+    "check": "grep -qx \"1ed6bc3c92dcc81e1b5fd0d9076c76af2f644e9780a3e3eb41ccddf59d083d41\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use sha256sum FILE.",
+      "Keep only the first field."
+    ],
+    "points": 55,
+    "flag": "FLAG{SHA256_5}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-116",
+    "number": 116,
+    "level": "Advanced",
+    "category": "Encoding",
+    "title": "Decode evidence #1",
+    "description": "Decode a Base64-encoded training artifact.",
+    "objective": "Decode `evidence1.b64` and save the plaintext to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'Zm9yZW5zaWNzLW1lc3NhZ2UtMQ==' > evidence1.b64",
+    "check": "grep -qx \"forensics-message-1\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use base64 -d."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_116}",
+    "commandHint": "base64 -d evidence1.b64 > answer.txt"
+  },
+  {
+    "id": "LNX-117",
+    "number": 117,
+    "level": "Advanced",
+    "category": "Encoding",
+    "title": "Decode evidence #2",
+    "description": "Decode a Base64-encoded training artifact.",
+    "objective": "Decode `evidence2.b64` and save the plaintext to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'Zm9yZW5zaWNzLW1lc3NhZ2UtMg==' > evidence2.b64",
+    "check": "grep -qx \"forensics-message-2\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use base64 -d."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_117}",
+    "commandHint": "base64 -d evidence2.b64 > answer.txt"
+  },
+  {
+    "id": "LNX-118",
+    "number": 118,
+    "level": "Advanced",
+    "category": "Encoding",
+    "title": "Decode evidence #3",
+    "description": "Decode a Base64-encoded training artifact.",
+    "objective": "Decode `evidence3.b64` and save the plaintext to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'Zm9yZW5zaWNzLW1lc3NhZ2UtMw==' > evidence3.b64",
+    "check": "grep -qx \"forensics-message-3\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use base64 -d."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_118}",
+    "commandHint": "base64 -d evidence3.b64 > answer.txt"
+  },
+  {
+    "id": "LNX-119",
+    "number": 119,
+    "level": "Advanced",
+    "category": "Encoding",
+    "title": "Decode evidence #4",
+    "description": "Decode a Base64-encoded training artifact.",
+    "objective": "Decode `evidence4.b64` and save the plaintext to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'Zm9yZW5zaWNzLW1lc3NhZ2UtNA==' > evidence4.b64",
+    "check": "grep -qx \"forensics-message-4\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use base64 -d."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_119}",
+    "commandHint": "base64 -d evidence4.b64 > answer.txt"
+  },
+  {
+    "id": "LNX-120",
+    "number": 120,
+    "level": "Advanced",
+    "category": "Encoding",
+    "title": "Decode evidence #5",
+    "description": "Decode a Base64-encoded training artifact.",
+    "objective": "Decode `evidence5.b64` and save the plaintext to `answer.txt`.",
+    "setup": "cd /root/lab; printf %s 'Zm9yZW5zaWNzLW1lc3NhZ2UtNQ==' > evidence5.b64",
+    "check": "grep -qx \"forensics-message-5\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use base64 -d."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_120}",
+    "commandHint": "base64 -d evidence5.b64 > answer.txt"
+  },
+  {
+    "id": "LNX-121",
+    "number": 121,
+    "level": "Advanced",
+    "category": "Log Analysis",
+    "title": "Top source IP #1",
+    "description": "Analyze a simulated web log to identify the most frequent source.",
+    "objective": "Write the most frequent source IP in `access.log` to `answer.txt`.",
+    "setup": "cd /root/lab; printf '192.0.2.11 GET /\\n198.51.100.7 GET /a\\n192.0.2.11 POST /login\\n203.0.113.9 GET /b\\n192.0.2.11 GET /c\\n' > access.log",
+    "check": "grep -qx \"192.0.2.11\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract field 1, sort, count duplicates, then sort by count."
+    ],
+    "points": 60,
+    "flag": "FLAG{STACKFORGE_121}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-122",
+    "number": 122,
+    "level": "Advanced",
+    "category": "Log Analysis",
+    "title": "Top source IP #2",
+    "description": "Analyze a simulated web log to identify the most frequent source.",
+    "objective": "Write the most frequent source IP in `access.log` to `answer.txt`.",
+    "setup": "cd /root/lab; printf '192.0.2.12 GET /\\n198.51.100.7 GET /a\\n192.0.2.12 POST /login\\n203.0.113.9 GET /b\\n192.0.2.12 GET /c\\n' > access.log",
+    "check": "grep -qx \"192.0.2.12\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract field 1, sort, count duplicates, then sort by count."
+    ],
+    "points": 60,
+    "flag": "FLAG{STACKFORGE_122}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-123",
+    "number": 123,
+    "level": "Advanced",
+    "category": "Log Analysis",
+    "title": "Top source IP #3",
+    "description": "Analyze a simulated web log to identify the most frequent source.",
+    "objective": "Write the most frequent source IP in `access.log` to `answer.txt`.",
+    "setup": "cd /root/lab; printf '192.0.2.13 GET /\\n198.51.100.7 GET /a\\n192.0.2.13 POST /login\\n203.0.113.9 GET /b\\n192.0.2.13 GET /c\\n' > access.log",
+    "check": "grep -qx \"192.0.2.13\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract field 1, sort, count duplicates, then sort by count."
+    ],
+    "points": 60,
+    "flag": "FLAG{STACKFORGE_123}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-124",
+    "number": 124,
+    "level": "Advanced",
+    "category": "Log Analysis",
+    "title": "Top source IP #4",
+    "description": "Analyze a simulated web log to identify the most frequent source.",
+    "objective": "Write the most frequent source IP in `access.log` to `answer.txt`.",
+    "setup": "cd /root/lab; printf '192.0.2.14 GET /\\n198.51.100.7 GET /a\\n192.0.2.14 POST /login\\n203.0.113.9 GET /b\\n192.0.2.14 GET /c\\n' > access.log",
+    "check": "grep -qx \"192.0.2.14\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract field 1, sort, count duplicates, then sort by count."
+    ],
+    "points": 60,
+    "flag": "FLAG{STACKFORGE_124}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-125",
+    "number": 125,
+    "level": "Advanced",
+    "category": "Log Analysis",
+    "title": "Top source IP #5",
+    "description": "Analyze a simulated web log to identify the most frequent source.",
+    "objective": "Write the most frequent source IP in `access.log` to `answer.txt`.",
+    "setup": "cd /root/lab; printf '192.0.2.15 GET /\\n198.51.100.7 GET /a\\n192.0.2.15 POST /login\\n203.0.113.9 GET /b\\n192.0.2.15 GET /c\\n' > access.log",
+    "check": "grep -qx \"192.0.2.15\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract field 1, sort, count duplicates, then sort by count."
+    ],
+    "points": 60,
+    "flag": "FLAG{STACKFORGE_125}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-126",
+    "number": 126,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Hidden configuration artifact #1",
+    "description": "Inspect hidden files in a local directory.",
+    "objective": "Locate the hidden file under `case/` containing a flag and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p case; echo ordinary > case/readme.txt; echo 'FLAG{HIDDEN_FILE_1}' > case/.trace1; echo other > case/.cache",
+    "check": "grep -qx \"FLAG{HIDDEN_FILE_1}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use ls -la or find to include dotfiles.",
+      "grep -R can search file contents."
+    ],
+    "points": 55,
+    "flag": "FLAG{HIDDEN_FILE_1}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-127",
+    "number": 127,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Hidden configuration artifact #2",
+    "description": "Inspect hidden files in a local directory.",
+    "objective": "Locate the hidden file under `case/` containing a flag and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p case; echo ordinary > case/readme.txt; echo 'FLAG{HIDDEN_FILE_2}' > case/.trace2; echo other > case/.cache",
+    "check": "grep -qx \"FLAG{HIDDEN_FILE_2}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use ls -la or find to include dotfiles.",
+      "grep -R can search file contents."
+    ],
+    "points": 55,
+    "flag": "FLAG{HIDDEN_FILE_2}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-128",
+    "number": 128,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Hidden configuration artifact #3",
+    "description": "Inspect hidden files in a local directory.",
+    "objective": "Locate the hidden file under `case/` containing a flag and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p case; echo ordinary > case/readme.txt; echo 'FLAG{HIDDEN_FILE_3}' > case/.trace3; echo other > case/.cache",
+    "check": "grep -qx \"FLAG{HIDDEN_FILE_3}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use ls -la or find to include dotfiles.",
+      "grep -R can search file contents."
+    ],
+    "points": 55,
+    "flag": "FLAG{HIDDEN_FILE_3}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-129",
+    "number": 129,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Hidden configuration artifact #4",
+    "description": "Inspect hidden files in a local directory.",
+    "objective": "Locate the hidden file under `case/` containing a flag and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p case; echo ordinary > case/readme.txt; echo 'FLAG{HIDDEN_FILE_4}' > case/.trace4; echo other > case/.cache",
+    "check": "grep -qx \"FLAG{HIDDEN_FILE_4}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use ls -la or find to include dotfiles.",
+      "grep -R can search file contents."
+    ],
+    "points": 55,
+    "flag": "FLAG{HIDDEN_FILE_4}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-130",
+    "number": 130,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Hidden configuration artifact #5",
+    "description": "Inspect hidden files in a local directory.",
+    "objective": "Locate the hidden file under `case/` containing a flag and write only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p case; echo ordinary > case/readme.txt; echo 'FLAG{HIDDEN_FILE_5}' > case/.trace5; echo other > case/.cache",
+    "check": "grep -qx \"FLAG{HIDDEN_FILE_5}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use ls -la or find to include dotfiles.",
+      "grep -R can search file contents."
+    ],
+    "points": 55,
+    "flag": "FLAG{HIDDEN_FILE_5}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-131",
+    "number": 131,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Inspect archive #1",
+    "description": "Extract a local tar.gz evidence bundle and recover a training flag.",
+    "objective": "Extract `evidence.tar.gz`, locate `flag.txt`, and copy its flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p src/nested; echo note > src/note.txt; echo 'FLAG{ARCHIVE_1_FOUND}' > src/nested/flag.txt; tar czf evidence.tar.gz src; rm -rf src",
+    "check": "grep -qx \"FLAG{ARCHIVE_1_FOUND}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use tar xzf evidence.tar.gz.",
+      "Then find flag.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{ARCHIVE_1_FOUND}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-132",
+    "number": 132,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Inspect archive #2",
+    "description": "Extract a local tar.gz evidence bundle and recover a training flag.",
+    "objective": "Extract `evidence.tar.gz`, locate `flag.txt`, and copy its flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p src/nested; echo note > src/note.txt; echo 'FLAG{ARCHIVE_2_FOUND}' > src/nested/flag.txt; tar czf evidence.tar.gz src; rm -rf src",
+    "check": "grep -qx \"FLAG{ARCHIVE_2_FOUND}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use tar xzf evidence.tar.gz.",
+      "Then find flag.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{ARCHIVE_2_FOUND}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-133",
+    "number": 133,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Inspect archive #3",
+    "description": "Extract a local tar.gz evidence bundle and recover a training flag.",
+    "objective": "Extract `evidence.tar.gz`, locate `flag.txt`, and copy its flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p src/nested; echo note > src/note.txt; echo 'FLAG{ARCHIVE_3_FOUND}' > src/nested/flag.txt; tar czf evidence.tar.gz src; rm -rf src",
+    "check": "grep -qx \"FLAG{ARCHIVE_3_FOUND}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use tar xzf evidence.tar.gz.",
+      "Then find flag.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{ARCHIVE_3_FOUND}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-134",
+    "number": 134,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Inspect archive #4",
+    "description": "Extract a local tar.gz evidence bundle and recover a training flag.",
+    "objective": "Extract `evidence.tar.gz`, locate `flag.txt`, and copy its flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p src/nested; echo note > src/note.txt; echo 'FLAG{ARCHIVE_4_FOUND}' > src/nested/flag.txt; tar czf evidence.tar.gz src; rm -rf src",
+    "check": "grep -qx \"FLAG{ARCHIVE_4_FOUND}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use tar xzf evidence.tar.gz.",
+      "Then find flag.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{ARCHIVE_4_FOUND}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-135",
+    "number": 135,
+    "level": "Advanced",
+    "category": "Forensics",
+    "title": "Inspect archive #5",
+    "description": "Extract a local tar.gz evidence bundle and recover a training flag.",
+    "objective": "Extract `evidence.tar.gz`, locate `flag.txt`, and copy its flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p src/nested; echo note > src/note.txt; echo 'FLAG{ARCHIVE_5_FOUND}' > src/nested/flag.txt; tar czf evidence.tar.gz src; rm -rf src",
+    "check": "grep -qx \"FLAG{ARCHIVE_5_FOUND}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use tar xzf evidence.tar.gz.",
+      "Then find flag.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{ARCHIVE_5_FOUND}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-136",
+    "number": 136,
+    "level": "Advanced",
+    "category": "Recovery",
+    "title": "Restore configuration #1",
+    "description": "Recover the newest valid local backup using timestamps embedded in filenames.",
+    "objective": "Copy `backups/config1.ini.v3` to `config1.ini`.",
+    "setup": "cd /root/lab; mkdir -p backups; echo old > backups/config1.ini.v1; echo middle > backups/config1.ini.v2; echo current-1 > backups/config1.ini.v3",
+    "check": "grep -qx \"current-1\" /root/lab/config1.ini 2>/dev/null",
+    "hints": [
+      "The required source is explicitly the v3 backup.",
+      "Use cp."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_136}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-137",
+    "number": 137,
+    "level": "Advanced",
+    "category": "Recovery",
+    "title": "Restore configuration #2",
+    "description": "Recover the newest valid local backup using timestamps embedded in filenames.",
+    "objective": "Copy `backups/config2.ini.v3` to `config2.ini`.",
+    "setup": "cd /root/lab; mkdir -p backups; echo old > backups/config2.ini.v1; echo middle > backups/config2.ini.v2; echo current-2 > backups/config2.ini.v3",
+    "check": "grep -qx \"current-2\" /root/lab/config2.ini 2>/dev/null",
+    "hints": [
+      "The required source is explicitly the v3 backup.",
+      "Use cp."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_137}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-138",
+    "number": 138,
+    "level": "Advanced",
+    "category": "Recovery",
+    "title": "Restore configuration #3",
+    "description": "Recover the newest valid local backup using timestamps embedded in filenames.",
+    "objective": "Copy `backups/config3.ini.v3` to `config3.ini`.",
+    "setup": "cd /root/lab; mkdir -p backups; echo old > backups/config3.ini.v1; echo middle > backups/config3.ini.v2; echo current-3 > backups/config3.ini.v3",
+    "check": "grep -qx \"current-3\" /root/lab/config3.ini 2>/dev/null",
+    "hints": [
+      "The required source is explicitly the v3 backup.",
+      "Use cp."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_138}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-139",
+    "number": 139,
+    "level": "Advanced",
+    "category": "Recovery",
+    "title": "Restore configuration #4",
+    "description": "Recover the newest valid local backup using timestamps embedded in filenames.",
+    "objective": "Copy `backups/config4.ini.v3` to `config4.ini`.",
+    "setup": "cd /root/lab; mkdir -p backups; echo old > backups/config4.ini.v1; echo middle > backups/config4.ini.v2; echo current-4 > backups/config4.ini.v3",
+    "check": "grep -qx \"current-4\" /root/lab/config4.ini 2>/dev/null",
+    "hints": [
+      "The required source is explicitly the v3 backup.",
+      "Use cp."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_139}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-140",
+    "number": 140,
+    "level": "Advanced",
+    "category": "Recovery",
+    "title": "Restore configuration #5",
+    "description": "Recover the newest valid local backup using timestamps embedded in filenames.",
+    "objective": "Copy `backups/config5.ini.v3` to `config5.ini`.",
+    "setup": "cd /root/lab; mkdir -p backups; echo old > backups/config5.ini.v1; echo middle > backups/config5.ini.v2; echo current-5 > backups/config5.ini.v3",
+    "check": "grep -qx \"current-5\" /root/lab/config5.ini 2>/dev/null",
+    "hints": [
+      "The required source is explicitly the v3 backup.",
+      "Use cp."
+    ],
+    "points": 50,
+    "flag": "FLAG{STACKFORGE_140}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-141",
+    "number": 141,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Repair exposed secret #1",
+    "description": "Reduce permissions on a local secret and prove the correction.",
+    "objective": "Change `vault1.txt` from mode 666 to mode 600, then write `FLAG{PERMISSION_REPAIR_1}` into `answer.txt`.",
+    "setup": "cd /root/lab; echo secret > vault1.txt; chmod 666 vault1.txt",
+    "check": "[ \"$(stat -c %a /root/lab/vault1.txt)\" = \"600\" ] && grep -qx \"FLAG{PERMISSION_REPAIR_1}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "chmod 600 removes group/other access.",
+      "Then echo the provided flag into answer.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{PERMISSION_REPAIR_1}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-142",
+    "number": 142,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Repair exposed secret #2",
+    "description": "Reduce permissions on a local secret and prove the correction.",
+    "objective": "Change `vault2.txt` from mode 666 to mode 600, then write `FLAG{PERMISSION_REPAIR_2}` into `answer.txt`.",
+    "setup": "cd /root/lab; echo secret > vault2.txt; chmod 666 vault2.txt",
+    "check": "[ \"$(stat -c %a /root/lab/vault2.txt)\" = \"600\" ] && grep -qx \"FLAG{PERMISSION_REPAIR_2}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "chmod 600 removes group/other access.",
+      "Then echo the provided flag into answer.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{PERMISSION_REPAIR_2}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-143",
+    "number": 143,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Repair exposed secret #3",
+    "description": "Reduce permissions on a local secret and prove the correction.",
+    "objective": "Change `vault3.txt` from mode 666 to mode 600, then write `FLAG{PERMISSION_REPAIR_3}` into `answer.txt`.",
+    "setup": "cd /root/lab; echo secret > vault3.txt; chmod 666 vault3.txt",
+    "check": "[ \"$(stat -c %a /root/lab/vault3.txt)\" = \"600\" ] && grep -qx \"FLAG{PERMISSION_REPAIR_3}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "chmod 600 removes group/other access.",
+      "Then echo the provided flag into answer.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{PERMISSION_REPAIR_3}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-144",
+    "number": 144,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Repair exposed secret #4",
+    "description": "Reduce permissions on a local secret and prove the correction.",
+    "objective": "Change `vault4.txt` from mode 666 to mode 600, then write `FLAG{PERMISSION_REPAIR_4}` into `answer.txt`.",
+    "setup": "cd /root/lab; echo secret > vault4.txt; chmod 666 vault4.txt",
+    "check": "[ \"$(stat -c %a /root/lab/vault4.txt)\" = \"600\" ] && grep -qx \"FLAG{PERMISSION_REPAIR_4}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "chmod 600 removes group/other access.",
+      "Then echo the provided flag into answer.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{PERMISSION_REPAIR_4}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-145",
+    "number": 145,
+    "level": "Advanced",
+    "category": "Hardening",
+    "title": "Repair exposed secret #5",
+    "description": "Reduce permissions on a local secret and prove the correction.",
+    "objective": "Change `vault5.txt` from mode 666 to mode 600, then write `FLAG{PERMISSION_REPAIR_5}` into `answer.txt`.",
+    "setup": "cd /root/lab; echo secret > vault5.txt; chmod 666 vault5.txt",
+    "check": "[ \"$(stat -c %a /root/lab/vault5.txt)\" = \"600\" ] && grep -qx \"FLAG{PERMISSION_REPAIR_5}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "chmod 600 removes group/other access.",
+      "Then echo the provided flag into answer.txt."
+    ],
+    "points": 60,
+    "flag": "FLAG{PERMISSION_REPAIR_5}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-146",
+    "number": 146,
+    "level": "Advanced",
+    "category": "Automation",
+    "title": "Write log triage script #1",
+    "description": "Create a shell script that extracts critical records from a local log.",
+    "objective": "Create executable `triage.sh` that reads `events.log` and prints only lines containing `CRITICAL`; its output must be saved to `answer.txt` when you run it.",
+    "setup": "cd /root/lab; printf 'INFO one\\nCRITICAL PIDLESS-SVC-1\\nWARN two\\nCRITICAL disk-1\\n' > events.log",
+    "check": "[ -x /root/lab/triage.sh ] && /root/lab/triage.sh | cmp -s - /root/lab/answer.txt && grep -q \"CRITICAL PIDLESS-SVC-1\" /root/lab/answer.txt",
+    "hints": [
+      "Your script can use grep CRITICAL events.log.",
+      "Remember chmod +x triage.sh and run it with > answer.txt."
+    ],
+    "points": 65,
+    "flag": "FLAG{STACKFORGE_146}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-147",
+    "number": 147,
+    "level": "Advanced",
+    "category": "Automation",
+    "title": "Write log triage script #2",
+    "description": "Create a shell script that extracts critical records from a local log.",
+    "objective": "Create executable `triage.sh` that reads `events.log` and prints only lines containing `CRITICAL`; its output must be saved to `answer.txt` when you run it.",
+    "setup": "cd /root/lab; printf 'INFO one\\nCRITICAL PIDLESS-SVC-2\\nWARN two\\nCRITICAL disk-2\\n' > events.log",
+    "check": "[ -x /root/lab/triage.sh ] && /root/lab/triage.sh | cmp -s - /root/lab/answer.txt && grep -q \"CRITICAL PIDLESS-SVC-2\" /root/lab/answer.txt",
+    "hints": [
+      "Your script can use grep CRITICAL events.log.",
+      "Remember chmod +x triage.sh and run it with > answer.txt."
+    ],
+    "points": 65,
+    "flag": "FLAG{STACKFORGE_147}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-148",
+    "number": 148,
+    "level": "Advanced",
+    "category": "Automation",
+    "title": "Write log triage script #3",
+    "description": "Create a shell script that extracts critical records from a local log.",
+    "objective": "Create executable `triage.sh` that reads `events.log` and prints only lines containing `CRITICAL`; its output must be saved to `answer.txt` when you run it.",
+    "setup": "cd /root/lab; printf 'INFO one\\nCRITICAL PIDLESS-SVC-3\\nWARN two\\nCRITICAL disk-3\\n' > events.log",
+    "check": "[ -x /root/lab/triage.sh ] && /root/lab/triage.sh | cmp -s - /root/lab/answer.txt && grep -q \"CRITICAL PIDLESS-SVC-3\" /root/lab/answer.txt",
+    "hints": [
+      "Your script can use grep CRITICAL events.log.",
+      "Remember chmod +x triage.sh and run it with > answer.txt."
+    ],
+    "points": 65,
+    "flag": "FLAG{STACKFORGE_148}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-149",
+    "number": 149,
+    "level": "Advanced",
+    "category": "Automation",
+    "title": "Write log triage script #4",
+    "description": "Create a shell script that extracts critical records from a local log.",
+    "objective": "Create executable `triage.sh` that reads `events.log` and prints only lines containing `CRITICAL`; its output must be saved to `answer.txt` when you run it.",
+    "setup": "cd /root/lab; printf 'INFO one\\nCRITICAL PIDLESS-SVC-4\\nWARN two\\nCRITICAL disk-4\\n' > events.log",
+    "check": "[ -x /root/lab/triage.sh ] && /root/lab/triage.sh | cmp -s - /root/lab/answer.txt && grep -q \"CRITICAL PIDLESS-SVC-4\" /root/lab/answer.txt",
+    "hints": [
+      "Your script can use grep CRITICAL events.log.",
+      "Remember chmod +x triage.sh and run it with > answer.txt."
+    ],
+    "points": 65,
+    "flag": "FLAG{STACKFORGE_149}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-150",
+    "number": 150,
+    "level": "Advanced",
+    "category": "Automation",
+    "title": "Write log triage script #5",
+    "description": "Create a shell script that extracts critical records from a local log.",
+    "objective": "Create executable `triage.sh` that reads `events.log` and prints only lines containing `CRITICAL`; its output must be saved to `answer.txt` when you run it.",
+    "setup": "cd /root/lab; printf 'INFO one\\nCRITICAL PIDLESS-SVC-5\\nWARN two\\nCRITICAL disk-5\\n' > events.log",
+    "check": "[ -x /root/lab/triage.sh ] && /root/lab/triage.sh | cmp -s - /root/lab/answer.txt && grep -q \"CRITICAL PIDLESS-SVC-5\" /root/lab/answer.txt",
+    "hints": [
+      "Your script can use grep CRITICAL events.log.",
+      "Remember chmod +x triage.sh and run it with > answer.txt."
+    ],
+    "points": 65,
+    "flag": "FLAG{STACKFORGE_150}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-151",
+    "number": 151,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #1",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDF9' > mission/.breadcrumb1",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_01}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_01}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-152",
+    "number": 152,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #2",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDJ9' > mission/.breadcrumb2",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_02}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_02}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-153",
+    "number": 153,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #3",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDN9' > mission/.breadcrumb3",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_03}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_03}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-154",
+    "number": 154,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #4",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDR9' > mission/.breadcrumb4",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_04}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_04}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-155",
+    "number": 155,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #5",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDV9' > mission/.breadcrumb5",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_05}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_05}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-156",
+    "number": 156,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #6",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDZ9' > mission/.breadcrumb6",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_06}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_06}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-157",
+    "number": 157,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #7",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDd9' > mission/.breadcrumb7",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_07}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_07}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-158",
+    "number": 158,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #8",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDh9' > mission/.breadcrumb8",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_08}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_08}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-159",
+    "number": 159,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #9",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMDl9' > mission/.breadcrumb9",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_09}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_09}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-160",
+    "number": 160,
+    "level": "Pro",
+    "category": "CTF Chain",
+    "title": "Operation Breadcrumb #10",
+    "description": "Follow multiple local clues: hidden file \u2192 Base64 decode \u2192 flag.",
+    "objective": "A hidden clue under `mission/` contains Base64 text. Recover the decoded flag into `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p mission/docs; echo manual > mission/docs/readme; printf %s 'RkxBR3tPUFNfQ0hBSU5fMTB9' > mission/.breadcrumb10",
+    "check": "grep -qx \"FLAG{OPS_CHAIN_10}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "List hidden files.",
+      "Base64-decode the clue."
+    ],
+    "points": 80,
+    "flag": "FLAG{OPS_CHAIN_10}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-161",
+    "number": 161,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #1",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wMX0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_01}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_01}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-162",
+    "number": 162,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #2",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wMn0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_02}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_02}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-163",
+    "number": 163,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #3",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wM30=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_03}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_03}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-164",
+    "number": 164,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #4",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wNH0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_04}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_04}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-165",
+    "number": 165,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #5",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wNX0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_05}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_05}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-166",
+    "number": 166,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #6",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wNn0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_06}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_06}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-167",
+    "number": 167,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #7",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wN30=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_07}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_07}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-168",
+    "number": 168,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #8",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wOH0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_08}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_08}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-169",
+    "number": 169,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #9",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8wOX0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_09}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_09}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-170",
+    "number": 170,
+    "level": "Pro",
+    "category": "Incident Response",
+    "title": "Compromised Service Hunt #10",
+    "description": "Correlate simulated process and service logs without touching external systems.",
+    "objective": "Find the service marked `COMPROMISED`, use its name to locate the matching file under `services/`, decode its token, and save the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p services; printf 'web OK\\nworker COMPROMISED\\ndb OK\\n' > status.log; echo harmless > services/web; printf %s 'RkxBR3tMT0dfSFVOVF8xMH0=' > services/worker; echo harmless > services/db",
+    "check": "grep -qx \"FLAG{LOG_HUNT_10}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Start with status.log.",
+      "The second field identifies the compromised service.",
+      "Decode the matching services/<name> file."
+    ],
+    "points": 90,
+    "flag": "FLAG{LOG_HUNT_10}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-171",
+    "number": 171,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #1",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_01}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_01}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_01}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-172",
+    "number": 172,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #2",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_02}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_02}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_02}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-173",
+    "number": 173,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #3",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_03}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_03}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_03}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-174",
+    "number": 174,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #4",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_04}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_04}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_04}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-175",
+    "number": 175,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #5",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_05}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_05}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_05}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-176",
+    "number": 176,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #6",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_06}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_06}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_06}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-177",
+    "number": 177,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #7",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_07}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_07}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_07}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-178",
+    "number": 178,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #8",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_08}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_08}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_08}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-179",
+    "number": 179,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #9",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_09}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_09}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_09}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-180",
+    "number": 180,
+    "level": "Pro",
+    "category": "Forensics",
+    "title": "Backup Forensics #10",
+    "description": "Recover a training flag from a nested compressed backup.",
+    "objective": "Extract `case.tgz`; the flag is inside the newest snapshot directory. Save only the flag to `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p pack/snap-1 pack/snap-2 pack/snap-3; echo old > pack/snap-1/data; echo older > pack/snap-2/data; echo 'FLAG{BACKUP_FORENSICS_10}' > pack/snap-3/flag.txt; tar czf case.tgz pack; rm -rf pack",
+    "check": "grep -qx \"FLAG{BACKUP_FORENSICS_10}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Extract the tgz archive.",
+      "Inspect snap-3."
+    ],
+    "points": 90,
+    "flag": "FLAG{BACKUP_FORENSICS_10}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-181",
+    "number": 181,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #1",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_01}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_01}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_01}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-182",
+    "number": 182,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #2",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_02}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_02}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_02}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-183",
+    "number": 183,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #3",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_03}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_03}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_03}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-184",
+    "number": 184,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #4",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_04}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_04}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_04}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-185",
+    "number": 185,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #5",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_05}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_05}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_05}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-186",
+    "number": 186,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #6",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_06}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_06}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_06}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-187",
+    "number": 187,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #7",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_07}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_07}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_07}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-188",
+    "number": 188,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #8",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_08}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_08}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_08}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-189",
+    "number": 189,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #9",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_09}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_09}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_09}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-190",
+    "number": 190,
+    "level": "Pro",
+    "category": "Hardening",
+    "title": "Permission Audit & Repair #10",
+    "description": "Audit several local files, identify the exposed secret, and fix its mode.",
+    "objective": "Under `audit/`, exactly one `.key` file is mode 666. Change only that file to 600, then place `FLAG{AUDIT_FIX_10}` in `answer.txt`.",
+    "setup": "cd /root/lab; mkdir -p audit; echo a > audit/a.key; echo b > audit/b.key; echo c > audit/c.key; chmod 600 audit/a.key audit/c.key; chmod 666 audit/b.key",
+    "check": "[ \"$(stat -c %a /root/lab/audit/b.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/a.key)\" = \"600\" ] && [ \"$(stat -c %a /root/lab/audit/c.key)\" = \"600\" ] && grep -qx \"FLAG{AUDIT_FIX_10}\" /root/lab/answer.txt 2>/dev/null",
+    "hints": [
+      "Use find/stat/ls -l to inspect permissions.",
+      "Repair the unsafe file with chmod 600."
+    ],
+    "points": 95,
+    "flag": "FLAG{AUDIT_FIX_10}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-191",
+    "number": 191,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #1",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_01}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_01}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_01}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-192",
+    "number": 192,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #2",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_02}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_02}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_02}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-193",
+    "number": 193,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #3",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_03}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_03}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_03}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-194",
+    "number": 194,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #4",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_04}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_04}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_04}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-195",
+    "number": 195,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #5",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_05}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_05}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_05}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-196",
+    "number": 196,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #6",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_06}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_06}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_06}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-197",
+    "number": 197,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #7",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_07}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_07}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_07}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-198",
+    "number": 198,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #8",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_08}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_08}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_08}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-199",
+    "number": 199,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #9",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_09}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_09}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_09}",
+    "commandHint": ""
+  },
+  {
+    "id": "LNX-200",
+    "number": 200,
+    "level": "Pro",
+    "category": "Shell Automation",
+    "title": "Automated Evidence Report #10",
+    "description": "Write a script that transforms local log data into a required report.",
+    "objective": "Create executable `report.sh` that reads `events.log` and prints `CRITICAL=<count>` on one line. Run it and save output to `answer.txt`. Then append `FLAG{SHELL_AUTOMATION_10}` as the second line.",
+    "setup": "cd /root/lab; printf 'INFO a\\nCRITICAL x\\nWARN b\\nCRITICAL y\\nCRITICAL z\\n' > events.log",
+    "check": "[ -x /root/lab/report.sh ] && [ \"$(sed -n \"1p\" /root/lab/answer.txt 2>/dev/null)\" = \"CRITICAL=3\" ] && [ \"$(sed -n \"2p\" /root/lab/answer.txt 2>/dev/null)\" = \"FLAG{SHELL_AUTOMATION_10}\" ]",
+    "hints": [
+      "Use grep -c CRITICAL events.log inside the script.",
+      "Print CRITICAL=<number>.",
+      "Append the provided flag after running the script."
+    ],
+    "points": 100,
+    "flag": "FLAG{SHELL_AUTOMATION_10}",
+    "commandHint": ""
+  }
+]

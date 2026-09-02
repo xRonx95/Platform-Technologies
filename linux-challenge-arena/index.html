@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="StackForge Linux Challenge Arena — browser-based Linux administration and CTF practice lab.">
+  <title>Linux Challenge Arena | StackForge</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/css/xterm.min.css">
+  <link rel="stylesheet" href="css/linux-arena.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://platform-technologies.onrender.com/" aria-label="Back to StackForge home">
+      <span class="brand-mark">SF</span>
+      <span><strong>STACKFORGE</strong><small>Linux Challenge Arena</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="vm-state" id="vmState"><i></i> Linux VM: booting</span>
+      <span class="score-pill">Score <strong id="scoreValue">0</strong></span>
+      <span class="timer-pill" id="timerValue">60:00</span>
+      <button class="button ghost" id="arenaBtn">Start 60-min Arena</button>
+      <a class="button home" href="https://platform-technologies.onrender.com/">Home</a>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="challenge-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">200 SANDBOXED TASKS</p>
+        <h1>Challenge Library</h1>
+        <p>Basic → Pro Linux administration with CTF-style flags.</p>
+      </div>
+
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Search task, command, category…" aria-label="Search challenges">
+        <select id="levelFilter" aria-label="Filter by difficulty">
+          <option value="All">All levels</option>
+          <option value="Basic">Basic</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+          <option value="Pro">Pro</option>
+        </select>
+      </div>
+
+      <div class="level-stats" id="levelStats"></div>
+      <div class="challenge-list" id="challengeList" aria-live="polite"></div>
+    </aside>
+
+    <section class="workspace">
+      <section class="task-card" id="taskCard">
+        <div class="task-meta">
+          <span class="difficulty" id="taskLevel">Basic</span>
+          <span id="taskCategory">Navigation</span>
+          <span id="taskId">LNX-001</span>
+          <span><strong id="taskPoints">10</strong> pts</span>
+        </div>
+        <div class="task-title-row">
+          <div>
+            <h2 id="taskTitle">Loading challenges…</h2>
+            <p id="taskDescription">The Linux environment will boot automatically.</p>
+          </div>
+          <span class="completion-badge" id="completionBadge">Not solved</span>
+        </div>
+        <div class="objective-box">
+          <strong>OBJECTIVE</strong>
+          <p id="taskObjective">Choose a task from the library.</p>
+        </div>
+        <div class="task-actions">
+          <button class="button primary" id="checkBtn" disabled>Check Solution</button>
+          <button class="button" id="hintBtn">Show Hint</button>
+          <button class="button" id="helpBtn">Help</button>
+          <button class="button" id="resetBtn">Reset Task</button>
+          <button class="button" id="previousBtn">Previous Task</button>
+          <button class="button" id="nextBtn">Next Task</button>
+        </div>
+        <div class="feedback" id="feedback" role="status"></div>
+        <div class="hint-box" id="hintBox" hidden></div>
+      </section>
+
+      <section class="ide-card">
+        <div class="ide-tabs" role="tablist">
+          <button class="ide-tab active" data-tab="terminal" role="tab">Terminal</button>
+          <button class="ide-tab" data-tab="editor" role="tab">Script Editor</button>
+          <button class="ide-tab" data-tab="files" role="tab">Files</button>
+          <div class="terminal-controls">
+            <button class="mini-button" id="clearTerminalBtn" title="Clear terminal display">Clear</button>
+            <button class="mini-button danger" id="cancelCommandBtn" title="Stop the current command (Ctrl+C)">Stop command</button>
+          </div>
+          <div class="terminal-note">Guest: <strong>root@stackforge</strong> · workspace: <strong>/root/lab</strong> · network: <strong>isolated</strong></div>
+        </div>
+
+        <div class="ide-pane active" id="pane-terminal">
+          <div id="terminal" aria-label="Linux terminal"></div>
+        </div>
+
+        <div class="ide-pane editor-pane" id="pane-editor">
+          <div class="editor-toolbar">
+            <label>Save as <input id="editorFilename" value="solution.sh" maxlength="60"></label>
+            <label class="check-label"><input id="makeExecutable" type="checkbox" checked> executable</label>
+            <button class="button primary" id="saveEditorBtn">Save to Linux</button>
+            <button class="button" id="runEditorBtn">Run in Terminal</button>
+          </div>
+          <textarea id="scriptEditor" spellcheck="false">#!/bin/sh
+# Write your Linux shell solution here.
+echo "StackForge Linux Lab"
+</textarea>
+        </div>
+
+        <div class="ide-pane files-pane" id="pane-files">
+          <div class="files-toolbar">
+            <div>
+              <strong>/root/lab</strong>
+              <small>Task workspace is reset when you change or reset a challenge.</small>
+            </div>
+            <button class="button" id="refreshFilesBtn">Refresh Files</button>
+          </div>
+          <pre id="fileTree">Boot the VM to inspect files…</pre>
+        </div>
+      </section>
+
+      <section class="arena-footer">
+        <div>
+          <strong>Training environment only.</strong>
+          <span>This arena is Hack4Gov-inspired practice and is not an official DICT competition platform.</span>
+        </div>
+        <button class="button" id="exportBtn">Export Progress</button>
+      </section>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <dialog class="help-dialog" id="helpDialog">
+    <div class="help-heading">
+      <div><small>NEED A HAND?</small><h2 id="helpTitle">Task help</h2></div>
+      <button class="dialog-close" id="closeHelpBtn" aria-label="Close help">&times;</button>
+    </div>
+    <p id="helpObjective"></p>
+    <div class="help-steps">
+      <h3>How to work in the terminal</h3>
+      <ol>
+        <li>Type a complete command after the <code>#</code> prompt, then press <strong>Enter</strong>.</li>
+        <li>Use <strong>Stop command</strong> if a program is stuck. Use <strong>Clear</strong> to clean the screen.</li>
+        <li>Use <strong>Reset Task</strong> to restore the original files, then try again.</li>
+        <li>When finished, click <strong>Check Solution</strong>.</li>
+      </ol>
+    </div>
+    <div class="help-hints" id="helpHints"></div>
+    <div class="answer-area">
+      <button class="button" id="revealAnswerBtn">Reveal exact command</button>
+      <div id="answerReveal" hidden>
+        <p>Run this command in the Terminal:</p>
+        <pre><code id="answerCommand"></code></pre>
+        <button class="button primary" id="copyAnswerBtn">Copy command</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/lib/xterm.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/lib/addon-fit.js"></script>
+  <script src="assets/v86/libv86.js"></script>
+  <script src="../linux-challenge-arena/js/linux-vm.js"></script>
+  <script src="../linux-challenge-arena/js/arena.js"></script>
+</body>
+</html>
