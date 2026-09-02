@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OS Hardening lecture module for Platform Technologies Security and Operations.">
+  <title>OS Hardening | Platform Technologies</title>
+  <link rel="stylesheet" href="../css/Security/os.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html">
+      Platform Technologies
+      <span>Security &amp; Operations Learning Module</span>
+    </a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+<a href="os.html" class="active">OS Hardening</a>
+<a href="firewalls.html">Firewalls & Backups</a>
+<a href="performance.html">Performance Monitoring</a>
+<a href="capacity.html">Capacity Planning</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero__inner">
+    <div class="eyebrow">Security &amp; Operations</div>
+    <h1>OS Hardening</h1>
+    <p>Operating System Defense, Secure Configuration, and Continuous Maintenance. Every lesson includes its own visual explanation so students can connect the written lecture to a diagram.</p>
+    <div class="hero__meta">
+      <span>15 detailed lessons</span>
+      <span>15 local lesson images</span>
+      <span>Lecture + practical activity</span>
+      <span>Mobile responsive</span>
+    </div>
+  </div>
+</section>
+
+<main class="course-shell">
+  <aside class="sidebar">
+    <div class="sidebar__head">
+      <strong>OS Hardening</strong>
+      <small>Select a lesson</small>
+    </div>
+    <nav class="lesson-nav" aria-label="OS Hardening lessons">
+      <a href="#lesson-01-introduction-to-os-hardening">Lesson 1: Introduction to OS Hardening</a>
+<a href="#lesson-02-threats-against-operating-systems">Lesson 2: Threats Against Operating Systems</a>
+<a href="#lesson-03-secure-installation-and-baseline-configuration">Lesson 3: Secure Installation and Baseline Configuration</a>
+<a href="#lesson-04-patch-and-update-management">Lesson 4: Patch and Update Management</a>
+<a href="#lesson-05-user-accounts-and-least-privilege">Lesson 5: User Accounts and Least Privilege</a>
+<a href="#lesson-06-passwords-and-authentication-security">Lesson 6: Passwords and Authentication Security</a>
+<a href="#lesson-07-file-and-directory-permissions">Lesson 7: File and Directory Permissions</a>
+<a href="#lesson-08-service-and-port-hardening">Lesson 8: Service and Port Hardening</a>
+<a href="#lesson-09-secure-remote-administration">Lesson 9: Secure Remote Administration</a>
+<a href="#lesson-10-endpoint-protection-and-malware-defense">Lesson 10: Endpoint Protection and Malware Defense</a>
+<a href="#lesson-11-logging-and-audit-configuration">Lesson 11: Logging and Audit Configuration</a>
+<a href="#lesson-12-disk-boot-and-data-protection">Lesson 12: Disk, Boot, and Data Protection</a>
+<a href="#lesson-13-windows-hardening-practices">Lesson 13: Windows Hardening Practices</a>
+<a href="#lesson-14-linux-hardening-practices">Lesson 14: Linux Hardening Practices</a>
+<a href="#lesson-15-hardening-audit-and-continuous-improvement">Lesson 15: Hardening Audit and Continuous Improvement</a>
+    </nav>
+  </aside>
+
+  <div class="content">
+    <section class="intro-card">
+      <h2>Module Overview</h2>
+      <p>
+        This page contains a complete 15-lesson lecture module for <strong>OS Hardening</strong>.
+        Each lesson contains an automatically displayed local SVG teaching image, a longer explanation, key concepts,
+        practical meaning, a guided student activity, and review questions.
+      </p>
+      <p>
+        The <strong>Home</strong> button returns to <code>index.html</code>. Keep the <code>images/security-ops</code> folder
+        in the same project structure so every lesson image loads correctly.
+      </p>
+    </section>
+
+    
+<section class="lesson-card" id="lesson-01-introduction-to-os-hardening">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 01</div>
+  <h2>Introduction to OS Hardening</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-01-introduction-to-os-hardening.svg" alt="Educational diagram for Introduction to OS Hardening" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Introduction to OS Hardening.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Operating system hardening is the systematic process of reducing the attack surface of a computer. It removes unnecessary functionality, strengthens configuration, protects privileged access, and establishes a secure baseline that can be monitored over time.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Attack Surface</strong><span>Attack Surface is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Secure Baseline</strong><span>Secure Baseline is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Defense in Depth</strong><span>Defense in Depth is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Continuous Review</strong><span>Continuous Review is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A default operating system is designed for compatibility and convenience. Hardening changes that default posture so only required users, services, applications, ports, and privileges remain available.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-02-threats-against-operating-systems">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 02</div>
+  <h2>Threats Against Operating Systems</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-02-threats-against-operating-systems.svg" alt="Educational diagram for Threats Against Operating Systems" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Threats Against Operating Systems.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Operating systems control users, processes, memory, files, devices, networking, and applications, which makes them high-value targets. Malware, ransomware, credential theft, privilege escalation, and exploitation of unpatched software can all begin at the host level.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Malware</strong><span>Malware is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Privilege Escalation</strong><span>Privilege Escalation is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Credential Theft</strong><span>Credential Theft is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Vulnerabilities</strong><span>Vulnerabilities is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Students should connect each threat to a control: patching limits known exploits, least privilege limits attacker reach, authentication protects identity, and monitoring helps detect suspicious activity.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-03-secure-installation-and-baseline-configuration">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 03</div>
+  <h2>Secure Installation and Baseline Configuration</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-03-secure-installation-and-baseline-configuration.svg" alt="Educational diagram for Secure Installation and Baseline Configuration" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Secure Installation and Baseline Configuration.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Hardening starts before users begin working on the system. Administrators should use trusted installation media, install only required components, select secure defaults, configure storage carefully, and document an approved baseline.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Trusted Media</strong><span>Trusted Media is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Minimal Install</strong><span>Minimal Install is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Baseline Image</strong><span>Baseline Image is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Documentation</strong><span>Documentation is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A repeatable baseline makes systems easier to audit and reduces configuration drift between computers that should have the same role.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-04-patch-and-update-management">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 04</div>
+  <h2>Patch and Update Management</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-04-patch-and-update-management.svg" alt="Educational diagram for Patch and Update Management" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Patch and Update Management.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Security updates correct known weaknesses in the operating system, drivers, libraries, and installed applications. Good patch management considers urgency, compatibility, testing, scheduling, rollback, and verification.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Security Updates</strong><span>Security Updates is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Testing</strong><span>Testing is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Rollback</strong><span>Rollback is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Verification</strong><span>Verification is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Not every update should be applied blindly to a production system. Administrators should prioritize critical vulnerabilities while preserving service stability through staged testing.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-05-user-accounts-and-least-privilege">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 05</div>
+  <h2>User Accounts and Least Privilege</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-05-user-accounts-and-least-privilege.svg" alt="Educational diagram for User Accounts and Least Privilege" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in User Accounts and Least Privilege.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Least privilege means that each user, service, and administrator receives only the permissions required for assigned duties. This reduces accidental damage and limits what an attacker can do if an account is compromised.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Standard Accounts</strong><span>Standard Accounts is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Admin Accounts</strong><span>Admin Accounts is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Role Access</strong><span>Role Access is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Account Review</strong><span>Account Review is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Daily work should normally use a standard account. Privileged administrator accounts should be used only when elevated permissions are actually required.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-06-passwords-and-authentication-security">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 06</div>
+  <h2>Passwords and Authentication Security</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-06-passwords-and-authentication-security.svg" alt="Educational diagram for Passwords and Authentication Security" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Passwords and Authentication Security.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Authentication verifies identity before access is granted. Strong authentication combines secure passwords, multi-factor authentication, lockout protections, credential protection, and monitoring for suspicious sign-ins.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Passwords</strong><span>Passwords is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>MFA</strong><span>MFA is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Lockout</strong><span>Lockout is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Credential Security</strong><span>Credential Security is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Password complexity alone is not enough. The goal is to make stolen or guessed credentials harder to use and easier to detect.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-07-file-and-directory-permissions">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 07</div>
+  <h2>File and Directory Permissions</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-07-file-and-directory-permissions.svg" alt="Educational diagram for File and Directory Permissions" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in File and Directory Permissions.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>File-system permissions determine who can read, modify, execute, create, or delete files and folders. Incorrect permissions can expose confidential data or allow unauthorized modification of applications and configuration.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Ownership</strong><span>Ownership is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Read/Write</strong><span>Read/Write is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Execute</strong><span>Execute is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>ACL</strong><span>ACL is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Students should learn to replace broad permissions with role-appropriate access and understand how permission inheritance affects subfolders and files.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-08-service-and-port-hardening">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 08</div>
+  <h2>Service and Port Hardening</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-08-service-and-port-hardening.svg" alt="Educational diagram for Service and Port Hardening" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Service and Port Hardening.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Every enabled service and listening network port increases the potential attack surface. Administrators should inventory services, identify which ones are necessary, disable unused components, and restrict network access to required ports.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Service Inventory</strong><span>Service Inventory is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Listening Ports</strong><span>Listening Ports is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Disable Unused</strong><span>Disable Unused is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Isolation</strong><span>Isolation is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Disabling an unnecessary service is stronger than merely hiding it behind a firewall because the vulnerable software is no longer available to accept connections.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-09-secure-remote-administration">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 09</div>
+  <h2>Secure Remote Administration</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-09-secure-remote-administration.svg" alt="Educational diagram for Secure Remote Administration" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Secure Remote Administration.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Remote administration is essential for modern operations but exposes powerful management interfaces. Secure protocols, restricted source networks, strong authentication, encryption, and detailed logging should protect remote access.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>SSH</strong><span>SSH is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>RDP</strong><span>RDP is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>VPN</strong><span>VPN is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Session Logging</strong><span>Session Logging is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Management interfaces should not be broadly exposed to the public internet. A dedicated management network or VPN provides a more controlled access path.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-10-endpoint-protection-and-malware-defense">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 10</div>
+  <h2>Endpoint Protection and Malware Defense</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-10-endpoint-protection-and-malware-defense.svg" alt="Educational diagram for Endpoint Protection and Malware Defense" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Endpoint Protection and Malware Defense.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Endpoint protection combines preventive, detective, and responsive controls. Antivirus, anti-malware, endpoint detection and response, application control, and behavioral monitoring help reduce the risk of malicious code.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Antivirus</strong><span>Antivirus is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>EDR</strong><span>EDR is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Allowlisting</strong><span>Allowlisting is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Behavior Detection</strong><span>Behavior Detection is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Endpoint software is only one layer. It should complement patching, backups, secure configuration, least privilege, and user awareness.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-11-logging-and-audit-configuration">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 11</div>
+  <h2>Logging and Audit Configuration</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-11-logging-and-audit-configuration.svg" alt="Educational diagram for Logging and Audit Configuration" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Logging and Audit Configuration.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Security logs provide evidence about authentication, process activity, policy changes, system errors, and suspicious behavior. Important events should be recorded, time-synchronized, protected, and retained long enough to support investigation.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>System Logs</strong><span>System Logs is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Authentication</strong><span>Authentication is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Audit Trail</strong><span>Audit Trail is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Retention</strong><span>Retention is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Effective logging focuses on events that can support decisions. Excessive logging without review can create noise and hide important indicators.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-12-disk-boot-and-data-protection">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 12</div>
+  <h2>Disk, Boot, and Data Protection</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-12-disk-boot-and-data-protection.svg" alt="Educational diagram for Disk, Boot, and Data Protection" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Disk, Boot, and Data Protection.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Security must continue when a computer is powered off or physically accessed. Full-disk encryption, secure boot, firmware protection, and controlled removable media reduce risks from theft and offline tampering.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Disk Encryption</strong><span>Disk Encryption is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Secure Boot</strong><span>Secure Boot is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Firmware</strong><span>Firmware is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Removable Media</strong><span>Removable Media is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Physical possession of a device can bypass many network controls, so encryption protects data even when storage is removed or the machine is stolen.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-13-windows-hardening-practices">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 13</div>
+  <h2>Windows Hardening Practices</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-13-windows-hardening-practices.svg" alt="Educational diagram for Windows Hardening Practices" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Windows Hardening Practices.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Windows systems can be hardened using Windows Security, Microsoft Defender, firewall profiles, BitLocker, Local or Group Policy, controlled administrative rights, and event auditing.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Defender</strong><span>Defender is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Group Policy</strong><span>Group Policy is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>BitLocker</strong><span>BitLocker is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>PowerShell</strong><span>PowerShell is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Windows-specific tools implement the same core principles: minimize functionality, limit privilege, patch quickly, protect data, and verify activity.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-14-linux-hardening-practices">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 14</div>
+  <h2>Linux Hardening Practices</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-14-linux-hardening-practices.svg" alt="Educational diagram for Linux Hardening Practices" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Linux Hardening Practices.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Linux hardening includes careful package selection, secure SSH configuration, sudo controls, file ownership, firewall configuration, mandatory access controls, and disciplined patch management.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>sudo</strong><span>sudo is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>SSH</strong><span>SSH is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>SELinux/AppArmor</strong><span>SELinux/AppArmor is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Packages</strong><span>Packages is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Different distributions use different tools, but the security goals remain consistent: control privilege, reduce exposure, protect files, and monitor changes.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-15-hardening-audit-and-continuous-improvement">
+  <div class="lesson-tag">Security &amp; Operations · Lesson 15</div>
+  <h2>Hardening Audit and Continuous Improvement</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/os-15-hardening-audit-and-continuous-improvement.svg" alt="Educational diagram for Hardening Audit and Continuous Improvement" loading="lazy" width="1280" height="720" decoding="async">
+    <figcaption>Visual explanation of the main concepts covered in Hardening Audit and Continuous Improvement.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Hardening is not a one-time activity. Systems change through updates, new applications, user requests, configuration changes, and emerging threats. Regular audits verify that the approved security posture remains in place.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Checklist</strong><span>Checklist is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Configuration Drift</strong><span>Configuration Drift is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Scanning</strong><span>Scanning is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Remediation</strong><span>Remediation is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A mature process repeatedly inventories, assesses, configures, validates, documents, monitors, and improves the system.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+
+    <nav class="page-nav" aria-label="Security and operations topic navigation">
+      <a href="../index.html">← Home</a>
+      <a href="firewalls.html">Next Topic →</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="footer">
+  <strong>Platform Technologies</strong> · Security &amp; Operations Lecture Series
+</footer>
+</body>
+</html>

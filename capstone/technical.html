@@ -1,0 +1,690 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technical Documentation capstone lecture with 15 detailed lessons, examples, and automatic topic images.">
+  <title>Technical Documentation | Capstone Enterprise Lecture</title>
+  <link rel="stylesheet" href="../css/capstone/technical.css">
+</head>
+<body id="top">
+<header class="topbar">
+  <div class="nav">
+    <a class="brand" href="index.html" aria-label="Go to Home">
+      <span class="brand-mark">C</span>
+      <span>Capstone Learning<small>Enterprise Layer Lecture Series</small></span>
+    </a>
+
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="topLinks">Menu</button>
+
+    <nav class="top-links" id="topLinks" aria-label="Main navigation">
+      <a class="home-btn" href="../index.html">Home</a>
+      <a href="deployment.html" class="">Deployment</a>
+<a href="migration.html" class="">Migration</a>
+<a href="technical.html" class="active">Documentation</a>
+<a href="project.html" class="">Defense</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Capstone â€¢ Enterprise Layer</p>
+        <h1>Technical Documentation</h1>
+        <p class="hero-copy">Creating precise, maintainable technical records that explain the capstone system to developers, administrators, evaluators, and future maintainers.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lesson-01-purpose-and-audiences-of-technical-documentat">Start Lesson 01</a>
+          <a class="button secondary" href="../index.html">Return to Home</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Module summary">
+        <strong>Lecture module overview</strong>
+        <div class="hero-stat-grid">
+          <div class="hero-stat"><b>15</b><span>Detailed lessons</span></div>
+          <div class="hero-stat"><b>15</b><span>Automatic visuals</span></div>
+          <div class="hero-stat"><b>100%</b><span>Mobile responsive</span></div>
+          <div class="hero-stat"><b>1</b><span>Home route to ../index.html</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <p>Lecture navigation</p>
+        <h2>Technical Documentation</h2>
+      </div>
+      <nav class="lesson-nav" aria-label="Lesson list">
+        <a href="#lesson-01-purpose-and-audiences-of-technical-documentat"><span>01</span><span>Purpose and Audiences of Technical Documentation</span></a><a href="#lesson-02-documentation-architecture-and-information-st"><span>02</span><span>Documentation Architecture and Information Structure</span></a><a href="#lesson-03-system-overview-scope-and-constraints"><span>03</span><span>System Overview, Scope, and Constraints</span></a><a href="#lesson-04-requirements-traceability-documentation"><span>04</span><span>Requirements Traceability Documentation</span></a><a href="#lesson-05-architecture-documentation-and-component-diag"><span>05</span><span>Architecture Documentation and Component Diagrams</span></a><a href="#lesson-06-database-documentation-and-data-dictionary"><span>06</span><span>Database Documentation and Data Dictionary</span></a><a href="#lesson-07-api-and-interface-documentation"><span>07</span><span>API and Interface Documentation</span></a><a href="#lesson-08-installation-and-environment-setup-guide"><span>08</span><span>Installation and Environment Setup Guide</span></a><a href="#lesson-09-configuration-and-operations-reference"><span>09</span><span>Configuration and Operations Reference</span></a><a href="#lesson-10-security-and-privacy-documentation"><span>10</span><span>Security and Privacy Documentation</span></a><a href="#lesson-11-testing-documentation-and-evidence"><span>11</span><span>Testing Documentation and Evidence</span></a><a href="#lesson-12-troubleshooting-and-known-issue-documentation"><span>12</span><span>Troubleshooting and Known-Issue Documentation</span></a><a href="#lesson-13-change-log-versioning-and-document-control"><span>13</span><span>Change Log, Versioning, and Document Control</span></a><a href="#lesson-14-user-manual-and-administrator-manual-design"><span>14</span><span>User Manual and Administrator Manual Design</span></a><a href="#lesson-15-documentation-review-handover-and-maintenance"><span>15</span><span>Documentation Review, Handover, and Maintenance</span></a>
+      </nav>
+    </aside>
+
+    <div class="content">
+      <section class="module-intro">
+        <h2>About this module</h2>
+        <p>This page contains 15 classroom-ready lessons. Every lesson includes a longer explanation, learning targets, an applied capstone example, and a local instructional diagram that shows the lesson rules in a clear three-step sequence.</p>
+      </section>
+
+      
+<section class="lesson" id="lesson-01-purpose-and-audiences-of-technical-documentat">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-01.svg" alt="Purpose and Audiences of Technical Documentation visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 01 â€¢ Technical Documentation</div>
+    <h2>Purpose and Audiences of Technical Documentation</h2>
+    <p class="lesson-summary">Technical documentation transfers system knowledge from the development team to the people who must understand, operate, maintain, evaluate, or extend the project.</p>
+
+    <p>Documentation should be written for a defined audience. A developer needs architecture, APIs, data models, dependencies, and setup instructions. A system administrator needs deployment, backup, monitoring, and recovery procedures. An end user needs task-oriented instructions. A panel needs evidence that the system was designed and validated systematically.</p>
+<p>One document rarely serves every audience equally well. Strong capstone documentation separates concerns while maintaining consistent terminology and references.</p>
+<p>Documentation is part of the system&#x27;s maintainability. Undocumented assumptions become future defects because later maintainers must guess why a decision was made.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Identify documentation audiences.</li>
+<li>Match content depth to reader responsibilities.</li>
+<li>Treat documentation as a maintainability asset.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The administrator guide explains backup restoration, while the user manual explains how to submit and track a request.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-02-documentation-architecture-and-information-st">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-02.svg" alt="Documentation Architecture and Information Structure visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 02 â€¢ Technical Documentation</div>
+    <h2>Documentation Architecture and Information Structure</h2>
+    <p class="lesson-summary">A documentation set needs an intentional structure so readers can locate information efficiently.</p>
+
+    <p>Common sections include overview, system scope, architecture, requirements, installation, configuration, database design, API reference, security, deployment, administration, troubleshooting, user procedures, testing, limitations, and change history.</p>
+<p>Information architecture should move from orientation to detail. Readers should first understand what the system is, then how major components relate, then how to perform specific technical tasks.</p>
+<p>Consistent headings, numbering, terminology, diagrams, links, and revision identifiers make the documentation easier to use and review.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Organize documents by reader task.</li>
+<li>Use consistent headings and terminology.</li>
+<li>Create navigable references between sections.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The installation guide links directly to the configuration reference instead of repeating environment-variable definitions in multiple places.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-03-system-overview-scope-and-constraints">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-03.svg" alt="System Overview, Scope, and Constraints visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 03 â€¢ Technical Documentation</div>
+    <h2>System Overview, Scope, and Constraints</h2>
+    <p class="lesson-summary">The overview defines what the system is intended to do and where its responsibilities stop.</p>
+
+    <p>A technical overview should state the problem addressed, target users, major capabilities, operating environment, external dependencies, and important limitations. This gives context before readers encounter detailed diagrams or code references.</p>
+<p>Scope statements should distinguish implemented features from proposed future enhancements. Constraints such as internal-network-only use, supported browsers, maximum upload size, or required database version should be explicit.</p>
+<p>Clear boundaries protect the project from misleading claims and help future maintainers understand which behavior is intentional.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Describe system purpose and boundaries.</li>
+<li>Record environmental constraints.</li>
+<li>Separate implemented scope from future work.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The documentation states that the system supports Chrome, Edge, and Firefox on the campus network and does not provide public internet access.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-04-requirements-traceability-documentation">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-04.svg" alt="Requirements Traceability Documentation visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 04 â€¢ Technical Documentation</div>
+    <h2>Requirements Traceability Documentation</h2>
+    <p class="lesson-summary">Traceability connects stakeholder needs to design, implementation, and validation evidence.</p>
+
+    <p>A requirements traceability matrix typically assigns an identifier to each requirement and links it to the relevant design component, module, test case, and implementation status. This makes coverage visible.</p>
+<p>Traceability is useful during capstone defense because it helps answer questions such as â€œWhere was this requirement implemented?â€ and â€œHow did you verify it?â€ without relying on memory.</p>
+<p>Requirements should be specific enough to test. Vague goals such as â€œthe system should be user-friendlyâ€ are difficult to trace unless translated into measurable usability criteria.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Assign stable requirement identifiers.</li>
+<li>Link requirements to tests and modules.</li>
+<li>Use traceability to demonstrate coverage.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: FR-012 â€œAdmin can restore a deleted fileâ€ maps to the Trash module, API endpoint, interface screen, and test case TC-044.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-05-architecture-documentation-and-component-diag">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-05.svg" alt="Architecture Documentation and Component Diagrams visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 05 â€¢ Technical Documentation</div>
+    <h2>Architecture Documentation and Component Diagrams</h2>
+    <p class="lesson-summary">Architecture documentation explains the system&#x27;s major components, responsibilities, and relationships.</p>
+
+    <p>A useful architecture diagram shows client applications, web servers, APIs, databases, storage, external services, and trust boundaries without overwhelming the reader with low-level code details.</p>
+<p>Each component should have a short description of responsibilities, technologies, interfaces, and dependencies. The documentation should also identify important architectural decisions such as layered design, client-server structure, or separation between presentation, business logic, and data access.</p>
+<p>Diagrams should match the actual implementation. Decorative architecture diagrams that do not correspond to deployed components weaken technical credibility.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Document components and responsibilities.</li>
+<li>Show data and dependency relationships.</li>
+<li>Keep diagrams aligned with implementation.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A three-tier diagram shows browser clients, a Node/PHP application layer, and MySQL, with an external email service connected only through the application layer.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-06-database-documentation-and-data-dictionary">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-06.svg" alt="Database Documentation and Data Dictionary visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 06 â€¢ Technical Documentation</div>
+    <h2>Database Documentation and Data Dictionary</h2>
+    <p class="lesson-summary">Database documentation explains what data is stored, how entities relate, and what rules preserve data integrity.</p>
+
+    <p>An ERD shows entities and relationships, while a data dictionary describes each table and field in more detail. Useful entries include data type, nullability, default value, purpose, constraints, keys, and relationships.</p>
+<p>Documentation should identify indexes, unique constraints, cascading behavior, and sensitive fields where these affect operation or privacy. Naming conventions should be consistent.</p>
+<p>Database documentation is especially important for maintenance because a future developer must understand the meaning of a field before changing or reusing it.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Maintain an accurate ERD.</li>
+<li>Create a field-level data dictionary.</li>
+<li>Document keys, constraints, and sensitive data.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: `users.role` is documented as an enumerated access category used by authorization middleware, not merely a display label.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-07-api-and-interface-documentation">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-07.svg" alt="API and Interface Documentation visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 07 â€¢ Technical Documentation</div>
+    <h2>API and Interface Documentation</h2>
+    <p class="lesson-summary">API documentation defines how software components communicate.</p>
+
+    <p>For each endpoint, document the purpose, URL, method, authentication, parameters, request body, response format, status codes, validation rules, and common errors. Example requests and responses reduce ambiguity.</p>
+<p>Interface documentation should also cover file formats, database exchanges, webhooks, message queues, or third-party service dependencies where applicable.</p>
+<p>Versioning matters because consumers may depend on existing behavior. Breaking changes should be documented with migration guidance.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Document API contracts precisely.</li>
+<li>Include successful and error examples.</li>
+<li>Record interface versions and dependencies.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: `POST /api/concerns` documents required fields, authenticated role, 201 response, validation errors, and the generated reference number.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-08-installation-and-environment-setup-guide">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-08.svg" alt="Installation and Environment Setup Guide visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 08 â€¢ Technical Documentation</div>
+    <h2>Installation and Environment Setup Guide</h2>
+    <p class="lesson-summary">A setup guide allows another technically capable person to reproduce the system environment.</p>
+
+    <p>The guide should list prerequisites, supported versions, required services, dependency installation, database creation, configuration values, build commands, startup commands, and verification steps.</p>
+<p>Instructions should be tested on a clean environment. A setup process that only works on the original developer&#x27;s computer usually contains undocumented assumptions.</p>
+<p>When secrets are required, documentation should describe where values belong without publishing actual production credentials.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>List reproducible prerequisites.</li>
+<li>Document setup in a verified sequence.</li>
+<li>Separate secret values from public instructions.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The guide states the required Node.js version, `npm install`, database migration command, `.env` variable names, and a `/health` check to confirm successful startup.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-09-configuration-and-operations-reference">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-09.svg" alt="Configuration and Operations Reference visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 09 â€¢ Technical Documentation</div>
+    <h2>Configuration and Operations Reference</h2>
+    <p class="lesson-summary">Operational documentation describes settings that affect runtime behavior and service management.</p>
+
+    <p>Configuration references should define environment variables, feature flags, file paths, service ports, storage limits, email settings, backup schedules, and other runtime controls.</p>
+<p>For each setting, document its purpose, expected format, safe default where appropriate, and whether changing it requires a restart. High-risk settings should include warnings and rollback guidance.</p>
+<p>Operations references can also include startup, shutdown, restart, log location, maintenance mode, scheduled tasks, and service health checks.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Document runtime settings.</li>
+<li>Explain operational effects of configuration changes.</li>
+<li>Provide safe service-management procedures.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: `MAX_UPLOAD_MB=5` is documented with accepted units, default behavior, storage implications, and the need to keep server limits consistent.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-10-security-and-privacy-documentation">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-10.svg" alt="Security and Privacy Documentation visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 10 â€¢ Technical Documentation</div>
+    <h2>Security and Privacy Documentation</h2>
+    <p class="lesson-summary">Security documentation records controls, assumptions, sensitive assets, and administrative responsibilities.</p>
+
+    <p>Relevant topics include authentication, authorization, password handling, session management, encryption, audit logging, backups, retention, account lifecycle, privileged access, and incident response.</p>
+<p>Documentation should not publish exploitable secrets. It should explain the control model while keeping actual credentials and sensitive infrastructure details protected.</p>
+<p>Privacy documentation should identify personal data collected, purpose of collection, access rules, retention, and deletion or archival behavior where required by project scope.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Document the security model.</li>
+<li>Avoid exposing operational secrets.</li>
+<li>Record personal-data handling responsibilities.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The security section explains role-based access and password hashing but does not include database passwords or secret keys.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-11-testing-documentation-and-evidence">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-11.svg" alt="Testing Documentation and Evidence visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 11 â€¢ Technical Documentation</div>
+    <h2>Testing Documentation and Evidence</h2>
+    <p class="lesson-summary">Testing documentation demonstrates how the team verified that the system satisfies its requirements.</p>
+
+    <p>A test case should identify the requirement or feature, preconditions, input, steps, expected result, actual result, status, and evidence. Test summaries can report pass rates and unresolved defects.</p>
+<p>Different test levels may include unit, integration, system, user acceptance, performance, security, compatibility, and recovery testing depending on project scope.</p>
+<p>Screenshots can support evidence, but they should not replace precise test descriptions. A screenshot shows a state; a test record explains the procedure and expected behavior.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Define reproducible test cases.</li>
+<li>Link tests to requirements.</li>
+<li>Summarize defects and outcomes objectively.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A login-lockout test specifies five failed attempts, expected temporary blocking behavior, actual result, timestamp, and captured log entry.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-12-troubleshooting-and-known-issue-documentation">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-12.svg" alt="Troubleshooting and Known-Issue Documentation visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 12 â€¢ Technical Documentation</div>
+    <h2>Troubleshooting and Known-Issue Documentation</h2>
+    <p class="lesson-summary">Troubleshooting guides convert repeated support knowledge into reusable diagnostic procedures.</p>
+
+    <p>A troubleshooting entry should describe symptoms, likely causes, diagnostic checks, corrective actions, and escalation conditions. It should be organized by observable problems rather than by internal code structure.</p>
+<p>Known issues should clearly state impact, affected versions, workaround, and planned resolution where known. Hiding known limitations makes support harder and weakens stakeholder trust.</p>
+<p>Troubleshooting guidance should prioritize safe checks first and avoid destructive steps unless backups and consequences are clearly explained.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Document symptoms and diagnostic steps.</li>
+<li>Record known limitations transparently.</li>
+<li>Provide safe corrective procedures.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: â€œCannot connect to databaseâ€ directs the administrator to verify service status, host settings, credentials, network access, and logs before changing database files.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-13-change-log-versioning-and-document-control">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-13.svg" alt="Change Log, Versioning, and Document Control visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 13 â€¢ Technical Documentation</div>
+    <h2>Change Log, Versioning, and Document Control</h2>
+    <p class="lesson-summary">Documentation must show which system version it describes and how it changes over time.</p>
+
+    <p>A change log records release version, date, major changes, fixes, migrations, and known issues. Document control adds revision number, owner, reviewer, approval status, and last updated date.</p>
+<p>Version alignment prevents a common maintenance problem: following instructions written for an older release. Documentation updates should be part of the release checklist.</p>
+<p>Teams can use source control for documentation so changes are reviewed alongside code and historical revisions remain available.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Version documentation with the system.</li>
+<li>Maintain release and revision history.</li>
+<li>Assign ownership for updates.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Version 1.2 documentation notes a new backup location and database migration, ensuring administrators do not follow version 1.1 recovery steps.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-14-user-manual-and-administrator-manual-design">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-14.svg" alt="User Manual and Administrator Manual Design visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 14 â€¢ Technical Documentation</div>
+    <h2>User Manual and Administrator Manual Design</h2>
+    <p class="lesson-summary">User-facing and administrator-facing manuals should be separated because their tasks and risk levels differ.</p>
+
+    <p>A user manual is task-oriented: login, submit, search, update profile, download, or track status. An administrator manual covers privileged actions such as user management, configuration, backup, restore, reports, monitoring, and security review.</p>
+<p>Procedures should use clear steps, expected results, warnings, and screenshots where they genuinely improve recognition. Interface labels must match the actual application.</p>
+<p>Accessibility and readability matter. Manuals should avoid unexplained jargon when the target audience is nontechnical.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Separate user and administrator responsibilities.</li>
+<li>Write task-oriented procedures.</li>
+<li>Use screenshots and warnings appropriately.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The user manual explains â€œSubmit Concern,â€ while the administrator manual separately documents office routing rules and status management.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-15-documentation-review-handover-and-maintenance">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/technical-15.svg" alt="Documentation Review, Handover, and Maintenance visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 15 â€¢ Technical Documentation</div>
+    <h2>Documentation Review, Handover, and Maintenance</h2>
+    <p class="lesson-summary">Documentation should be reviewed as an operational deliverable, not completed only for submission.</p>
+
+    <p>Review checks technical accuracy, completeness, consistency, usability, broken links, outdated screenshots, missing prerequisites, and unclear procedures. A person who did not write the guide should attempt key procedures.</p>
+<p>Handover identifies who receives source code, credentials through secure channels, database access, deployment instructions, backup procedures, architecture diagrams, and support responsibilities.</p>
+<p>A maintenance plan should state when documentation is updatedâ€”for example, every release, configuration change, schema migration, or operational incident that changes procedures.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Review documentation through real use.</li>
+<li>Conduct a controlled system handover.</li>
+<li>Define triggers for future documentation updates.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Before turnover, another team member follows the installation guide on a clean machine and records any missing steps for correction.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <strong>Capstone Enterprise Lecture Series</strong><br>
+  Deployment Planning â€¢ Migration & Integration â€¢ Technical Documentation â€¢ Project Defense
+</footer>
+
+<script>
+(() => {
+  const menuButton = document.querySelector('.menu-btn');
+  const topLinks = document.querySelector('#topLinks');
+
+  menuButton?.addEventListener('click', () => {
+    const open = topLinks.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+
+  topLinks?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      topLinks.classList.remove('open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Lesson diagrams are local, deterministic assets that match each topic.
+
+  // Highlight the current lesson in the sidebar.
+  const lessonLinks = [...document.querySelectorAll('.lesson-nav a')];
+  const sections = [...document.querySelectorAll('.lesson')];
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (!visible) return;
+    lessonLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + visible.target.id);
+    });
+  }, { rootMargin: '-15% 0px -65% 0px', threshold: [0.05, 0.2, 0.5] });
+
+  sections.forEach(section => observer.observe(section));
+})();
+</script>
+</body>
+</html>

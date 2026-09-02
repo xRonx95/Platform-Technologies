@@ -1,0 +1,690 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Migration &amp; Integration capstone lecture with 15 detailed lessons, examples, and automatic topic images.">
+  <title>Migration &amp; Integration | Capstone Enterprise Lecture</title>
+  <link rel="stylesheet" href="../css/capstone/migration.css">
+</head>
+<body id="top">
+<header class="topbar">
+  <div class="nav">
+    <a class="brand" href="../index.html" aria-label="Go to Home">
+      <span class="brand-mark">C</span>
+      <span>Capstone Learning<small>Enterprise Layer Lecture Series</small></span>
+    </a>
+
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="topLinks">Menu</button>
+
+    <nav class="top-links" id="topLinks" aria-label="Main navigation">
+      <a class="home-btn" href="../index.html">Home</a>
+      <a href="deployment.html" class="">Deployment</a>
+<a href="migration.html" class="active">Migration</a>
+<a href="technical.html" class="">Documentation</a>
+<a href="project.html" class="">Defense</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Capstone â€¢ Enterprise Layer</p>
+        <h1>Migration &amp; Integration</h1>
+        <p class="hero-copy">Moving data, processes, and users safely while connecting the capstone solution to existing systems and services.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lesson-01-migration-and-integration-fundamentals">Start Lesson 01</a>
+          <a class="button secondary" href="../index.html">Return to Home</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Module summary">
+        <strong>Lecture module overview</strong>
+        <div class="hero-stat-grid">
+          <div class="hero-stat"><b>15</b><span>Detailed lessons</span></div>
+          <div class="hero-stat"><b>15</b><span>Automatic visuals</span></div>
+          <div class="hero-stat"><b>100%</b><span>Mobile responsive</span></div>
+          <div class="hero-stat"><b>1</b><span>Home route to ../index.html</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <p>Lecture navigation</p>
+        <h2>Migration &amp; Integration</h2>
+      </div>
+      <nav class="lesson-nav" aria-label="Lesson list">
+        <a href="#lesson-01-migration-and-integration-fundamentals"><span>01</span><span>Migration and Integration Fundamentals</span></a><a href="#lesson-02-current-state-assessment-and-system-inventory"><span>02</span><span>Current-State Assessment and System Inventory</span></a><a href="#lesson-03-data-profiling-and-data-quality-analysis"><span>03</span><span>Data Profiling and Data Quality Analysis</span></a><a href="#lesson-04-data-mapping-and-transformation-rules"><span>04</span><span>Data Mapping and Transformation Rules</span></a><a href="#lesson-05-etl-extract-transform-and-load"><span>05</span><span>ETL: Extract, Transform, and Load</span></a><a href="#lesson-06-migration-strategy-big-bang-phased-parallel-a"><span>06</span><span>Migration Strategy: Big Bang, Phased, Parallel, and Incremental</span></a><a href="#lesson-07-identity-authentication-and-account-migration"><span>07</span><span>Identity, Authentication, and Account Migration</span></a><a href="#lesson-08-api-integration-fundamentals"><span>08</span><span>API Integration Fundamentals</span></a><a href="#lesson-09-database-and-file-based-integration"><span>09</span><span>Database and File-Based Integration</span></a><a href="#lesson-10-data-synchronization-and-conflict-resolution"><span>10</span><span>Data Synchronization and Conflict Resolution</span></a><a href="#lesson-11-integration-security-authentication-authoriza"><span>11</span><span>Integration Security: Authentication, Authorization, and Encryption</span></a><a href="#lesson-12-error-handling-retries-queues-and-resilience"><span>12</span><span>Error Handling, Retries, Queues, and Resilience</span></a><a href="#lesson-13-migration-testing-and-reconciliation"><span>13</span><span>Migration Testing and Reconciliation</span></a><a href="#lesson-14-cutover-planning-and-rollback"><span>14</span><span>Cutover Planning and Rollback</span></a><a href="#lesson-15-post-migration-validation-and-integration-mon"><span>15</span><span>Post-Migration Validation and Integration Monitoring</span></a>
+      </nav>
+    </aside>
+
+    <div class="content">
+      <section class="module-intro">
+        <h2>About this module</h2>
+        <p>This page contains 15 classroom-ready lessons. Every lesson includes a longer explanation, learning targets, an applied capstone example, and a local instructional diagram that shows the lesson rules in a clear three-step sequence.</p>
+      </section>
+
+      
+<section class="lesson" id="lesson-01-migration-and-integration-fundamentals">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-01.svg" alt="Migration and Integration Fundamentals visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 01 â€¢ Migration &amp; Integration</div>
+    <h2>Migration and Integration Fundamentals</h2>
+    <p class="lesson-summary">Migration moves data, applications, or processes to a new environment; integration enables separate systems to exchange information and work together.</p>
+
+    <p>Migration and integration are often combined during a capstone rollout, but they solve different problems. Migration answers â€œhow do we move from the old state to the new state?â€ Integration answers â€œhow will this system communicate with systems that remain in use?â€</p>
+<p>A successful migration protects data completeness, accuracy, traceability, and availability. A successful integration defines interfaces, ownership, security, error handling, and synchronization behavior.</p>
+<p>Teams should begin by identifying source systems, target systems, data owners, interfaces, business rules, and dependencies. This prevents late discoveries such as undocumented spreadsheets, duplicate records, or external services required by critical workflows.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Differentiate migration from integration.</li>
+<li>Map sources, targets, and dependencies.</li>
+<li>Identify data and interface ownership.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Student records are migrated from spreadsheets into a new database, while the new system integrates with an email service for notifications.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-02-current-state-assessment-and-system-inventory">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-02.svg" alt="Current-State Assessment and System Inventory visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 02 â€¢ Migration &amp; Integration</div>
+    <h2>Current-State Assessment and System Inventory</h2>
+    <p class="lesson-summary">Before moving anything, the team must understand the systems, files, databases, and processes that currently exist.</p>
+
+    <p>A current-state assessment inventories applications, databases, spreadsheets, APIs, file repositories, manual forms, user roles, reports, and recurring processes. It also identifies which source is authoritative when the same information appears in multiple places.</p>
+<p>Technical inventory should record platform, version, owner, access method, data format, record count, data quality issues, security restrictions, and integration dependencies. Process inventory should document how information enters, changes, and leaves the system.</p>
+<p>This assessment prevents migration from becoming a simple copy operation. The team can distinguish data that must be preserved, transformed, archived, merged, or intentionally excluded.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Inventory systems and data sources.</li>
+<li>Identify authoritative sources.</li>
+<li>Document dependencies and constraints.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: An office has one MySQL database, three Excel files, and paper forms. The migration plan determines which historical data will be encoded, imported, or archived.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-03-data-profiling-and-data-quality-analysis">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-03.svg" alt="Data Profiling and Data Quality Analysis visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 03 â€¢ Migration &amp; Integration</div>
+    <h2>Data Profiling and Data Quality Analysis</h2>
+    <p class="lesson-summary">Data profiling measures the condition of source data before transformation begins.</p>
+
+    <p>Typical quality dimensions include completeness, validity, consistency, uniqueness, timeliness, and accuracy. A database may contain duplicate users, missing dates, inconsistent capitalization, invalid codes, or values stored in the wrong format.</p>
+<p>Profiling uses counts, distributions, null rates, duplicate checks, range checks, pattern checks, and cross-field validation. These results help estimate migration effort and define cleansing rules.</p>
+<p>Data quality decisions should be documented. Teams should know which errors can be corrected automatically, which require a data owner to decide, and which must be preserved because the historical source cannot be safely interpreted.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Measure source-data quality.</li>
+<li>Identify duplicates and invalid values.</li>
+<li>Define correction responsibilities.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Birth dates stored as `01/02/05` are ambiguous. The team does not guess; it validates the intended format before transformation.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-04-data-mapping-and-transformation-rules">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-04.svg" alt="Data Mapping and Transformation Rules visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 04 â€¢ Migration &amp; Integration</div>
+    <h2>Data Mapping and Transformation Rules</h2>
+    <p class="lesson-summary">Data mapping defines how each source field becomes a target field.</p>
+
+    <p>A mapping document links source tables and columns to target tables and columns. It also defines transformations such as date normalization, code conversion, trimming whitespace, splitting full names, merging fields, or generating new identifiers.</p>
+<p>Transformation rules must be deterministic. Different team members should obtain the same output from the same input. When a new system uses stricter validation, the mapping must explain how legacy values that violate new rules will be handled.</p>
+<p>Mapping is also evidence during defense because it demonstrates that data migration was designed rather than improvised.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Map source fields to target fields.</li>
+<li>Specify deterministic transformations.</li>
+<li>Document exceptions and validation rules.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Legacy values `M`, `Male`, and `male` are mapped to the target value `Male`; empty values remain null rather than being converted to misleading defaults.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-05-etl-extract-transform-and-load">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-05.svg" alt="ETL: Extract, Transform, and Load visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 05 â€¢ Migration &amp; Integration</div>
+    <h2>ETL: Extract, Transform, and Load</h2>
+    <p class="lesson-summary">ETL organizes migration into controlled stages that can be tested and repeated.</p>
+
+    <p>Extraction reads data from source systems without damaging the original. Transformation cleans, validates, restructures, and enriches data. Loading inserts transformed records into the target in the correct order.</p>
+<p>Teams should consider staging tables or temporary files so transformations can be inspected before final loading. ETL logs should report how many records were read, accepted, rejected, updated, and written.</p>
+<p>Repeatability is essential. If a migration test reveals a problem, the team should be able to correct the rule, reset the test target, and run the migration again.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Explain the ETL lifecycle.</li>
+<li>Use staging for controlled transformation.</li>
+<li>Log record counts and errors.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: 10,000 source rows are extracted; 9,940 pass validation, 40 duplicates are merged, and 20 invalid records are placed in an exception report.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-06-migration-strategy-big-bang-phased-parallel-a">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-06.svg" alt="Migration Strategy: Big Bang, Phased, Parallel, and Incremental visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 06 â€¢ Migration &amp; Integration</div>
+    <h2>Migration Strategy: Big Bang, Phased, Parallel, and Incremental</h2>
+    <p class="lesson-summary">Migration strategy controls when users and data move from the legacy process to the new system.</p>
+
+    <p>Big-bang migration switches all users and data at once. Phased migration moves selected areas over time. Parallel operation runs old and new systems together temporarily. Incremental migration moves batches or changes over multiple cycles.</p>
+<p>The correct choice depends on system criticality, ability to synchronize data, user readiness, operational cost, and rollback feasibility. Parallel operation reduces immediate risk but can create duplicate work and reconciliation problems.</p>
+<p>Capstone projects should explain why the chosen migration approach is proportionate to risk and available resources.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Compare migration strategies.</li>
+<li>Select a strategy based on risk.</li>
+<li>Plan synchronization during transition.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A records office migrates historical records first, then switches new transactions to the new system on a defined cutover date.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-07-identity-authentication-and-account-migration">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-07.svg" alt="Identity, Authentication, and Account Migration visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 07 â€¢ Migration &amp; Integration</div>
+    <h2>Identity, Authentication, and Account Migration</h2>
+    <p class="lesson-summary">Moving user accounts requires special care because identity data affects access control and security.</p>
+
+    <p>Account migration may involve usernames, email addresses, roles, organizational units, account status, and password handling. Passwords should not be exported in plain text. In many migrations, users must reset passwords because legacy hashes cannot or should not be transferred.</p>
+<p>Role mapping is critical. A legacy role named â€œstaffâ€ may not correspond exactly to a role in the new system. Permissions should be mapped explicitly rather than inferred only from role names.</p>
+<p>Dormant, duplicate, or terminated accounts should be reviewed before migration. Moving unnecessary accounts increases security risk.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Protect credentials during migration.</li>
+<li>Map roles and permissions explicitly.</li>
+<li>Remove unnecessary legacy accounts.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Active accounts are imported with roles, but passwords are not migrated; each user receives a secure password-reset process at first login.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-08-api-integration-fundamentals">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-08.svg" alt="API Integration Fundamentals visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 08 â€¢ Migration &amp; Integration</div>
+    <h2>API Integration Fundamentals</h2>
+    <p class="lesson-summary">APIs provide structured interfaces that allow applications to exchange data and trigger functions.</p>
+
+    <p>A REST API commonly uses HTTP methods such as GET, POST, PUT, PATCH, and DELETE. The API contract defines endpoints, request data, response data, status codes, authentication, validation rules, and error structures.</p>
+<p>Integration design should minimize tight coupling. If the external system changes, the capstone application should ideally isolate that change within a service or adapter rather than spreading external assumptions throughout the codebase.</p>
+<p>Students should also understand idempotency for operations that may be retried. A repeated request should not accidentally create duplicate payments, messages, or records when the intended operation is logically one-time.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Understand API contracts.</li>
+<li>Use appropriate HTTP methods and status codes.</li>
+<li>Design integrations to tolerate change and retries.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The system calls a messaging API through one notification service class instead of making direct API requests from every page.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-09-database-and-file-based-integration">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-09.svg" alt="Database and File-Based Integration visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 09 â€¢ Migration &amp; Integration</div>
+    <h2>Database and File-Based Integration</h2>
+    <p class="lesson-summary">Not every integration uses a web API; some organizations exchange data through databases, CSV files, or controlled folders.</p>
+
+    <p>Direct database integration can be efficient but creates strong coupling and significant security concerns. The consuming system may depend on internal table structures that were never intended as a public interface.</p>
+<p>File-based integration uses exported CSV, JSON, XML, or spreadsheets. It is simpler for periodic batch exchange but requires naming conventions, validation, duplicate prevention, secure transfer, and clear scheduling.</p>
+<p>Teams should select an integration method based on frequency, timeliness, security, source capabilities, and maintenance cost.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Compare API, database, and file exchange.</li>
+<li>Avoid unsafe database exposure.</li>
+<li>Define batch exchange controls.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A legacy system exports a daily CSV to a protected folder. The capstone system validates and imports only files that have not been processed before.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-10-data-synchronization-and-conflict-resolution">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-10.svg" alt="Data Synchronization and Conflict Resolution visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 10 â€¢ Migration &amp; Integration</div>
+    <h2>Data Synchronization and Conflict Resolution</h2>
+    <p class="lesson-summary">When two systems can change related data, synchronization rules determine which value wins.</p>
+
+    <p>Synchronization may be one-way or two-way, real-time or scheduled. The design must identify the system of record for each data element. Without clear ownership, two systems may repeatedly overwrite each other&#x27;s changes.</p>
+<p>Conflict resolution can use timestamps, version numbers, source priority, manual review, or domain-specific rules. Timestamps alone may be unreliable when clocks differ or offline updates arrive late.</p>
+<p>A strong design also records synchronization status and failures so administrators can identify records that are out of sync.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Identify the system of record.</li>
+<li>Choose synchronization frequency.</li>
+<li>Define conflict-resolution rules.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Employee contact information is mastered by HR, while help-desk preferences are mastered by the capstone system; each field has one authoritative owner.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-11-integration-security-authentication-authoriza">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-11.svg" alt="Integration Security: Authentication, Authorization, and Encryption visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 11 â€¢ Migration &amp; Integration</div>
+    <h2>Integration Security: Authentication, Authorization, and Encryption</h2>
+    <p class="lesson-summary">System-to-system connectivity expands the security boundary and must be explicitly protected.</p>
+
+    <p>Integrations may use API keys, signed tokens, OAuth, service accounts, mutual TLS, or network-level controls. Credentials should be scoped to the minimum permissions required and stored securely.</p>
+<p>Authorization must be checked even when systems trust each other. A service used only to read attendance data should not automatically receive permission to modify student profiles.</p>
+<p>Sensitive data should be encrypted in transit, and logs should avoid exposing secrets or full confidential payloads. Key rotation and credential revocation should also be planned.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Secure service identities.</li>
+<li>Apply least privilege to integrations.</li>
+<li>Encrypt sensitive data in transit.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A reporting service receives a read-only token that can access only approved report endpoints and expires automatically.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-12-error-handling-retries-queues-and-resilience">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-12.svg" alt="Error Handling, Retries, Queues, and Resilience visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 12 â€¢ Migration &amp; Integration</div>
+    <h2>Error Handling, Retries, Queues, and Resilience</h2>
+    <p class="lesson-summary">External systems can fail even when the capstone application is working correctly.</p>
+
+    <p>An integration may encounter timeouts, rate limits, invalid responses, temporary network failure, or maintenance downtime. The application should distinguish retryable errors from permanent errors.</p>
+<p>Retries should use limits and delays rather than retrying continuously. Queues can decouple user actions from slow external processing, allowing the application to acknowledge a request and complete the external operation asynchronously within the system architecture.</p>
+<p>Failures that require human action should be visible through logs, dashboards, or exception queues. Silent integration failure creates misleading confidence.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Classify integration failures.</li>
+<li>Use controlled retry behavior.</li>
+<li>Expose unresolved errors to administrators.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: If an SMS provider is temporarily unavailable, the system retries three times with increasing delays and then marks the notification for manual review.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-13-migration-testing-and-reconciliation">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-13.svg" alt="Migration Testing and Reconciliation visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 13 â€¢ Migration &amp; Integration</div>
+    <h2>Migration Testing and Reconciliation</h2>
+    <p class="lesson-summary">Testing proves not only that data was loaded, but that the migrated result is trustworthy.</p>
+
+    <p>Migration testing includes row counts, totals, field-level checks, referential integrity, duplicate checks, sample verification, permission validation, and application-level testing using migrated records.</p>
+<p>Reconciliation compares the source and target using measurable controls. For financial data, totals may be critical. For records systems, record counts, unique identifiers, dates, and linked entities may matter more.</p>
+<p>Testing should include rejected or exceptional records, not only successful imports. The team needs a clear disposition for every source record.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Verify completeness and correctness.</li>
+<li>Reconcile source and target counts.</li>
+<li>Test exceptions and linked records.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The team compares the number of active students, total enrollment records, and a random sample of 100 profiles before approving migration.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-14-cutover-planning-and-rollback">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-14.svg" alt="Cutover Planning and Rollback visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 14 â€¢ Migration &amp; Integration</div>
+    <h2>Cutover Planning and Rollback</h2>
+    <p class="lesson-summary">Cutover is the controlled moment when operational use moves to the new system.</p>
+
+    <p>The cutover plan defines the timeline, freeze period, final data extraction, migration execution, validation, user activation, integration switch, communication, and approval to proceed. A clear decision point determines whether to continue or roll back.</p>
+<p>A data freeze may be necessary to prevent source changes while final migration is running. If the legacy system cannot be frozen, the team may need a delta migration to capture changes made after the initial extract.</p>
+<p>Rollback planning must consider data created after cutover. Restoring the old application is not enough if new transactions would be lost.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Create a detailed cutover sequence.</li>
+<li>Control changes during final migration.</li>
+<li>Plan recovery without losing new data.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: At 6:00 PM the legacy system becomes read-only, final changes are exported, migration runs, reconciliation is completed, and go-live is approved before users return the next morning.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-15-post-migration-validation-and-integration-mon">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/migration-15.svg" alt="Post-Migration Validation and Integration Monitoring visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 15 â€¢ Migration &amp; Integration</div>
+    <h2>Post-Migration Validation and Integration Monitoring</h2>
+    <p class="lesson-summary">After migration, the team must verify real usage and watch interfaces for hidden problems.</p>
+
+    <p>Post-migration validation confirms that users can find their records, permissions remain correct, integrations process live transactions, reports match expected results, and no critical data was omitted.</p>
+<p>Monitoring should track failed imports, API error rates, queue backlogs, synchronization lag, duplicate events, and authentication failures. Early monitoring is especially important because real user behavior may reveal cases not represented in test data.</p>
+<p>A migration closure report should document results, unresolved exceptions, archived legacy assets, sign-off, and follow-up actions.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Validate live user workflows.</li>
+<li>Monitor synchronization and integration errors.</li>
+<li>Document migration closure and exceptions.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: During the first week, the team reviews failed synchronization events every day and confirms that all unresolved exceptions have assigned owners.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <strong>Capstone Enterprise Lecture Series</strong><br>
+  Deployment Planning â€¢ Migration & Integration â€¢ Technical Documentation â€¢ Project Defense
+</footer>
+
+<script>
+(() => {
+  const menuButton = document.querySelector('.menu-btn');
+  const topLinks = document.querySelector('#topLinks');
+
+  menuButton?.addEventListener('click', () => {
+    const open = topLinks.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+
+  topLinks?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      topLinks.classList.remove('open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Lesson diagrams are local, deterministic assets that match each topic.
+
+  // Highlight the current lesson in the sidebar.
+  const lessonLinks = [...document.querySelectorAll('.lesson-nav a')];
+  const sections = [...document.querySelectorAll('.lesson')];
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (!visible) return;
+    lessonLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + visible.target.id);
+    });
+  }, { rootMargin: '-15% 0px -65% 0px', threshold: [0.05, 0.2, 0.5] });
+
+  sections.forEach(section => observer.observe(section));
+})();
+</script>
+</body>
+</html>

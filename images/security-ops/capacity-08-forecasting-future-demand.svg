@@ -1,0 +1,50 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+  <title id="t">Capacity Planning â€” Forecasting Future Demand</title>
+  <desc id="d">Educational diagram showing the key ideas in Forecasting Future Demand.</desc>
+  <rect width="1200" height="675" fill="#f7fafc"/>
+  <circle cx="1080" cy="75" r="165" fill="#c2410c" opacity=".07"/>
+  <circle cx="95" cy="610" r="135" fill="#c2410c" opacity=".055"/>
+  <rect x="55" y="35" width="1090" height="595" rx="30" fill="#ffffff" stroke="#e0e8f0" stroke-width="2"/>
+  <text x="90" y="62" font-size="16" font-weight="800" fill="#c2410c" letter-spacing="2">SECURITY &amp; OPERATIONS Â· LESSON 08</text>
+  <text x="600" y="108" text-anchor="middle" font-size="34" font-weight="900" fill="#0b1f33">Forecasting Future Demand</text>
+  <line x1="120" y1="148" x2="1080" y2="148" stroke="#e5ebf1" stroke-width="2"/>
+  
+        <rect x="425" y="165" width="350" height="225" rx="22" fill="#fff" stroke="#c2410c" stroke-width="5"/>
+        <path d="M470 330 L550 285 L620 300 L715 210" fill="none" stroke="#c2410c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M690 210 H715 V235" fill="none" stroke="#c2410c" stroke-width="9" stroke-linecap="round"/>
+        <rect x="470" y="205" width="210" height="18" rx="9" fill="#ffedd5"/>
+        <rect x="470" y="240" width="150" height="18" rx="9" fill="#fed7aa"/>
+        <rect x="470" y="275" width="95" height="18" rx="9" fill="#fdba74"/>
+        
+  
+        <g>
+          <rect x="95" y="480" width="210" height="86" rx="16" fill="#ffffff" stroke="#d9e2ec" stroke-width="2"/>
+          <circle cx="123" cy="508" r="13" fill="#c2410c" opacity=".95"/>
+          <path d="M117 508 l5 6 10-13" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="147" y="514" font-size="18" font-weight="800" fill="#16283d">Linear Trend</text>
+          <text x="115" y="542" font-size="13" fill="#63758a">Key concept for this lesson</text>
+        </g>
+        <g>
+          <rect x="340" y="480" width="210" height="86" rx="16" fill="#ffffff" stroke="#d9e2ec" stroke-width="2"/>
+          <circle cx="368" cy="508" r="13" fill="#c2410c" opacity=".95"/>
+          <path d="M362 508 l5 6 10-13" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="392" y="514" font-size="18" font-weight="800" fill="#16283d">Growth Rate</text>
+          <text x="360" y="542" font-size="13" fill="#63758a">Key concept for this lesson</text>
+        </g>
+        <g>
+          <rect x="585" y="480" width="210" height="86" rx="16" fill="#ffffff" stroke="#d9e2ec" stroke-width="2"/>
+          <circle cx="613" cy="508" r="13" fill="#c2410c" opacity=".95"/>
+          <path d="M607 508 l5 6 10-13" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="637" y="514" font-size="18" font-weight="800" fill="#16283d">Scenario</text>
+          <text x="605" y="542" font-size="13" fill="#63758a">Key concept for this lesson</text>
+        </g>
+        <g>
+          <rect x="830" y="480" width="210" height="86" rx="16" fill="#ffffff" stroke="#d9e2ec" stroke-width="2"/>
+          <circle cx="858" cy="508" r="13" fill="#c2410c" opacity=".95"/>
+          <path d="M852 508 l5 6 10-13" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="882" y="514" font-size="18" font-weight="800" fill="#16283d">Business Event</text>
+          <text x="850" y="542" font-size="13" fill="#63758a">Key concept for this lesson</text>
+        </g>
+  <rect x="155" y="590" width="890" height="2" fill="#e8edf2"/>
+  <text x="600" y="618" text-anchor="middle" font-size="15" fill="#5d6f82">Visual guide: use this diagram together with the lecture explanation and practical activity.</text>
+</svg>

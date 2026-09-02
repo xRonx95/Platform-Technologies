@@ -1,0 +1,593 @@
+﻿<!doctype html>
+
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Project Defense capstone lecture with 15 detailed lessons, examples, and automatic topic images." name="description"/>
+<title>Project Defense | Capstone Enterprise Lecture</title>
+<link href="../css/capstone/project.css" rel="stylesheet"/>
+</head>
+<body id="top">
+<header class="topbar">
+<div class="nav">
+<a aria-label="Go to Home" class="brand" href="../index.html">
+<span class="brand-mark">C</span>
+<span>Capstone Learning<small>Enterprise Layer Lecture Series</small></span>
+</a>
+<button aria-controls="topLinks" aria-expanded="false" class="menu-btn" type="button">Menu</button>
+<nav aria-label="Main navigation" class="top-links" id="topLinks">
+<a class="home-btn" href="../index.html">Home</a>
+<a class="" href="deployment.html">Deployment</a>
+<a class="" href="migration.html">Migration</a>
+<a class="" href="technical.html">Documentation</a>
+<a class="active" href="project.html">Defense</a>
+</nav>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="hero-inner">
+<div>
+<p class="eyebrow">Capstone â€¢ Enterprise Layer</p>
+<h1>Project Defense</h1>
+<p class="hero-copy">Preparing an evidence-based technical defense that explains the problem, design, implementation, evaluation, deployment, limitations, and value of the capstone project.</p>
+<div class="hero-actions">
+<a class="button primary" href="#lesson-01-purpose-and-structure-of-a-capstone-defense">Start Lesson 01</a>
+<a class="button secondary" href="../index.html">Return to Home</a>
+</div>
+</div>
+<aside aria-label="Module summary" class="hero-card">
+<strong>Lecture module overview</strong>
+<div class="hero-stat-grid">
+<div class="hero-stat"><b>15</b><span>Detailed lessons</span></div>
+<div class="hero-stat"><b>15</b><span>Automatic visuals</span></div>
+<div class="hero-stat"><b>100%</b><span>Mobile responsive</span></div>
+<div class="hero-stat"><b>1</b><span>Home route to ../index.html</span></div>
+</div>
+</aside>
+</div>
+</section>
+<div class="page-shell">
+<aside class="sidebar">
+<div class="sidebar-head">
+<p>Lecture navigation</p>
+<h2>Project Defense</h2>
+</div>
+<nav aria-label="Lesson list" class="lesson-nav">
+<a href="#lesson-01-purpose-and-structure-of-a-capstone-defense"><span>01</span><span>Purpose and Structure of a Capstone Defense</span></a><a href="#lesson-02-problem-statement-context-and-stakeholder-nee"><span>02</span><span>Problem Statement, Context, and Stakeholder Need</span></a><a href="#lesson-03-objectives-scope-and-success-criteria"><span>03</span><span>Objectives, Scope, and Success Criteria</span></a><a href="#lesson-04-review-of-related-systems-and-technical-ratio"><span>04</span><span>Review of Related Systems and Technical Rationale</span></a><a href="#lesson-05-methodology-and-development-process"><span>05</span><span>Methodology and Development Process</span></a><a href="#lesson-06-requirements-and-traceability-during-defense"><span>06</span><span>Requirements and Traceability During Defense</span></a><a href="#lesson-07-architecture-defense-and-technology-selection"><span>07</span><span>Architecture Defense and Technology Selection</span></a><a href="#lesson-08-database-data-flow-and-integrity-defense"><span>08</span><span>Database, Data Flow, and Integrity Defense</span></a><a href="#lesson-09-security-privacy-and-ethical-defense"><span>09</span><span>Security, Privacy, and Ethical Defense</span></a><a href="#lesson-10-testing-strategy-and-quality-evidence"><span>10</span><span>Testing Strategy and Quality Evidence</span></a><a href="#lesson-11-usability-and-evaluation-results"><span>11</span><span>Usability and Evaluation Results</span></a><a href="#lesson-12-live-demonstration-planning"><span>12</span><span>Live Demonstration Planning</span></a><a href="#lesson-13-answering-panel-questions-and-handling-challe"><span>13</span><span>Answering Panel Questions and Handling Challenges</span></a><a href="#lesson-14-limitations-risks-and-future-enhancements"><span>14</span><span>Limitations, Risks, and Future Enhancements</span></a><a href="#lesson-15-final-defense-synthesis-and-closing-statement"><span>15</span><span>Final Defense Synthesis and Closing Statement</span></a>
+</nav>
+</aside>
+<div class="content">
+<section class="module-intro">
+<h2>About this module</h2>
+<p>This page contains 15 classroom-ready lessons. Every lesson includes a longer explanation, learning targets, an applied capstone example, and a local instructional diagram that shows the lesson rules in a clear three-step sequence.</p>
+</section>
+<section class="lesson" id="lesson-01-purpose-and-structure-of-a-capstone-defense">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-01.svg" alt="Purpose and Structure of a Capstone Defense visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 01 â€¢ Project Defense</div>
+<h2>Purpose and Structure of a Capstone Defense</h2>
+<p class="lesson-summary">A project defense is a structured technical argument that demonstrates why the project was needed, how it was designed, what was built, how it was evaluated, and what the evidence supports.</p>
+<p>The defense is not only a product demonstration. A strong presentation connects problem definition, objectives, requirements, methodology, architecture, implementation, testing, evaluation, and conclusions into one coherent story.</p>
+<p>Panel questions often test whether the team understands its own design decisions and limitations. Memorized scripts are less useful than a clear mental model of the system.</p>
+<p>The team should prepare both a presentation path and an evidence path. The presentation communicates the main argument; the evidence package supports detailed questions about requirements, tests, source code, database design, results, and deployment.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Explain the project as a coherent technical argument.</li>
+<li>Connect claims to evidence.</li>
+<li>Prepare for questions beyond the scripted presentation.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: Instead of saying â€œour system is efficient,â€ the team presents measured task results or evaluation data and explains exactly what the evidence shows.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-02-problem-statement-context-and-stakeholder-nee">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-02.svg" alt="Problem Statement, Context, and Stakeholder Need visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 02 â€¢ Project Defense</div>
+<h2>Problem Statement, Context, and Stakeholder Need</h2>
+<p class="lesson-summary">The opening must establish a specific, credible problem before presenting the solution.</p>
+<p>A problem statement should describe the current situation, affected stakeholders, observed difficulties, operational consequences, and the gap the project addresses. It should avoid exaggerated claims that the study did not measure.</p>
+<p>Context may include existing workflows, constraints, organizational setting, and evidence from interviews, observation, records, or literature. The goal is to show that the project responds to a real and bounded need.</p>
+<p>The panel should be able to understand why the project exists before hearing technical details.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Present a bounded problem.</li>
+<li>Identify affected stakeholders.</li>
+<li>Avoid unsupported claims about impact.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: â€œFiles are stored across individual devices and shared manually, making controlled retrieval and access management difficultâ€ is more defensible than â€œthe current process is completely inefficient.â€</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-03-objectives-scope-and-success-criteria">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-03.svg" alt="Objectives, Scope, and Success Criteria visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 03 â€¢ Project Defense</div>
+<h2>Objectives, Scope, and Success Criteria</h2>
+<p class="lesson-summary">Objectives define what the project intends to achieve, while scope defines what the project includes and excludes.</p>
+<p>General objectives should be supported by specific objectives that correspond to implemented capabilities or measurable outcomes. Each objective should be traceable to system features and evaluation evidence.</p>
+<p>Scope protects the defense from overclaiming. If the project is intended only for a local network, that limitation should be stated rather than presenting the system as universally deployable.</p>
+<p>Success criteria define what counts as completion or acceptable performance. These may include functional coverage, usability ratings, performance thresholds, data integrity checks, or deployment readiness.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Align objectives with implemented features.</li>
+<li>State scope boundaries explicitly.</li>
+<li>Define measurable success criteria.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: A project may succeed by implementing controlled file storage, search, role-based access, and tested backupâ€”not by claiming to solve every document-management problem.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-04-review-of-related-systems-and-technical-ratio">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-04.svg" alt="Review of Related Systems and Technical Rationale visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 04 â€¢ Project Defense</div>
+<h2>Review of Related Systems and Technical Rationale</h2>
+<p class="lesson-summary">Related literature and systems establish the technical ideas that informed the project and help justify design choices.</p>
+<p>The defense should synthesize relevant concepts rather than list sources. Explain how topics such as document management, role-based access control, audit logs, usability, or security influenced requirements and architecture.</p>
+<p>Related systems can be compared using features, deployment model, strengths, limitations, or target environment. The purpose is to identify a gap or contextual need, not merely to prove that similar software exists.</p>
+<p>Panel members may ask why a particular model, standard, or technology was chosen. The team should be prepared to explain the connection between references and implementation decisions.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Synthesize related work.</li>
+<li>Compare relevant systems meaningfully.</li>
+<li>Connect literature to technical decisions.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: The team cites RBAC concepts to justify mapping system permissions to defined roles rather than granting users unrestricted file access.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-05-methodology-and-development-process">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-05.svg" alt="Methodology and Development Process visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 05 â€¢ Project Defense</div>
+<h2>Methodology and Development Process</h2>
+<p class="lesson-summary">The methodology explains how the team moved from requirements to a tested implementation.</p>
+<p>Whether the project used Agile, iterative development, prototyping, waterfall, or a hybrid process, the team should describe actual activities rather than only presenting a textbook diagram.</p>
+<p>Important evidence includes requirements gathering, prioritization, prototypes, development iterations, testing cycles, stakeholder feedback, revisions, and acceptance activities.</p>
+<p>The defense should acknowledge deviations from the original plan and explain why changes were made. Adaptation supported by evidence can demonstrate good engineering judgment.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Describe the actual development process.</li>
+<li>Show evidence from major iterations.</li>
+<li>Explain justified changes to the plan.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: After user testing, the team simplified the upload workflow and added clearer status messages; the defense shows the issue, revision, and result.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-06-requirements-and-traceability-during-defense">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-06.svg" alt="Requirements and Traceability During Defense visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 06 â€¢ Project Defense</div>
+<h2>Requirements and Traceability During Defense</h2>
+<p class="lesson-summary">Requirements provide a structured way to prove that the implemented system corresponds to identified needs.</p>
+<p>The team should distinguish functional requirements from nonfunctional requirements. Functional requirements describe capabilities; nonfunctional requirements address qualities such as security, usability, performance, reliability, and compatibility.</p>
+<p>A traceability matrix allows the presenter to quickly show where a requirement appears in the interface, architecture, test plan, and result. This is particularly useful when a panel asks whether a specific feature was actually validated.</p>
+<p>Requirements should be prioritized so the team can explain which capabilities are essential and which are enhancements.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Differentiate functional and nonfunctional requirements.</li>
+<li>Use traceability as defense evidence.</li>
+<li>Explain requirement priorities.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: â€œOnly authorized users may access protected filesâ€ is linked to login, RBAC middleware, permission tables, and access-control test cases.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-07-architecture-defense-and-technology-selection">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-07.svg" alt="Architecture Defense and Technology Selection visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 07 â€¢ Project Defense</div>
+<h2>Architecture Defense and Technology Selection</h2>
+<p class="lesson-summary">Technology choices should be justified by project requirements, not by popularity alone.</p>
+<p>A defense of architecture should explain major components, data flow, security boundaries, deployment environment, and why the selected structure is appropriate for the project's scale.</p>
+<p>For each major technologyâ€”language, framework, database, hosting modelâ€”the team should know the practical reason it was selected, its limitations, and realistic alternatives.</p>
+<p>Panels may challenge whether a technology is necessary. A good answer compares tradeoffs such as learning curve, ecosystem, offline capability, infrastructure compatibility, cost, and maintenance.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Explain the architecture clearly.</li>
+<li>Justify technology choices using requirements.</li>
+<li>Discuss realistic alternatives and tradeoffs.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: MySQL is selected because the project requires relational constraints, structured queries, and compatibility with the target environment; the team also recognizes alternatives.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-08-database-data-flow-and-integrity-defense">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-08.svg" alt="Database, Data Flow, and Integrity Defense visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 08 â€¢ Project Defense</div>
+<h2>Database, Data Flow, and Integrity Defense</h2>
+<p class="lesson-summary">The team should be able to explain how data is represented, validated, related, and protected.</p>
+<p>Panel questions may focus on ERD relationships, primary and foreign keys, normalization, indexes, unique constraints, transaction handling, and deletion behavior. The team should understand why tables exist, not just recognize their names.</p>
+<p>A data-flow explanation should follow an actual transaction from the user interface through validation and business logic to storage and response.</p>
+<p>Data integrity also includes application rules, authorization, backup, and recoveryâ€”not only database constraints.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Explain the ERD and relationships.</li>
+<li>Trace key transactions end to end.</li>
+<li>Identify integrity controls at multiple layers.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: A file upload transaction validates type and size, verifies permission, stores metadata, writes the file, records an audit event, and returns the resulting document entry.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-09-security-privacy-and-ethical-defense">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-09.svg" alt="Security, Privacy, and Ethical Defense visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 09 â€¢ Project Defense</div>
+<h2>Security, Privacy, and Ethical Defense</h2>
+<p class="lesson-summary">Security claims should be specific, implemented, and proportionate to the project's risk.</p>
+<p>The team should be prepared to explain authentication, password hashing, authorization, input validation, session control, protected files, logging, backup security, and account management where applicable.</p>
+<p>Privacy questions may involve what personal data is collected, why it is necessary, who can access it, how long it is retained, and whether exports or backups expose additional risk.</p>
+<p>Ethical defense also means acknowledging residual risk. No realistic system is perfectly secure; the team should identify what controls were implemented and what future hardening remains.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Describe implemented security controls.</li>
+<li>Explain personal-data handling.</li>
+<li>Acknowledge residual risks and limitations.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: The team says passwords are hashed and role access is enforced, while also noting that a future security assessment should include independent penetration testing.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-10-testing-strategy-and-quality-evidence">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-10.svg" alt="Testing Strategy and Quality Evidence visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 10 â€¢ Project Defense</div>
+<h2>Testing Strategy and Quality Evidence</h2>
+<p class="lesson-summary">Testing evidence demonstrates that the system behaves as expected under defined conditions.</p>
+<p>The defense should present a testing strategy rather than a collection of screenshots. Explain which test levels were used, how cases were selected, what passed, what failed, and how defects were resolved.</p>
+<p>Quantitative summaries can include test case counts, pass rates, response-time measurements, or defect categories, but metrics should be interpreted carefully. A 100% pass rate means only that the defined tests passedâ€”not that the system contains no defects.</p>
+<p>Critical workflows deserve deeper evidence, especially authentication, data integrity, permissions, backup, restore, and major business transactions.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Present a coherent testing strategy.</li>
+<li>Interpret test metrics correctly.</li>
+<li>Show evidence for critical workflows.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: The team reports 84 functional cases, 82 passed initially, two defects were corrected, and all 84 passed during regression testing.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-11-usability-and-evaluation-results">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-11.svg" alt="Usability and Evaluation Results visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 11 â€¢ Project Defense</div>
+<h2>Usability and Evaluation Results</h2>
+<p class="lesson-summary">Evaluation results must be explained in terms of the instrument, respondents, measures, and limitations.</p>
+<p>If the project uses a standard such as ISO/IEC 25010 or a usability instrument, the team should understand the selected characteristics and why they are relevant. It should not treat an average score as proof of every possible quality attribute.</p>
+<p>Present respondent groups, evaluation procedure, rating scale, computed results, and interpretation. Separate user perception from technical measurement: users can rate usability, but they cannot directly verify cryptographic security.</p>
+<p>Limitations such as sample size, controlled environment, or short evaluation period should be acknowledged because they affect generalization.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Explain the evaluation instrument.</li>
+<li>Separate subjective and technical evidence.</li>
+<li>Interpret results within study limitations.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: Users rate learnability and interface clarity, while response time and backup restoration are measured through technical tests.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-12-live-demonstration-planning">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-12.svg" alt="Live Demonstration Planning visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 12 â€¢ Project Defense</div>
+<h2>Live Demonstration Planning</h2>
+<p class="lesson-summary">A defense demonstration should prove critical workflows without depending on luck.</p>
+<p>The demo should be rehearsed using a known dataset, prepared accounts, stable environment, and ordered scenario. The presenter should know what each step proves and avoid unnecessary navigation.</p>
+<p>Prepare for common failure modes: no internet, unavailable external API, expired session, forgotten password, slow loading, or projector resolution problems. A local fallback environment and screenshots can support continuity, although they should not be used to conceal a broken system.</p>
+<p>Demonstration data should be realistic enough to show system behavior but should not expose private real-world information.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Design a short evidence-focused demo.</li>
+<li>Prepare safe fallback options.</li>
+<li>Use non-sensitive demonstration data.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: The demo logs in as an authorized user, completes one core transaction, shows the resulting database-visible outcome, then demonstrates an admin control.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-13-answering-panel-questions-and-handling-challe">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-13.svg" alt="Answering Panel Questions and Handling Challenges visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 13 â€¢ Project Defense</div>
+<h2>Answering Panel Questions and Handling Challenges</h2>
+<p class="lesson-summary">Strong defense answers are precise, evidence-based, and willing to distinguish known facts from assumptions.</p>
+<p>Listen for the actual question and answer it first. Then provide the supporting rationale. Avoid giving a long unrelated explanation while the panel is waiting for a direct response.</p>
+<p>When the team does not know an answer, it is better to state the limitation and explain how it would be investigated than to invent a technical claim. Panel challenges are often opportunities to show reasoning rather than perfect recall.</p>
+<p>Team members should coordinate responsibilities but all members should understand the project's core problem, architecture, data model, testing, and limitations.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Answer questions directly.</li>
+<li>Support answers with project evidence.</li>
+<li>Acknowledge uncertainty without guessing.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: If asked why a specific encryption algorithm was not implemented, the team explains the actual protection used, project scope, risk, and a technically appropriate future improvement.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+<section class="lesson" id="lesson-14-limitations-risks-and-future-enhancements">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-14.svg" alt="Limitations, Risks, and Future Enhancements visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 14 â€¢ Project Defense</div>
+<h2>Limitations, Risks, and Future Enhancements</h2>
+<p class="lesson-summary">A credible defense distinguishes current limitations from defects and future possibilities.</p>
+<p>Limitations may result from scope, resources, environment, available data, hardware, sample size, or time. A defect is a failure to meet an intended requirement. Future enhancement is a proposed capability beyond the completed scope.</p>
+<p>The team should rank future work by value and risk rather than presenting an unstructured wish list. Some enhancements may require architecture changes, policy approval, additional security controls, or infrastructure investment.</p>
+<p>Discussing limitations transparently strengthens credibility when the team can explain why they exist and how they affect conclusions.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Distinguish limitations from defects.</li>
+<li>Prioritize future work.</li>
+<li>Explain how limitations affect project claims.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: â€œMobile native appâ€ is a future enhancement, while â€œthe web system supports responsive mobile browsersâ€ describes current scope.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+
+<section class="lesson" id="lesson-15-final-defense-synthesis-and-closing-statement">
+<figure class="lesson-visual">
+<img class="auto-topic-image" src="../images/capstone/project-15.svg" alt="Final Defense Synthesis and Closing Statement visual" loading="lazy" width="1280" height="720">
+</figure>
+<div class="lesson-body">
+<div class="lesson-number">Lesson 15 â€¢ Project Defense</div>
+<h2>Final Defense Synthesis and Closing Statement</h2>
+<p class="lesson-summary">The closing should summarize what was built, what evidence shows, and what contribution the project makes within its defined scope.</p>
+<p>A strong conclusion returns to the original problem and objectives. It explains which objectives were achieved and points to the strongest evidence without repeating the entire presentation.</p>
+<p>Avoid introducing major new claims in the final minute. Instead, synthesize the demonstrated system, evaluation results, deployment readiness, and acknowledged limitations.</p>
+<p>The team should be ready to open supporting evidence immediately after the presentation because panel discussion often moves from high-level claims to detailed technical verification.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3>Learning targets</h3>
+<ul>
+<li>Connect conclusions to objectives.</li>
+<li>Summarize evidence without overclaiming.</li>
+<li>End with a precise scope-aware contribution statement.</li>
+</ul>
+</div>
+<div class="info-card">
+<h3>Why this matters in a capstone</h3>
+<p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+</div>
+</div>
+<div class="example"><strong>Applied example:</strong> Example: The closing states that the project delivered the defined file-management functions, passed the documented test set, achieved the reported evaluation results, and is prepared for the specified local deployment environment.</div>
+<div class="lesson-footer">
+<span>Review prompt: How would you apply this concept to your own capstone system?</span>
+<a class="back-top" href="#top">Back to top â†‘</a>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<strong>Capstone Enterprise Lecture Series</strong><br/>
+  Deployment Planning â€¢ Migration &amp; Integration â€¢ Technical Documentation â€¢ Project Defense
+</footer>
+<script>
+(() => {
+  const menuButton = document.querySelector('.menu-btn');
+  const topLinks = document.querySelector('#topLinks');
+
+  menuButton?.addEventListener('click', () => {
+    const open = topLinks.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+
+  topLinks?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      topLinks.classList.remove('open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Lesson diagrams are local, deterministic assets that match each topic.
+
+  // Highlight the current lesson in the sidebar.
+  const lessonLinks = [...document.querySelectorAll('.lesson-nav a')];
+  const sections = [...document.querySelectorAll('.lesson')];
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (!visible) return;
+    lessonLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + visible.target.id);
+    });
+  }, { rootMargin: '-15% 0px -65% 0px', threshold: [0.05, 0.2, 0.5] });
+
+  sections.forEach(section => observer.observe(section));
+})();
+</script>
+</body>
+</html>
