@@ -1,0 +1,937 @@
+/* =========================================================
+   PLATFORM TECHNOLOGIES
+   Android APK / iPhone Install Notification
+   File: assets/css/install-app.css
+========================================================= */
+
+
+/* =========================================================
+   INSTALL DIALOG
+========================================================= */
+
+.app-install-dialog {
+    width: min(92vw, 430px);
+    max-width: 430px;
+
+    margin: auto;
+    padding: 0;
+
+    border: none;
+    border-radius: 20px;
+
+    background: transparent;
+
+    color: #edf1f7;
+
+    overflow: visible;
+
+    z-index: 99999;
+}
+
+
+/* =========================================================
+   DARK TRANSPARENT BACKGROUND
+========================================================= */
+
+.app-install-dialog::backdrop {
+    background: rgba(3, 8, 18, 0.76);
+
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+
+/* =========================================================
+   MAIN NOTIFICATION CARD
+========================================================= */
+
+.app-install-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 30px 26px 24px;
+
+    border: 1px solid rgba(139, 150, 172, 0.28);
+
+    border-radius: 20px;
+
+    background:
+
+        radial-gradient(
+            circle at top right,
+            rgba(79, 124, 255, 0.18),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            180deg,
+            #141f35 0%,
+            #0f182a 100%
+        );
+
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   TOP COLOR LINE
+========================================================= */
+
+.app-install-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4f7cff,
+            #2fcfc0,
+            #f2a93b
+        );
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.app-install-close {
+
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+
+        1px solid
+        rgba(139, 150, 172, 0.28);
+
+    border-radius: 10px;
+
+    background:
+        rgba(11, 18, 32, 0.72);
+
+    color: #aeb8cb;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.app-install-close:hover {
+
+    color: #ffffff;
+
+    background:
+        rgba(20, 31, 53, 0.95);
+
+    border-color:
+        rgba(237, 241, 247, 0.48);
+
+    transform: scale(1.05);
+}
+
+
+.app-install-close:active {
+
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   APPLICATION ICON
+========================================================= */
+
+.app-install-icon-wrap {
+
+    width: 80px;
+    height: 80px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin:
+        2px auto 18px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(79, 124, 255, 0.10);
+
+    border:
+
+        1px solid
+        rgba(79, 124, 255, 0.28);
+
+    box-shadow:
+
+        0 10px 30px
+        rgba(79, 124, 255, 0.12);
+}
+
+
+.app-install-icon-wrap img {
+
+    width: 64px;
+    height: 64px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    display: block;
+}
+
+
+/* =========================================================
+   SMALL LABEL
+========================================================= */
+
+.app-install-eyebrow {
+
+    margin:
+        0 0 8px;
+
+    text-align: center;
+
+    color: #2fcfc0;
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.app-install-card h2 {
+
+    margin:
+        0 0 10px;
+
+    text-align: center;
+
+    color: #edf1f7;
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 23px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.app-install-description {
+
+    margin:
+        0 auto 18px;
+
+    max-width: 34ch;
+
+    text-align: center;
+
+    color: #9ba7bc;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   PLATFORM DETECTION AREA
+========================================================= */
+
+.app-install-platform {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 40px;
+
+    margin:
+        0 0 18px;
+
+    padding:
+        9px 12px;
+
+    border:
+
+        1px solid
+        rgba(139, 150, 172, 0.20);
+
+    border-radius: 10px;
+
+    background:
+        rgba(11, 18, 32, 0.55);
+
+    color: #c9d2e2;
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   BUTTON CONTAINER
+========================================================= */
+
+.app-install-actions {
+
+    display: grid;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   GENERAL BUTTON STYLE
+========================================================= */
+
+.app-install-primary,
+.app-install-secondary {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding:
+        12px 18px;
+
+    border-radius: 10px;
+
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    cursor: pointer;
+
+    transition:
+
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   DOWNLOAD / INSTALL BUTTON
+========================================================= */
+
+.app-install-primary {
+
+    border:
+        1px solid #4f7cff;
+
+    background:
+        #4f7cff;
+
+    color:
+        #ffffff;
+
+    box-shadow:
+
+        0 12px 28px
+        rgba(79, 124, 255, 0.24);
+}
+
+
+.app-install-primary:hover {
+
+    background:
+        #628bff;
+
+    border-color:
+        #628bff;
+
+    box-shadow:
+
+        0 14px 34px
+        rgba(79, 124, 255, 0.34);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.app-install-primary:active {
+
+    transform:
+        translateY(0) scale(0.98);
+}
+
+
+/* =========================================================
+   NOT NOW BUTTON
+========================================================= */
+
+.app-install-secondary {
+
+    border:
+
+        1px solid
+        rgba(139, 150, 172, 0.28);
+
+    background:
+        transparent;
+
+    color:
+        #aeb8cb;
+}
+
+
+.app-install-secondary:hover {
+
+    color:
+        #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    border-color:
+        rgba(237, 241, 247, 0.42);
+}
+
+
+.app-install-secondary:active {
+
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================================================
+   IPHONE INSTALL INSTRUCTIONS
+========================================================= */
+
+.app-install-help {
+
+    margin-top:
+        16px;
+
+    padding:
+        14px 15px;
+
+    border:
+
+        1px solid
+        rgba(47, 207, 192, 0.25);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(47, 207, 192, 0.07);
+
+    color:
+        #c9d2e2;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.55;
+}
+
+
+.app-install-help strong {
+
+    color:
+        #ffffff;
+
+    font-weight:
+        600;
+}
+
+
+.app-install-help ol {
+
+    margin:
+        8px 0 0;
+
+    padding-left:
+        20px;
+}
+
+
+.app-install-help li {
+
+    color:
+        #aeb8cb;
+}
+
+
+.app-install-help li + li {
+
+    margin-top:
+        5px;
+}
+
+
+/* =========================================================
+   SMALL INFORMATION TEXT
+========================================================= */
+
+.app-install-note {
+
+    margin:
+        14px 0 0;
+
+    color:
+        #74829b;
+
+    font-size:
+        11.5px;
+
+    line-height:
+        1.5;
+
+    text-align:
+        center;
+}
+
+
+/* =========================================================
+   HIDDEN ELEMENT
+========================================================= */
+
+.app-install-help[hidden] {
+
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   DIALOG OPEN STATE
+========================================================= */
+
+.app-install-dialog[open] {
+
+    display:
+        block;
+}
+
+
+/* =========================================================
+   KEYBOARD ACCESSIBILITY
+========================================================= */
+
+.app-install-primary:focus-visible,
+.app-install-secondary:focus-visible,
+.app-install-close:focus-visible {
+
+    outline:
+        3px solid
+        rgba(79, 124, 255, 0.35);
+
+    outline-offset:
+        3px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .app-install-dialog {
+
+        width:
+            min(92vw, 430px);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .app-install-dialog {
+
+        width:
+            min(94vw, 410px);
+    }
+
+
+    .app-install-card {
+
+        padding:
+            27px 20px 21px;
+
+        border-radius:
+            18px;
+    }
+
+
+    .app-install-icon-wrap {
+
+        width:
+            72px;
+
+        height:
+            72px;
+
+        margin-bottom:
+            15px;
+    }
+
+
+    .app-install-icon-wrap img {
+
+        width:
+            58px;
+
+        height:
+            58px;
+    }
+
+
+    .app-install-card h2 {
+
+        font-size:
+            20px;
+    }
+
+
+    .app-install-description {
+
+        font-size:
+            13.5px;
+
+        margin-bottom:
+            16px;
+    }
+
+
+    .app-install-platform {
+
+        font-size:
+            11.5px;
+
+        padding:
+            9px 10px;
+    }
+
+
+    .app-install-primary,
+    .app-install-secondary {
+
+        min-height:
+            48px;
+
+        font-size:
+            12.5px;
+    }
+
+
+    .app-install-help {
+
+        font-size:
+            12.5px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .app-install-card {
+
+        padding:
+            25px 16px 20px;
+    }
+
+
+    .app-install-card h2 {
+
+        font-size:
+            18px;
+    }
+
+
+    .app-install-description {
+
+        font-size:
+            13px;
+    }
+
+
+    .app-install-close {
+
+        width:
+            34px;
+
+        height:
+            34px;
+
+        top:
+            10px;
+
+        right:
+            10px;
+
+        font-size:
+            22px;
+    }
+
+
+    .app-install-platform {
+
+        font-size:
+            10.5px;
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (
+    max-height: 520px
+) and (
+    orientation: landscape
+) {
+
+    .app-install-dialog {
+
+        max-height:
+            94vh;
+
+        overflow-y:
+            auto;
+    }
+
+
+    .app-install-card {
+
+        padding:
+            20px 22px;
+    }
+
+
+    .app-install-icon-wrap {
+
+        width:
+            54px;
+
+        height:
+            54px;
+
+        margin-bottom:
+            10px;
+    }
+
+
+    .app-install-icon-wrap img {
+
+        width:
+            44px;
+
+        height:
+            44px;
+    }
+
+
+    .app-install-card h2 {
+
+        font-size:
+            18px;
+
+        margin-bottom:
+            6px;
+    }
+
+
+    .app-install-description {
+
+        margin-bottom:
+            10px;
+
+        font-size:
+            12.5px;
+    }
+
+
+    .app-install-platform {
+
+        margin-bottom:
+            10px;
+
+        min-height:
+            34px;
+    }
+
+
+    .app-install-primary,
+    .app-install-secondary {
+
+        min-height:
+            42px;
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP — OPTIONAL
+   Notification normally only opens through JS on Android/iOS.
+========================================================= */
+
+@media (min-width: 769px) {
+
+    .app-install-card {
+
+        max-width:
+            430px;
+    }
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@media (
+    prefers-reduced-motion:
+    no-preference
+) {
+
+    .app-install-dialog[open]
+    .app-install-card {
+
+        animation:
+            appInstallIn
+            0.22s
+            ease-out;
+    }
+
+
+    @keyframes appInstallIn {
+
+        from {
+
+            opacity:
+                0;
+
+            transform:
+                translateY(18px)
+                scale(0.97);
+        }
+
+
+        to {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+========================================================= */
+
+@media (
+    prefers-reduced-motion:
+    reduce
+) {
+
+    .app-install-card,
+    .app-install-close,
+    .app-install-primary,
+    .app-install-secondary {
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
+    }
+
+}

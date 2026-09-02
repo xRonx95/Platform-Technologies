@@ -1,0 +1,46 @@
+{
+  "name": "platform-technologies",
+  "version": "1.0.0",
+  "description": "Platform Technologies - Free Offline Learning and Practice Application",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xRonx95/Platform-Technologies.git"
+  },
+  "keywords": [
+    "education",
+    "platform-technologies",
+    "offline-learning",
+    "android",
+    "capacitor",
+    "linux",
+    "virtualization",
+    "cloud",
+    "security"
+  ],
+  "author": "Ronnie",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/xRonx95/Platform-Technologies/issues"
+  },
+  "homepage": "https://github.com/xRonx95/Platform-Technologies#readme",
+  "scripts": {
+    "prepare:app": "node tools/prepare-app.cjs",
+    "sync": "npm run prepare:app && npx cap sync",
+    "sync:android": "npm run prepare:app && npx cap sync android",
+    "copy:android": "npm run prepare:app && npx cap copy android",
+    "open:android": "npx cap open android",
+    "run:android": "npm run sync:android && npx cap open android",
+    "build:debug": "npm run sync:android && cd android && gradlew.bat assembleDebug",
+    "clean:android": "cd android && gradlew.bat clean",
+    "test": "echo \"No automated tests configured yet\""
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.1",
+    "@capacitor/core": "^8.5.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.1"
+  }
+}

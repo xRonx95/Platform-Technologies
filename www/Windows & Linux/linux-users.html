@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional lecture module on Linux users, permissions, groups, sudo, file ownership, ACLs, and package management for Windows & Linux.">
+  <title>Users, Permissions & Packages | Windows & Linux</title>
+
+  <!-- Browser tab logo -->
+  <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+  <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+  <!-- Separate stylesheet -->
+  <link rel="stylesheet" href="../css/Windows & Linux/linux-users.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to lesson</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">☁</div>
+        <div>
+          <strong>Cloud &amp; Containers</strong>
+          <span>Professional Linux Administration Lecture Module</span>
+        </div>
+      </div>
+      <a class="home-link" href="../index.html">Home</a>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Linux Administration • Professional Level</p>
+        <h1 id="page-title">Users, Permissions &amp; Packages</h1>
+        <p class="hero-lead">
+          This lecture explains how Linux identifies users, controls access to files and system resources,
+          delegates administrative privileges, and installs or maintains software packages. These skills are
+          fundamental to secure cloud servers, container hosts, CI/CD runners, web servers, and production Linux systems.
+        </p>
+        <div class="hero-tags" aria-label="Lesson topics">
+          <span class="tag">Users &amp; Groups</span>
+          <span class="tag">sudo &amp; Least Privilege</span>
+          <span class="tag">rwx Permissions</span>
+          <span class="tag">chmod / chown</span>
+          <span class="tag">ACL &amp; umask</span>
+          <span class="tag">APT / DNF / pacman</span>
+          <span class="tag">Cloud &amp; Container Security</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Linux mascot illustration">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Tux.svg"
+          alt="Tux, the Linux mascot"
+          loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <details class="mobile-toc">
+    <summary>Lesson Topics — tap to open</summary>
+    <nav aria-label="Mobile lesson navigation">
+      <a href="#objectives">01. Learning Objectives</a>
+      <a href="#identity">02. Linux Identity Model</a>
+      <a href="#account-files">03. Account Database Files</a>
+      <a href="#user-management">04. Creating &amp; Managing Users</a>
+      <a href="#groups">05. Groups &amp; Team Access</a>
+      <a href="#sudo">06. sudo, su &amp; Least Privilege</a>
+      <a href="#permissions">07. Linux Permission Model</a>
+      <a href="#chmod">08. chmod: Symbolic &amp; Numeric</a>
+      <a href="#ownership">09. chown &amp; chgrp</a>
+      <a href="#special-permissions">10. Special Permission Bits</a>
+      <a href="#umask">11. umask</a>
+      <a href="#acl">12. Access Control Lists</a>
+      <a href="#packages">13. Package Management Concepts</a>
+      <a href="#apt">14. Debian/Ubuntu: APT</a>
+      <a href="#dnf">15. Fedora/RHEL: DNF</a>
+      <a href="#other-managers">16. pacman, zypper, APK &amp; Universal Packages</a>
+      <a href="#security-updates">17. Updates &amp; Package Security</a>
+      <a href="#cloud-containers">18. Cloud &amp; Container Practices</a>
+      <a href="#lab">19. Guided Administration Lab</a>
+      <a href="#troubleshooting">20. Troubleshooting</a>
+      <a href="#reference">21. Command Reference</a>
+      <a href="#review">22. Review &amp; Discussion</a>
+    </nav>
+  </details>
+
+  <div class="layout">
+    <aside class="sidebar" aria-label="Lesson topics sidebar">
+      <div class="sidebar-head">
+        <strong>Lesson Topics</strong>
+        <span>Users, permissions, privileges and packages</span>
+      </div>
+      <nav>
+        <a href="#objectives"><span class="num">01</span><span>Learning Objectives</span></a>
+        <a href="#identity"><span class="num">02</span><span>Linux Identity Model</span></a>
+        <a href="#account-files"><span class="num">03</span><span>Account Database Files</span></a>
+        <a href="#user-management"><span class="num">04</span><span>Creating &amp; Managing Users</span></a>
+        <a href="#groups"><span class="num">05</span><span>Groups &amp; Team Access</span></a>
+        <a href="#sudo"><span class="num">06</span><span>sudo, su &amp; Least Privilege</span></a>
+        <a href="#permissions"><span class="num">07</span><span>Linux Permission Model</span></a>
+        <a href="#chmod"><span class="num">08</span><span>chmod: Symbolic &amp; Numeric</span></a>
+        <a href="#ownership"><span class="num">09</span><span>chown &amp; chgrp</span></a>
+        <a href="#special-permissions"><span class="num">10</span><span>Special Permission Bits</span></a>
+        <a href="#umask"><span class="num">11</span><span>umask</span></a>
+        <a href="#acl"><span class="num">12</span><span>Access Control Lists</span></a>
+        <a href="#packages"><span class="num">13</span><span>Package Management Concepts</span></a>
+        <a href="#apt"><span class="num">14</span><span>Debian/Ubuntu: APT</span></a>
+        <a href="#dnf"><span class="num">15</span><span>Fedora/RHEL: DNF</span></a>
+        <a href="#other-managers"><span class="num">16</span><span>Other Package Managers</span></a>
+        <a href="#security-updates"><span class="num">17</span><span>Updates &amp; Package Security</span></a>
+        <a href="#cloud-containers"><span class="num">18</span><span>Cloud &amp; Container Practices</span></a>
+        <a href="#lab"><span class="num">19</span><span>Guided Administration Lab</span></a>
+        <a href="#troubleshooting"><span class="num">20</span><span>Troubleshooting</span></a>
+        <a href="#reference"><span class="num">21</span><span>Command Reference</span></a>
+        <a href="#review"><span class="num">22</span><span>Review &amp; Discussion</span></a>
+      </nav>
+    </aside>
+
+    <main class="content" id="main-content">
+      <section class="lesson-section" id="objectives">
+        <div class="section-kicker">Topic 01</div>
+        <h2>Learning Objectives</h2>
+        <p>At the end of this module, students should be able to perform the following tasks and explain why each task matters in a production Linux environment:</p>
+        <ul>
+          <li>Explain the difference between a Linux <strong>user account</strong>, a <strong>group</strong>, a <strong>UID</strong>, and a <strong>GID</strong>.</li>
+          <li>Interpret the purpose of <code>/etc/passwd</code>, <code>/etc/shadow</code>, <code>/etc/group</code>, and <code>/etc/gshadow</code>.</li>
+          <li>Create, modify, lock, unlock, and remove user accounts safely.</li>
+          <li>Apply least-privilege administration with <code>sudo</code> rather than routinely working as <code>root</code>.</li>
+          <li>Read and change Linux file permissions using both symbolic and octal notation.</li>
+          <li>Manage file ownership and group ownership with <code>chown</code> and <code>chgrp</code>.</li>
+          <li>Explain the purpose of setuid, setgid, the sticky bit, <code>umask</code>, and POSIX ACLs.</li>
+          <li>Install, search, update, and remove packages using common Linux package managers.</li>
+          <li>Apply user, permission, and package-management principles to cloud virtual machines and container images.</li>
+        </ul>
+        <div class="success"><strong>Professional focus:</strong> The objective is not simply to memorize commands. Students should understand the security model behind the commands so they can make correct administrative decisions.</div>
+      </section>
+
+      <section class="lesson-section" id="identity">
+        <div class="section-kicker">Topic 02</div>
+        <h2>The Linux Identity Model</h2>
+        <p>Linux is a multi-user operating system. Every process that runs on the system executes under a security identity. That identity determines which files the process can read, which files it can modify, which network ports it can open, and which privileged operations it may perform.</p>
+
+        <div class="term-grid">
+          <article class="term-card">
+            <h3>User</h3>
+            <p>A named identity used by a person, service, application, or daemon. Examples include <code>alice</code>, <code>root</code>, <code>www-data</code>, and <code>postgres</code>.</p>
+          </article>
+          <article class="term-card">
+            <h3>UID</h3>
+            <p>The numeric <strong>User ID</strong> Linux uses internally. The root account has UID <code>0</code>. Human accounts commonly receive higher UIDs such as 1000 and above, depending on the distribution.</p>
+          </article>
+          <article class="term-card">
+            <h3>Group</h3>
+            <p>A collection of identities that can share access to files or resources. Groups reduce the need to assign permissions user by user.</p>
+          </article>
+          <article class="term-card">
+            <h3>GID</h3>
+            <p>The numeric <strong>Group ID</strong> used internally by Linux. Each user has a primary group and may belong to multiple supplementary groups.</p>
+          </article>
+        </div>
+
+        <h3>Inspecting the current identity</h3>
+        <div class="code-block">
+          <div class="code-title">Terminal — identity inspection</div>
+          <pre><code>whoami
+id
+groups
+id username</code></pre>
+        </div>
+        <p>The <code>whoami</code> command prints the current username. The <code>id</code> command is more complete because it shows the UID, primary GID, and all supplementary groups. The <code>groups</code> command provides a compact view of group membership.</p>
+
+        <div class="definition"><strong>Important distinction:</strong> Linux permission checks operate primarily on numeric UIDs and GIDs, not on the visible username text. The names are human-friendly mappings to those numeric identifiers.</div>
+
+        <figure class="figure">
+          <img
+            src="https://miro.medium.com/v2/resize%3Afit%3A1400/1%2ADr0cAIm-Eb5fKHDI4XmK1Q.png"
+            alt="Linux terminal showing whoami, id, useradd, groups and chmod commands"
+            loading="lazy">
+          <figcaption>Visual example: identity inspection, account creation, group checking, and a basic permission change in a Linux terminal. Image is loaded directly from its online source.</figcaption>
+        </figure>
+      </section>
+
+      <section class="lesson-section" id="account-files">
+        <div class="section-kicker">Topic 03</div>
+        <h2>Linux Account Database Files</h2>
+        <p>Traditional Linux account information is stored in text-based system databases under <code>/etc</code>. Modern environments may additionally use centralized identity services such as LDAP, Active Directory integration, SSSD, or cloud IAM, but understanding the local files remains essential.</p>
+
+        <h3><code>/etc/passwd</code></h3>
+        <p>This file contains public account metadata. Despite its name, modern systems do not normally store usable password hashes here.</p>
+        <div class="code-block">
+          <div class="code-title">Example /etc/passwd entry</div>
+          <pre><code>student:x:1001:1001:Cloud Student:/home/student:/bin/bash</code></pre>
+        </div>
+        <p>The seven colon-separated fields are: username, password placeholder, UID, primary GID, comment/GECOS field, home directory, and login shell.</p>
+
+        <h3><code>/etc/shadow</code></h3>
+        <p>This file stores password hashes and password-aging data. It is intentionally readable only by privileged processes because exposing password hashes would increase the risk of offline password cracking.</p>
+        <div class="warning"><strong>Do not edit <code>/etc/shadow</code> manually during normal administration.</strong> Use tools such as <code>passwd</code>, <code>chage</code>, <code>usermod</code>, or account-management utilities.</div>
+
+        <h3><code>/etc/group</code> and <code>/etc/gshadow</code></h3>
+        <p><code>/etc/group</code> defines local groups and their member lists. <code>/etc/gshadow</code> stores protected group administration data.</p>
+
+        <div class="code-block">
+          <div class="code-title">Safe inspection commands</div>
+          <pre><code>getent passwd student
+getent group developers
+getent passwd | head
+getent group | head</code></pre>
+        </div>
+        <div class="note"><strong>Why <code>getent</code> is professional practice:</strong> It queries the system's configured identity databases through the Name Service Switch. This means it can work with local files and, when configured, external identity sources.</div>
+      </section>
+
+      <section class="lesson-section" id="user-management">
+        <div class="section-kicker">Topic 04</div>
+        <h2>Creating and Managing Users</h2>
+        <p>User administration should follow a lifecycle: create the identity, assign required groups, set authentication controls, verify access, and later lock or remove the account when it is no longer required.</p>
+
+        <div class="steps">
+          <article class="step">
+            <h4>Create a user with a home directory</h4>
+            <p>On many distributions, <code>useradd -m</code> creates the account and its home directory.</p>
+            <div class="code-block"><pre><code>sudo useradd -m -s /bin/bash cloudstudent</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Set the password</h4>
+            <div class="code-block"><pre><code>sudo passwd cloudstudent</code></pre></div>
+            <p>The administrator sets an initial password without displaying it on screen.</p>
+          </article>
+          <article class="step">
+            <h4>Inspect the account</h4>
+            <div class="code-block"><pre><code>id cloudstudent
+getent passwd cloudstudent
+ls -ld /home/cloudstudent</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Modify account properties</h4>
+            <div class="code-block"><pre><code>sudo usermod -c "Cloud Operations Student" cloudstudent
+sudo usermod -s /bin/bash cloudstudent</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Lock and unlock an account</h4>
+            <div class="code-block"><pre><code>sudo usermod -L cloudstudent
+sudo usermod -U cloudstudent</code></pre></div>
+            <p>Account locking is useful for temporary suspension because it preserves files, ownership, and audit history.</p>
+          </article>
+          <article class="step">
+            <h4>Remove an account carefully</h4>
+            <div class="code-block"><pre><code>sudo userdel cloudstudent
+# Remove the account and its home directory only when appropriate:
+sudo userdel -r cloudstudent</code></pre></div>
+          </article>
+        </div>
+
+        <h3>Password aging</h3>
+        <div class="code-block">
+          <div class="code-title">Inspect and configure password aging</div>
+          <pre><code>sudo chage -l cloudstudent
+sudo chage -M 90 -m 1 -W 14 cloudstudent</code></pre>
+        </div>
+        <p>In the example above, <code>-M 90</code> sets a maximum password age, <code>-m 1</code> sets the minimum age, and <code>-W 14</code> requests a warning period before expiration. Organizational policy should determine the actual values.</p>
+      </section>
+
+      <section class="lesson-section" id="groups">
+        <div class="section-kicker">Topic 05</div>
+        <h2>Groups and Team-Based Access</h2>
+        <p>Groups are the preferred mechanism for granting shared access to teams. Instead of making several users owners of the same file, the administrator assigns a group to the resource and then adds authorized users to that group.</p>
+
+        <div class="code-block">
+          <div class="code-title">Create and manage a team group</div>
+          <pre><code>sudo groupadd devops
+sudo usermod -aG devops cloudstudent
+sudo usermod -aG devops instructor
+getent group devops
+id cloudstudent</code></pre>
+        </div>
+        <div class="warning"><strong>Important:</strong> When using <code>usermod -G</code>, include <code>-a</code> when you intend to append a supplementary group. Omitting <code>-a</code> can replace the user's existing supplementary group list.</div>
+
+        <h3>Shared project directory</h3>
+        <div class="code-block">
+          <div class="code-title">Team directory example</div>
+          <pre><code>sudo mkdir -p /srv/project-alpha
+sudo chown root:devops /srv/project-alpha
+sudo chmod 2770 /srv/project-alpha
+ls -ld /srv/project-alpha</code></pre>
+        </div>
+        <p>The <code>2</code> in <code>2770</code> enables the setgid bit on the directory. New files created inside the directory will normally inherit the directory's group, helping the team maintain consistent group ownership.</p>
+
+        <figure class="figure">
+          <img
+            src="https://miro.medium.com/v2/resize%3Afit%3A1400/1%2A4zW21ybExKbq95-YVtmURg.png"
+            alt="Ubuntu terminal showing users assigned to groups and ownership changes"
+            loading="lazy">
+          <figcaption>Visual example: assigning users to groups and changing directory ownership. Image is embedded by direct web link so no local image upload is required.</figcaption>
+        </figure>
+      </section>
+
+      <section class="lesson-section" id="sudo">
+        <div class="section-kicker">Topic 06</div>
+        <h2><code>sudo</code>, <code>su</code>, and Least Privilege</h2>
+        <p>The root account can perform almost any operation on a Linux system. Because root privileges are extremely powerful, professional administration follows the <strong>principle of least privilege</strong>: give users only the access necessary for the task and only for as long as necessary.</p>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3><code>sudo</code></h3>
+            <p>Runs a specific command with elevated privileges according to configured policy. It supports per-command authorization and creates a clearer audit trail than simply sharing a root password.</p>
+            <div class="code-block"><pre><code>sudo systemctl restart nginx
+sudo apt update</code></pre></div>
+          </article>
+          <article class="card">
+            <h3><code>su</code></h3>
+            <p>Switches to another user identity. <code>su -</code> starts a login-style shell. It is useful but should be used carefully because an extended root shell increases the chance of accidental privileged changes.</p>
+            <div class="code-block"><pre><code>su - appuser
+sudo -i</code></pre></div>
+          </article>
+        </div>
+
+        <h3>Editing sudo policy safely</h3>
+        <div class="code-block"><pre><code>sudo visudo</code></pre></div>
+        <p><code>visudo</code> performs syntax checking before saving the sudoers configuration. This reduces the risk of breaking administrative access because of a malformed policy file.</p>
+
+        <div class="code-block">
+          <div class="code-title">Example sudoers rule</div>
+          <pre><code>%devops ALL=(root) /usr/bin/systemctl restart nginx, /usr/bin/systemctl status nginx</code></pre>
+        </div>
+        <p>This example illustrates restricted delegation: members of the <code>devops</code> group can run only specific service-management commands as root rather than receiving unrestricted root access.</p>
+      </section>
+
+      <section class="lesson-section" id="permissions">
+        <div class="section-kicker">Topic 07</div>
+        <h2>The Linux File Permission Model</h2>
+        <p>Traditional Linux discretionary access control evaluates three permission classes: <strong>owner</strong>, <strong>group</strong>, and <strong>others</strong>. Each class may receive read, write, and execute permissions.</p>
+
+        <div class="permission-visual" aria-label="Permission string explanation">
+          <div class="label">Example</div><div>-</div><div class="owner">r</div><div class="owner">w</div><div class="owner">x</div><div class="group">r</div><div class="group">-</div><div class="group">x</div><div class="other">r</div><div class="other">-</div><div class="other">-</div>
+          <div class="label">Meaning</div><div>type</div><div class="owner">read</div><div class="owner">write</div><div class="owner">execute</div><div class="group">read</div><div class="group">—</div><div class="group">execute</div><div class="other">read</div><div class="other">—</div><div class="other">—</div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-title">Inspect file metadata</div>
+          <pre><code>ls -l application.sh
+stat application.sh</code></pre>
+        </div>
+        <p>A listing such as <code>-rwxr-xr--</code> means the owner can read, write, and execute; the group can read and execute; and everyone else can only read.</p>
+
+        <h3>What r, w, and x mean</h3>
+        <table class="reference-table">
+          <thead><tr><th>Permission</th><th>On a regular file</th><th>On a directory</th></tr></thead>
+          <tbody>
+            <tr><td><code>r</code> — read</td><td>Read file contents.</td><td>List directory entries, subject to other permissions.</td></tr>
+            <tr><td><code>w</code> — write</td><td>Modify or truncate the file.</td><td>Create, delete, or rename entries when combined with appropriate execute access.</td></tr>
+            <tr><td><code>x</code> — execute</td><td>Execute the file as a program/script when its format permits.</td><td>Traverse or access objects inside the directory.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="definition"><strong>Directory permissions are especially important.</strong> A user may have read access to a file, but if the user cannot traverse a parent directory, the file may still be inaccessible by pathname.</div>
+      </section>
+
+      <section class="lesson-section" id="chmod">
+        <div class="section-kicker">Topic 08</div>
+        <h2><code>chmod</code>: Symbolic and Numeric Permissions</h2>
+        <p>The <code>chmod</code> command changes permission bits. Administrators should be comfortable with both symbolic notation and octal notation because both appear frequently in documentation, automation, and infrastructure code.</p>
+
+        <h3>Symbolic notation</h3>
+        <div class="code-block"><pre><code>chmod u+x deploy.sh
+chmod g+w shared.txt
+chmod o-r secrets.txt
+chmod u=rw,g=r,o= report.txt</code></pre></div>
+        <p>Symbols use <code>u</code> for owner/user, <code>g</code> for group, <code>o</code> for others, and <code>a</code> for all classes. Operators include <code>+</code>, <code>-</code>, and <code>=</code>.</p>
+
+        <h3>Octal notation</h3>
+        <table class="octal-table">
+          <thead><tr><th>Value</th><th>Permission</th><th>Binary concept</th></tr></thead>
+          <tbody>
+            <tr><td><code>4</code></td><td>read</td><td>100</td></tr>
+            <tr><td><code>2</code></td><td>write</td><td>010</td></tr>
+            <tr><td><code>1</code></td><td>execute</td><td>001</td></tr>
+            <tr><td><code>7</code></td><td>read + write + execute</td><td>111</td></tr>
+            <tr><td><code>6</code></td><td>read + write</td><td>110</td></tr>
+            <tr><td><code>5</code></td><td>read + execute</td><td>101</td></tr>
+            <tr><td><code>0</code></td><td>no permissions</td><td>000</td></tr>
+          </tbody>
+        </table>
+
+        <div class="code-block">
+          <div class="code-title">Common examples</div>
+          <pre><code>chmod 644 report.txt      # rw-r--r--
+chmod 600 private.key     # rw-------
+chmod 755 deploy.sh       # rwxr-xr-x
+chmod 750 admin-tool      # rwxr-x---
+chmod 770 team-directory  # rwxrwx---</code></pre>
+        </div>
+        <div class="warning"><strong>Avoid using <code>chmod 777</code> as a generic fix.</strong> It grants write access to everyone and can turn a permission problem into a security problem. Determine the correct owner, group, and required access instead.</div>
+
+        <figure class="figure">
+          <img
+            src="https://miro.medium.com/v2/resize%3Afit%3A1200/1%2Agi35qEIr0P6000JUqE5eNA.png"
+            alt="Linux terminal demonstrating chgrp chown chmod and ls commands"
+            loading="lazy">
+          <figcaption>Visual example: ownership and permission changes on a web directory, including <code>chgrp</code>, <code>chown</code>, and <code>chmod</code>.</figcaption>
+        </figure>
+      </section>
+
+      <section class="lesson-section" id="ownership">
+        <div class="section-kicker">Topic 09</div>
+        <h2>Ownership with <code>chown</code> and <code>chgrp</code></h2>
+        <p>Permissions alone are not enough. Linux also evaluates the file's owner and group to decide which permission triplet applies to a process.</p>
+
+        <div class="code-block">
+          <div class="code-title">Ownership examples</div>
+          <pre><code>sudo chown alice report.txt
+sudo chgrp developers report.txt
+sudo chown alice:developers report.txt
+sudo chown -R appuser:appgroup /opt/myapp</code></pre>
+        </div>
+        <p>The <code>-R</code> option changes ownership recursively. It should be used with caution, especially on system directories. A recursive ownership mistake can make an application fail or weaken system security.</p>
+
+        <h3>Web server example</h3>
+        <div class="code-block"><pre><code>sudo chown -R root:www-data /var/www/example
+sudo find /var/www/example -type d -exec chmod 750 {} \;
+sudo find /var/www/example -type f -exec chmod 640 {} \;</code></pre></div>
+        <p>This pattern demonstrates a common idea: directories may need execute/traverse permission while ordinary content files may not need execute permission. The exact ownership and mode must match the web server and deployment architecture.</p>
+      </section>
+
+      <section class="lesson-section" id="special-permissions">
+        <div class="section-kicker">Topic 10</div>
+        <h2>Special Permission Bits</h2>
+        <p>Linux includes three special permission mechanisms that influence execution or directory behavior: setuid, setgid, and the sticky bit.</p>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3>setuid — numeric value 4</h3>
+            <p>When applied to an executable in supported circumstances, the process may run with the effective UID of the file owner. Because this changes the privilege boundary, setuid programs require careful security review.</p>
+            <div class="code-block"><pre><code>chmod 4755 program</code></pre></div>
+          </article>
+          <article class="card">
+            <h3>setgid — numeric value 2</h3>
+            <p>On directories, setgid is commonly used for collaborative folders so newly created entries inherit the directory's group.</p>
+            <div class="code-block"><pre><code>chmod 2770 /srv/team</code></pre></div>
+          </article>
+          <article class="card">
+            <h3>Sticky bit — numeric value 1</h3>
+            <p>On a writable shared directory, the sticky bit restricts deletion so users cannot freely remove other users' entries. The classic example is <code>/tmp</code>.</p>
+            <div class="code-block"><pre><code>chmod 1777 /shared-temp</code></pre></div>
+          </article>
+          <article class="card">
+            <h3>Inspect special bits</h3>
+            <p>Use long listings and <code>stat</code> to confirm whether special bits are present.</p>
+            <div class="code-block"><pre><code>ls -ld /tmp /srv/team
+stat /srv/team</code></pre></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="umask">
+        <div class="section-kicker">Topic 11</div>
+        <h2><code>umask</code>: Default Permission Filtering</h2>
+        <p><code>umask</code> controls which permission bits are removed when a process creates new files and directories. It is not a permission applied after creation; it is a mask that influences the initial mode.</p>
+
+        <div class="code-block"><pre><code>umask
+umask -S
+umask 027</code></pre></div>
+        <p>A <code>umask</code> of <code>027</code> commonly results in new files that are accessible to the owner, readable by the group, and inaccessible to others, depending on the program's requested creation mode.</p>
+
+        <div class="flow" aria-label="Umask permission flow">
+          <div>Program requests mode</div>
+          <div>System applies umask</div>
+          <div>File/directory is created</div>
+          <div>Verify with <code>ls -l</code></div>
+        </div>
+
+        <div class="note"><strong>Practical lesson:</strong> If newly created files are unexpectedly too open or too restrictive, check the user's shell configuration, service unit, application settings, and the effective <code>umask</code>.</div>
+      </section>
+
+      <section class="lesson-section" id="acl">
+        <div class="section-kicker">Topic 12</div>
+        <h2>POSIX Access Control Lists (ACLs)</h2>
+        <p>Traditional owner/group/others permissions are intentionally simple. When an administrator needs exceptions for individual users or additional groups without redesigning ownership, POSIX ACLs provide more granular access control.</p>
+
+        <div class="code-block">
+          <div class="code-title">Inspect and set ACL entries</div>
+          <pre><code>getfacl project.txt
+setfacl -m u:alice:rw project.txt
+setfacl -m g:auditors:r project.txt
+getfacl project.txt
+setfacl -x u:alice project.txt</code></pre>
+        </div>
+
+        <h3>Default ACL for a shared directory</h3>
+        <div class="code-block"><pre><code>setfacl -m d:g:devops:rwx /srv/project-alpha
+getfacl /srv/project-alpha</code></pre></div>
+        <p>A default ACL can cause newly created files and subdirectories to inherit specified ACL rules. This is useful for team collaboration but should be documented because ACLs are less obvious than ordinary mode bits.</p>
+
+        <div class="warning"><strong>Troubleshooting clue:</strong> A plus sign after a permission string, such as <code>-rw-r-----+</code>, often indicates extended ACL information. Inspect it with <code>getfacl</code>.</div>
+      </section>
+
+      <section class="lesson-section" id="packages">
+        <div class="section-kicker">Topic 13</div>
+        <h2>Package Management Concepts</h2>
+        <p>Package managers provide a controlled way to install, upgrade, verify, and remove software. Rather than manually copying arbitrary program files into system directories, a package manager tracks metadata, dependencies, versions, repositories, and installed files.</p>
+
+        <div class="manager-grid">
+          <article class="manager-card">
+            <h3>Package</h3>
+            <p>A structured software archive containing program files, metadata, version information, and installation instructions.</p>
+          </article>
+          <article class="manager-card">
+            <h3>Repository</h3>
+            <p>A trusted software source containing packages and signed metadata. Enterprise systems often use internal mirrors or approved repositories.</p>
+          </article>
+          <article class="manager-card">
+            <h3>Dependency</h3>
+            <p>Another package or library required by a program. Package managers resolve dependencies to keep the system consistent.</p>
+          </article>
+          <article class="manager-card">
+            <h3>Package database</h3>
+            <p>Local metadata recording what is installed, the versions present, and which files belong to each package.</p>
+          </article>
+        </div>
+
+        <h3>High-level package workflow</h3>
+        <div class="flow">
+          <div>Refresh metadata</div>
+          <div>Search / inspect</div>
+          <div>Install or upgrade</div>
+          <div>Verify / remove</div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="apt">
+        <div class="section-kicker">Topic 14</div>
+        <h2>Debian and Ubuntu Package Management with APT</h2>
+        <p>Debian-based distributions commonly use APT as the high-level package-management interface. Lower-level <code>dpkg</code> tools manage individual <code>.deb</code> packages, while APT handles repositories and dependency resolution.</p>
+
+        <div class="command-grid">
+          <article class="card">
+            <h3>Refresh package metadata</h3>
+            <div class="code-block"><pre><code>sudo apt update</code></pre></div>
+            <p>This retrieves current repository metadata. It does not by itself upgrade installed packages.</p>
+          </article>
+          <article class="card">
+            <h3>Upgrade installed packages</h3>
+            <div class="code-block"><pre><code>sudo apt upgrade</code></pre></div>
+            <p>Review the planned changes before confirming on important systems.</p>
+          </article>
+          <article class="card">
+            <h3>Search and inspect</h3>
+            <div class="code-block"><pre><code>apt search nginx
+apt show nginx
+apt policy nginx</code></pre></div>
+          </article>
+          <article class="card">
+            <h3>Install and remove</h3>
+            <div class="code-block"><pre><code>sudo apt install nginx
+sudo apt remove nginx
+sudo apt purge nginx</code></pre></div>
+          </article>
+        </div>
+
+        <figure class="figure">
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Apt-get%20install%20mediawiki.png"
+            alt="Terminal screenshot of apt-get installing software"
+            loading="lazy">
+          <figcaption>APT family visual: a terminal package installation screenshot hosted on Wikimedia Commons and embedded directly by URL.</figcaption>
+        </figure>
+
+        <h3>Local <code>.deb</code> packages</h3>
+        <div class="code-block"><pre><code>sudo apt install ./example-package.deb
+# Inspect package metadata:
+dpkg-deb -I example-package.deb</code></pre></div>
+        <p>Using <code>apt install ./package.deb</code> is often preferable to a raw <code>dpkg -i</code> workflow because APT can resolve dependencies from configured repositories.</p>
+      </section>
+
+      <section class="lesson-section" id="dnf">
+        <div class="section-kicker">Topic 15</div>
+        <h2>Fedora, RHEL, Rocky, and AlmaLinux with DNF</h2>
+        <p>DNF is a high-level package manager used by Fedora and modern Red Hat family distributions. It works with RPM packages and repositories.</p>
+
+        <div class="code-block">
+          <div class="code-title">Common DNF commands</div>
+          <pre><code>sudo dnf check-update
+sudo dnf upgrade
+sudo dnf search nginx
+dnf info nginx
+sudo dnf install nginx
+sudo dnf remove nginx
+sudo dnf history</code></pre>
+        </div>
+
+        <p><code>dnf history</code> is particularly useful for administrators because it records package transactions and can help determine what changed before a problem appeared.</p>
+
+        <figure class="figure">
+          <img
+            src="https://linuxiac.b-cdn.net/wp-content/uploads/2022/06/dnf-info.png"
+            alt="Terminal showing DNF package information for nginx"
+            loading="lazy">
+          <figcaption>Visual example: <code>dnf info nginx</code> displaying package metadata. The image is loaded directly from the online source.</figcaption>
+        </figure>
+      </section>
+
+      <section class="lesson-section" id="other-managers">
+        <div class="section-kicker">Topic 16</div>
+        <h2>Other Package Managers</h2>
+        <p>Linux administration often involves multiple distributions. The command names differ, but the underlying workflow—refresh, search, install, update, remove, and verify—remains similar.</p>
+
+        <table class="reference-table">
+          <thead><tr><th>Distribution family</th><th>Package manager</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td>Arch Linux</td><td><code>pacman</code></td><td><code>sudo pacman -Syu</code>, <code>sudo pacman -S nginx</code></td></tr>
+            <tr><td>openSUSE / SLES</td><td><code>zypper</code></td><td><code>sudo zypper refresh</code>, <code>sudo zypper install nginx</code></td></tr>
+            <tr><td>Alpine Linux</td><td><code>apk</code></td><td><code>sudo apk update</code>, <code>sudo apk add nginx</code></td></tr>
+            <tr><td>Universal application format</td><td><code>snap</code></td><td><code>snap find name</code>, <code>sudo snap install name</code></td></tr>
+            <tr><td>Universal desktop application format</td><td><code>flatpak</code></td><td><code>flatpak search name</code>, <code>flatpak install ...</code></td></tr>
+          </tbody>
+        </table>
+
+        <h3>Package manager identification</h3>
+        <div class="code-block"><pre><code>cat /etc/os-release
+command -v apt
+command -v dnf
+command -v pacman
+command -v zypper
+command -v apk</code></pre></div>
+        <p>Before applying package commands from an online tutorial, first identify the distribution and verify that the instructions match the target operating system and release.</p>
+      </section>
+
+      <section class="lesson-section" id="security-updates">
+        <div class="section-kicker">Topic 17</div>
+        <h2>Updates, Repositories, and Package Security</h2>
+        <p>Package management is part of system security. Unpatched software may contain publicly known vulnerabilities, while untrusted repositories may introduce malicious or incompatible software.</p>
+
+        <h3>Professional update procedure</h3>
+        <ol>
+          <li>Confirm the operating system and repository configuration.</li>
+          <li>Refresh repository metadata.</li>
+          <li>Review available updates and security advisories.</li>
+          <li>Check application compatibility and maintenance windows.</li>
+          <li>Back up or snapshot critical systems when appropriate.</li>
+          <li>Apply updates using the distribution's package manager.</li>
+          <li>Restart affected services or reboot if required.</li>
+          <li>Verify application health, logs, and monitoring after the change.</li>
+        </ol>
+
+        <div class="warning"><strong>Do not blindly copy repository-installation commands from unknown websites.</strong> A command that adds a signing key or repository changes the software trust boundary of the machine.</div>
+
+        <h3>Useful verification commands</h3>
+        <div class="code-block"><pre><code># Debian/Ubuntu
+apt policy package-name
+dpkg -l | grep package-name
+
+# Fedora/RHEL family
+dnf info package-name
+rpm -q package-name
+
+# General service validation
+systemctl status service-name
+journalctl -u service-name --since today</code></pre></div>
+      </section>
+
+      <section class="lesson-section" id="cloud-containers">
+        <div class="section-kicker">Topic 18</div>
+        <h2>Applying These Concepts to Cloud and Containers</h2>
+        <p>Linux users, permissions, and packages are not isolated desktop topics. They directly affect the security and reliability of cloud workloads and containers.</p>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3>Cloud VM administration</h3>
+            <p>Create named administrator accounts, use SSH keys, restrict sudo privileges, and avoid shared root credentials. Group membership should match job responsibilities.</p>
+          </article>
+          <article class="card">
+            <h3>Service accounts</h3>
+            <p>Applications should run under dedicated identities where possible. A web server, database, and backup agent should not all require unrestricted root privileges.</p>
+          </article>
+          <article class="card">
+            <h3>Container users</h3>
+            <p>Containers often default to root unless the image defines another user. Production images should run as a non-root user when the application does not require root.</p>
+          </article>
+          <article class="card">
+            <h3>Minimal packages</h3>
+            <p>Container images should include only required runtime packages. Fewer packages generally mean a smaller image, fewer dependencies, and a smaller attack surface.</p>
+          </article>
+        </div>
+
+        <h3>Dockerfile example: non-root application user</h3>
+        <div class="code-block"><pre><code>FROM debian:stable-slim
+
+RUN apt-get update \
+    &amp;&amp; apt-get install -y --no-install-recommends ca-certificates \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+RUN groupadd --system app \
+    &amp;&amp; useradd --system --gid app --home /app app
+
+WORKDIR /app
+COPY --chown=app:app . /app
+
+USER app
+CMD ["./application"]</code></pre></div>
+        <p>The important ideas are: install only what is required, remove package-list cache from the final layer, give the application ownership of only what it needs, and switch to a non-root user before starting the workload.</p>
+
+        <h3>Why permissions behave differently in bind mounts</h3>
+        <p>When a host directory is mounted into a container, numeric UIDs and GIDs become important. A username inside the container may have the same text as a host user but a different numeric UID. Production container platforms therefore need deliberate UID/GID planning for persistent volumes.</p>
+
+        <div class="definition"><strong>Key security principle:</strong> In cloud and container systems, identity, filesystem ownership, process privileges, and package trust form one security chain. A weakness in one area can undermine controls in the others.</div>
+      </section>
+
+      <section class="lesson-section" id="lab">
+        <div class="section-kicker">Topic 19</div>
+        <h2>Guided Administration Lab</h2>
+        <p>This classroom exercise combines users, groups, permissions, and package management. Perform it only on a training VM or disposable lab system where you are authorized to make administrative changes.</p>
+
+        <div class="steps">
+          <article class="step">
+            <h4>Identify the operating system</h4>
+            <div class="code-block"><pre><code>cat /etc/os-release
+uname -r</code></pre></div>
+            <p>Explain which package manager is appropriate for the distribution.</p>
+          </article>
+          <article class="step">
+            <h4>Create a project group</h4>
+            <div class="code-block"><pre><code>sudo groupadd cloudteam
+getent group cloudteam</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Create two lab users</h4>
+            <div class="code-block"><pre><code>sudo useradd -m -s /bin/bash analyst1
+sudo useradd -m -s /bin/bash analyst2
+sudo passwd analyst1
+sudo passwd analyst2</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Add both users to the team group</h4>
+            <div class="code-block"><pre><code>sudo usermod -aG cloudteam analyst1
+sudo usermod -aG cloudteam analyst2
+id analyst1
+id analyst2</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Create a controlled shared directory</h4>
+            <div class="code-block"><pre><code>sudo mkdir -p /srv/cloud-lab
+sudo chown root:cloudteam /srv/cloud-lab
+sudo chmod 2770 /srv/cloud-lab
+ls -ld /srv/cloud-lab</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Test access as each user</h4>
+            <div class="code-block"><pre><code>sudo -u analyst1 touch /srv/cloud-lab/from-analyst1.txt
+sudo -u analyst2 touch /srv/cloud-lab/from-analyst2.txt
+ls -l /srv/cloud-lab</code></pre></div>
+            <p>Observe the group ownership of the newly created files and relate it to the directory's setgid bit.</p>
+          </article>
+          <article class="step">
+            <h4>Install a small diagnostic package</h4>
+            <div class="code-block"><pre><code># Debian/Ubuntu example
+sudo apt update
+sudo apt install tree
+
+# Fedora/RHEL family equivalent
+sudo dnf install tree</code></pre></div>
+          </article>
+          <article class="step">
+            <h4>Verify and then clean up the lab</h4>
+            <div class="code-block"><pre><code>tree /srv/cloud-lab
+
+# Cleanup only after the instructor verifies the work:
+sudo rm -rf /srv/cloud-lab
+sudo userdel -r analyst1
+sudo userdel -r analyst2
+sudo groupdel cloudteam</code></pre></div>
+          </article>
+        </div>
+
+        <div class="success"><strong>Instructor discussion:</strong> Ask students why <code>2770</code> was used instead of <code>777</code>, why users were placed in a group, and why software installation required administrative privileges.</div>
+      </section>
+
+      <section class="lesson-section" id="troubleshooting">
+        <div class="section-kicker">Topic 20</div>
+        <h2>Troubleshooting Users, Permissions, and Packages</h2>
+
+        <h3>Problem: “Permission denied”</h3>
+        <div class="code-block"><pre><code>id
+namei -l /path/to/problem/file
+ls -ld /path /path/to /path/to/problem
+ls -l /path/to/problem/file
+getfacl /path/to/problem/file</code></pre></div>
+        <p>Check the entire path, not only the final file. A parent directory may be missing execute/traverse permission. Also check ACLs, file ownership, service identities, and mandatory security systems such as SELinux or AppArmor when applicable.</p>
+
+        <h3>Problem: group membership was changed but access still fails</h3>
+        <p>A currently running login session may not immediately gain newly assigned supplementary groups. Start a new login session or use an appropriate session-refresh method, then confirm with <code>id</code>.</p>
+
+        <h3>Problem: package cannot be found</h3>
+        <div class="code-block"><pre><code>cat /etc/os-release
+# Debian/Ubuntu
+sudo apt update
+apt search package-name
+
+# Fedora/RHEL family
+sudo dnf makecache
+dnf search package-name</code></pre></div>
+        <p>Verify repository configuration, package name, architecture, operating-system release, and network access to repository mirrors.</p>
+
+        <h3>Problem: package manager is locked</h3>
+        <p>Do not immediately delete lock files. First determine whether another package-management process is legitimately running. Interrupting an active transaction can corrupt package state.</p>
+      </section>
+
+      <section class="lesson-section" id="reference">
+        <div class="section-kicker">Topic 21</div>
+        <h2>Professional Command Reference</h2>
+        <table class="reference-table">
+          <thead><tr><th>Task</th><th>Command</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Current user</td><td><code>whoami</code></td><td>Display effective username.</td></tr>
+            <tr><td>Identity details</td><td><code>id</code></td><td>Show UID, GID, and groups.</td></tr>
+            <tr><td>Query account</td><td><code>getent passwd USER</code></td><td>Resolve account through configured identity databases.</td></tr>
+            <tr><td>Create user</td><td><code>useradd -m USER</code></td><td>Create account and home directory.</td></tr>
+            <tr><td>Modify user</td><td><code>usermod</code></td><td>Change shell, groups, locking, and other account attributes.</td></tr>
+            <tr><td>Set password</td><td><code>passwd USER</code></td><td>Set or change authentication password.</td></tr>
+            <tr><td>Password aging</td><td><code>chage</code></td><td>Inspect or set password expiration policy.</td></tr>
+            <tr><td>Create group</td><td><code>groupadd GROUP</code></td><td>Create local group.</td></tr>
+            <tr><td>Add group membership</td><td><code>usermod -aG GROUP USER</code></td><td>Append supplementary group membership.</td></tr>
+            <tr><td>Elevated command</td><td><code>sudo COMMAND</code></td><td>Run an authorized command with elevated privileges.</td></tr>
+            <tr><td>Permissions</td><td><code>chmod MODE FILE</code></td><td>Change mode bits.</td></tr>
+            <tr><td>Ownership</td><td><code>chown USER:GROUP FILE</code></td><td>Change file owner and/or group.</td></tr>
+            <tr><td>Group ownership</td><td><code>chgrp GROUP FILE</code></td><td>Change group owner.</td></tr>
+            <tr><td>Default mask</td><td><code>umask</code></td><td>Inspect or set default permission filtering.</td></tr>
+            <tr><td>ACL inspection</td><td><code>getfacl FILE</code></td><td>Show POSIX ACL entries.</td></tr>
+            <tr><td>ACL modification</td><td><code>setfacl</code></td><td>Add, change, or remove ACL rules.</td></tr>
+            <tr><td>Debian metadata refresh</td><td><code>apt update</code></td><td>Refresh APT repository indexes.</td></tr>
+            <tr><td>Debian install</td><td><code>apt install PACKAGE</code></td><td>Install package and dependencies.</td></tr>
+            <tr><td>Fedora/RHEL install</td><td><code>dnf install PACKAGE</code></td><td>Install RPM package through configured repositories.</td></tr>
+            <tr><td>Distribution information</td><td><code>cat /etc/os-release</code></td><td>Identify Linux distribution and release.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="lesson-section" id="review">
+        <div class="section-kicker">Topic 22</div>
+        <h2>Review Questions and Discussion</h2>
+        <p>Use these questions for classroom discussion, recitation, or formative assessment.</p>
+
+        <div class="quiz">
+          <details>
+            <summary>1. Why is UID 0 special?</summary>
+            <p>UID 0 represents the root superuser identity. Processes running with this identity bypass many ordinary discretionary permission restrictions, so it must be tightly controlled.</p>
+          </details>
+          <details>
+            <summary>2. Why is a group better than <code>chmod 777</code> for team collaboration?</summary>
+            <p>A group limits access to authorized members, while <code>777</code> grants read, write, and execute permissions to every local identity. Group-based access follows least privilege more closely.</p>
+          </details>
+          <details>
+            <summary>3. What is the difference between <code>chmod</code> and <code>chown</code>?</summary>
+            <p><code>chmod</code> changes permission bits. <code>chown</code> changes the owner and/or group associated with a file or directory.</p>
+          </details>
+          <details>
+            <summary>4. Why should administrators use <code>visudo</code>?</summary>
+            <p>It edits sudo policy with validation and locking support, reducing the risk of saving invalid configuration that could block administrative access.</p>
+          </details>
+          <details>
+            <summary>5. What does <code>sudo apt update</code> do?</summary>
+            <p>It refreshes repository metadata and package indexes. It does not itself install all available upgrades.</p>
+          </details>
+          <details>
+            <summary>6. Why should containers run as non-root when possible?</summary>
+            <p>Running as non-root reduces the privileges available to the application. If the application is compromised, the attacker starts with fewer permissions inside the container and potentially across mounted resources.</p>
+          </details>
+          <details>
+            <summary>7. Why can a file still be inaccessible even when it appears to be readable?</summary>
+            <p>The user may lack execute/traverse permission on one of the parent directories, an ACL may restrict effective permissions, the process may run as another identity, or an additional security system may deny access.</p>
+          </details>
+          <details>
+            <summary>8. What is the professional meaning of least privilege?</summary>
+            <p>Users, processes, and services receive only the permissions required for their legitimate function, with unnecessary privileges removed or constrained.</p>
+          </details>
+        </div>
+
+        <h3>Closing summary</h3>
+        <p>Linux administration is fundamentally an exercise in controlled trust. Users and groups define identities, permissions define allowed filesystem actions, sudo defines privileged delegation, and package managers define how trusted software enters and changes the system. In cloud and container environments, these controls remain central to secure design.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Cloud &amp; Containers • Linux Administration Lecture Module</span>
+      <a href="../index.html">Return to Home</a>
+    </div>
+  </footer>
+</body>
+</html>

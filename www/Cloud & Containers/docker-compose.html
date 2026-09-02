@@ -1,0 +1,2519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Docker Compose lesson covering Docker images, services, containers, ports, volumes, networks, and defining and running multi-container applications."
+    >
+
+    <title>Docker Compose | Cloud & Containers</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../favicon.jpg">
+
+    <!-- Separate CSS -->
+    <link rel="stylesheet" href="../css/Cloud & Containers/docker-compose.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     MOBILE MENU CONTROL
+========================================================= -->
+<input
+    type="checkbox"
+    id="menu-toggle"
+    class="menu-toggle"
+    aria-label="Toggle navigation menu"
+>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header class="site-header">
+
+    <div class="header-container">
+
+        <a href="../index.html" class="brand">
+            <span class="brand-icon">J</span>
+
+            <span class="brand-text">
+                <strong>JAVA APPLICATION DEVELOPMENT</strong>
+                <small>WITH APACHE NETBEANS</small>
+            </span>
+        </a>
+
+        <label for="menu-toggle" class="mobile-menu-button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="top-navigation">
+            <a href="../index.html">Home</a>
+            <a href="docker-compose.html" class="active">Cloud & Containers</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     PAGE LAYOUT
+========================================================= -->
+<div class="page-layout">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+    <aside class="sidebar">
+
+        <div class="sidebar-inner">
+
+            <p class="sidebar-label">CLOUD & CONTAINERS</p>
+
+            <a href="docker-compose.html#overview" class="sidebar-link active">
+                Docker Compose
+            </a>
+
+            <a href="docker-compose.html#objectives" class="sidebar-link">
+                Learning Objectives
+            </a>
+
+            <a href="docker-compose.html#what-is-compose" class="sidebar-link">
+                What is Docker Compose?
+            </a>
+
+            <a href="docker-compose.html#images" class="sidebar-link">
+                Docker Images
+            </a>
+
+            <a href="docker-compose.html#services" class="sidebar-link">
+                Services & Containers
+            </a>
+
+            <a href="docker-compose.html#compose-file" class="sidebar-link">
+                Compose File
+            </a>
+
+            <a href="docker-compose.html#ports" class="sidebar-link">
+                Ports
+            </a>
+
+            <a href="docker-compose.html#volumes" class="sidebar-link">
+                Volumes
+            </a>
+
+            <a href="docker-compose.html#networks" class="sidebar-link">
+                Networks
+            </a>
+
+            <a href="docker-compose.html#environment" class="sidebar-link">
+                Environment Variables
+            </a>
+
+            <a href="docker-compose.html#depends-on" class="sidebar-link">
+                depends_on
+            </a>
+
+            <a href="docker-compose.html#multi-container" class="sidebar-link">
+                Multi-Container App
+            </a>
+
+            <a href="docker-compose.html#commands" class="sidebar-link">
+                Compose Commands
+            </a>
+
+            <a href="docker-compose.html#workflow" class="sidebar-link">
+                Development Workflow
+            </a>
+
+            <a href="docker-compose.html#troubleshooting" class="sidebar-link">
+                Troubleshooting
+            </a>
+
+            <a href="docker-compose.html#best-practices" class="sidebar-link">
+                Best Practices
+            </a>
+
+            <a href="docker-compose.html#activity" class="sidebar-link">
+                Hands-On Activity
+            </a>
+
+            <a href="docker-compose.html#assessment" class="sidebar-link">
+                Assessment
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+    <main class="main-content">
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+        <section class="hero-section" id="overview">
+
+            <div class="lesson-badge">
+                CLOUD & CONTAINERS
+            </div>
+
+            <h1>Docker Compose</h1>
+
+            <p class="hero-subtitle">
+                Images, Services, and Multi-Container Applications
+            </p>
+
+            <p class="hero-description">
+                Learn how Docker Compose allows developers and system
+                administrators to define, configure, connect, and run
+                multiple Docker containers using a single YAML configuration
+                file.
+            </p>
+
+            <div class="hero-meta">
+
+                <div class="meta-card">
+                    <span class="meta-title">Level</span>
+                    <strong>Beginner to Intermediate</strong>
+                </div>
+
+                <div class="meta-card">
+                    <span class="meta-title">Topic</span>
+                    <strong>Docker Compose</strong>
+                </div>
+
+                <div class="meta-card">
+                    <span class="meta-title">Focus</span>
+                    <strong>Multi-Container Apps</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LESSON INTRODUCTION
+        ================================================== -->
+        <section class="lesson-section">
+
+            <div class="section-number">Lesson Introduction</div>
+
+            <h2>Managing More Than One Container</h2>
+
+            <p>
+                A modern application rarely consists of only one program.
+                A web application might require a web server, application
+                server, database, caching server, and other supporting
+                services.
+            </p>
+
+            <p>
+                Docker can run each component in a separate container.
+                However, manually creating every container with individual
+                <code>docker run</code> commands quickly becomes difficult
+                to manage.
+            </p>
+
+            <div class="comparison-grid">
+
+                <div class="comparison-card bad-card">
+                    <h3>Without Docker Compose</h3>
+
+                    <ul>
+                        <li>Run containers individually.</li>
+                        <li>Create networks manually.</li>
+                        <li>Configure ports manually.</li>
+                        <li>Create volumes manually.</li>
+                        <li>Repeat long commands.</li>
+                        <li>Remember the correct startup order.</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card good-card">
+                    <h3>With Docker Compose</h3>
+
+                    <ul>
+                        <li>Describe the application in one YAML file.</li>
+                        <li>Start multiple containers together.</li>
+                        <li>Create networks automatically.</li>
+                        <li>Manage persistent storage.</li>
+                        <li>Configure environment variables.</li>
+                        <li>Stop the entire application easily.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LEARNING OBJECTIVES
+        ================================================== -->
+        <section class="lesson-section" id="objectives">
+
+            <div class="section-number">Topic 1</div>
+
+            <h2>Learning Objectives</h2>
+
+            <p>
+                At the end of this lesson, students should be able to:
+            </p>
+
+            <div class="objectives-grid">
+
+                <div class="objective-card">
+                    <span>01</span>
+                    <p>Explain the purpose of Docker Compose.</p>
+                </div>
+
+                <div class="objective-card">
+                    <span>02</span>
+                    <p>Differentiate Docker images, containers, and services.</p>
+                </div>
+
+                <div class="objective-card">
+                    <span>03</span>
+                    <p>Create a valid Docker Compose configuration file.</p>
+                </div>
+
+                <div class="objective-card">
+                    <span>04</span>
+                    <p>Configure container ports and networking.</p>
+                </div>
+
+                <div class="objective-card">
+                    <span>05</span>
+                    <p>Configure persistent data using Docker volumes.</p>
+                </div>
+
+                <div class="objective-card">
+                    <span>06</span>
+                    <p>Use environment variables inside services.</p>
+                </div>
+
+                <div class="objective-card">
+                    <span>07</span>
+                    <p>Define dependencies between application services.</p>
+                </div>
+
+                <div class="objective-card">
+                    <span>08</span>
+                    <p>Start and stop a complete multi-container application.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WHAT IS DOCKER COMPOSE
+        ================================================== -->
+        <section class="lesson-section" id="what-is-compose">
+
+            <div class="section-number">Topic 2</div>
+
+            <h2>What is Docker Compose?</h2>
+
+            <div class="definition-box">
+
+                <h3>Definition</h3>
+
+                <p>
+                    <strong>Docker Compose</strong> is a tool for defining
+                    and running applications that use multiple Docker
+                    containers.
+                </p>
+
+            </div>
+
+            <p>
+                Instead of entering several long Docker commands manually,
+                the application's services and configuration are stored
+                inside a YAML file, usually named:
+            </p>
+
+            <div class="filename-box">
+                compose.yaml
+            </div>
+
+            <p>
+                You can then start the entire application with one command:
+            </p>
+
+            <div class="terminal-block">
+
+                <div class="terminal-header">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span>Terminal</span>
+                </div>
+
+                <pre><code>docker compose up</code></pre>
+
+            </div>
+
+            <p>
+                Docker Compose reads the configuration and creates the
+                required containers, networks, and volumes.
+            </p>
+
+
+            <div class="diagram">
+
+                <div class="diagram-title">
+                    Docker Compose Architecture
+                </div>
+
+                <div class="diagram-row">
+
+                    <div class="diagram-box">
+                        <strong>compose.yaml</strong>
+                        <small>Application Definition</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-box compose-box">
+                        <strong>Docker Compose</strong>
+                        <small>Orchestration</small>
+                    </div>
+
+                    <div class="diagram-arrow">→</div>
+
+                    <div class="diagram-stack">
+
+                        <div class="small-box">Web Container</div>
+                        <div class="small-box">Database Container</div>
+                        <div class="small-box">Cache Container</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             IMAGE
+        ================================================== -->
+        <section class="lesson-section" id="images">
+
+            <div class="section-number">Topic 3</div>
+
+            <h2>Docker Images in Compose</h2>
+
+            <p>
+                A Docker image contains the files, runtime, libraries, and
+                configuration necessary to create a container.
+            </p>
+
+            <div class="concept-chain">
+
+                <div class="concept-item">
+                    <strong>Dockerfile</strong>
+                    <span>defines how an image is built</span>
+                </div>
+
+                <div class="chain-arrow">→</div>
+
+                <div class="concept-item">
+                    <strong>Image</strong>
+                    <span>application template</span>
+                </div>
+
+                <div class="chain-arrow">→</div>
+
+                <div class="concept-item">
+                    <strong>Container</strong>
+                    <span>running image instance</span>
+                </div>
+
+            </div>
+
+            <h3>Using an Existing Image</h3>
+
+            <p>
+                The <code>image</code> property tells Docker Compose which
+                Docker image should be used for the service.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">compose.yaml</div>
+
+                <pre><code>services:
+
+  web:
+    image: nginx:alpine
+
+  database:
+    image: postgres:alpine</code></pre>
+
+            </div>
+
+            <div class="explanation-table">
+
+                <div class="table-row table-heading">
+                    <div>Property</div>
+                    <div>Meaning</div>
+                </div>
+
+                <div class="table-row">
+                    <div><code>nginx</code></div>
+                    <div>Name of the Docker image.</div>
+                </div>
+
+                <div class="table-row">
+                    <div><code>alpine</code></div>
+                    <div>Image tag or variant.</div>
+                </div>
+
+                <div class="table-row">
+                    <div><code>image:</code></div>
+                    <div>Specifies the image used to create the container.</div>
+                </div>
+
+            </div>
+
+
+            <h3>Building Your Own Image</h3>
+
+            <p>
+                When your application contains its own Dockerfile, Compose
+                can build an image automatically.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">compose.yaml</div>
+
+                <pre><code>services:
+
+  web:
+    build: .
+    ports:
+      - "5000:5000"</code></pre>
+
+            </div>
+
+            <p>
+                The period (<code>.</code>) means Docker should look for
+                the Dockerfile inside the current directory.
+            </p>
+
+
+            <div class="tip-box">
+                <strong>Teaching Tip:</strong>
+                An image is not the same as a container. The image is the
+                reusable template, while the container is the running
+                instance created from that image.
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SERVICES
+        ================================================== -->
+        <section class="lesson-section" id="services">
+
+            <div class="section-number">Topic 4</div>
+
+            <h2>Services and Containers</h2>
+
+            <p>
+                The main section of a Compose file is
+                <code>services</code>. Each service normally represents
+                one component of the application.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">Basic Compose Structure</div>
+
+                <pre><code>services:
+
+  web:
+    image: nginx:alpine
+
+  database:
+    image: postgres:alpine
+
+  cache:
+    image: redis:alpine</code></pre>
+
+            </div>
+
+            <p>This application has three services:</p>
+
+            <div class="service-grid">
+
+                <article class="service-card">
+
+                    <div class="service-icon">WEB</div>
+
+                    <h3>web</h3>
+
+                    <p>
+                        Runs the web server or application.
+                    </p>
+
+                </article>
+
+                <article class="service-card">
+
+                    <div class="service-icon">DB</div>
+
+                    <h3>database</h3>
+
+                    <p>
+                        Stores application information.
+                    </p>
+
+                </article>
+
+                <article class="service-card">
+
+                    <div class="service-icon">CACHE</div>
+
+                    <h3>cache</h3>
+
+                    <p>
+                        Provides temporary high-speed data storage.
+                    </p>
+
+                </article>
+
+            </div>
+
+            <div class="important-box">
+
+                <strong>Important:</strong>
+
+                <p>
+                    The service name can also act as a hostname between
+                    containers on the Compose network.
+                </p>
+
+                <p>
+                    For example, the <code>web</code> container can connect
+                    to the database using the hostname
+                    <code>database</code>.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             COMPOSE FILE
+        ================================================== -->
+        <section class="lesson-section" id="compose-file">
+
+            <div class="section-number">Topic 5</div>
+
+            <h2>Understanding compose.yaml</h2>
+
+            <p>
+                Docker Compose uses YAML syntax. YAML depends heavily on
+                indentation, so spacing must be consistent.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">compose.yaml</div>
+
+                <pre><code>services:
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+
+  database:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: school
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: secret</code></pre>
+
+            </div>
+
+
+            <h3>Important YAML Rules</h3>
+
+            <div class="rule-list">
+
+                <div class="rule-item">
+                    <span>1</span>
+                    Use spaces for indentation.
+                </div>
+
+                <div class="rule-item">
+                    <span>2</span>
+                    Avoid tabs.
+                </div>
+
+                <div class="rule-item">
+                    <span>3</span>
+                    Child properties must be indented.
+                </div>
+
+                <div class="rule-item">
+                    <span>4</span>
+                    Lists begin with a hyphen (<code>-</code>).
+                </div>
+
+                <div class="rule-item">
+                    <span>5</span>
+                    Key-value mappings use a colon (<code>:</code>).
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PORTS
+        ================================================== -->
+        <section class="lesson-section" id="ports">
+
+            <div class="section-number">Topic 6</div>
+
+            <h2>Configuring Ports</h2>
+
+            <p>
+                Containers run inside their own isolated environment.
+                Port mapping allows a service inside a container to be
+                accessed from the host computer.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">Port Mapping</div>
+
+                <pre><code>services:
+
+  web:
+    image: nginx:alpine
+
+    ports:
+      - "8080:80"</code></pre>
+
+            </div>
+
+            <div class="port-diagram">
+
+                <div class="port-machine">
+                    <strong>Your Computer</strong>
+                    <span>Port 8080</span>
+                </div>
+
+                <div class="port-arrow">
+                    →
+                </div>
+
+                <div class="port-container">
+                    <strong>Nginx Container</strong>
+                    <span>Port 80</span>
+                </div>
+
+            </div>
+
+            <div class="syntax-box">
+
+                <strong>Syntax</strong>
+
+                <div class="syntax-code">
+                    "HOST_PORT:CONTAINER_PORT"
+                </div>
+
+            </div>
+
+            <p>
+                Therefore:
+            </p>
+
+            <div class="browser-address">
+                http://localhost:8080
+            </div>
+
+            <p>
+                sends traffic to port <code>80</code> inside the
+                container.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             VOLUMES
+        ================================================== -->
+        <section class="lesson-section" id="volumes">
+
+            <div class="section-number">Topic 7</div>
+
+            <h2>Persistent Storage with Volumes</h2>
+
+            <p>
+                Containers are designed to be replaceable. If a database
+                container is deleted, its internal data can also disappear
+                unless persistent storage is used.
+            </p>
+
+            <div class="definition-box">
+
+                <h3>Docker Volume</h3>
+
+                <p>
+                    A Docker volume provides persistent storage that exists
+                    independently from the container using it.
+                </p>
+
+            </div>
+
+            <div class="code-card">
+
+                <div class="code-title">Database Volume Example</div>
+
+                <pre><code>services:
+
+  database:
+    image: postgres:alpine
+
+    volumes:
+      - database_data:/var/lib/postgresql/data
+
+
+volumes:
+  database_data:</code></pre>
+
+            </div>
+
+            <div class="storage-diagram">
+
+                <div class="storage-item">
+                    <strong>PostgreSQL Container</strong>
+                    <span>/var/lib/postgresql/data</span>
+                </div>
+
+                <div class="storage-arrow">
+                    ⇄
+                </div>
+
+                <div class="storage-item volume-item">
+                    <strong>Docker Volume</strong>
+                    <span>database_data</span>
+                </div>
+
+            </div>
+
+            <p>
+                If the database container is recreated, the data stored in
+                <code>database_data</code> can remain available.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             NETWORK
+        ================================================== -->
+        <section class="lesson-section" id="networks">
+
+            <div class="section-number">Topic 8</div>
+
+            <h2>Docker Compose Networks</h2>
+
+            <p>
+                Docker Compose automatically creates a network for the
+                application. Services inside the same Compose project can
+                usually communicate by using their service names.
+            </p>
+
+            <div class="network-diagram">
+
+                <div class="network-title">
+                    Docker Compose Network
+                </div>
+
+                <div class="network-services">
+
+                    <div class="network-node">
+                        <strong>web</strong>
+                        <span>Application</span>
+                    </div>
+
+                    <div class="network-line"></div>
+
+                    <div class="network-node">
+                        <strong>database</strong>
+                        <span>PostgreSQL</span>
+                    </div>
+
+                    <div class="network-line"></div>
+
+                    <div class="network-node">
+                        <strong>cache</strong>
+                        <span>Redis</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <h3>Example Database Connection</h3>
+
+            <div class="code-card">
+
+                <div class="code-title">Connection Information</div>
+
+                <pre><code>Database Host: database
+Database Port: 5432
+Database Name: school
+Username: student</code></pre>
+
+            </div>
+
+            <div class="warning-box">
+
+                <strong>Common Mistake</strong>
+
+                <p>
+                    Inside the <code>web</code> container,
+                    <code>localhost</code> refers to that container itself.
+                    It does not refer to the database container.
+                </p>
+
+                <p>
+                    Use the Compose service name such as
+                    <code>database</code>.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ENVIRONMENT
+        ================================================== -->
+        <section class="lesson-section" id="environment">
+
+            <div class="section-number">Topic 9</div>
+
+            <h2>Environment Variables</h2>
+
+            <p>
+                Environment variables allow configuration values to be
+                passed to containers.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">Environment Variables</div>
+
+                <pre><code>services:
+
+  database:
+    image: postgres:alpine
+
+    environment:
+      POSTGRES_DB: school
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student123</code></pre>
+
+            </div>
+
+            <p>
+                Applications can also receive configuration values:
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">Application Environment</div>
+
+                <pre><code>services:
+
+  web:
+    build: .
+
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_NAME: school
+      DATABASE_USER: student
+      DATABASE_PASSWORD: student123</code></pre>
+
+            </div>
+
+            <div class="security-box">
+
+                <strong>Security Reminder</strong>
+
+                <p>
+                    Avoid committing production passwords, API keys, and
+                    other secrets directly into public source-code
+                    repositories.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DEPENDS ON
+        ================================================== -->
+        <section class="lesson-section" id="depends-on">
+
+            <div class="section-number">Topic 10</div>
+
+            <h2>Service Dependencies with depends_on</h2>
+
+            <p>
+                An application may depend on another service. For example,
+                a web application may require its database.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">depends_on Example</div>
+
+                <pre><code>services:
+
+  web:
+    build: .
+
+    depends_on:
+      - database
+
+
+  database:
+    image: postgres:alpine</code></pre>
+
+            </div>
+
+            <p>
+                In this example, the <code>web</code> service depends on
+                the <code>database</code> service.
+            </p>
+
+
+            <h3>Health Check Example</h3>
+
+            <p>
+                A health check can help determine whether a service is
+                actually ready to accept connections.
+            </p>
+
+            <div class="code-card">
+
+                <div class="code-title">Database Health Check</div>
+
+                <pre><code>services:
+
+  database:
+    image: postgres:alpine
+
+    environment:
+      POSTGRES_DB: school
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student123
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U student -d school
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  web:
+    build: .
+
+    depends_on:
+      database:
+        condition: service_healthy</code></pre>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MULTI-CONTAINER APP
+        ================================================== -->
+        <section class="lesson-section" id="multi-container">
+
+            <div class="section-number">Topic 11</div>
+
+            <h2>Complete Multi-Container Application</h2>
+
+            <p>
+                In this practical example, we will create a simple
+                application with:
+            </p>
+
+            <div class="architecture-grid">
+
+                <article>
+                    <span class="architecture-number">1</span>
+
+                    <h3>Web Application</h3>
+
+                    <p>
+                        Python Flask application.
+                    </p>
+                </article>
+
+                <article>
+                    <span class="architecture-number">2</span>
+
+                    <h3>Redis</h3>
+
+                    <p>
+                        Stores the page visit counter.
+                    </p>
+                </article>
+
+            </div>
+
+
+            <h3>Project Folder Structure</h3>
+
+            <div class="folder-tree">
+
+<pre>docker-compose-demo/
+│
+├── compose.yaml
+├── Dockerfile
+├── requirements.txt
+└── app.py</pre>
+
+            </div>
+
+
+            <!-- APP PY -->
+            <h3>Step 1: Create app.py</h3>
+
+            <div class="code-card">
+
+                <div class="code-title">app.py</div>
+
+                <pre><code>from flask import Flask
+import redis
+
+app = Flask(__name__)
+
+cache = redis.Redis(
+    host="redis",
+    port=6379
+)
+
+
+@app.route("/")
+def home():
+
+    count = cache.incr("visits")
+
+    return f"""
+    &lt;h1&gt;Docker Compose Application&lt;/h1&gt;
+    &lt;p&gt;This page has been visited {count} times.&lt;/p&gt;
+    """
+
+
+if __name__ == "__main__":
+
+    app.run(
+        host="0.0.0.0",
+        port=5000
+    )</code></pre>
+
+            </div>
+
+
+            <!-- REQUIREMENTS -->
+            <h3>Step 2: Create requirements.txt</h3>
+
+            <div class="code-card">
+
+                <div class="code-title">requirements.txt</div>
+
+                <pre><code>flask
+redis</code></pre>
+
+            </div>
+
+
+            <!-- DOCKERFILE -->
+            <h3>Step 3: Create the Dockerfile</h3>
+
+            <div class="code-card">
+
+                <div class="code-title">Dockerfile</div>
+
+                <pre><code>FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app.py .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]</code></pre>
+
+            </div>
+
+
+            <!-- COMPOSE -->
+            <h3>Step 4: Create compose.yaml</h3>
+
+            <div class="code-card featured-code">
+
+                <div class="code-title">compose.yaml</div>
+
+                <pre><code>services:
+
+  web:
+    build: .
+
+    ports:
+      - "5000:5000"
+
+    depends_on:
+      - redis
+
+
+  redis:
+    image: redis:alpine
+
+    volumes:
+      - redis_data:/data
+
+
+volumes:
+  redis_data:</code></pre>
+
+            </div>
+
+
+            <h3>Step 5: Build and Start the Application</h3>
+
+            <div class="terminal-block">
+
+                <div class="terminal-header">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span>Terminal</span>
+                </div>
+
+                <pre><code>docker compose up --build</code></pre>
+
+            </div>
+
+
+            <h3>Step 6: Open the Application</h3>
+
+            <p>
+                Open a web browser and visit:
+            </p>
+
+            <div class="browser-address">
+                http://localhost:5000
+            </div>
+
+
+            <div class="output-preview">
+
+                <div class="preview-browser">
+
+                    <div class="preview-toolbar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                        <div class="preview-address">
+                            localhost:5000
+                        </div>
+                    </div>
+
+                    <div class="preview-content">
+
+                        <h2>Docker Compose Application</h2>
+
+                        <p>
+                            This page has been visited
+                            <strong>1</strong> times.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <h3>What Happened?</h3>
+
+            <div class="steps-list">
+
+                <div class="step-item">
+                    <span class="step-number">1</span>
+
+                    <div>
+                        <strong>Compose reads compose.yaml.</strong>
+
+                        <p>
+                            Docker identifies the web and Redis services.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <span class="step-number">2</span>
+
+                    <div>
+                        <strong>The web image is built.</strong>
+
+                        <p>
+                            Docker uses the Dockerfile to create the
+                            application image.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <span class="step-number">3</span>
+
+                    <div>
+                        <strong>The Redis image is downloaded.</strong>
+
+                        <p>
+                            Docker retrieves the image when it is not
+                            already available locally.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <span class="step-number">4</span>
+
+                    <div>
+                        <strong>A network is created.</strong>
+
+                        <p>
+                            The containers can communicate through their
+                            service names.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <span class="step-number">5</span>
+
+                    <div>
+                        <strong>The containers start.</strong>
+
+                        <p>
+                            Flask communicates with Redis using the hostname
+                            <code>redis</code>.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             COMMANDS
+        ================================================== -->
+        <section class="lesson-section" id="commands">
+
+            <div class="section-number">Topic 12</div>
+
+            <h2>Essential Docker Compose Commands</h2>
+
+            <div class="command-list">
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Start services</h3>
+                        <p>Creates and starts the containers.</p>
+                    </div>
+
+                    <code>docker compose up</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Start in background</h3>
+                        <p>Runs the containers in detached mode.</p>
+                    </div>
+
+                    <code>docker compose up -d</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Build before starting</h3>
+                        <p>Rebuilds application images.</p>
+                    </div>
+
+                    <code>docker compose up --build</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>List containers</h3>
+                        <p>Displays the Compose services and their status.</p>
+                    </div>
+
+                    <code>docker compose ps</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>View logs</h3>
+                        <p>Displays logs from the containers.</p>
+                    </div>
+
+                    <code>docker compose logs</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Follow logs</h3>
+                        <p>Continuously displays new log output.</p>
+                    </div>
+
+                    <code>docker compose logs -f</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Restart services</h3>
+                        <p>Restarts the Compose containers.</p>
+                    </div>
+
+                    <code>docker compose restart</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Stop services</h3>
+                        <p>Stops containers without removing them.</p>
+                    </div>
+
+                    <code>docker compose stop</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Start stopped services</h3>
+                        <p>Starts existing stopped containers.</p>
+                    </div>
+
+                    <code>docker compose start</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Remove application containers</h3>
+                        <p>Stops and removes Compose containers and networks.</p>
+                    </div>
+
+                    <code>docker compose down</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Remove volumes too</h3>
+                        <p>
+                            Stops the application and deletes its named
+                            volumes.
+                        </p>
+                    </div>
+
+                    <code>docker compose down -v</code>
+
+                </div>
+
+
+                <div class="command-card">
+
+                    <div>
+                        <h3>Validate configuration</h3>
+                        <p>
+                            Checks and displays the resolved Compose
+                            configuration.
+                        </p>
+                    </div>
+
+                    <code>docker compose config</code>
+
+                </div>
+
+            </div>
+
+            <div class="danger-box">
+
+                <strong>Be Careful:</strong>
+
+                <code>docker compose down -v</code>
+
+                <p>
+                    removes named volumes associated with the Compose
+                    application. Database information stored exclusively
+                    in those volumes can be deleted.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WORKFLOW
+        ================================================== -->
+        <section class="lesson-section" id="workflow">
+
+            <div class="section-number">Topic 13</div>
+
+            <h2>Typical Docker Compose Workflow</h2>
+
+            <div class="workflow">
+
+                <div class="workflow-item">
+
+                    <span>01</span>
+
+                    <div>
+                        <h3>Create Application Files</h3>
+                        <p>
+                            Write the source code for the application.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="workflow-arrow">↓</div>
+
+                <div class="workflow-item">
+
+                    <span>02</span>
+
+                    <div>
+                        <h3>Create Dockerfile</h3>
+                        <p>
+                            Define how the application image will be built.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="workflow-arrow">↓</div>
+
+                <div class="workflow-item">
+
+                    <span>03</span>
+
+                    <div>
+                        <h3>Create compose.yaml</h3>
+                        <p>
+                            Define all application services.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="workflow-arrow">↓</div>
+
+                <div class="workflow-item">
+
+                    <span>04</span>
+
+                    <div>
+                        <h3>Build the Images</h3>
+                        <p>
+                            Build application-specific Docker images.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="workflow-arrow">↓</div>
+
+                <div class="workflow-item">
+
+                    <span>05</span>
+
+                    <div>
+                        <h3>Start the Application</h3>
+
+                        <code>docker compose up -d</code>
+                    </div>
+
+                </div>
+
+                <div class="workflow-arrow">↓</div>
+
+                <div class="workflow-item">
+
+                    <span>06</span>
+
+                    <div>
+                        <h3>Check Container Status</h3>
+
+                        <code>docker compose ps</code>
+                    </div>
+
+                </div>
+
+                <div class="workflow-arrow">↓</div>
+
+                <div class="workflow-item">
+
+                    <span>07</span>
+
+                    <div>
+                        <h3>Inspect Logs</h3>
+
+                        <code>docker compose logs -f</code>
+                    </div>
+
+                </div>
+
+                <div class="workflow-arrow">↓</div>
+
+                <div class="workflow-item">
+
+                    <span>08</span>
+
+                    <div>
+                        <h3>Stop the Application</h3>
+
+                        <code>docker compose down</code>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             COMPOSE EXAMPLE WITH DATABASE
+        ================================================== -->
+        <section class="lesson-section">
+
+            <div class="section-number">Topic 14</div>
+
+            <h2>Example: Web Application with PostgreSQL</h2>
+
+            <p>
+                The following example demonstrates a more realistic
+                application with a web service and a database.
+            </p>
+
+            <div class="code-card featured-code">
+
+                <div class="code-title">compose.yaml</div>
+
+                <pre><code>services:
+
+  web:
+    build: .
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_NAME: school
+      DATABASE_USER: student
+      DATABASE_PASSWORD: student123
+
+    depends_on:
+      database:
+        condition: service_healthy
+
+
+  database:
+    image: postgres:alpine
+
+    environment:
+      POSTGRES_DB: school
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student123
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U student -d school
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+volumes:
+  postgres_data:</code></pre>
+
+            </div>
+
+            <h3>Application Architecture</h3>
+
+            <div class="architecture-flow">
+
+                <div class="architecture-flow-item">
+                    <strong>User Browser</strong>
+                    <small>localhost:5000</small>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="architecture-flow-item">
+                    <strong>Web Container</strong>
+                    <small>Flask Application</small>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="architecture-flow-item">
+                    <strong>Database</strong>
+                    <small>PostgreSQL</small>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="architecture-flow-item">
+                    <strong>Volume</strong>
+                    <small>Persistent Data</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TROUBLESHOOTING
+        ================================================== -->
+        <section class="lesson-section" id="troubleshooting">
+
+            <div class="section-number">Topic 15</div>
+
+            <h2>Common Problems and Troubleshooting</h2>
+
+
+            <div class="troubleshooting-grid">
+
+                <article class="trouble-card">
+
+                    <h3>Port Already in Use</h3>
+
+                    <p>
+                        Another application is already using the host port.
+                    </p>
+
+                    <div class="mini-code">
+                        ports:<br>
+                        &nbsp;&nbsp;- "8081:80"
+                    </div>
+
+                    <p>
+                        Change the host port to another available port.
+                    </p>
+
+                </article>
+
+
+                <article class="trouble-card">
+
+                    <h3>Container Exits Immediately</h3>
+
+                    <p>
+                        Check the application logs.
+                    </p>
+
+                    <div class="mini-code">
+                        docker compose logs
+                    </div>
+
+                </article>
+
+
+                <article class="trouble-card">
+
+                    <h3>Containers Cannot Communicate</h3>
+
+                    <p>
+                        Verify that the application uses the Compose service
+                        name instead of localhost.
+                    </p>
+
+                    <div class="mini-code">
+                        DATABASE_HOST=database
+                    </div>
+
+                </article>
+
+
+                <article class="trouble-card">
+
+                    <h3>Old Application Code Appears</h3>
+
+                    <p>
+                        Rebuild the application image.
+                    </p>
+
+                    <div class="mini-code">
+                        docker compose up --build
+                    </div>
+
+                </article>
+
+
+                <article class="trouble-card">
+
+                    <h3>Database Is Not Ready</h3>
+
+                    <p>
+                        Configure a health check and dependency condition.
+                    </p>
+
+                    <div class="mini-code">
+                        condition: service_healthy
+                    </div>
+
+                </article>
+
+
+                <article class="trouble-card">
+
+                    <h3>Check Current Services</h3>
+
+                    <p>
+                        Display the running Compose containers.
+                    </p>
+
+                    <div class="mini-code">
+                        docker compose ps
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BEST PRACTICES
+        ================================================== -->
+        <section class="lesson-section" id="best-practices">
+
+            <div class="section-number">Topic 16</div>
+
+            <h2>Docker Compose Best Practices</h2>
+
+            <div class="best-practice-list">
+
+                <div class="practice-item">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>Use meaningful service names.</strong>
+                        <p>
+                            Examples: <code>web</code>,
+                            <code>database</code>,
+                            <code>cache</code>.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="practice-item">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>Use specific image tags when appropriate.</strong>
+                        <p>
+                            Image versioning can make deployments more
+                            predictable.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="practice-item">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>Use volumes for persistent data.</strong>
+                        <p>
+                            Database information should not depend solely
+                            on the writable container layer.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="practice-item">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>Do not expose unnecessary ports.</strong>
+                        <p>
+                            Only publish services that need access from
+                            outside the Docker network.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="practice-item">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>Protect sensitive configuration.</strong>
+                        <p>
+                            Do not publish real production credentials in
+                            source-code repositories.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="practice-item">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>Validate the Compose configuration.</strong>
+                        <p>
+                            Use <code>docker compose config</code> before
+                            deployment.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="practice-item">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>Monitor container logs.</strong>
+                        <p>
+                            Use <code>docker compose logs -f</code> during
+                            debugging.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DOCKER VS COMPOSE
+        ================================================== -->
+        <section class="lesson-section">
+
+            <div class="section-number">Topic 17</div>
+
+            <h2>Docker vs Docker Compose</h2>
+
+            <div class="responsive-table-wrapper">
+
+                <table class="lesson-table">
+
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Docker</th>
+                            <th>Docker Compose</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Main Purpose</td>
+                            <td>Manage containers individually.</td>
+                            <td>Manage applications consisting of multiple services.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Configuration</td>
+                            <td>CLI commands and Dockerfiles.</td>
+                            <td>YAML configuration.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Start Application</td>
+                            <td>Multiple commands may be required.</td>
+                            <td><code>docker compose up</code></td>
+                        </tr>
+
+                        <tr>
+                            <td>Networking</td>
+                            <td>Can be configured manually.</td>
+                            <td>Application network is normally created automatically.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Volumes</td>
+                            <td>Can be created manually.</td>
+                            <td>Can be declared directly in Compose.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Multi-Container Apps</td>
+                            <td>Possible but more manual.</td>
+                            <td>Designed specifically for this purpose.</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ACTIVITY
+        ================================================== -->
+        <section class="lesson-section" id="activity">
+
+            <div class="section-number">Laboratory Activity</div>
+
+            <h2>Hands-On Activity: Create a Multi-Container Application</h2>
+
+            <div class="activity-box">
+
+                <h3>Scenario</h3>
+
+                <p>
+                    Your development team needs a small application with a
+                    web service and a Redis service. Your task is to use
+                    Docker Compose so that both services can be started
+                    using a single command.
+                </p>
+
+            </div>
+
+
+            <h3>Student Tasks</h3>
+
+            <ol class="student-task-list">
+
+                <li>
+                    Create a folder named
+                    <code>docker-compose-lab</code>.
+                </li>
+
+                <li>
+                    Create an <code>app.py</code> file.
+                </li>
+
+                <li>
+                    Create a <code>requirements.txt</code> file.
+                </li>
+
+                <li>
+                    Create a <code>Dockerfile</code>.
+                </li>
+
+                <li>
+                    Create a <code>compose.yaml</code> file.
+                </li>
+
+                <li>
+                    Define the <code>web</code> service.
+                </li>
+
+                <li>
+                    Define the <code>redis</code> service.
+                </li>
+
+                <li>
+                    Map port <code>5000</code> from the host to the web
+                    container.
+                </li>
+
+                <li>
+                    Start the application using:
+                    <code>docker compose up --build</code>.
+                </li>
+
+                <li>
+                    Visit <code>http://localhost:5000</code>.
+                </li>
+
+                <li>
+                    Refresh the browser several times and observe the
+                    counter.
+                </li>
+
+                <li>
+                    Run <code>docker compose ps</code>.
+                </li>
+
+                <li>
+                    Run <code>docker compose logs</code>.
+                </li>
+
+                <li>
+                    Stop the application using
+                    <code>docker compose down</code>.
+                </li>
+
+            </ol>
+
+
+            <div class="challenge-box">
+
+                <h3>Challenge Exercise</h3>
+
+                <p>
+                    Modify the application so that Redis stores its data
+                    using a named volume called:
+                </p>
+
+                <code>redis_data</code>
+
+                <p>
+                    Restart the containers and investigate whether the
+                    stored information remains available.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ASSESSMENT
+        ================================================== -->
+        <section class="lesson-section" id="assessment">
+
+            <div class="section-number">Assessment</div>
+
+            <h2>Knowledge Check</h2>
+
+            <div class="question-card">
+
+                <h3>Question 1</h3>
+
+                <p>
+                    What is the main purpose of Docker Compose?
+                </p>
+
+                <div class="choices">
+                    <p>A. Install an operating system</p>
+                    <p>B. Define and run multi-container applications</p>
+                    <p>C. Replace Docker images</p>
+                    <p>D. Create virtual machines</p>
+                </div>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        <strong>Answer: B.</strong>
+                        Docker Compose is designed to define and run
+                        applications composed of multiple containerized
+                        services.
+                    </div>
+                </details>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>Question 2</h3>
+
+                <p>
+                    Which file is commonly used to define Docker Compose
+                    services?
+                </p>
+
+                <div class="choices">
+                    <p>A. index.html</p>
+                    <p>B. package.json</p>
+                    <p>C. compose.yaml</p>
+                    <p>D. application.exe</p>
+                </div>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        <strong>Answer: C. compose.yaml</strong>
+                    </div>
+                </details>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>Question 3</h3>
+
+                <p>
+                    What does the following configuration mean?
+                </p>
+
+                <div class="question-code">
+                    ports:<br>
+                    &nbsp;&nbsp;- "8080:80"
+                </div>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        Host port <strong>8080</strong> is mapped to port
+                        <strong>80</strong> inside the container.
+                    </div>
+                </details>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>Question 4</h3>
+
+                <p>
+                    Why are Docker volumes important?
+                </p>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        Volumes provide persistent storage so important data
+                        can survive container recreation or removal,
+                        depending on how the volume is managed.
+                    </div>
+                </details>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>Question 5</h3>
+
+                <p>
+                    Which command starts Docker Compose services in the
+                    background?
+                </p>
+
+                <div class="choices">
+                    <p>A. docker compose stop</p>
+                    <p>B. docker compose ps</p>
+                    <p>C. docker compose up -d</p>
+                    <p>D. docker compose logs</p>
+                </div>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        <strong>Answer: C.</strong>
+                        <code>docker compose up -d</code>
+                    </div>
+                </details>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>Question 6</h3>
+
+                <p>
+                    If your database service is named
+                    <code>database</code>, what hostname should another
+                    Compose service normally use to connect to it?
+                </p>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        Use the hostname
+                        <strong>database</strong>.
+                    </div>
+                </details>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>Question 7</h3>
+
+                <p>
+                    What is the difference between a Docker image and a
+                    Docker container?
+                </p>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        A Docker image is a reusable template containing
+                        application files and dependencies. A container is
+                        an instance created from that image.
+                    </div>
+                </details>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <h3>Question 8</h3>
+
+                <p>
+                    Which command can be used to inspect the current status
+                    of Compose services?
+                </p>
+
+                <details>
+                    <summary>Show Answer</summary>
+
+                    <div class="answer">
+                        <code>docker compose ps</code>
+                    </div>
+                </details>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+        <section class="lesson-section lesson-summary">
+
+            <div class="section-number">Lesson Summary</div>
+
+            <h2>Key Takeaways</h2>
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+                    <strong>Docker Compose</strong>
+
+                    <p>
+                        Defines and manages multi-container applications
+                        through YAML configuration.
+                    </p>
+                </div>
+
+
+                <div class="summary-card">
+                    <strong>Images</strong>
+
+                    <p>
+                        Provide reusable application templates used to
+                        create containers.
+                    </p>
+                </div>
+
+
+                <div class="summary-card">
+                    <strong>Services</strong>
+
+                    <p>
+                        Represent individual components of a Compose
+                        application.
+                    </p>
+                </div>
+
+
+                <div class="summary-card">
+                    <strong>Ports</strong>
+
+                    <p>
+                        Allow host systems to access applications running
+                        inside containers.
+                    </p>
+                </div>
+
+
+                <div class="summary-card">
+                    <strong>Volumes</strong>
+
+                    <p>
+                        Provide persistent storage for application data.
+                    </p>
+                </div>
+
+
+                <div class="summary-card">
+                    <strong>Networks</strong>
+
+                    <p>
+                        Allow containers to communicate using service
+                        names.
+                    </p>
+                </div>
+
+
+                <div class="summary-card">
+                    <strong>Environment</strong>
+
+                    <p>
+                        Provides configurable values to containerized
+                        applications.
+                    </p>
+                </div>
+
+
+                <div class="summary-card">
+                    <strong>One Command</strong>
+
+                    <p>
+                        Start the application with
+                        <code>docker compose up</code>.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NEXT LESSON
+        ================================================== -->
+        <section class="next-lesson">
+
+            <div>
+                <small>YOU HAVE COMPLETED</small>
+                <h2>Docker Compose</h2>
+
+                <p>
+                    You now understand how Docker Compose defines and runs
+                    applications consisting of multiple Docker containers.
+                </p>
+            </div>
+
+            <a href="#overview" class="back-top-button">
+                Back to Top ↑
+            </a>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div>
+            <strong>
+                JAVA APPLICATION DEVELOPMENT WITH APACHE NETBEANS
+            </strong>
+
+            <p>
+                Cloud & Containers Learning Module
+            </p>
+        </div>
+
+        <div class="footer-right">
+            <p>
+                Docker Compose • Images • Multi-Container Applications
+            </p>
+
+            <a href="../index.html">Return to Home</a>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

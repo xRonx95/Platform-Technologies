@@ -1,0 +1,60 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Migration and Integration Fundamentals</title>
+  <desc id="desc">Three-step learning diagram for Migration and Integration Fundamentals.</desc>
+  <defs>
+    <symbol id="icon-cloud" viewBox="0 0 120 110"><path d="M18 78h80c14 0 22-10 22-22s-9-21-22-22C93 15 77 5 61 10 47 13 38 23 35 38 15 36 2 47 2 61c0 10 6 17 16 17z"/><path d="M35 94h52M45 105h32"/></symbol>
+    <symbol id="icon-server" viewBox="0 0 120 110"><rect x="17" y="4" width="86" height="98" rx="8"/><path d="M17 36h86M17 69h86M50 20h36M50 53h36M50 86h36"/><circle cx="34" cy="20" r="5"/><circle cx="34" cy="53" r="5"/><circle cx="34" cy="86" r="5"/></symbol>
+    <symbol id="icon-hybrid" viewBox="0 0 120 110"><rect x="2" y="57" width="42" height="43" rx="4"/><path d="M11 69h8m7 0h8M11 82h8m7 0h8M66 55h37c10 0 16-7 16-15s-6-14-14-15c-4-12-14-16-24-12-8 3-13 9-15 18-10-1-18 5-18 13 0 7 6 11 18 11zM44 78h32m-8-8 9 8-9 8"/></symbol>
+    <symbol id="icon-database" viewBox="0 0 120 110"><ellipse cx="60" cy="17" rx="43" ry="14"/><path d="M17 17v73c0 9 19 15 43 15s43-6 43-15V17M17 51c0 9 19 15 43 15s43-6 43-15M17 84c0 9 19 15 43 15s43-6 43-15"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 120 110"><path d="M60 2 105 19v31c0 30-18 49-45 58C33 99 15 80 15 50V19z"/><path d="m38 54 15 15 30-36"/></symbol>
+    <symbol id="icon-document" viewBox="0 0 120 110"><path d="M24 3h54l23 24v79H24zM78 3v25h23M41 49h43M41 67h43M41 85h31"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 120 110"><circle cx="60" cy="25" r="19"/><circle cx="20" cy="43" r="12"/><circle cx="100" cy="43" r="12"/><path d="M25 106c1-29 14-46 35-46s34 17 35 46M2 101c1-20 8-32 23-37M118 101c-1-20-8-32-23-37"/></symbol>
+    <symbol id="icon-checklist" viewBox="0 0 120 110"><rect x="14" y="3" width="92" height="103" rx="9"/><path d="m29 32 7 7 14-17m-21 42 7 7 14-17M60 32h31M60 64h31M29 89h62"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 120 110"><path d="M9 4v99h106M27 83V63h19v20M56 83V41h19v42M86 83V17h19v66M25 48l29-22 22 7 31-26"/></symbol>
+    <symbol id="icon-network" viewBox="0 0 120 110"><circle cx="60" cy="55" r="18"/><circle cx="16" cy="17" r="13"/><circle cx="104" cy="17" r="13"/><circle cx="16" cy="96" r="13"/><circle cx="104" cy="96" r="13"/><path d="m29 27 18 16m26 0 18-16M47 68 29 86m44-18 18 18"/></symbol>
+    <symbol id="icon-backup" viewBox="0 0 120 110"><path d="M29 32A40 40 0 1 1 20 70M29 32H5m24 0V8"/><rect x="40" y="47" width="52" height="40" rx="5"/><path d="M50 61h31M50 74h21"/></symbol>
+    <symbol id="icon-pipeline" viewBox="0 0 120 110"><rect x="1" y="31" width="32" height="49" rx="6"/><rect x="44" y="31" width="32" height="49" rx="6"/><rect x="87" y="31" width="32" height="49" rx="6"/><path d="M33 55h11m32 0h11m-49-8 8 8-8 8m43-16 8 8-8 8"/></symbol>
+    <symbol id="icon-process" viewBox="0 0 120 110"><circle cx="60" cy="55" r="34"/><circle cx="60" cy="55" r="12"/><path d="M60 3v18m0 68v18M8 55h18m68 0h18M23 18l14 14m46 46 14 14M97 18 83 32M37 78 23 92"/></symbol>
+  </defs>
+  <style>
+    .title{font:800 32px Arial,sans-serif;fill:#102a43}.module{font:700 16px Arial,sans-serif;letter-spacing:2px;fill:#0f766e}
+    .card{fill:#fff;stroke:#d7e1ec;stroke-width:2}.step{fill:#0f766e}.number{font:800 22px Arial,sans-serif;fill:#fff}
+    .label{font:800 14px Arial,sans-serif;letter-spacing:1.4px;fill:#0f766e}.target{font:600 20px Arial,sans-serif;fill:#243b53}
+    .arrow{fill:none;stroke:#0f766e;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.footer{font:600 17px Arial,sans-serif;fill:#52667a}
+    .topic-icon{fill:#e7f7f4;stroke:#0f766e;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    .path-label{font:800 16px Arial,sans-serif;letter-spacing:1.2px;fill:#0f766e}
+  </style>
+  <rect width="1280" height="720" fill="#f6f9fc"/>
+  <rect x="35" y="35" width="1210" height="650" rx="30" fill="#e7f7f4" stroke="#d7e1ec" stroke-width="2"/>
+  <text x="640" y="67" text-anchor="middle" class="module">MIGRATION &amp; INTEGRATION - LESSON 01</text>
+  <text x="640" y="102" text-anchor="middle" class="title">Migration and Integration Fundamentals</text>
+  <line x1="85" y1="180" x2="1195" y2="180" stroke="#cad6e2" stroke-width="2"/>
+  <text x="640" y="222" text-anchor="middle" class="path-label">ASSESS  -&gt;  PREPARE  -&gt;  MIGRATE  -&gt;  VALIDATE</text>
+  <g>
+    <rect x="85" y="245" width="340" height="265" rx="22" class="card"/>
+    <use href="#icon-network" x="195" y="270" width="120" height="110" class="topic-icon"/>
+    <text x="115" y="405" class="label">WHAT TO DO</text>
+    <text x="115" y="430" class="target">Differentiate migration from</text>
+    <text x="115" y="457" class="target">integration.</text>
+  </g>
+  <path d="M435 377h31" class="arrow"/><path d="m461 368 10 9-10 9" class="arrow"/>
+  <g>
+    <rect x="480" y="245" width="340" height="265" rx="22" class="card"/>
+    <use href="#icon-network" x="590" y="270" width="120" height="110" class="topic-icon"/>
+    <text x="510" y="405" class="label">WHAT TO DO</text>
+    <text x="510" y="430" class="target">Map sources, targets, and</text>
+    <text x="510" y="457" class="target">dependencies.</text>
+  </g>
+  <path d="M830 377h31" class="arrow"/><path d="m856 368 10 9-10 9" class="arrow"/>
+  <g>
+    <rect x="875" y="245" width="340" height="265" rx="22" class="card"/>
+    <use href="#icon-database" x="985" y="270" width="120" height="110" class="topic-icon"/>
+    <text x="905" y="405" class="label">WHAT TO DO</text>
+    <text x="905" y="430" class="target">Identify data and interface</text>
+    <text x="905" y="457" class="target">ownership.</text>
+  </g>
+
+  <rect x="85" y="535" width="1110" height="90" rx="18" fill="#fff" stroke="#d7e1ec" stroke-width="2"/>
+  <text x="115" y="573" class="label">STUDENT CHECK</text>
+  <text x="115" y="603" class="footer">Explain each step, apply it to your capstone, and show evidence that you followed it.</text>
+</svg>

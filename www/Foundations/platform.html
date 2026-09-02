@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform Technologies — Foundation Module</title>
+
+<!-- Browser tab logo -->
+<link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+<link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+<link rel="stylesheet" href="../css/Foundation/platform.css">
+</head>
+<body>
+
+<a class="skip-link" href="#content">Skip to lecture content</a>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__brand">
+      <div class="topbar__crest">PT</div>
+      <div class="topbar__titles">
+        <span class="topbar__eyebrow">Platform Technologies</span>
+        <span class="topbar__title">Foundation Module</span>
+      </div>
+    </div>
+    <nav class="topbar__nav" id="topbarNav" aria-label="Primary">
+      <a href="../index.html">Home</a>
+      <a href="#overview">Module Overview</a>
+      <a href="#lesson-1">Lessons</a>
+      <a href="#review">Review</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="topbarNav">Menu</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="overview">
+  <div class="hero__inner">
+    <div>
+      <div class="hero__eyebrow">Module 1 &nbsp;·&nbsp; Foundation</div>
+      <h1>Platform Technologies: Building the Foundation</h1>
+      <p class="lead">
+        A formal introduction to computing platforms — the hardware, operating systems, web,
+        mobile, cloud, and virtualization foundations upon which every modern application is built.
+        This lecture guides students step by step from first principles to current industry practice.
+      </p>
+      <div class="hero__meta">
+        <span><strong>Course:</strong>&nbsp;Platform Technologies</span>
+        <span><strong>Unit:</strong>&nbsp;Foundation Concepts</span>
+        <span><strong>Lessons:</strong>&nbsp;10</span>
+        <span><strong>Level:</strong>&nbsp;Introductory</span>
+      </div>
+    </div>
+    <div class="hero__panel">
+      <h2>What You Will Be Able to Do</h2>
+      <ol>
+        <li>Define a computing platform and explain its layered structure.</li>
+        <li>Differentiate hardware, operating system, web, mobile, and cloud platforms.</li>
+        <li>Compare virtualization and containerization technologies.</li>
+        <li>Explain cross-platform development and current industry trends.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGE SHELL ============ -->
+<div class="shell">
+
+  <!-- ============ LESSON RAIL (SYLLABUS SIDEBAR) ============ -->
+  <aside class="rail" aria-label="Lesson navigation">
+    <div class="rail__head">Module Contents</div>
+    <ul class="rail__list" id="railList">
+      <li><a href="#lesson-1" data-rail><span class="rail__num">01</span><span>Introduction to Platform Technologies</span></a></li>
+      <li><a href="#lesson-2" data-rail><span class="rail__num">02</span><span>The Concept of a Computing Platform</span></a></li>
+      <li><a href="#lesson-3" data-rail><span class="rail__num">03</span><span>Operating Systems as a Platform</span></a></li>
+      <li><a href="#lesson-4" data-rail><span class="rail__num">04</span><span>Web Platforms and Technologies</span></a></li>
+      <li><a href="#lesson-5" data-rail><span class="rail__num">05</span><span>Mobile Platforms</span></a></li>
+      <li><a href="#lesson-6" data-rail><span class="rail__num">06</span><span>Cloud Computing Platforms</span></a></li>
+      <li><a href="#lesson-7" data-rail><span class="rail__num">07</span><span>Virtualization and Containerization</span></a></li>
+      <li><a href="#lesson-8" data-rail><span class="rail__num">08</span><span>Cross-Platform Development</span></a></li>
+      <li><a href="#lesson-9" data-rail><span class="rail__num">09</span><span>Emerging Platform Trends</span></a></li>
+      <li><a href="#review" data-rail><span class="rail__num">10</span><span>Module Summary &amp; Review</span></a></li>
+    </ul>
+    <div class="rail__foot">
+      <div class="rail__progress-label">Lecture Progress</div>
+      <div class="rail__progress-track"><div class="rail__progress-fill" id="progressFill"></div></div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main class="content" id="content">
+
+    <div class="module-summary">
+      <h2>Foundation Module at a Glance</h2>
+      <p>This module establishes the conceptual foundation for the course. Each lesson builds
+      on the last, moving from the physical machine to the software layers, networks, and
+      services that define a "platform" in modern computing.</p>
+      <div class="module-summary__grid">
+        <div class="stat"><span class="stat__num">10</span><span class="stat__label">Lessons in this module</span></div>
+        <div class="stat"><span class="stat__num">6</span><span class="stat__label">Platform categories covered</span></div>
+        <div class="stat"><span class="stat__num">8</span><span class="stat__label">Diagrams &amp; illustrations</span></div>
+      </div>
+    </div>
+
+    <!-- ================= LESSON 1 ================= -->
+    <article class="lesson" id="lesson-1">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 01</span><span class="lesson__tag">Foundation</span></div>
+      <h2>Introduction to Platform Technologies</h2>
+      <p class="lesson__intro">Before we can study individual platforms, we must agree on what the word
+      "platform" actually means in computing, and why the concept matters to every developer, IT
+      professional, and organization.</p>
+
+      <div class="box box--objectives">
+        <h4>Learning Objectives</h4>
+        <ul>
+          <li>Define the term "platform technology" in a computing context.</li>
+          <li>Explain why platforms matter to software development and business operations.</li>
+          <li>Identify the major categories of platforms studied in this module.</li>
+        </ul>
+      </div>
+
+      <h3><span class="h3-index">1.1</span>What Is a Platform?</h3>
+      <p>In computing, a <strong>platform</strong> is the underlying environment on which software
+      is built, deployed, and executed. It is the combination of hardware architecture, operating
+      system, runtime environment, and supporting services that an application depends on to function.
+      A useful analogy is construction: a building requires a foundation before walls and rooms can be
+      added. In the same way, an application requires a platform — hardware, operating system, and
+      supporting software — before it can run.</p>
+
+      <p>Platform technologies therefore refer to the collective set of tools, frameworks, operating
+      systems, and infrastructure that enable the development, deployment, and operation of software
+      systems.</p>
+
+      <h3><span class="h3-index">1.2</span>Why Platform Technologies Matter</h3>
+      <ul>
+        <li><strong>Compatibility:</strong> Understanding platforms allows developers to build software that works correctly on the intended systems.</li>
+        <li><strong>Efficiency:</strong> Choosing the right platform reduces development time and operating cost.</li>
+        <li><strong>Scalability:</strong> Modern platforms, particularly cloud platforms, allow systems to grow with demand.</li>
+        <li><strong>Career relevance:</strong> Employers expect IT graduates to be fluent in hardware, operating systems, web, mobile, and cloud platforms.</li>
+      </ul>
+
+      <h3><span class="h3-index">1.3</span>Categories Covered in This Module</h3>
+      <div class="pill-row">
+        <span class="pill">Hardware Platforms</span>
+        <span class="pill">Operating Systems</span>
+        <span class="pill">Web Platforms</span>
+        <span class="pill">Mobile Platforms</span>
+        <span class="pill">Cloud Platforms</span>
+        <span class="pill">Virtualization</span>
+      </div>
+
+      <div class="box box--terms">
+        <h4>Key Terms</h4>
+        <dl>
+          <dt>Platform</dt>
+          <dd>The hardware and/or software environment on which an application runs.</dd>
+          <dt>Runtime Environment</dt>
+          <dd>The software layer that provides the resources a program needs while it is executing.</dd>
+          <dt>Infrastructure</dt>
+          <dd>The underlying physical and virtual resources — servers, storage, networks — that support platforms.</dd>
+        </dl>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>In your own words, define "platform technology."</li>
+          <li>Give one real-world example of a platform you use daily.</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 2 ================= -->
+    <article class="lesson" id="lesson-2">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 02</span><span class="lesson__tag">Foundation</span></div>
+      <h2>The Concept of a Computing Platform</h2>
+      <p class="lesson__intro">Every computing platform is organized in layers. Understanding this
+      layered structure is the single most important foundation for the rest of the course.</p>
+
+      <h3><span class="h3-index">2.1</span>The Platform Stack</h3>
+      <p>A platform can be visualized as a stack of layers, each one depending on the layer below it.
+      At the base is physical hardware; at the top are the applications end users interact with.
+      Step through the diagram below from bottom to top.</p>
+
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="stackTitle">
+            <title id="stackTitle">The Platform Stack: Hardware, Operating System, Middleware, Application</title>
+            <!-- Hardware -->
+            <rect x="60" y="255" width="640" height="60" rx="8" fill="#14213d"/>
+            <text x="380" y="280" text-anchor="middle" fill="#ffffff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">HARDWARE LAYER</text>
+            <text x="380" y="300" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="13">CPU · Memory · Storage · Network Interface</text>
+            <!-- OS -->
+            <rect x="60" y="185" width="640" height="60" rx="8" fill="#1d3461"/>
+            <text x="380" y="210" text-anchor="middle" fill="#ffffff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">OPERATING SYSTEM LAYER</text>
+            <text x="380" y="230" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="13">Windows · Linux · macOS · Kernel &amp; Drivers</text>
+            <!-- Middleware -->
+            <rect x="60" y="115" width="640" height="60" rx="8" fill="#294a80"/>
+            <text x="380" y="140" text-anchor="middle" fill="#ffffff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">MIDDLEWARE / RUNTIME LAYER</text>
+            <text x="380" y="160" text-anchor="middle" fill="#f1e6d3" font-family="Source Sans 3, sans-serif" font-size="13">Browsers · Runtimes · APIs · Frameworks</text>
+            <!-- Application -->
+            <rect x="60" y="45" width="640" height="60" rx="8" fill="#b08d57"/>
+            <text x="380" y="70" text-anchor="middle" fill="#14213d" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">APPLICATION LAYER</text>
+            <text x="380" y="90" text-anchor="middle" fill="#14213d" font-family="Source Sans 3, sans-serif" font-size="13">Software the end user directly interacts with</text>
+            <!-- Arrow -->
+            <path d="M30 300 L30 60" stroke="#a4793f" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+            <defs>
+              <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#a4793f"/>
+              </marker>
+            </defs>
+            <text x="14" y="180" fill="#5b6472" font-family="IBM Plex Mono, monospace" font-size="11" transform="rotate(-90 14 180)">DEPENDS ON</text>
+          </svg>
+        </div>
+        <figcaption><strong>Figure 2.1.</strong> The platform stack. Each layer relies on the one directly beneath it.</figcaption>
+      </figure>
+
+      <h3><span class="h3-index">2.2</span>Hardware Platforms vs. Software Platforms</h3>
+      <div class="table-wrap">
+        <table class="lecture-table">
+          <thead><tr><th>Aspect</th><th>Hardware Platform</th><th>Software Platform</th></tr></thead>
+          <tbody>
+            <tr><td>Definition</td><td>The physical computing components (processor architecture, devices)</td><td>The programs and systems that run on top of hardware</td></tr>
+            <tr><td>Examples</td><td>x86, ARM, Raspberry Pi</td><td>Windows, Android, a web browser</td></tr>
+            <tr><td>Changeability</td><td>Fixed once manufactured</td><td>Can be updated or replaced</td></tr>
+            <tr><td>Student focus</td><td>Architecture &amp; compatibility</td><td>Development &amp; deployment</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box--note">
+        <h4>Teaching Note</h4>
+        <p>Emphasize to students that a single application, such as a mobile banking app, actually
+        depends on <em>all four</em> layers at once: it runs on hardware (a phone's processor), inside
+        an operating system (Android or iOS), through a runtime (the app framework), as an application
+        layer program.</p>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>List the four layers of the platform stack in order.</li>
+          <li>Explain why the application layer cannot function without the layers beneath it.</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 3 ================= -->
+    <article class="lesson" id="lesson-3">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 03</span><span class="lesson__tag">Software Platforms</span></div>
+      <h2>Operating Systems as a Platform</h2>
+      <p class="lesson__intro">The operating system is the most fundamental software platform: it
+      manages hardware resources and provides the environment in which all other software runs.</p>
+
+      <h3><span class="h3-index">3.1</span>Core Functions of an Operating System</h3>
+      <ol class="steps">
+        <li><strong>Process management</strong> — allocating CPU time to running programs.</li>
+        <li><strong>Memory management</strong> — allocating and protecting memory used by programs.</li>
+        <li><strong>File system management</strong> — organizing and storing data on disk.</li>
+        <li><strong>Device management</strong> — communicating with hardware through drivers.</li>
+        <li><strong>User interface</strong> — providing a way for users to interact with the system.</li>
+      </ol>
+
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="osTitle">
+            <title id="osTitle">Operating system architecture diagram</title>
+            <rect x="290" y="20" width="180" height="46" rx="8" fill="#b08d57"/>
+            <text x="380" y="48" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#14213d" font-weight="700">USER APPLICATIONS</text>
+            <rect x="240" y="100" width="280" height="46" rx="8" fill="#294a80"/>
+            <text x="380" y="128" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#fff" font-weight="700">SYSTEM CALL INTERFACE</text>
+            <rect x="190" y="180" width="380" height="46" rx="8" fill="#1d3461"/>
+            <text x="380" y="208" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#fff" font-weight="700">KERNEL (Process · Memory · File · Device Mgmt)</text>
+            <rect x="140" y="255" width="480" height="40" rx="8" fill="#14213d"/>
+            <text x="380" y="280" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#d8bd8a" font-weight="700">PHYSICAL HARDWARE</text>
+            <line x1="380" y1="66" x2="380" y2="100" stroke="#a4793f" stroke-width="2"/>
+            <line x1="380" y1="146" x2="380" y2="180" stroke="#a4793f" stroke-width="2"/>
+            <line x1="380" y1="226" x2="380" y2="255" stroke="#a4793f" stroke-width="2"/>
+          </svg>
+        </div>
+        <figcaption><strong>Figure 3.1.</strong> Simplified operating-system architecture, from applications down to hardware.</figcaption>
+      </figure>
+
+      <h3><span class="h3-index">3.2</span>Major Operating System Families</h3>
+      <div class="table-wrap">
+        <table class="lecture-table">
+          <thead><tr><th>Family</th><th>Typical Use</th><th>Example Versions</th></tr></thead>
+          <tbody>
+            <tr><td>Windows</td><td>Desktop &amp; enterprise computing</td><td>Windows 11, Windows Server</td></tr>
+            <tr><td>macOS</td><td>Desktop computing (Apple hardware)</td><td>macOS Sonoma, Sequoia</td></tr>
+            <tr><td>Linux</td><td>Servers, development, embedded systems</td><td>Ubuntu, Fedora, Debian</td></tr>
+            <tr><td>Unix</td><td>Enterprise servers, legacy systems</td><td>AIX, Solaris</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box--terms">
+        <h4>Key Terms</h4>
+        <dl>
+          <dt>Kernel</dt><dd>The core of the operating system that directly manages hardware resources.</dd>
+          <dt>Driver</dt><dd>Software that allows the operating system to communicate with a specific hardware device.</dd>
+          <dt>System Call</dt><dd>A request made by a program to the kernel for a service, such as reading a file.</dd>
+        </dl>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>Name three core functions of an operating system.</li>
+          <li>Why is Linux the dominant operating system on web servers?</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 4 ================= -->
+    <article class="lesson" id="lesson-4">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 04</span><span class="lesson__tag">Web Platforms</span></div>
+      <h2>Web Platforms and Web Technologies</h2>
+      <p class="lesson__intro">The web browser has become one of the most important application
+      platforms in existence — an environment in its own right, on top of the operating system.</p>
+
+      <h3><span class="h3-index">4.1</span>The Client–Server Model</h3>
+      <p>Web platforms operate on a <strong>client–server</strong> model. The client (typically a
+      browser) sends a request over the network; the server processes that request and returns a
+      response, usually in the form of HTML, JSON, or other data.</p>
+
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="csTitle">
+            <title id="csTitle">Client-server web architecture diagram</title>
+            <rect x="40" y="90" width="180" height="90" rx="10" fill="#1d3461"/>
+            <text x="130" y="130" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">CLIENT</text>
+            <text x="130" y="150" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12">Browser / Front-End</text>
+
+            <rect x="540" y="90" width="180" height="90" rx="10" fill="#14213d"/>
+            <text x="630" y="130" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">SERVER</text>
+            <text x="630" y="150" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12">Back-End / Database</text>
+
+            <path d="M220 115 H540" stroke="#a4793f" stroke-width="2" marker-end="url(#arrow2)"/>
+            <text x="380" y="105" text-anchor="middle" fill="#5b6472" font-family="IBM Plex Mono, monospace" font-size="11">HTTP REQUEST</text>
+
+            <path d="M540 160 H220" stroke="#a4793f" stroke-width="2" marker-end="url(#arrow2)"/>
+            <text x="380" y="178" text-anchor="middle" fill="#5b6472" font-family="IBM Plex Mono, monospace" font-size="11">HTTP RESPONSE (HTML / JSON)</text>
+            <defs>
+              <marker id="arrow2" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#a4793f"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <figcaption><strong>Figure 4.1.</strong> A client sends a request; a server processes and responds.</figcaption>
+      </figure>
+
+      <h3><span class="h3-index">4.2</span>Front-End vs. Back-End</h3>
+      <div class="table-wrap">
+        <table class="lecture-table">
+          <thead><tr><th>Layer</th><th>Responsibility</th><th>Common Technologies</th></tr></thead>
+          <tbody>
+            <tr><td>Front-End</td><td>What the user sees and interacts with</td><td>HTML, CSS, JavaScript</td></tr>
+            <tr><td>Back-End</td><td>Business logic, data processing</td><td>Node.js, PHP, Python, Java</td></tr>
+            <tr><td>Database</td><td>Persistent data storage</td><td>MySQL, PostgreSQL, MongoDB</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box--terms">
+        <h4>Key Terms</h4>
+        <dl>
+          <dt>Browser Engine</dt><dd>The software component that renders web pages, e.g. Blink or WebKit.</dd>
+          <dt>API</dt><dd>An interface that allows one piece of software to request services from another.</dd>
+        </dl>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>Describe the client–server model in your own words.</li>
+          <li>Is the browser itself considered a platform? Justify your answer.</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 5 ================= -->
+    <article class="lesson" id="lesson-5">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 05</span><span class="lesson__tag">Mobile Platforms</span></div>
+      <h2>Mobile Platforms</h2>
+      <p class="lesson__intro">Mobile platforms bring the same layered structure to handheld devices,
+      with two ecosystems dominating the global market.</p>
+
+      <h3><span class="h3-index">5.1</span>The Two Dominant Ecosystems</h3>
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mobTitle">
+            <title id="mobTitle">Android and iOS mobile ecosystem comparison</title>
+            <rect x="60" y="30" width="300" height="180" rx="12" fill="#1d3461"/>
+            <text x="210" y="65" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700">ANDROID</text>
+            <text x="210" y="95" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Developer: Google (Open Handset Alliance)</text>
+            <text x="210" y="118" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Language: Kotlin / Java</text>
+            <text x="210" y="141" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Store: Google Play</text>
+            <text x="210" y="164" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Model: Open-source, licensable</text>
+
+            <rect x="400" y="30" width="300" height="180" rx="12" fill="#14213d"/>
+            <text x="550" y="65" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700">iOS</text>
+            <text x="550" y="95" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Developer: Apple Inc.</text>
+            <text x="550" y="118" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Language: Swift / Objective-C</text>
+            <text x="550" y="141" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Store: Apple App Store</text>
+            <text x="550" y="164" text-anchor="middle" fill="#d8bd8a" font-family="Source Sans 3, sans-serif" font-size="12.5">Model: Closed, Apple hardware only</text>
+          </svg>
+        </div>
+        <figcaption><strong>Figure 5.1.</strong> The two dominant mobile operating system ecosystems.</figcaption>
+      </figure>
+
+      <h3><span class="h3-index">5.2</span>Native vs. Hybrid Mobile Apps</h3>
+      <ul>
+        <li><strong>Native apps</strong> are built specifically for one platform using its official language and tools, offering the best performance.</li>
+        <li><strong>Hybrid apps</strong> are built once using web technologies and packaged to run on multiple platforms, trading some performance for development speed.</li>
+      </ul>
+
+      <div class="box box--note">
+        <h4>Teaching Note</h4>
+        <p>Ask students to check the settings menu of their own phone and identify their device's
+        operating system, version number, and app store — this grounds the lesson in something they
+        already own.</p>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>Compare Android and iOS in terms of openness.</li>
+          <li>What is the main trade-off between native and hybrid mobile development?</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 6 ================= -->
+    <article class="lesson" id="lesson-6">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 06</span><span class="lesson__tag">Cloud Platforms</span></div>
+      <h2>Cloud Computing Platforms</h2>
+      <p class="lesson__intro">Cloud platforms deliver computing resources — servers, storage,
+      databases, and software — over the internet, replacing the need to own physical infrastructure.</p>
+
+      <h3><span class="h3-index">6.1</span>The Three Service Models</h3>
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cloudTitle">
+            <title id="cloudTitle">IaaS, PaaS, and SaaS service model comparison</title>
+            <!-- columns -->
+            <g>
+              <rect x="40" y="30" width="210" height="250" rx="10" fill="#eef1f6" stroke="#dde2ea"/>
+              <rect x="40" y="30" width="210" height="44" rx="10" fill="#14213d"/>
+              <text x="145" y="57" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">IaaS</text>
+              <text x="145" y="95" text-anchor="middle" fill="#1a1f2b" font-size="12" font-family="Source Sans 3, sans-serif">Infrastructure</text>
+              <text x="145" y="130" text-anchor="middle" fill="#545c6b" font-size="11.5" font-family="Source Sans 3, sans-serif">You manage:</text>
+              <text x="145" y="150" text-anchor="middle" fill="#1a1f2b" font-size="11.5" font-family="Source Sans 3, sans-serif">OS, Runtime, Apps, Data</text>
+              <text x="145" y="185" text-anchor="middle" fill="#545c6b" font-size="11.5" font-family="Source Sans 3, sans-serif">Provider manages:</text>
+              <text x="145" y="205" text-anchor="middle" fill="#1a1f2b" font-size="11.5" font-family="Source Sans 3, sans-serif">Servers, Storage, Network</text>
+              <text x="145" y="255" text-anchor="middle" fill="#a4793f" font-size="11" font-family="IBM Plex Mono, monospace">e.g. AWS EC2</text>
+            </g>
+            <g>
+              <rect x="275" y="30" width="210" height="250" rx="10" fill="#eef1f6" stroke="#dde2ea"/>
+              <rect x="275" y="30" width="210" height="44" rx="10" fill="#1d3461"/>
+              <text x="380" y="57" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">PaaS</text>
+              <text x="380" y="95" text-anchor="middle" fill="#1a1f2b" font-size="12" font-family="Source Sans 3, sans-serif">Platform</text>
+              <text x="380" y="130" text-anchor="middle" fill="#545c6b" font-size="11.5" font-family="Source Sans 3, sans-serif">You manage:</text>
+              <text x="380" y="150" text-anchor="middle" fill="#1a1f2b" font-size="11.5" font-family="Source Sans 3, sans-serif">Apps, Data</text>
+              <text x="380" y="185" text-anchor="middle" fill="#545c6b" font-size="11.5" font-family="Source Sans 3, sans-serif">Provider manages:</text>
+              <text x="380" y="205" text-anchor="middle" fill="#1a1f2b" font-size="11.5" font-family="Source Sans 3, sans-serif">OS, Runtime, Servers</text>
+              <text x="380" y="255" text-anchor="middle" fill="#a4793f" font-size="11" font-family="IBM Plex Mono, monospace">e.g. Google App Engine</text>
+            </g>
+            <g>
+              <rect x="510" y="30" width="210" height="250" rx="10" fill="#eef1f6" stroke="#dde2ea"/>
+              <rect x="510" y="30" width="210" height="44" rx="10" fill="#294a80"/>
+              <text x="615" y="57" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">SaaS</text>
+              <text x="615" y="95" text-anchor="middle" fill="#1a1f2b" font-size="12" font-family="Source Sans 3, sans-serif">Software</text>
+              <text x="615" y="130" text-anchor="middle" fill="#545c6b" font-size="11.5" font-family="Source Sans 3, sans-serif">You manage:</text>
+              <text x="615" y="150" text-anchor="middle" fill="#1a1f2b" font-size="11.5" font-family="Source Sans 3, sans-serif">Your data only</text>
+              <text x="615" y="185" text-anchor="middle" fill="#545c6b" font-size="11.5" font-family="Source Sans 3, sans-serif">Provider manages:</text>
+              <text x="615" y="205" text-anchor="middle" fill="#1a1f2b" font-size="11.5" font-family="Source Sans 3, sans-serif">Everything else</text>
+              <text x="615" y="255" text-anchor="middle" fill="#a4793f" font-size="11" font-family="IBM Plex Mono, monospace">e.g. Gmail, Google Docs</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption><strong>Figure 6.1.</strong> IaaS, PaaS, and SaaS — increasing levels of provider responsibility from left to right.</figcaption>
+      </figure>
+
+      <h3><span class="h3-index">6.2</span>Major Cloud Providers</h3>
+      <div class="pill-row">
+        <span class="pill">Amazon Web Services</span>
+        <span class="pill">Microsoft Azure</span>
+        <span class="pill">Google Cloud Platform</span>
+        <span class="pill">IBM Cloud</span>
+      </div>
+
+      <div class="box box--terms">
+        <h4>Key Terms</h4>
+        <dl>
+          <dt>IaaS</dt><dd>Infrastructure as a Service — rented virtual servers, storage, and networking.</dd>
+          <dt>PaaS</dt><dd>Platform as a Service — a ready-made environment for building and deploying applications.</dd>
+          <dt>SaaS</dt><dd>Software as a Service — fully managed applications delivered over the internet.</dd>
+        </dl>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>Which cloud service model gives the developer the most control?</li>
+          <li>Classify Gmail, Google App Engine, and AWS EC2 by service model.</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 7 ================= -->
+    <article class="lesson" id="lesson-7">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 07</span><span class="lesson__tag">Infrastructure</span></div>
+      <h2>Virtualization and Containerization</h2>
+      <p class="lesson__intro">Modern platforms rarely run directly on physical hardware. Instead,
+      they use virtualization or containerization to run multiple isolated environments efficiently.</p>
+
+      <h3><span class="h3-index">7.1</span>Virtual Machines vs. Containers</h3>
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="vmTitle">
+            <title id="vmTitle">Virtual machine architecture compared with container architecture</title>
+            <!-- VM column -->
+            <text x="190" y="26" text-anchor="middle" fill="#14213d" font-family="Lora, serif" font-size="16" font-weight="700">Virtual Machines</text>
+            <rect x="50" y="220" width="280" height="34" fill="#14213d"/>
+            <text x="190" y="242" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="12">PHYSICAL HARDWARE</text>
+            <rect x="50" y="186" width="280" height="34" fill="#1d3461"/>
+            <text x="190" y="208" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="12">HYPERVISOR</text>
+            <rect x="55" y="60" width="120" height="126" fill="#eef1f6" stroke="#dde2ea"/>
+            <rect x="55" y="60" width="120" height="26" fill="#b08d57"/>
+            <text x="115" y="78" text-anchor="middle" fill="#14213d" font-size="10.5" font-family="IBM Plex Mono, monospace" font-weight="700">GUEST OS</text>
+            <text x="115" y="120" text-anchor="middle" fill="#1a1f2b" font-size="11" font-family="Source Sans 3, sans-serif">App A</text>
+            <rect x="205" y="60" width="120" height="126" fill="#eef1f6" stroke="#dde2ea"/>
+            <rect x="205" y="60" width="120" height="26" fill="#b08d57"/>
+            <text x="265" y="78" text-anchor="middle" fill="#14213d" font-size="10.5" font-family="IBM Plex Mono, monospace" font-weight="700">GUEST OS</text>
+            <text x="265" y="120" text-anchor="middle" fill="#1a1f2b" font-size="11" font-family="Source Sans 3, sans-serif">App B</text>
+
+            <!-- divider -->
+            <line x1="400" y1="10" x2="400" y2="290" stroke="#dde2ea" stroke-width="2" stroke-dasharray="6 6"/>
+
+            <!-- Container column -->
+            <text x="570" y="26" text-anchor="middle" fill="#14213d" font-family="Lora, serif" font-size="16" font-weight="700">Containers</text>
+            <rect x="430" y="220" width="280" height="34" fill="#14213d"/>
+            <text x="570" y="242" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="12">PHYSICAL HARDWARE</text>
+            <rect x="430" y="186" width="280" height="34" fill="#1d3461"/>
+            <text x="570" y="208" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="12">HOST OPERATING SYSTEM</text>
+            <rect x="430" y="150" width="280" height="30" fill="#294a80"/>
+            <text x="570" y="170" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="11">CONTAINER ENGINE (e.g. Docker)</text>
+            <rect x="435" y="60" width="120" height="82" fill="#eef1f6" stroke="#dde2ea"/>
+            <rect x="435" y="60" width="120" height="24" fill="#b08d57"/>
+            <text x="495" y="77" text-anchor="middle" fill="#14213d" font-size="10" font-family="IBM Plex Mono, monospace" font-weight="700">CONTAINER</text>
+            <text x="495" y="112" text-anchor="middle" fill="#1a1f2b" font-size="11" font-family="Source Sans 3, sans-serif">App A</text>
+            <rect x="585" y="60" width="120" height="82" fill="#eef1f6" stroke="#dde2ea"/>
+            <rect x="585" y="60" width="120" height="24" fill="#b08d57"/>
+            <text x="645" y="77" text-anchor="middle" fill="#14213d" font-size="10" font-family="IBM Plex Mono, monospace" font-weight="700">CONTAINER</text>
+            <text x="645" y="112" text-anchor="middle" fill="#1a1f2b" font-size="11" font-family="Source Sans 3, sans-serif">App B</text>
+          </svg>
+        </div>
+        <figcaption><strong>Figure 7.1.</strong> Virtual machines each carry a full guest OS; containers share the host OS kernel, making them lighter weight.</figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table class="lecture-table">
+          <thead><tr><th>Aspect</th><th>Virtual Machine</th><th>Container</th></tr></thead>
+          <tbody>
+            <tr><td>Isolation Level</td><td>Full OS-level isolation</td><td>Process-level isolation</td></tr>
+            <tr><td>Startup Time</td><td>Minutes</td><td>Seconds</td></tr>
+            <tr><td>Resource Use</td><td>Heavier (full guest OS)</td><td>Lighter (shared kernel)</td></tr>
+            <tr><td>Common Tool</td><td>VMware, VirtualBox, Hyper-V</td><td>Docker, Podman</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box--terms">
+        <h4>Key Terms</h4>
+        <dl>
+          <dt>Hypervisor</dt><dd>Software that creates and manages virtual machines by allocating hardware resources to each.</dd>
+          <dt>Container Image</dt><dd>A lightweight, standalone package that includes everything needed to run a piece of software.</dd>
+        </dl>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>Why do containers start faster than virtual machines?</li>
+          <li>Name one scenario where a full virtual machine is preferable to a container.</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 8 ================= -->
+    <article class="lesson" id="lesson-8">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 08</span><span class="lesson__tag">Development Practice</span></div>
+      <h2>Cross-Platform Development</h2>
+      <p class="lesson__intro">Rather than building separate applications for every platform,
+      developers increasingly write one codebase that runs across many environments.</p>
+
+      <h3><span class="h3-index">8.1</span>Write Once, Deploy Everywhere</h3>
+      <figure class="figure">
+        <div class="figure__frame">
+          <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="xplatTitle">
+            <title id="xplatTitle">A single shared codebase deploying to Windows, macOS, Android, and iOS</title>
+            <rect x="300" y="30" width="160" height="60" rx="10" fill="#14213d"/>
+            <text x="380" y="58" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700">SHARED</text>
+            <text x="380" y="76" text-anchor="middle" fill="#d8bd8a" font-family="IBM Plex Mono, monospace" font-size="12">CODEBASE</text>
+
+            <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#1a1f2b">
+              <rect x="40" y="170" width="130" height="56" rx="8" fill="#eef1f6" stroke="#dde2ea"/>
+              <text x="105" y="203" text-anchor="middle" font-weight="700">Windows</text>
+              <rect x="215" y="170" width="130" height="56" rx="8" fill="#eef1f6" stroke="#dde2ea"/>
+              <text x="280" y="203" text-anchor="middle" font-weight="700">macOS</text>
+              <rect x="415" y="170" width="130" height="56" rx="8" fill="#eef1f6" stroke="#dde2ea"/>
+              <text x="480" y="203" text-anchor="middle" font-weight="700">Android</text>
+              <rect x="590" y="170" width="130" height="56" rx="8" fill="#eef1f6" stroke="#dde2ea"/>
+              <text x="655" y="203" text-anchor="middle" font-weight="700">iOS</text>
+            </g>
+
+            <path d="M340 90 L105 170" stroke="#a4793f" stroke-width="1.6" fill="none"/>
+            <path d="M370 90 L280 170" stroke="#a4793f" stroke-width="1.6" fill="none"/>
+            <path d="M410 90 L480 170" stroke="#a4793f" stroke-width="1.6" fill="none"/>
+            <path d="M440 90 L655 170" stroke="#a4793f" stroke-width="1.6" fill="none"/>
+          </svg>
+        </div>
+        <figcaption><strong>Figure 8.1.</strong> A shared codebase compiled or packaged for multiple target platforms.</figcaption>
+      </figure>
+
+      <h3><span class="h3-index">8.2</span>Popular Cross-Platform Frameworks</h3>
+      <div class="pill-row">
+        <span class="pill">Flutter</span>
+        <span class="pill">React Native</span>
+        <span class="pill">.NET MAUI</span>
+        <span class="pill">Electron</span>
+      </div>
+
+      <h3><span class="h3-index">8.3</span>Benefits and Trade-offs</h3>
+      <div class="table-wrap">
+        <table class="lecture-table">
+          <thead><tr><th>Benefit</th><th>Trade-off</th></tr></thead>
+          <tbody>
+            <tr><td>Faster development, one codebase</td><td>May not use every native device feature</td></tr>
+            <tr><td>Lower maintenance cost</td><td>Slightly larger app size in some frameworks</td></tr>
+            <tr><td>Consistent user experience across devices</td><td>Performance can lag true native apps</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>What problem does cross-platform development solve for businesses?</li>
+          <li>Name two cross-platform frameworks discussed in this lesson.</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 9 ================= -->
+    <article class="lesson" id="lesson-9">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 09</span><span class="lesson__tag">Trends</span></div>
+      <h2>Emerging Platform Trends</h2>
+      <p class="lesson__intro">Platform technologies continuously evolve to incorporate advanced cloud architectures, hardware acceleration, and decentralized systems.</p>
+
+      <h3><span class="h3-index">9.1</span>Hardware and Cloud Evolution</h3>
+      <figure class="figure">
+        <div class="figure__frame">
+          <img src="../img/trend.jpg" alt="Trends in Computer Hardware Platforms" style="max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 8px;">
+        </div>
+        <figcaption><strong>Figure 9.1.</strong> Key trends in hardware platforms and cloud ecosystems.</figcaption>
+      </figure>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>Identify two major hardware trends that impact cloud infrastructure.</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= LESSON 10 ================= -->
+    <article class="lesson" id="lesson-10">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 10</span><span class="lesson__tag">Industry Outlook</span></div>
+      <h2>Emerging Platform Trends</h2>
+      <p class="lesson__intro">The platform landscape continues to evolve. This lesson surveys
+      current directions students should be aware of entering the field.</p>
+
+      <h3><span class="h3-index">10.1</span>Trends Shaping the Next Generation of Platforms</h3>
+      <ul>
+        <li><strong>Edge Computing:</strong> Processing data closer to where it is generated, reducing latency for IoT and real-time applications.</li>
+        <li><strong>Serverless Computing:</strong> Developers deploy code without managing servers directly; the cloud provider handles scaling automatically.</li>
+        <li><strong>Low-Code / No-Code Platforms:</strong> Visual development tools that let users build applications with minimal hand-written code.</li>
+        <li><strong>Artificial Intelligence Platforms:</strong> Pre-built AI and machine learning services integrated directly into cloud platforms.</li>
+        <li><strong>Progressive Web Apps (PWAs):</strong> Web applications that behave like native mobile apps, blurring the line between web and mobile platforms.</li>
+      </ul>
+
+      <div class="box box--note">
+        <h4>Teaching Note</h4>
+        <p>Encourage students to research one emerging trend in depth for a short presentation,
+        connecting it back to the platform stack introduced in Lesson 2.</p>
+      </div>
+
+      <div class="box box--check">
+        <h4>Quick Check</h4>
+        <ol>
+          <li>What advantage does serverless computing offer developers?</li>
+          <li>How do Progressive Web Apps combine web and mobile platform concepts?</li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ================= REVIEW / SUMMARY ================= -->
+    <article class="lesson" id="review">
+      <div class="lesson__eyebrow"><span class="lesson__badge">Lesson 10</span><span class="lesson__tag">Summary</span></div>
+      <h2>Module Summary &amp; Review Questions</h2>
+      <p class="lesson__intro">Use this closing lesson to consolidate the foundation established
+      across Lessons 1–10 before advancing to the next module.</p>
+
+      <h3><span class="h3-index">10.1</span>Key Takeaways</h3>
+      <ul>
+        <li>A <strong>platform</strong> is the layered environment — hardware, operating system, middleware, and application — that software depends on.</li>
+        <li><strong>Operating systems</strong> manage hardware resources and provide the base software platform.</li>
+        <li><strong>Web platforms</strong> rely on the client–server model to deliver applications through a browser.</li>
+        <li><strong>Mobile platforms</strong> are dominated by the Android and iOS ecosystems.</li>
+        <li><strong>Cloud platforms</strong> deliver infrastructure, platforms, and software as a service (IaaS, PaaS, SaaS).</li>
+        <li><strong>Virtualization and containerization</strong> allow multiple isolated environments to run efficiently on shared hardware.</li>
+        <li><strong>Cross-platform development</strong> and emerging trends continue to reshape how platforms are built and consumed.</li>
+      </ul>
+
+      <h3><span class="h3-index">10.2</span>Review Questions</h3>
+      <div class="review-grid">
+        <div class="review-card"><h4>1. Definitions</h4><p>Define "platform technology" and give two examples from different categories.</p></div>
+        <div class="review-card"><h4>2. Layers</h4><p>List and describe the four layers of the platform stack.</p></div>
+        <div class="review-card"><h4>3. Comparison</h4><p>Compare IaaS, PaaS, and SaaS using a real-world example for each.</p></div>
+        <div class="review-card"><h4>4. Architecture</h4><p>Explain the difference between a virtual machine and a container.</p></div>
+        <div class="review-card"><h4>5. Application</h4><p>Describe the client–server model and identify the client and server in a mobile banking app.</p></div>
+        <div class="review-card"><h4>6. Synthesis</h4><p>Choose one emerging trend and explain how it could change platform technologies in the next five years.</p></div>
+      </div>
+
+      <div class="box box--objectives" style="margin-top:2em;">
+        <h4>Next Module</h4>
+        <p>Module 2 will build on this foundation by examining platform architecture in depth,
+        including networking fundamentals, system integration, and platform security.</p>
+      </div>
+    </article>
+
+  </main>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <p>Platform Technologies — Foundation Module · Lecture Material for Instructional Use</p>
+  <p><a href="../index.html">Home</a></p>
+</footer>
+
+<a href="#overview" class="back-top" id="backTop" aria-label="Back to top">↑</a>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const topbarNav = document.getElementById('topbarNav');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = topbarNav.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Active lesson highlighting + progress bar
+  const railLinks = Array.from(document.querySelectorAll('[data-rail]'));
+  const sections = railLinks.map(a => document.querySelector(a.getAttribute('href')));
+  const progressFill = document.getElementById('progressFill');
+  const backTop = document.getElementById('backTop');
+
+  function onScroll() {
+    let activeIndex = 0;
+    const scrollPos = window.scrollY + 140;
+    sections.forEach((sec, i) => {
+      if (sec && sec.offsetTop <= scrollPos) activeIndex = i;
+    });
+    railLinks.forEach((a, i) => a.classList.toggle('is-active', i === activeIndex));
+    const pct = Math.min(100, Math.max(6, ((activeIndex + 1) / sections.length) * 100));
+    progressFill.style.width = pct + '%';
+    backTop.classList.toggle('is-visible', window.scrollY > 500);
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>

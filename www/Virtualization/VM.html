@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional lecture module about building virtual machines using VirtualBox and VMware.">
+  <title>Building Virtual Machines | Virtualization Lesson Module</title>
+
+  <!-- Browser tab logo -->
+  <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+  <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+  <!-- Separate stylesheet -->
+  <link rel="stylesheet" href="../css/Virtualization/VM.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to lesson content</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">VM</span>
+        <div>
+          <p class="brand-eyebrow">Virtualization Module</p>
+          <p class="brand-title">Building Virtual Machines</p>
+        </div>
+      </div>
+
+      <nav class="top-actions" aria-label="Primary">
+        <a class="home-link" href="../index.html">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar" aria-label="Lesson topics">
+      <div class="sidebar-card">
+        <p class="sidebar-label">Lesson Navigation</p>
+        <h2>Topics</h2>
+
+        <nav class="lesson-nav">
+          <a href="#overview"><span>01</span> Overview</a>
+          <a href="#objectives"><span>02</span> Learning Objectives</a>
+          <a href="#architecture"><span>03</span> VM Architecture</a>
+          <a href="#requirements"><span>04</span> Requirements</a>
+          <a href="#planning"><span>05</span> Planning the VM</a>
+          <a href="#hypervisor"><span>06</span> Choose a Hypervisor</a>
+          <a href="#installation-media"><span>07</span> Installation Media</a>
+          <a href="#create-vm"><span>08</span> Create the VM</a>
+          <a href="#cpu-memory"><span>09</span> CPU &amp; Memory</a>
+          <a href="#storage"><span>10</span> Virtual Storage</a>
+          <a href="#networking"><span>11</span> Networking</a>
+          <a href="#os-install"><span>12</span> Install the Guest OS</a>
+          <a href="#guest-tools"><span>13</span> Guest Tools</a>
+          <a href="#snapshots"><span>14</span> Snapshots</a>
+          <a href="#cloning"><span>15</span> Cloning &amp; Export</a>
+          <a href="#security"><span>16</span> Security</a>
+          <a href="#performance"><span>17</span> Performance</a>
+          <a href="#troubleshooting"><span>18</span> Troubleshooting</a>
+          <a href="#best-practices"><span>19</span> Best Practices</a>
+          <a href="#comparison"><span>20</span> VirtualBox vs VMware</a>
+          <a href="#activity"><span>21</span> Guided Activity</a>
+          <a href="#assessment"><span>22</span> Review Questions</a>
+          <a href="#summary"><span>23</span> Lesson Summary</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main id="main-content" class="content">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker">Professional Lecture Module</p>
+          <h1>Building Virtual Machines</h1>
+          <p class="lead">
+            A virtual machine (VM) is a software-defined computer that runs an operating
+            system and applications while sharing the physical resources of a host computer.
+            This lesson explains how to plan, create, configure, install, secure, test, and
+            maintain virtual machines using commonly used desktop hypervisors such as
+            VirtualBox and VMware Workstation.
+          </p>
+
+          <div class="hero-meta">
+            <div>
+              <strong>Topic</strong>
+              <span>Virtualization</span>
+            </div>
+            <div>
+              <strong>Level</strong>
+              <span>Professional / Technical</span>
+            </div>
+            <div>
+              <strong>Format</strong>
+              <span>Lecture &amp; Guided Demonstration</span>
+            </div>
+          </div>
+        </div>
+
+        <figure class="diagram hero-diagram" aria-labelledby="hero-diagram-caption">
+          <svg viewBox="0 0 800 460" role="img" aria-label="Host computer running three virtual machines through a hypervisor">
+            <rect class="svg-panel" x="45" y="50" width="710" height="350" rx="30"/>
+            <text class="svg-title" x="400" y="92" text-anchor="middle">HOST COMPUTER</text>
+
+            <rect class="svg-layer-primary" x="115" y="285" width="570" height="70" rx="16"/>
+            <text class="svg-text-light" x="400" y="327" text-anchor="middle">HYPERVISOR</text>
+
+            <rect class="svg-vm" x="105" y="135" width="175" height="115" rx="18"/>
+            <text class="svg-text" x="192" y="178" text-anchor="middle">VM 1</text>
+            <text class="svg-small" x="192" y="210" text-anchor="middle">Windows</text>
+
+            <rect class="svg-vm" x="312" y="135" width="175" height="115" rx="18"/>
+            <text class="svg-text" x="399" y="178" text-anchor="middle">VM 2</text>
+            <text class="svg-small" x="399" y="210" text-anchor="middle">Linux</text>
+
+            <rect class="svg-vm" x="519" y="135" width="175" height="115" rx="18"/>
+            <text class="svg-text" x="606" y="178" text-anchor="middle">VM 3</text>
+            <text class="svg-small" x="606" y="210" text-anchor="middle">Server OS</text>
+
+            <line class="svg-line" x1="192" y1="250" x2="192" y2="285"/>
+            <line class="svg-line" x1="399" y1="250" x2="399" y2="285"/>
+            <line class="svg-line" x1="606" y1="250" x2="606" y2="285"/>
+
+            <text class="svg-small" x="400" y="382" text-anchor="middle">CPU • RAM • Storage • Network</text>
+          </svg>
+          <figcaption id="hero-diagram-caption">
+            Conceptual model: multiple guest systems share physical resources through a hypervisor.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="overview" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">01</span>
+          <div>
+            <p class="section-kicker">Foundation</p>
+            <h2>What Does “Building a Virtual Machine” Mean?</h2>
+          </div>
+        </div>
+
+        <p>
+          Building a virtual machine is the process of creating a software-based computer
+          with its own virtual processor, memory, storage, network adapter, firmware, and
+          operating system. Instead of purchasing another physical computer for every
+          operating system or laboratory exercise, an organization can create multiple
+          isolated virtual machines on one sufficiently powerful host computer.
+        </p>
+
+        <p>
+          A VM behaves like an independent computer. It can be started, shut down, restarted,
+          connected to a network, backed up, cloned, and restored. The guest operating system
+          normally sees virtual hardware rather than the host's physical hardware directly.
+          The hypervisor is responsible for coordinating access to the underlying resources.
+        </p>
+
+        <div class="callout">
+          <strong>Teaching point:</strong>
+          A virtual machine is not simply a folder containing an operating system.
+          It is a complete logical computer environment whose virtual hardware is managed by
+          virtualization software.
+        </div>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <span class="concept-icon">H</span>
+            <h3>Host</h3>
+            <p>The physical computer that provides CPU, memory, storage, and network resources.</p>
+          </article>
+          <article class="concept-card">
+            <span class="concept-icon">HV</span>
+            <h3>Hypervisor</h3>
+            <p>The virtualization layer that creates and controls one or more virtual machines.</p>
+          </article>
+          <article class="concept-card">
+            <span class="concept-icon">G</span>
+            <h3>Guest</h3>
+            <p>The operating system installed inside the VM, such as Windows, Ubuntu, or another OS.</p>
+          </article>
+          <article class="concept-card">
+            <span class="concept-icon">VD</span>
+            <h3>Virtual Disk</h3>
+            <p>A file or set of files that functions as the VM's hard drive or solid-state drive.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="objectives" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">02</span>
+          <div>
+            <p class="section-kicker">Expected Outcomes</p>
+            <h2>Learning Objectives</h2>
+          </div>
+        </div>
+
+        <p>At the end of the lesson, students should be able to:</p>
+
+        <ol class="objective-list">
+          <li>Explain the major components of a virtual machine and the role of the hypervisor.</li>
+          <li>Determine appropriate CPU, memory, storage, and networking resources for a VM.</li>
+          <li>Create a new virtual machine using a guided hypervisor wizard.</li>
+          <li>Attach an ISO image and install a guest operating system.</li>
+          <li>Install guest integration tools and validate the VM after deployment.</li>
+          <li>Differentiate common network modes such as NAT, bridged, host-only, and internal networking.</li>
+          <li>Create and use snapshots responsibly before system changes.</li>
+          <li>Apply basic security, performance, backup, and lifecycle-management practices.</li>
+        </ol>
+      </section>
+
+      <section id="architecture" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">03</span>
+          <div>
+            <p class="section-kicker">Core Concept</p>
+            <h2>Virtual Machine Architecture</h2>
+          </div>
+        </div>
+
+        <p>
+          The architecture of a desktop virtualization environment can be viewed as a stack.
+          Applications run inside the guest operating system. The guest communicates with
+          virtual devices, while the hypervisor maps those virtual devices to physical host
+          resources.
+        </p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 900 560" role="img" aria-label="Layered virtual machine architecture diagram">
+            <rect class="svg-layer-app" x="120" y="55" width="660" height="80" rx="18"/>
+            <text class="svg-text" x="450" y="104" text-anchor="middle">Guest Applications</text>
+
+            <rect class="svg-layer-guest" x="120" y="160" width="660" height="80" rx="18"/>
+            <text class="svg-text-light" x="450" y="209" text-anchor="middle">Guest Operating System</text>
+
+            <rect class="svg-layer-virtual" x="120" y="265" width="660" height="80" rx="18"/>
+            <text class="svg-text" x="450" y="314" text-anchor="middle">Virtual CPU • Virtual RAM • Virtual Disk • Virtual NIC</text>
+
+            <rect class="svg-layer-primary" x="120" y="370" width="660" height="80" rx="18"/>
+            <text class="svg-text-light" x="450" y="419" text-anchor="middle">Hypervisor / Virtualization Platform</text>
+
+            <rect class="svg-layer-host" x="120" y="475" width="660" height="55" rx="16"/>
+            <text class="svg-text" x="450" y="510" text-anchor="middle">Physical Host Hardware</text>
+          </svg>
+          <figcaption>
+            Simplified virtualization stack used to explain how guest workloads reach physical resources.
+          </figcaption>
+        </figure>
+
+        <div class="definition-table">
+          <div class="definition-row">
+            <strong>vCPU</strong>
+            <span>A virtual processor presented to the guest operating system.</span>
+          </div>
+          <div class="definition-row">
+            <strong>vRAM</strong>
+            <span>Host memory reserved or made available for the running VM.</span>
+          </div>
+          <div class="definition-row">
+            <strong>Virtual Disk</strong>
+            <span>A storage file presented to the guest as a hard disk or SSD.</span>
+          </div>
+          <div class="definition-row">
+            <strong>Virtual NIC</strong>
+            <span>A software-defined network adapter used by the VM.</span>
+          </div>
+          <div class="definition-row">
+            <strong>Virtual Firmware</strong>
+            <span>BIOS or UEFI-like firmware used during the guest boot process.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="requirements" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">04</span>
+          <div>
+            <p class="section-kicker">Before the Lab</p>
+            <h2>Host Requirements and Preparation</h2>
+          </div>
+        </div>
+
+        <p>
+          A successful VM deployment starts with a capable host system. The host must have
+          enough resources to run its own operating system and still provide resources to the
+          guest. Over-allocation can make both the host and the VM slow or unstable.
+        </p>
+
+        <div class="two-column">
+          <article class="info-card">
+            <h3>Recommended Preparation</h3>
+            <ul>
+              <li>Confirm that hardware virtualization is supported and enabled.</li>
+              <li>Keep sufficient free RAM for the host operating system.</li>
+              <li>Maintain adequate free disk capacity for virtual disks and snapshots.</li>
+              <li>Use an SSD where possible for better virtual disk performance.</li>
+              <li>Download a legitimate operating-system ISO image.</li>
+              <li>Install a supported hypervisor before beginning the exercise.</li>
+            </ul>
+          </article>
+
+          <article class="info-card warning-card">
+            <h3>Avoid Resource Exhaustion</h3>
+            <p>
+              Do not allocate all host processors or nearly all host memory to one VM.
+              The host must remain responsive because the hypervisor itself depends on the
+              host's CPU, memory, storage, and operating-system services.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="planning" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">05</span>
+          <div>
+            <p class="section-kicker">Design First</p>
+            <h2>Plan the Virtual Machine Before Creating It</h2>
+          </div>
+        </div>
+
+        <p>
+          Before opening the creation wizard, identify the VM's purpose. A small Linux command-line
+          laboratory has different requirements from a Windows desktop, database server, or
+          multi-tier network laboratory. Planning reduces wasted storage and prevents poor
+          resource decisions.
+        </p>
+
+        <div class="planning-flow" aria-label="Virtual machine planning flow">
+          <div class="flow-step"><span>1</span><strong>Purpose</strong><small>What will the VM do?</small></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step"><span>2</span><strong>Guest OS</strong><small>Which OS is required?</small></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step"><span>3</span><strong>Resources</strong><small>CPU, RAM, storage</small></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step"><span>4</span><strong>Network</strong><small>NAT, bridged, isolated</small></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step"><span>5</span><strong>Lifecycle</strong><small>Snapshots, backup, deletion</small></div>
+        </div>
+
+        <div class="callout">
+          <strong>Example planning question:</strong>
+          “Will this VM only access the internet, or must other devices on the physical network
+          connect directly to it?” The answer affects the network mode you should select.
+        </div>
+      </section>
+
+      <section id="hypervisor" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">06</span>
+          <div>
+            <p class="section-kicker">Step 1</p>
+            <h2>Choose and Open the Hypervisor</h2>
+          </div>
+        </div>
+
+        <p>
+          Desktop VM creation commonly begins in a Type 2 hypervisor. In a classroom setting,
+          VirtualBox and VMware Workstation are frequently used because they provide graphical
+          wizards for creating and configuring virtual machines.
+        </p>
+
+        <div class="two-column">
+          <article class="info-card">
+            <h3>VirtualBox Workflow</h3>
+            <p>
+              Open VirtualBox, select the command for creating a new virtual machine, then
+              provide the VM name, guest operating-system information, ISO image, memory,
+              processors, and virtual disk settings.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <h3>VMware Workflow</h3>
+            <p>
+              Open VMware Workstation, start the New Virtual Machine Wizard, choose the
+              configuration type, select the installation media, name the VM, define storage,
+              and review hardware before finishing.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="installation-media" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">07</span>
+          <div>
+            <p class="section-kicker">Step 2</p>
+            <h2>Prepare the Operating-System Installation Media</h2>
+          </div>
+        </div>
+
+        <p>
+          An ISO image is a file representation of installation media. During VM creation,
+          the hypervisor can attach the ISO to a virtual optical drive so that the VM can
+          boot from it and launch the operating-system installer.
+        </p>
+
+        <div class="process-list">
+          <div class="process-item">
+            <span>1</span>
+            <div><strong>Obtain the ISO</strong><p>Use an official or authorized source appropriate for the laboratory.</p></div>
+          </div>
+          <div class="process-item">
+            <span>2</span>
+            <div><strong>Verify the File</strong><p>Confirm the correct operating-system edition and architecture.</p></div>
+          </div>
+          <div class="process-item">
+            <span>3</span>
+            <div><strong>Store It Clearly</strong><p>Place the ISO in a folder that can be found easily during the VM wizard.</p></div>
+          </div>
+          <div class="process-item">
+            <span>4</span>
+            <div><strong>Attach It to the VM</strong><p>Select the ISO when the hypervisor asks for installation media.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="create-vm" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">08</span>
+          <div>
+            <p class="section-kicker">Step 3</p>
+            <h2>Create a New Virtual Machine</h2>
+          </div>
+        </div>
+
+        <p>
+          The creation wizard gathers the information that defines the VM. The exact screens
+          vary by hypervisor version, but the underlying decisions are similar: identity,
+          guest OS, firmware, processors, memory, storage, network, and installation media.
+        </p>
+
+        <div class="step-box">
+          <span class="step-badge">A</span>
+          <div>
+            <h3>Name the VM Clearly</h3>
+            <p>
+              Use a descriptive naming convention such as <code>WIN11-LAB01</code>,
+              <code>UBUNTU-SERVER01</code>, or <code>DB-LAB-MYSQL</code>. A clear name becomes
+              important when many VMs exist on one host.
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <span class="step-badge">B</span>
+          <div>
+            <h3>Select the Guest Operating-System Family</h3>
+            <p>
+              Choose the closest matching OS type and version so the hypervisor can apply
+              suitable default hardware and compatibility settings.
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <span class="step-badge">C</span>
+          <div>
+            <h3>Select the VM Storage Location</h3>
+            <p>
+              Save the VM on a drive with adequate free space. Keep laboratory VMs in a
+              structured folder so configuration files, disks, and related artifacts are
+              easier to manage.
+            </p>
+          </div>
+        </div>
+
+        <figure class="online-figure">
+          <img
+            src="https://miro.medium.com/v2/resize%3Afit%3A1400/1%2Ax8nK9FVXd1YHU6MK7qHV7w.png"
+            alt="VirtualBox virtual machine creation screen showing memory and processor settings"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+          <figcaption>
+            Example VirtualBox creation interface. Interface details can differ by version.
+          </figcaption>
+        </figure>
+
+        <figure class="online-figure">
+          <img
+            src="https://miro.medium.com/v2/resize%3Afit%3A852/1%2ADWcyxFqwbwJ9joYpRqY4Uw.png"
+            alt="VMware New Virtual Machine Wizard screen for naming a virtual machine"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+          <figcaption>
+            Example VMware wizard screen for naming and locating a virtual machine.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <strong>Image note:</strong>
+          The two screenshots above are loaded directly from online image URLs. They do not
+          need to be downloaded into your project folder, but an internet connection is
+          required for those two images to appear. The diagrams in this lesson are embedded
+          directly in the HTML and can still display offline.
+        </div>
+      </section>
+
+      <section id="cpu-memory" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">09</span>
+          <div>
+            <p class="section-kicker">Step 4</p>
+            <h2>Allocate CPU and Memory</h2>
+          </div>
+        </div>
+
+        <p>
+          CPU and memory allocation directly affect guest performance and host stability.
+          More resources are not always better. The goal is to provide enough resources for
+          the guest workload while preserving capacity for the host and other VMs.
+        </p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 900 420" role="img" aria-label="Resource allocation diagram showing balanced host and virtual machine resources">
+            <text class="svg-title" x="450" y="45" text-anchor="middle">BALANCED RESOURCE ALLOCATION</text>
+
+            <rect class="svg-panel" x="90" y="85" width="720" height="245" rx="24"/>
+            <text class="svg-text" x="140" y="128">Host Resources</text>
+
+            <rect class="svg-resource-host" x="140" y="160" width="620" height="48" rx="12"/>
+            <rect class="svg-resource-vm" x="140" y="160" width="330" height="48" rx="12"/>
+            <text class="svg-text-light" x="305" y="191" text-anchor="middle">VM Allocation</text>
+            <text class="svg-small" x="615" y="191" text-anchor="middle">Reserved for Host</text>
+
+            <rect class="svg-resource-host" x="140" y="235" width="620" height="48" rx="12"/>
+            <rect class="svg-resource-vm" x="140" y="235" width="260" height="48" rx="12"/>
+            <text class="svg-text-light" x="270" y="266" text-anchor="middle">vCPU Share</text>
+            <text class="svg-small" x="590" y="266" text-anchor="middle">Host + Other Workloads</text>
+
+            <text class="svg-small" x="450" y="365" text-anchor="middle">Do not assign every available host resource to one VM.</text>
+          </svg>
+          <figcaption>Conceptual example of leaving resources available to the host.</figcaption>
+        </figure>
+
+        <div class="two-column">
+          <article class="info-card">
+            <h3>Memory Guidance</h3>
+            <p>
+              Allocate enough memory to meet the guest OS and application requirements.
+              If the guest continuously uses swap or pagefile space, it may need more RAM.
+            </p>
+          </article>
+          <article class="info-card">
+            <h3>Processor Guidance</h3>
+            <p>
+              Start conservatively. Increase vCPU count when the workload benefits from it
+              and when the host has sufficient processor capacity.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="storage" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">10</span>
+          <div>
+            <p class="section-kicker">Step 5</p>
+            <h2>Create and Configure Virtual Storage</h2>
+          </div>
+        </div>
+
+        <p>
+          A virtual disk is typically stored as a file on the host. Inside the guest, however,
+          it appears as a normal disk device. Hypervisors may support dynamically allocated
+          disks, fixed/preallocated disks, multiple disk formats, and several virtual storage
+          controller types.
+        </p>
+
+        <div class="comparison-grid">
+          <article class="comparison-card">
+            <h3>Dynamically Allocated</h3>
+            <p>
+              The virtual disk file grows as data is written, up to its configured maximum.
+              This can save host storage initially.
+            </p>
+          </article>
+          <article class="comparison-card">
+            <h3>Fixed / Preallocated</h3>
+            <p>
+              The requested storage capacity is reserved in advance. It can simplify capacity
+              planning but consumes more host storage immediately.
+            </p>
+          </article>
+        </div>
+
+        <div class="callout">
+          <strong>Important distinction:</strong>
+          A virtual disk configured as “100 GB” does not always mean a 100 GB host file is
+          created immediately. The actual host-space behavior depends on the disk allocation
+          method selected.
+        </div>
+      </section>
+
+      <section id="networking" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">11</span>
+          <div>
+            <p class="section-kicker">Step 6</p>
+            <h2>Choose the Correct Virtual Network Mode</h2>
+          </div>
+        </div>
+
+        <p>
+          Virtual networking controls how the guest communicates with the host, other VMs,
+          the local physical network, and the internet. The correct mode depends on the
+          laboratory objective and the required level of isolation.
+        </p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 1000 560" role="img" aria-label="Virtual machine networking modes diagram">
+            <rect class="svg-internet" x="390" y="35" width="220" height="70" rx="30"/>
+            <text class="svg-text-light" x="500" y="78" text-anchor="middle">Internet / LAN</text>
+
+            <rect class="svg-panel" x="70" y="175" width="220" height="250" rx="24"/>
+            <text class="svg-title" x="180" y="215" text-anchor="middle">NAT</text>
+            <rect class="svg-vm" x="105" y="260" width="150" height="75" rx="14"/>
+            <text class="svg-text" x="180" y="305" text-anchor="middle">VM</text>
+            <line class="svg-line" x1="180" y1="260" x2="420" y2="105"/>
+            <text class="svg-small" x="180" y="380" text-anchor="middle">Outbound access</text>
+            <text class="svg-small" x="180" y="405" text-anchor="middle">through host NAT</text>
+
+            <rect class="svg-panel" x="390" y="175" width="220" height="250" rx="24"/>
+            <text class="svg-title" x="500" y="215" text-anchor="middle">Bridged</text>
+            <rect class="svg-vm" x="425" y="260" width="150" height="75" rx="14"/>
+            <text class="svg-text" x="500" y="305" text-anchor="middle">VM</text>
+            <line class="svg-line" x1="500" y1="260" x2="500" y2="105"/>
+            <text class="svg-small" x="500" y="380" text-anchor="middle">Appears on the</text>
+            <text class="svg-small" x="500" y="405" text-anchor="middle">physical network</text>
+
+            <rect class="svg-panel" x="710" y="175" width="220" height="250" rx="24"/>
+            <text class="svg-title" x="820" y="215" text-anchor="middle">Host-Only</text>
+            <rect class="svg-vm" x="745" y="260" width="150" height="75" rx="14"/>
+            <text class="svg-text" x="820" y="305" text-anchor="middle">VM</text>
+            <line class="svg-line-muted" x1="820" y1="260" x2="580" y2="105"/>
+            <text class="svg-small" x="820" y="380" text-anchor="middle">Isolated host-to-VM</text>
+            <text class="svg-small" x="820" y="405" text-anchor="middle">laboratory network</text>
+
+            <text class="svg-small" x="500" y="500" text-anchor="middle">
+              Select networking according to reachability and isolation requirements.
+            </text>
+          </svg>
+          <figcaption>
+            Simplified comparison of common VM network modes.
+          </figcaption>
+        </figure>
+
+        <div class="definition-table">
+          <div class="definition-row">
+            <strong>NAT</strong>
+            <span>Useful when the VM needs outbound network access without appearing as a separate device on the physical LAN.</span>
+          </div>
+          <div class="definition-row">
+            <strong>Bridged</strong>
+            <span>Connects the VM more directly to the physical network; the guest can receive its own network identity.</span>
+          </div>
+          <div class="definition-row">
+            <strong>Host-Only</strong>
+            <span>Creates a network mainly between the host and selected VMs, useful for controlled laboratories.</span>
+          </div>
+          <div class="definition-row">
+            <strong>Internal / Private</strong>
+            <span>Allows selected VMs to communicate with one another while remaining isolated from external networks.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="os-install" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">12</span>
+          <div>
+            <p class="section-kicker">Step 7</p>
+            <h2>Boot the VM and Install the Guest Operating System</h2>
+          </div>
+        </div>
+
+        <p>
+          After the virtual hardware is defined, start the VM. If the ISO image is attached
+          and the boot order is correct, the virtual machine should start the OS installer.
+          From this point, installation is similar to installing the operating system on a
+          physical computer.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span>01</span>
+            <div><h3>Power On</h3><p>Start the newly created VM from the hypervisor.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span>02</span>
+            <div><h3>Boot from ISO</h3><p>Confirm the installer starts from the attached virtual optical media.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span>03</span>
+            <div><h3>Partition the Virtual Disk</h3><p>Install the guest OS onto the VM's virtual disk, not the host's physical system disk.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span>04</span>
+            <div><h3>Create the Guest Account</h3><p>Set the required user account, credentials, hostname, and localization.</p></div>
+          </div>
+          <div class="timeline-item">
+            <span>05</span>
+            <div><h3>Complete Installation</h3><p>Allow setup to finish, reboot, and detach the ISO when appropriate.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="guest-tools" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">13</span>
+          <div>
+            <p class="section-kicker">Step 8</p>
+            <h2>Install Guest Integration Tools</h2>
+          </div>
+        </div>
+
+        <p>
+          Hypervisors commonly provide integration packages for the guest operating system.
+          In VirtualBox this is commonly associated with Guest Additions, while VMware
+          environments use VMware Tools. These components improve interaction between the
+          guest and host.
+        </p>
+
+        <div class="feature-grid">
+          <article class="feature-card"><h3>Display</h3><p>Improved graphics support and dynamic resolution changes.</p></article>
+          <article class="feature-card"><h3>Mouse Integration</h3><p>Smoother pointer movement between host and guest windows.</p></article>
+          <article class="feature-card"><h3>Clipboard</h3><p>Optional copy-and-paste integration when enabled by policy.</p></article>
+          <article class="feature-card"><h3>Shared Folders</h3><p>Controlled file sharing between host and guest when required.</p></article>
+          <article class="feature-card"><h3>Time Synchronization</h3><p>Helps keep guest time aligned with the virtualization platform.</p></article>
+          <article class="feature-card"><h3>Drivers</h3><p>Installs optimized drivers for selected virtual devices.</p></article>
+        </div>
+
+        <div class="callout">
+          <strong>Security reminder:</strong>
+          Convenience features such as shared clipboard, drag-and-drop, and shared folders
+          increase connectivity between the host and guest. Enable only what the laboratory
+          requires.
+        </div>
+      </section>
+
+      <section id="snapshots" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">14</span>
+          <div>
+            <p class="section-kicker">Recovery Point</p>
+            <h2>Use Snapshots Before Risky Changes</h2>
+          </div>
+        </div>
+
+        <p>
+          A snapshot records a recoverable VM state at a point in time. Snapshots are useful
+          before software installation, configuration experiments, malware-analysis labs,
+          major updates, or student exercises that may change the system significantly.
+        </p>
+
+        <figure class="diagram">
+          <svg viewBox="0 0 1000 380" role="img" aria-label="Virtual machine snapshot timeline diagram">
+            <line class="svg-timeline-line" x1="120" y1="185" x2="880" y2="185"/>
+            <circle class="svg-point" cx="160" cy="185" r="24"/>
+            <circle class="svg-point" cx="390" cy="185" r="24"/>
+            <circle class="svg-point" cx="620" cy="185" r="24"/>
+            <circle class="svg-point" cx="850" cy="185" r="24"/>
+
+            <text class="svg-title" x="160" y="120" text-anchor="middle">Install</text>
+            <text class="svg-small" x="160" y="250" text-anchor="middle">Clean OS</text>
+
+            <text class="svg-title" x="390" y="120" text-anchor="middle">Snapshot 1</text>
+            <text class="svg-small" x="390" y="250" text-anchor="middle">Before software</text>
+
+            <text class="svg-title" x="620" y="120" text-anchor="middle">Changes</text>
+            <text class="svg-small" x="620" y="250" text-anchor="middle">Experiment</text>
+
+            <text class="svg-title" x="850" y="120" text-anchor="middle">Restore</text>
+            <text class="svg-small" x="850" y="250" text-anchor="middle">Return if needed</text>
+          </svg>
+          <figcaption>
+            Snapshot workflow: create a known recovery point before performing risky or experimental changes.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <strong>Do not confuse snapshots with full backups.</strong>
+          Snapshots are excellent for short-term rollback and testing, but a robust backup
+          strategy should protect VM data independently from the active VM storage.
+        </div>
+      </section>
+
+      <section id="cloning" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">15</span>
+          <div>
+            <p class="section-kicker">Lifecycle</p>
+            <h2>Cloning, Templates, and Export</h2>
+          </div>
+        </div>
+
+        <p>
+          Once a well-configured VM exists, it can often be duplicated rather than rebuilt
+          manually. Cloning is useful in classrooms, development laboratories, test
+          environments, and repeatable demonstrations.
+        </p>
+
+        <div class="three-column">
+          <article class="info-card">
+            <h3>Clone</h3>
+            <p>Create another VM based on an existing VM. Review identity and networking after duplication.</p>
+          </article>
+          <article class="info-card">
+            <h3>Template Concept</h3>
+            <p>Maintain a clean baseline VM that can be copied for repeated laboratory exercises.</p>
+          </article>
+          <article class="info-card">
+            <h3>Export / Import</h3>
+            <p>Package a VM in a portable format when supported for transfer to another environment.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="security" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">16</span>
+          <div>
+            <p class="section-kicker">Protection</p>
+            <h2>Security Considerations</h2>
+          </div>
+        </div>
+
+        <p>
+          Isolation is one of virtualization's major benefits, but a VM should not be treated
+          as automatically secure. A guest connected to a network can still be attacked,
+          misconfigured, infected, or used to expose services.
+        </p>
+
+        <div class="security-list">
+          <div><span>01</span><p><strong>Patch the guest OS.</strong> Apply appropriate security updates.</p></div>
+          <div><span>02</span><p><strong>Use strong authentication.</strong> Protect guest accounts with appropriate credentials.</p></div>
+          <div><span>03</span><p><strong>Limit network exposure.</strong> Choose an isolated network when internet or LAN access is unnecessary.</p></div>
+          <div><span>04</span><p><strong>Control integrations.</strong> Disable clipboard, drag-and-drop, USB, or shared folders when not required.</p></div>
+          <div><span>05</span><p><strong>Protect VM files.</strong> Anyone who can access the VM's virtual disk may be able to access its data.</p></div>
+          <div><span>06</span><p><strong>Use snapshots carefully.</strong> Snapshot names should clearly identify purpose and date or stage.</p></div>
+        </div>
+      </section>
+
+      <section id="performance" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">17</span>
+          <div>
+            <p class="section-kicker">Optimization</p>
+            <h2>Performance and Resource Management</h2>
+          </div>
+        </div>
+
+        <p>
+          VM performance depends on the workload, host hardware, virtual hardware settings,
+          storage speed, and the number of simultaneously active VMs. Performance problems
+          should be investigated systematically instead of solved by immediately assigning
+          more resources.
+        </p>
+
+        <div class="diagnostic-grid">
+          <article class="diagnostic-card"><strong>High Guest CPU</strong><p>Check active applications and whether more vCPU is justified.</p></article>
+          <article class="diagnostic-card"><strong>Memory Pressure</strong><p>Check host and guest memory usage before increasing VM RAM.</p></article>
+          <article class="diagnostic-card"><strong>Slow Disk</strong><p>Review host free space, disk type, storage speed, and snapshot growth.</p></article>
+          <article class="diagnostic-card"><strong>Slow Network</strong><p>Review network mode, host adapter status, DNS, and guest configuration.</p></article>
+        </div>
+      </section>
+
+      <section id="troubleshooting" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">18</span>
+          <div>
+            <p class="section-kicker">Problem Solving</p>
+            <h2>Common VM Problems and Checks</h2>
+          </div>
+        </div>
+
+        <div class="trouble-table-wrapper">
+          <table class="trouble-table">
+            <thead>
+              <tr>
+                <th>Problem</th>
+                <th>Possible Cause</th>
+                <th>Recommended Check</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>64-bit guest option missing</td>
+                <td>Hardware virtualization unavailable or disabled; host conflict</td>
+                <td>Check firmware virtualization support and host virtualization settings.</td>
+              </tr>
+              <tr>
+                <td>VM will not boot installer</td>
+                <td>ISO not attached or boot order incorrect</td>
+                <td>Review virtual optical drive and boot sequence.</td>
+              </tr>
+              <tr>
+                <td>Guest is very slow</td>
+                <td>Insufficient or excessive resource allocation; slow storage</td>
+                <td>Review host load, guest RAM, vCPU count, and storage activity.</td>
+              </tr>
+              <tr>
+                <td>No network access</td>
+                <td>Wrong network mode or adapter configuration</td>
+                <td>Verify virtual NIC is enabled and review NAT/bridged/host-only settings.</td>
+              </tr>
+              <tr>
+                <td>Disk becomes very large</td>
+                <td>Guest data growth or many snapshots</td>
+                <td>Review virtual disk usage, snapshots, and host free space.</td>
+              </tr>
+              <tr>
+                <td>Screen resolution is limited</td>
+                <td>Guest integration tools missing</td>
+                <td>Install or update the hypervisor's guest tools.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="best-practices" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">19</span>
+          <div>
+            <p class="section-kicker">Professional Practice</p>
+            <h2>Virtual Machine Best Practices</h2>
+          </div>
+        </div>
+
+        <div class="best-practice-grid">
+          <article>
+            <span>01</span>
+            <h3>Use Clear Names</h3>
+            <p>Identify OS, role, and laboratory purpose in the VM name.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Start Small</h3>
+            <p>Begin with sensible resource allocation and increase only when justified.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Separate Baseline and Working Copies</h3>
+            <p>Keep a clean source VM for repeatable laboratory deployment.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Document Configuration</h3>
+            <p>Record CPU, RAM, disk, network mode, guest OS, and snapshot purpose.</p>
+          </article>
+          <article>
+            <span>05</span>
+            <h3>Monitor Storage</h3>
+            <p>Virtual disks and snapshots can consume significant host disk capacity.</p>
+          </article>
+          <article>
+            <span>06</span>
+            <h3>Use Isolation Intentionally</h3>
+            <p>Choose network and sharing settings based on the lab's security requirements.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="comparison" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">20</span>
+          <div>
+            <p class="section-kicker">Platform Comparison</p>
+            <h2>VirtualBox and VMware Workstation: VM-Building Workflow</h2>
+          </div>
+        </div>
+
+        <p>
+          The interface labels differ, but both platforms follow a similar logical workflow.
+          Students should learn the virtualization concepts rather than memorizing only one
+          product's button locations.
+        </p>
+
+        <div class="trouble-table-wrapper">
+          <table class="trouble-table comparison-table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>VirtualBox</th>
+                <th>VMware Workstation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Create VM</td>
+                <td>Start the New/Create Virtual Machine workflow</td>
+                <td>Start the New Virtual Machine Wizard</td>
+              </tr>
+              <tr>
+                <td>Installation Media</td>
+                <td>Select or attach an ISO image</td>
+                <td>Select an installer disc image / ISO</td>
+              </tr>
+              <tr>
+                <td>CPU &amp; RAM</td>
+                <td>Configure hardware during creation or in VM settings</td>
+                <td>Configure or customize virtual hardware</td>
+              </tr>
+              <tr>
+                <td>Virtual Disk</td>
+                <td>Create/select virtual hard disk</td>
+                <td>Specify disk capacity and virtual disk options</td>
+              </tr>
+              <tr>
+                <td>Guest Integration</td>
+                <td>Guest Additions</td>
+                <td>VMware Tools</td>
+              </tr>
+              <tr>
+                <td>Recovery Point</td>
+                <td>Snapshots</td>
+                <td>Snapshots</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="activity" class="lesson-section activity-section">
+        <div class="section-heading">
+          <span class="section-number">21</span>
+          <div>
+            <p class="section-kicker">Classroom Demonstration</p>
+            <h2>Guided Activity: Build a Laboratory VM</h2>
+          </div>
+        </div>
+
+        <p>
+          Use this activity as a classroom demonstration. The exact values should be adjusted
+          to the guest OS and the capabilities of the host computer.
+        </p>
+
+        <div class="activity-steps">
+          <article><span>1</span><div><h3>Launch the Hypervisor</h3><p>Open VirtualBox or VMware Workstation and locate the new-VM command.</p></div></article>
+          <article><span>2</span><div><h3>Create the VM</h3><p>Enter a descriptive name and select the guest OS family and version.</p></div></article>
+          <article><span>3</span><div><h3>Attach the ISO</h3><p>Select the prepared operating-system installation image.</p></div></article>
+          <article><span>4</span><div><h3>Allocate Memory</h3><p>Assign enough RAM for the guest while keeping sufficient RAM for the host.</p></div></article>
+          <article><span>5</span><div><h3>Allocate vCPU</h3><p>Choose an appropriate processor count without consuming all host CPU capacity.</p></div></article>
+          <article><span>6</span><div><h3>Create the Virtual Disk</h3><p>Select the disk type, maximum capacity, and allocation method.</p></div></article>
+          <article><span>7</span><div><h3>Choose Networking</h3><p>Use NAT for a simple internet-enabled lab unless the lesson requires another mode.</p></div></article>
+          <article><span>8</span><div><h3>Review Settings</h3><p>Confirm CPU, RAM, storage, network, ISO, and firmware selections.</p></div></article>
+          <article><span>9</span><div><h3>Power On and Install</h3><p>Start the VM and complete the guest OS installation.</p></div></article>
+          <article><span>10</span><div><h3>Install Guest Tools</h3><p>Install the platform's guest integration package and reboot if required.</p></div></article>
+          <article><span>11</span><div><h3>Update and Test</h3><p>Confirm display, network access, storage, date/time, and basic system functionality.</p></div></article>
+          <article><span>12</span><div><h3>Create a Clean Snapshot</h3><p>Record a baseline recovery point before beginning further laboratory changes.</p></div></article>
+        </div>
+      </section>
+
+      <section id="assessment" class="lesson-section">
+        <div class="section-heading">
+          <span class="section-number">22</span>
+          <div>
+            <p class="section-kicker">Knowledge Check</p>
+            <h2>Review and Discussion Questions</h2>
+          </div>
+        </div>
+
+        <ol class="question-list">
+          <li>What is the difference between a host operating system and a guest operating system?</li>
+          <li>Why should a VM not be assigned all available host memory?</li>
+          <li>What is the role of a virtual disk?</li>
+          <li>When would NAT networking be preferable to bridged networking?</li>
+          <li>Why are guest integration tools installed after the guest operating system?</li>
+          <li>What is the purpose of a VM snapshot?</li>
+          <li>Why should snapshots not be treated as the only backup method?</li>
+          <li>What can happen when a large number of VMs run simultaneously on an underpowered host?</li>
+          <li>Why is a clear naming convention useful in a virtualization laboratory?</li>
+          <li>What security risks can be introduced by shared folders or shared clipboard features?</li>
+        </ol>
+      </section>
+
+      <section id="summary" class="lesson-section summary-section">
+        <div class="section-heading">
+          <span class="section-number">23</span>
+          <div>
+            <p class="section-kicker">Conclusion</p>
+            <h2>Lesson Summary</h2>
+          </div>
+        </div>
+
+        <p>
+          Building a virtual machine is a structured engineering task. It begins by defining
+          the workload and selecting a hypervisor, then continues through guest OS selection,
+          CPU and memory allocation, virtual disk creation, network design, installation,
+          guest integration, testing, security, snapshot management, and ongoing maintenance.
+        </p>
+
+        <p>
+          The most important skill is not memorizing a particular wizard. A competent
+          virtualization practitioner understands what each VM component represents and can
+          make appropriate design decisions even when the interface changes between
+          VirtualBox, VMware, or another virtualization platform.
+        </p>
+
+        <div class="final-takeaway">
+          <strong>Key takeaway:</strong>
+          Build virtual machines deliberately: plan the workload, allocate resources
+          responsibly, isolate networks when appropriate, validate the guest after
+          installation, and maintain recoverable baseline states.
+        </div>
+      </section>
+
+      <footer class="lesson-footer">
+        <p><strong>Module:</strong> Virtualization — Building Virtual Machines</p>
+        <p>Designed as a lecture and guided classroom reference.</p>
+        <a href="../index.html">Home</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

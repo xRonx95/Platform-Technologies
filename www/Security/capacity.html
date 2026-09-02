@@ -1,0 +1,993 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Capacity Planning lecture module for Platform Technologies Security and Operations.">
+  <title>Capacity Planning | Platform Technologies</title>
+  <link rel="stylesheet" href="../css/Security/capacity.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html">
+      Platform Technologies
+      <span>Security &amp; Operations Learning Module</span>
+    </a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+<a href="os.html">OS Hardening</a>
+<a href="firewalls.html">Firewalls & Backups</a>
+<a href="performance.html">Performance Monitoring</a>
+<a href="capacity.html" class="active">Capacity Planning</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero__inner">
+    <div class="eyebrow">Security &amp; Operations</div>
+    <h1>Capacity Planning</h1>
+    <p>Forecasting Demand, Resource Growth, Scaling, Headroom, and Service Limits. Every lesson includes its own visual explanation so students can connect the written lecture to a diagram.</p>
+    <div class="hero__meta">
+      <span>15 detailed lessons</span>
+      <span>15 local lesson images</span>
+      <span>Lecture + practical activity</span>
+      <span>Mobile responsive</span>
+    </div>
+  </div>
+</section>
+
+<main class="course-shell">
+  <aside class="sidebar">
+    <div class="sidebar__head">
+      <strong>Capacity Planning</strong>
+      <small>Select a lesson</small>
+    </div>
+    <nav class="lesson-nav" aria-label="Capacity Planning lessons">
+      <a href="#lesson-01-introduction-to-capacity-planning">Lesson 1: Introduction to Capacity Planning</a>
+<a href="#lesson-02-understanding-workloads">Lesson 2: Understanding Workloads</a>
+<a href="#lesson-03-resource-capacity-cpu">Lesson 3: Resource Capacity: CPU</a>
+<a href="#lesson-04-resource-capacity-memory">Lesson 4: Resource Capacity: Memory</a>
+<a href="#lesson-05-resource-capacity-storage">Lesson 5: Resource Capacity: Storage</a>
+<a href="#lesson-06-resource-capacity-network">Lesson 6: Resource Capacity: Network</a>
+<a href="#lesson-07-baselines-and-historical-trend-analysis">Lesson 7: Baselines and Historical Trend Analysis</a>
+<a href="#lesson-08-forecasting-future-demand">Lesson 8: Forecasting Future Demand</a>
+<a href="#lesson-09-headroom-and-safety-margins">Lesson 9: Headroom and Safety Margins</a>
+<a href="#lesson-10-vertical-and-horizontal-scaling">Lesson 10: Vertical and Horizontal Scaling</a>
+<a href="#lesson-11-virtualization-and-cloud-capacity">Lesson 11: Virtualization and Cloud Capacity</a>
+<a href="#lesson-12-capacity-for-high-availability">Lesson 12: Capacity for High Availability</a>
+<a href="#lesson-13-capacity-risks-and-constraints">Lesson 13: Capacity Risks and Constraints</a>
+<a href="#lesson-14-capacity-planning-reports-and-recommendations">Lesson 14: Capacity Planning Reports and Recommendations</a>
+<a href="#lesson-15-building-a-continuous-capacity-planning-cycle">Lesson 15: Building a Continuous Capacity Planning Cycle</a>
+    </nav>
+  </aside>
+
+  <div class="content">
+    <section class="intro-card">
+      <h2>Module Overview</h2>
+      <p>
+        This page contains a complete 15-lesson lecture module for <strong>Capacity Planning</strong>.
+        Each lesson contains an automatically displayed local SVG teaching image, a longer explanation, key concepts,
+        practical meaning, a guided student activity, and review questions.
+      </p>
+      <p>
+        The <strong>Home</strong> button returns to <code>../index.html</code>. Keep the <code>images/security-ops</code> folder
+        in the same project structure so every lesson image loads correctly.
+      </p>
+    </section>
+
+    
+<section class="lesson-card" id="lesson-01-introduction-to-capacity-planning">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 01</div>
+  <h2>Introduction to Capacity Planning</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-01-introduction-to-capacity-planning.svg" alt="Educational diagram for Introduction to Capacity Planning" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Introduction to Capacity Planning.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Capacity planning ensures that computing resources are sufficient for current and future workload requirements while maintaining acceptable performance, reliability, and cost.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Demand</strong><span>Demand is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Supply</strong><span>Supply is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Headroom</strong><span>Headroom is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Objectives</strong><span>Objectives is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Capacity planning is not simply purchasing larger hardware. It connects measured demand, growth forecasts, service requirements, risk, and budget.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-02-understanding-workloads">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 02</div>
+  <h2>Understanding Workloads</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-02-understanding-workloads.svg" alt="Educational diagram for Understanding Workloads" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Understanding Workloads.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>A workload is the collection of user requests, transactions, jobs, queries, transfers, and computations performed by a system. Different workloads consume resources in different ways.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Transactions</strong><span>Transactions is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Concurrency</strong><span>Concurrency is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Batch Jobs</strong><span>Batch Jobs is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Workload Profile</strong><span>Workload Profile is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A useful capacity plan describes demand in measurable terms instead of vague statements such as &#x27;many users&#x27; or &#x27;busy server&#x27;.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-03-resource-capacity-cpu">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 03</div>
+  <h2>Resource Capacity: CPU</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-03-resource-capacity-cpu.svg" alt="Educational diagram for Resource Capacity: CPU" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Resource Capacity: CPU.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>CPU capacity planning considers utilization, core count, workload parallelism, virtualization overhead, burst behavior, and expected growth.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Core Usage</strong><span>Core Usage is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Peak CPU</strong><span>Peak CPU is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Concurrency</strong><span>Concurrency is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Headroom</strong><span>Headroom is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Sustained high CPU demand can indicate that optimization, workload redistribution, vertical scaling, or horizontal scaling is required.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-04-resource-capacity-memory">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 04</div>
+  <h2>Resource Capacity: Memory</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-04-resource-capacity-memory.svg" alt="Educational diagram for Resource Capacity: Memory" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Resource Capacity: Memory.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Memory planning must support operating systems, applications, caches, virtual machines, and workload growth without excessive paging or out-of-memory conditions.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Working Set</strong><span>Working Set is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>RAM</strong><span>RAM is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Cache</strong><span>Cache is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Peak Demand</strong><span>Peak Demand is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Peak memory use is often more important than the daily average because short periods of pressure can still cause application failure.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-05-resource-capacity-storage">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 05</div>
+  <h2>Resource Capacity: Storage</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-05-resource-capacity-storage.svg" alt="Educational diagram for Resource Capacity: Storage" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Resource Capacity: Storage.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Storage planning includes both space and performance. Administrators must estimate data growth, retention, logs, temporary space, snapshots, backups, free-space margin, throughput, and IOPS.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Growth</strong><span>Growth is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Retention</strong><span>Retention is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Free Space</strong><span>Free Space is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>IOPS</strong><span>IOPS is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A storage system can have free capacity yet still be too slow for the workload, so both size and performance must be planned.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-06-resource-capacity-network">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 06</div>
+  <h2>Resource Capacity: Network</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-06-resource-capacity-network.svg" alt="Educational diagram for Resource Capacity: Network" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Resource Capacity: Network.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Network capacity planning evaluates peak traffic, bandwidth, protocol overhead, remote access, replication, backups, cloud traffic, and critical service paths.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Peak Traffic</strong><span>Peak Traffic is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Bandwidth</strong><span>Bandwidth is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>WAN</strong><span>WAN is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Growth</strong><span>Growth is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Average traffic can hide short peak periods. Backup windows and large transfers may also compete with interactive user traffic.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-07-baselines-and-historical-trend-analysis">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 07</div>
+  <h2>Baselines and Historical Trend Analysis</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-07-baselines-and-historical-trend-analysis.svg" alt="Educational diagram for Baselines and Historical Trend Analysis" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Baselines and Historical Trend Analysis.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Historical monitoring data provides evidence for forecasting. Reliable plans use enough history to identify growth trends, seasonal peaks, unusual events, and changes in user behavior.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Time Series</strong><span>Time Series is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Trend</strong><span>Trend is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Seasonality</strong><span>Seasonality is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Anomaly</strong><span>Anomaly is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Longer observation windows reduce the risk of purchasing or scaling based on one unusual day or week.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-08-forecasting-future-demand">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 08</div>
+  <h2>Forecasting Future Demand</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-08-forecasting-future-demand.svg" alt="Educational diagram for Forecasting Future Demand" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Forecasting Future Demand.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Forecasting estimates how workload and resource consumption may change. Methods can include trend projection, growth percentages, scenario analysis, and event-based estimates.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Linear Trend</strong><span>Linear Trend is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Growth Rate</strong><span>Growth Rate is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Scenario</strong><span>Scenario is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Business Event</strong><span>Business Event is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A strong plan often uses conservative, expected, and high-growth scenarios instead of relying on a single prediction.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-09-headroom-and-safety-margins">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 09</div>
+  <h2>Headroom and Safety Margins</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-09-headroom-and-safety-margins.svg" alt="Educational diagram for Headroom and Safety Margins" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Headroom and Safety Margins.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Running systems continuously near 100 percent utilization leaves little room for demand spikes, failures, maintenance, or unexpected growth. Capacity plans therefore include deliberate headroom.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Peak</strong><span>Peak is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Safety Margin</strong><span>Safety Margin is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Failure Reserve</strong><span>Failure Reserve is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Burst</strong><span>Burst is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>The right amount of headroom depends on service criticality, workload variability, failover design, and how quickly additional capacity can be added.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-10-vertical-and-horizontal-scaling">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 10</div>
+  <h2>Vertical and Horizontal Scaling</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-10-vertical-and-horizontal-scaling.svg" alt="Educational diagram for Vertical and Horizontal Scaling" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Vertical and Horizontal Scaling.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Vertical scaling increases resources in an existing server, while horizontal scaling adds more servers or service instances. Each method has different architectural, cost, and availability characteristics.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Scale Up</strong><span>Scale Up is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Scale Out</strong><span>Scale Out is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Load Balancer</strong><span>Load Balancer is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Limits</strong><span>Limits is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Adding RAM and CPU can be simple, while horizontal scaling may offer better resilience but requires applications that can distribute work.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-11-virtualization-and-cloud-capacity">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 11</div>
+  <h2>Virtualization and Cloud Capacity</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-11-virtualization-and-cloud-capacity.svg" alt="Educational diagram for Virtualization and Cloud Capacity" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Virtualization and Cloud Capacity.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Virtualization and cloud services make capacity more flexible, but planning is still required for instance limits, storage performance, quotas, reservations, network constraints, and cost.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>VM Sizing</strong><span>VM Sizing is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Elasticity</strong><span>Elasticity is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Quota</strong><span>Quota is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Cost</strong><span>Cost is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Automatic scaling still depends on correct thresholds and architecture. Overprovisioning can create unnecessary expense.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-12-capacity-for-high-availability">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 12</div>
+  <h2>Capacity for High Availability</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-12-capacity-for-high-availability.svg" alt="Educational diagram for Capacity for High Availability" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Capacity for High Availability.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>High-availability systems must continue operating when components fail. Capacity planning therefore considers N+1 resources, failover load, redundancy, and degraded-mode performance.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>N+1</strong><span>N+1 is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Failover</strong><span>Failover is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Redundancy</strong><span>Redundancy is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Degraded Mode</strong><span>Degraded Mode is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Surviving nodes must have enough remaining capacity to carry the workload after a server or service instance becomes unavailable.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-13-capacity-risks-and-constraints">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 13</div>
+  <h2>Capacity Risks and Constraints</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-13-capacity-risks-and-constraints.svg" alt="Educational diagram for Capacity Risks and Constraints" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Capacity Risks and Constraints.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Capacity can be limited by technology, licensing, procurement lead times, power, cooling, physical space, cloud quotas, network circuits, or staff availability.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Technical Limit</strong><span>Technical Limit is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Procurement</strong><span>Procurement is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Licensing</strong><span>Licensing is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Facilities</strong><span>Facilities is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A technically obvious upgrade may still take weeks or months if hardware, licenses, circuit changes, or budget approval are required.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-14-capacity-planning-reports-and-recommendations">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 14</div>
+  <h2>Capacity Planning Reports and Recommendations</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-14-capacity-planning-reports-and-recommendations.svg" alt="Educational diagram for Capacity Planning Reports and Recommendations" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Capacity Planning Reports and Recommendations.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>A capacity report should explain current utilization, trends, forecast dates, assumptions, risk, and recommended actions. Decision-makers need timing and evidence, not only graphs.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Current State</strong><span>Current State is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Forecast</strong><span>Forecast is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Risk</strong><span>Risk is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Recommendation</strong><span>Recommendation is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Recommendations may include optimization, archiving, resizing, scaling, procurement, workload scheduling, or continued monitoring.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-15-building-a-continuous-capacity-planning-cycle">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 15</div>
+  <h2>Building a Continuous Capacity Planning Cycle</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/capacity-15-building-a-continuous-capacity-planning-cycle.svg" alt="Educational diagram for Building a Continuous Capacity Planning Cycle" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Building a Continuous Capacity Planning Cycle.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Capacity planning repeats as workloads, technology, budgets, and service expectations change. Monitoring feeds forecasts, forecasts drive actions, and actions establish new baselines.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Measure</strong><span>Measure is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Forecast</strong><span>Forecast is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Decide</strong><span>Decide is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Review</strong><span>Review is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>The final objective is a continuous cycle that prevents predictable resource shortages from becoming service incidents.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+
+    <nav class="page-nav" aria-label="Security and operations topic navigation">
+      <a href="performance.html">â† Previous Topic</a>
+      <a href="../index.html">Back to Home â†’</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="footer">
+  <strong>Platform Technologies</strong> Â· Security &amp; Operations Lecture Series
+</footer>
+</body>
+</html>

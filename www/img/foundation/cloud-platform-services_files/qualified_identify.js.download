@@ -1,0 +1,159 @@
+/**
+ * Qualified Email Deanonymization
+ *
+ * Reads visitor email from client-side storage and sends it to
+ * Qualified via their identify API so Piper already has it.
+ *
+ * Email sources (priority order):
+ *   1. IIS / TBID (logged-in Trailblazer) — via c.salesforce.com IIS SDK
+ *   2. OGS localStorage (anonymous, previously engaged via forms) — GDPR functional consent required
+ *   3. appxud cookie (anonymous, form-submitted visitor profile) — GDPR functional consent required
+ *
+ * GDPR Consent:
+ *   - IIS/TBID email can be read regardless of consent (user is authenticated)
+ *   - ogs_lsData and appxud require functional cookie consent to be read
+ *   - If user opts out after form submission, stored email data is not sent to Qualified
+ *
+ * Loaded via statics.json with defer. By the time this runs,
+ * Qualified's synchronous head script has already executed.
+ * On non-experiment pages window.qualified won't exist and
+ * we exit immediately — no IIS SDK fetch, no storage reads.
+ *
+ * Client errors (malformed storage, identify failure) are sent to clerr
+ * when sfdcBase.disableClientErrors is not set.
+ */
+(function () {
+    'use strict';
+
+    function logClerr(msg, data, level) {
+        var sfdcBase = window.sfdcBase;
+        if (!sfdcBase || sfdcBase.disableClientErrors) return;
+        var endpoint = sfdcBase.clientErrorEndpoint;
+        if (!endpoint) return;
+        try {
+            navigator.sendBeacon(
+                endpoint,
+                JSON.stringify({
+                    msg: msg,
+                    logLevel: level || 'warn',
+                    data: Object.assign(
+                        { location: window.location.href, ua: navigator.userAgent },
+                        data || {}
+                    ),
+                })
+            );
+        } catch (e) {
+            // transport failure — swallow to avoid UX impact
+        }
+    }
+
+    async function run() {
+        // window.qualified may be the full SDK or a lightweight queue stub
+        // (see index.njk / experiment_qualified.js). Either way it's callable
+        // and will replay queued identify calls once the SDK finishes loading.
+        if (typeof window.qualified !== 'function') return;
+
+        // Load GDPR module to check functional consent
+        var gdprModule;
+        var hasFunctionalConsent = false;
+        try {
+            var gdprUrl = 'https://a.sfdcstatic.com/digital/one-trust/ext/v1-stable/gdpr.js';
+            gdprModule = await import(/* webpackIgnore: true */ gdprUrl);
+            var gdpr = gdprModule.default || gdprModule;
+            await gdpr.onGdprReady;
+            hasFunctionalConsent = gdpr.isActiveGroup(gdpr.OT_FUNCTIONAL);
+        } catch (e) {
+            // If GDPR module fails to load, assume no consent for safety
+            logClerr(
+                'qualified_identify: GDPR module load failed',
+                { error: String(e && e.message ? e.message : e) },
+                'warn'
+            );
+        }
+
+        function getIisEmail() {
+            var iisVersion = (window.sfdcBase && window.sfdcBase.iisVersion) || 'v1-stable';
+            var iisFileName = iisVersion === 'v1-stable' ? 'iis.min.js' : 'iis.js';
+            var iisUrl = 'https://c.salesforce.com/digital/iis/' + iisVersion + '/' + iisFileName;
+
+            return import(/* webpackIgnore: true */ iisUrl)
+                .then(function (mod) {
+                    return mod.default || mod;
+                })
+                .then(function (iis) {
+                    return iis.isUserAuthenticated().then(function (isAuth) {
+                        if (!isAuth) return null;
+                        return iis.getUserInfo();
+                    });
+                })
+                .then(function (userInfo) {
+                    return userInfo && userInfo.email ? userInfo.email : null;
+                })
+                .catch(function () {
+                    return null;
+                });
+        }
+
+        function getOgsEmail() {
+            // GDPR check: only read ogs_lsData if functional consent is active
+            if (!hasFunctionalConsent) return null;
+
+            try {
+                var raw = localStorage.getItem('ogs_lsData');
+                if (!raw) return null;
+                var data = JSON.parse(raw);
+                return data && data.email ? data.email : null;
+            } catch (e) {
+                logClerr(
+                    'qualified_identify: ogs_lsData parse failed',
+                    { error: String(e && e.message ? e.message : e) },
+                    'warn'
+                );
+                return null;
+            }
+        }
+
+        function getCookieEmail() {
+            // GDPR check: only read appxud if functional consent is active
+            if (!hasFunctionalConsent) return null;
+
+            try {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var c = cookies[i].trim();
+                    if (c.indexOf('appxud=') === 0) {
+                        var val = decodeURIComponent(c.substring(7));
+                        var parsed = JSON.parse(val);
+                        return parsed && parsed.e ? parsed.e : null;
+                    }
+                }
+                return null;
+            } catch (e) {
+                logClerr(
+                    'qualified_identify: appxud parse failed',
+                    { error: String(e && e.message ? e.message : e) },
+                    'warn'
+                );
+                return null;
+            }
+        }
+
+        var email = await getIisEmail();
+        if (!email) email = getOgsEmail();
+        if (!email) email = getCookieEmail();
+
+        if (!email) return;
+
+        try {
+            window.qualified('identify', { email: email });
+        } catch (e) {
+            logClerr(
+                'qualified_identify: identify call failed',
+                { error: String(e && e.message ? e.message : e), emailPresent: true },
+                'error'
+            );
+        }
+    }
+
+    run().catch(function () {});
+})();

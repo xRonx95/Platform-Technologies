@@ -1,0 +1,3197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Lesson about Cloud Computing Service Models including IaaS, PaaS, SaaS, their differences, examples, advantages, disadvantages, and comparison."
+    >
+
+    <meta
+        name="keywords"
+        content="Cloud Computing, IaaS, PaaS, SaaS, Cloud Service Models, Platform Technologies"
+    >
+
+    <meta name="author" content="JavaLearn">
+
+    <title>
+        Cloud Service Models - IaaS, PaaS, SaaS | JavaLearn
+    </title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../favicon.jpg">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../css/Cloud & Containers/iaas.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="../index.html" class="brand">
+
+                <div class="brand-logo">
+                    C
+                </div>
+
+                <div class="brand-text">
+                    <span class="brand-title">
+                        PLATFORM TECHNOLOGIES
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Cloud & Containers Learning Module
+                    </span>
+                </div>
+
+            </a>
+
+
+            <nav class="desktop-nav">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="iaas.html" class="active">
+                    Cloud
+                </a>
+
+            </nav>
+
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open navigation menu"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE NAVIGATION
+    ====================================================== -->
+    <div class="mobile-menu" id="mobileMenu">
+
+        <div class="mobile-menu-header">
+
+            <strong>
+                Navigation
+            </strong>
+
+            <button
+                class="close-menu"
+                id="closeMenu"
+                aria-label="Close menu"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <nav class="mobile-nav">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="linux.html">
+                Linux Distros & Shell
+            </a>
+
+            <a href="linux-users.html">
+                Users, Permissions & Packages
+            </a>
+
+            <a href="iaas.html" class="active">
+                IaaS, PaaS & SaaS
+            </a>
+
+            <a href="typehypervisor.html">
+                Type 1 vs Type 2 Hypervisors
+            </a>
+
+            <a href="Virualbox.html">
+                VirtualBox & VMware
+            </a>
+
+            <a href="VM.html">
+                Building Virtual Machines
+            </a>
+
+            <a href="VNetworking.html">
+                Virtual Networking
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+    ></div>
+
+
+    <!-- =====================================================
+         PAGE LAYOUT
+    ====================================================== -->
+    <div class="page-layout">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+        <aside class="sidebar">
+
+            <div class="sidebar-inner">
+
+                <p class="sidebar-heading">
+                    CLOUD & CONTAINERS
+                </p>
+
+
+                <a href="#introduction">
+                    1. Cloud Computing
+                </a>
+
+                <a href="#service-models">
+                    2. Cloud Service Models
+                </a>
+
+                <a href="#iaas">
+                    3. IaaS
+                </a>
+
+                <a href="#paas">
+                    4. PaaS
+                </a>
+
+                <a href="#saas">
+                    5. SaaS
+                </a>
+
+                <a href="#responsibility">
+                    6. Responsibility Model
+                </a>
+
+                <a href="#comparison">
+                    7. Compare the Models
+                </a>
+
+                <a href="#examples">
+                    8. Real-World Examples
+                </a>
+
+                <a href="#selection">
+                    9. Choosing a Model
+                </a>
+
+                <a href="#advantages">
+                    10. Advantages
+                </a>
+
+                <a href="#limitations">
+                    11. Limitations
+                </a>
+
+                <a href="#scenario">
+                    12. Practical Scenario
+                </a>
+
+                <a href="#activity">
+                    13. Classroom Activity
+                </a>
+
+                <a href="#summary">
+                    14. Lesson Summary
+                </a>
+
+                <a href="#review">
+                    15. Review Questions
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 HERO
+            ================================================== -->
+            <section class="lesson-hero">
+
+                <div class="lesson-badge">
+                    CLOUD & CONTAINERS
+                </div>
+
+                <h1>
+                    Cloud Service Models:
+                    <span>IaaS, PaaS & SaaS</span>
+                </h1>
+
+                <p class="hero-description">
+                    Learn how cloud computing services are categorized,
+                    understand the responsibilities of users and cloud
+                    providers, and compare Infrastructure as a Service,
+                    Platform as a Service, and Software as a Service.
+                </p>
+
+
+                <div class="lesson-meta">
+
+                    <div>
+                        <span class="meta-label">
+                            Subject
+                        </span>
+
+                        <strong>
+                            Platform Technologies
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span class="meta-label">
+                            Topic
+                        </span>
+
+                        <strong>
+                            Cloud Computing
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span class="meta-label">
+                            Level
+                        </span>
+
+                        <strong>
+                            Beginner to Intermediate
+                        </strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LEARNING OBJECTIVES
+            ================================================== -->
+            <section class="content-section objective-section">
+
+                <div class="section-number">
+                    LESSON OBJECTIVES
+                </div>
+
+                <h2>
+                    Learning Objectives
+                </h2>
+
+                <p>
+                    At the end of this lesson, students should be able to:
+                </p>
+
+
+                <div class="objective-grid">
+
+                    <div class="objective-card">
+                        <span class="objective-icon">
+                            01
+                        </span>
+
+                        <p>
+                            Define cloud computing and explain its basic
+                            purpose.
+                        </p>
+                    </div>
+
+
+                    <div class="objective-card">
+                        <span class="objective-icon">
+                            02
+                        </span>
+
+                        <p>
+                            Differentiate IaaS, PaaS, and SaaS.
+                        </p>
+                    </div>
+
+
+                    <div class="objective-card">
+                        <span class="objective-icon">
+                            03
+                        </span>
+
+                        <p>
+                            Identify which resources are managed by the
+                            customer and the cloud provider.
+                        </p>
+                    </div>
+
+
+                    <div class="objective-card">
+                        <span class="objective-icon">
+                            04
+                        </span>
+
+                        <p>
+                            Give practical examples of cloud service
+                            providers.
+                        </p>
+                    </div>
+
+
+                    <div class="objective-card">
+                        <span class="objective-icon">
+                            05
+                        </span>
+
+                        <p>
+                            Compare the advantages and limitations of
+                            different cloud service models.
+                        </p>
+                    </div>
+
+
+                    <div class="objective-card">
+                        <span class="objective-icon">
+                            06
+                        </span>
+
+                        <p>
+                            Select an appropriate cloud service model for
+                            different computing scenarios.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 INTRODUCTION
+            ================================================== -->
+            <section
+                class="content-section"
+                id="introduction"
+            >
+
+                <div class="section-number">
+                    01
+                </div>
+
+                <h2>
+                    What is Cloud Computing?
+                </h2>
+
+                <p>
+                    <strong>Cloud computing</strong> is the delivery of
+                    computing resources and services over the Internet.
+                    Instead of purchasing, installing, and maintaining all
+                    computing infrastructure locally, organizations can use
+                    servers, storage, databases, networking, software, and
+                    development platforms provided by cloud companies.
+                </p>
+
+                <p>
+                    These computing resources are usually available on demand.
+                    Users can increase or decrease the amount of resources
+                    depending on their requirements.
+                </p>
+
+
+                <div class="definition-box">
+
+                    <h3>
+                        Simple Definition
+                    </h3>
+
+                    <p>
+                        Cloud computing means using computing resources
+                        through the Internet instead of depending entirely
+                        on computers and servers located inside your own
+                        organization.
+                    </p>
+
+                </div>
+
+
+                <h3>
+                    Examples of Cloud Resources
+                </h3>
+
+
+                <div class="feature-grid">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🖥
+                        </div>
+
+                        <h4>
+                            Virtual Servers
+                        </h4>
+
+                        <p>
+                            Computers running inside cloud data centers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            💾
+                        </div>
+
+                        <h4>
+                            Cloud Storage
+                        </h4>
+
+                        <p>
+                            Online storage for documents, images, backups,
+                            and other files.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🗄
+                        </div>
+
+                        <h4>
+                            Databases
+                        </h4>
+
+                        <p>
+                            Managed database systems available through cloud
+                            platforms.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🌐
+                        </div>
+
+                        <h4>
+                            Networking
+                        </h4>
+
+                        <p>
+                            Virtual networks, IP addresses, load balancers,
+                            and firewalls.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            📱
+                        </div>
+
+                        <h4>
+                            Applications
+                        </h4>
+
+                        <p>
+                            Software applications accessed directly through
+                            a web browser or mobile application.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🧑‍💻
+                        </div>
+
+                        <h4>
+                            Development Platforms
+                        </h4>
+
+                        <p>
+                            Environments that developers use to create,
+                            deploy, and manage applications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="teaching-note">
+
+                    <strong>
+                        Teacher's Explanation:
+                    </strong>
+
+                    <p>
+                        A simple example is Google Drive. Instead of storing
+                        every document only on your computer, the file can
+                        be stored on Google's servers and accessed through
+                        the Internet.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SERVICE MODELS
+            ================================================== -->
+            <section
+                class="content-section"
+                id="service-models"
+            >
+
+                <div class="section-number">
+                    02
+                </div>
+
+                <h2>
+                    The Three Main Cloud Service Models
+                </h2>
+
+                <p>
+                    Cloud computing services are commonly divided into three
+                    primary service models:
+                </p>
+
+
+                <div class="service-model-grid">
+
+
+                    <!-- IaaS -->
+                    <article class="service-card iaas-card">
+
+                        <div class="service-short">
+                            IaaS
+                        </div>
+
+                        <h3>
+                            Infrastructure as a Service
+                        </h3>
+
+                        <p>
+                            Provides fundamental computing infrastructure
+                            such as virtual machines, networks, and storage.
+                        </p>
+
+                        <a href="#iaas">
+                            Learn IaaS ↓
+                        </a>
+
+                    </article>
+
+
+                    <!-- PaaS -->
+                    <article class="service-card paas-card">
+
+                        <div class="service-short">
+                            PaaS
+                        </div>
+
+                        <h3>
+                            Platform as a Service
+                        </h3>
+
+                        <p>
+                            Provides a managed environment where developers
+                            can build and deploy applications.
+                        </p>
+
+                        <a href="#paas">
+                            Learn PaaS ↓
+                        </a>
+
+                    </article>
+
+
+                    <!-- SaaS -->
+                    <article class="service-card saas-card">
+
+                        <div class="service-short">
+                            SaaS
+                        </div>
+
+                        <h3>
+                            Software as a Service
+                        </h3>
+
+                        <p>
+                            Provides complete applications that users access
+                            through the Internet.
+                        </p>
+
+                        <a href="#saas">
+                            Learn SaaS ↓
+                        </a>
+
+                    </article>
+
+                </div>
+
+
+                <div class="simple-diagram">
+
+                    <div class="diagram-title">
+                        Increasing Provider Management
+                    </div>
+
+                    <div class="diagram-level iaas-level">
+                        <strong>IaaS</strong>
+                        <span>
+                            More user control
+                        </span>
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="diagram-level paas-level">
+                        <strong>PaaS</strong>
+                        <span>
+                            Balanced management
+                        </span>
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="diagram-level saas-level">
+                        <strong>SaaS</strong>
+                        <span>
+                            More provider management
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 IAAS
+            ================================================== -->
+            <section
+                class="content-section"
+                id="iaas"
+            >
+
+                <div class="section-number">
+                    03
+                </div>
+
+                <h2>
+                    Infrastructure as a Service — IaaS
+                </h2>
+
+
+                <div class="service-definition iaas-theme">
+
+                    <div class="big-abbreviation">
+                        IaaS
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Infrastructure as a Service
+                        </h3>
+
+                        <p>
+                            IaaS provides virtualized computing resources
+                            through the Internet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <p>
+                    In an IaaS environment, the cloud provider manages the
+                    physical data center, servers, storage, networking, and
+                    virtualization technology.
+                </p>
+
+                <p>
+                    The customer is usually responsible for managing the
+                    operating system, installed software, application data,
+                    and application configuration.
+                </p>
+
+
+                <h3>
+                    IaaS Commonly Provides
+                </h3>
+
+
+                <ul class="styled-list">
+                    <li>Virtual machines</li>
+                    <li>Virtual CPUs</li>
+                    <li>RAM</li>
+                    <li>Cloud storage</li>
+                    <li>Virtual networks</li>
+                    <li>Firewalls</li>
+                    <li>IP addresses</li>
+                    <li>Load balancers</li>
+                </ul>
+
+
+                <h3>
+                    Examples of IaaS Services
+                </h3>
+
+
+                <div class="example-grid">
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            AWS
+                        </span>
+
+                        <h4>
+                            Amazon EC2
+                        </h4>
+
+                        <p>
+                            Provides virtual computing instances that can
+                            run operating systems and applications.
+                        </p>
+
+                    </div>
+
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Microsoft Azure
+                        </span>
+
+                        <h4>
+                            Azure Virtual Machines
+                        </h4>
+
+                        <p>
+                            Allows organizations to create and manage
+                            Windows or Linux virtual machines.
+                        </p>
+
+                    </div>
+
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Google Cloud
+                        </span>
+
+                        <h4>
+                            Compute Engine
+                        </h4>
+
+                        <p>
+                            Provides customizable virtual machines running
+                            inside Google's infrastructure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="example-scenario">
+
+                    <h3>
+                        Example Scenario
+                    </h3>
+
+                    <p>
+                        A university wants to host its own student information
+                        system online. The IT department wants complete
+                        control of the operating system, server configuration,
+                        database software, and security configuration.
+                    </p>
+
+                    <p>
+                        Instead of purchasing a physical server, the
+                        university rents a virtual machine from a cloud
+                        provider.
+                    </p>
+
+                    <div class="scenario-answer">
+                        Recommended Model:
+                        <strong>IaaS</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="two-column">
+
+                    <div class="positive-card">
+
+                        <h3>
+                            Advantages of IaaS
+                        </h3>
+
+                        <ul>
+                            <li>High level of control</li>
+                            <li>Flexible resource configuration</li>
+                            <li>Easy server scaling</li>
+                            <li>No need to purchase physical servers</li>
+                            <li>Suitable for customized systems</li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="negative-card">
+
+                        <h3>
+                            Limitations of IaaS
+                        </h3>
+
+                        <ul>
+                            <li>Requires technical knowledge</li>
+                            <li>User manages operating systems</li>
+                            <li>User manages applications</li>
+                            <li>Security configuration remains important</li>
+                            <li>More administration than PaaS or SaaS</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PAAS
+            ================================================== -->
+            <section
+                class="content-section"
+                id="paas"
+            >
+
+                <div class="section-number">
+                    04
+                </div>
+
+                <h2>
+                    Platform as a Service — PaaS
+                </h2>
+
+
+                <div class="service-definition paas-theme">
+
+                    <div class="big-abbreviation">
+                        PaaS
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Platform as a Service
+                        </h3>
+
+                        <p>
+                            PaaS provides a managed development and
+                            deployment environment for applications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <p>
+                    PaaS is commonly used by software developers. Instead of
+                    managing virtual machines, operating systems, patches,
+                    and much of the server infrastructure, developers can
+                    focus primarily on creating their applications.
+                </p>
+
+                <p>
+                    The cloud provider manages the infrastructure,
+                    virtualization, operating system, middleware, and often
+                    runtime environments.
+                </p>
+
+
+                <h3>
+                    PaaS Commonly Provides
+                </h3>
+
+
+                <ul class="styled-list">
+                    <li>Application hosting</li>
+                    <li>Programming language runtimes</li>
+                    <li>Deployment tools</li>
+                    <li>Database integration</li>
+                    <li>Application monitoring</li>
+                    <li>Automatic scaling</li>
+                    <li>Development frameworks</li>
+                    <li>Server management</li>
+                </ul>
+
+
+                <h3>
+                    Examples of PaaS Services
+                </h3>
+
+
+                <div class="example-grid">
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Google
+                        </span>
+
+                        <h4>
+                            Google App Engine
+                        </h4>
+
+                        <p>
+                            Allows developers to deploy applications without
+                            directly managing the underlying servers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Microsoft
+                        </span>
+
+                        <h4>
+                            Azure App Service
+                        </h4>
+
+                        <p>
+                            Provides managed hosting for web applications
+                            and APIs.
+                        </p>
+
+                    </div>
+
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Render
+                        </span>
+
+                        <h4>
+                            Web Services
+                        </h4>
+
+                        <p>
+                            Allows developers to deploy web applications from
+                            source code repositories without manually
+                            configuring traditional servers.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="example-scenario">
+
+                    <h3>
+                        Example Scenario
+                    </h3>
+
+                    <p>
+                        A group of students created a Node.js web application.
+                        They want to deploy the project online without manually
+                        installing Linux, configuring a web server, or managing
+                        a physical machine.
+                    </p>
+
+                    <p>
+                        They upload the application code to a cloud platform,
+                        and the platform handles much of the server
+                        environment.
+                    </p>
+
+                    <div class="scenario-answer">
+                        Recommended Model:
+                        <strong>PaaS</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="two-column">
+
+                    <div class="positive-card">
+
+                        <h3>
+                            Advantages of PaaS
+                        </h3>
+
+                        <ul>
+                            <li>Faster application development</li>
+                            <li>Less server administration</li>
+                            <li>Built-in deployment tools</li>
+                            <li>Automatic infrastructure management</li>
+                            <li>Ideal for software developers</li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="negative-card">
+
+                        <h3>
+                            Limitations of PaaS
+                        </h3>
+
+                        <ul>
+                            <li>Less infrastructure control</li>
+                            <li>Platform restrictions may exist</li>
+                            <li>Possible vendor dependency</li>
+                            <li>Some programming environments may not be supported</li>
+                            <li>Migration between providers may require changes</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SAAS
+            ================================================== -->
+            <section
+                class="content-section"
+                id="saas"
+            >
+
+                <div class="section-number">
+                    05
+                </div>
+
+                <h2>
+                    Software as a Service — SaaS
+                </h2>
+
+
+                <div class="service-definition saas-theme">
+
+                    <div class="big-abbreviation">
+                        SaaS
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Software as a Service
+                        </h3>
+
+                        <p>
+                            SaaS provides complete software applications
+                            through the Internet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <p>
+                    In SaaS, almost the entire technology stack is managed by
+                    the service provider. Users normally only need a browser,
+                    application, Internet connection, and valid account.
+                </p>
+
+                <p>
+                    Users do not normally manage the servers, operating
+                    systems, application runtime, or software installation.
+                </p>
+
+
+                <h3>
+                    Common SaaS Applications
+                </h3>
+
+
+                <ul class="styled-list">
+                    <li>Email platforms</li>
+                    <li>Online document editors</li>
+                    <li>Video conferencing platforms</li>
+                    <li>Cloud storage interfaces</li>
+                    <li>Customer relationship management systems</li>
+                    <li>Project management systems</li>
+                    <li>Learning management systems</li>
+                </ul>
+
+
+                <h3>
+                    Examples of SaaS
+                </h3>
+
+
+                <div class="example-grid">
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Google
+                        </span>
+
+                        <h4>
+                            Google Workspace
+                        </h4>
+
+                        <p>
+                            Gmail, Docs, Sheets, Drive, and other productivity
+                            applications are accessed online.
+                        </p>
+
+                    </div>
+
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Microsoft
+                        </span>
+
+                        <h4>
+                            Microsoft 365
+                        </h4>
+
+                        <p>
+                            Provides cloud-based productivity and
+                            collaboration applications.
+                        </p>
+
+                    </div>
+
+
+                    <div class="example-card">
+
+                        <span class="example-company">
+                            Zoom
+                        </span>
+
+                        <h4>
+                            Zoom
+                        </h4>
+
+                        <p>
+                            Users access a complete communication service
+                            without managing its infrastructure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="example-scenario">
+
+                    <h3>
+                        Example Scenario
+                    </h3>
+
+                    <p>
+                        A teacher wants to create documents, presentations,
+                        spreadsheets, and online class materials.
+                    </p>
+
+                    <p>
+                        Instead of installing and maintaining an application
+                        server, the teacher opens Google Docs or Microsoft
+                        365 and immediately begins working.
+                    </p>
+
+                    <div class="scenario-answer">
+                        Recommended Model:
+                        <strong>SaaS</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="two-column">
+
+                    <div class="positive-card">
+
+                        <h3>
+                            Advantages of SaaS
+                        </h3>
+
+                        <ul>
+                            <li>Easy to use</li>
+                            <li>No server management</li>
+                            <li>No complex installation</li>
+                            <li>Automatic software updates</li>
+                            <li>Accessible from many devices</li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="negative-card">
+
+                        <h3>
+                            Limitations of SaaS
+                        </h3>
+
+                        <ul>
+                            <li>Limited application customization</li>
+                            <li>Usually depends on Internet access</li>
+                            <li>Users depend heavily on the provider</li>
+                            <li>Data is stored on external infrastructure</li>
+                            <li>Subscription fees may apply</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RESPONSIBILITY MODEL
+            ================================================== -->
+            <section
+                class="content-section"
+                id="responsibility"
+            >
+
+                <div class="section-number">
+                    06
+                </div>
+
+                <h2>
+                    Cloud Responsibility Model
+                </h2>
+
+                <p>
+                    One of the easiest ways to understand IaaS, PaaS, and
+                    SaaS is to examine who manages each layer of the
+                    technology stack.
+                </p>
+
+
+                <div class="table-wrapper">
+
+                    <table class="comparison-table">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    Technology Layer
+                                </th>
+
+                                <th>
+                                    IaaS
+                                </th>
+
+                                <th>
+                                    PaaS
+                                </th>
+
+                                <th>
+                                    SaaS
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    Applications
+                                </td>
+
+                                <td class="customer">
+                                    Customer
+                                </td>
+
+                                <td class="customer">
+                                    Customer
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Data
+                                </td>
+
+                                <td class="customer">
+                                    Customer
+                                </td>
+
+                                <td class="customer">
+                                    Customer
+                                </td>
+
+                                <td class="shared">
+                                    Mostly Provider / User Content
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Runtime
+                                </td>
+
+                                <td class="customer">
+                                    Customer
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Middleware
+                                </td>
+
+                                <td class="customer">
+                                    Customer
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Operating System
+                                </td>
+
+                                <td class="customer">
+                                    Customer
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Virtualization
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Servers
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Storage
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Networking
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+
+                                <td class="provider">
+                                    Provider
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="legend">
+
+                    <span>
+                        <i class="legend-box customer-box"></i>
+                        Managed by Customer
+                    </span>
+
+                    <span>
+                        <i class="legend-box provider-box"></i>
+                        Managed by Cloud Provider
+                    </span>
+
+                    <span>
+                        <i class="legend-box shared-box"></i>
+                        Shared / Depends on Service
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 COMPARISON
+            ================================================== -->
+            <section
+                class="content-section"
+                id="comparison"
+            >
+
+                <div class="section-number">
+                    07
+                </div>
+
+                <h2>
+                    Compare IaaS, PaaS and SaaS
+                </h2>
+
+
+                <div class="table-wrapper">
+
+                    <table class="comparison-table main-comparison">
+
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    IaaS
+                                </th>
+
+                                <th>
+                                    PaaS
+                                </th>
+
+                                <th>
+                                    SaaS
+                                </th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Full Name
+                                </td>
+
+                                <td>
+                                    Infrastructure as a Service
+                                </td>
+
+                                <td>
+                                    Platform as a Service
+                                </td>
+
+                                <td>
+                                    Software as a Service
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Main Users
+                                </td>
+
+                                <td>
+                                    System administrators,
+                                    IT professionals
+                                </td>
+
+                                <td>
+                                    Software developers
+                                </td>
+
+                                <td>
+                                    General end users
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Provides
+                                </td>
+
+                                <td>
+                                    Virtual computing infrastructure
+                                </td>
+
+                                <td>
+                                    Application development platform
+                                </td>
+
+                                <td>
+                                    Complete software application
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    User Control
+                                </td>
+
+                                <td>
+                                    High
+                                </td>
+
+                                <td>
+                                    Medium
+                                </td>
+
+                                <td>
+                                    Low
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Technical Knowledge
+                                </td>
+
+                                <td>
+                                    High
+                                </td>
+
+                                <td>
+                                    Medium
+                                </td>
+
+                                <td>
+                                    Low
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Server Management
+                                </td>
+
+                                <td>
+                                    Partially managed by customer
+                                </td>
+
+                                <td>
+                                    Mostly managed by provider
+                                </td>
+
+                                <td>
+                                    Completely managed by provider
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Application Management
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>
+                                    Customer
+                                </td>
+
+                                <td>
+                                    Provider
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Typical Example
+                                </td>
+
+                                <td>
+                                    Virtual Machine
+                                </td>
+
+                                <td>
+                                    Application Hosting Platform
+                                </td>
+
+                                <td>
+                                    Web Application
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Best For
+                                </td>
+
+                                <td>
+                                    Custom infrastructure
+                                </td>
+
+                                <td>
+                                    Application development
+                                </td>
+
+                                <td>
+                                    Ready-to-use software
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SIMPLE ANALOGY
+            ================================================== -->
+            <section class="content-section">
+
+                <div class="section-number">
+                    EASY ANALOGY
+                </div>
+
+                <h2>
+                    Understanding IaaS, PaaS and SaaS Using Pizza
+                </h2>
+
+                <p>
+                    A common analogy for cloud computing compares the service
+                    models to preparing or buying pizza.
+                </p>
+
+
+                <div class="analogy-grid">
+
+                    <div class="analogy-card">
+
+                        <div class="analogy-number">
+                            IaaS
+                        </div>
+
+                        <h3>
+                            Rent a Kitchen
+                        </h3>
+
+                        <p>
+                            The kitchen and equipment are provided, but you
+                            prepare and manage most of the meal yourself.
+                        </p>
+
+                        <strong>
+                            More control, more responsibility.
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analogy-card">
+
+                        <div class="analogy-number">
+                            PaaS
+                        </div>
+
+                        <h3>
+                            Pizza Ingredients Prepared
+                        </h3>
+
+                        <p>
+                            Much of the environment is prepared for you.
+                            You focus mainly on creating the final product.
+                        </p>
+
+                        <strong>
+                            Focus on development.
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analogy-card">
+
+                        <div class="analogy-number">
+                            SaaS
+                        </div>
+
+                        <h3>
+                            Restaurant Pizza
+                        </h3>
+
+                        <p>
+                            Everything is prepared for you. You simply use
+                            or consume the finished service.
+                        </p>
+
+                        <strong>
+                            Least technical management.
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 EXAMPLES
+            ================================================== -->
+            <section
+                class="content-section"
+                id="examples"
+            >
+
+                <div class="section-number">
+                    08
+                </div>
+
+                <h2>
+                    Real-World Examples
+                </h2>
+
+
+                <div class="classification-list">
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Amazon EC2
+                        </div>
+
+                        <div class="classification-type">
+                            IaaS
+                        </div>
+
+                        <div>
+                            Provides virtual servers.
+                        </div>
+
+                    </div>
+
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Azure Virtual Machines
+                        </div>
+
+                        <div class="classification-type">
+                            IaaS
+                        </div>
+
+                        <div>
+                            Provides configurable cloud virtual machines.
+                        </div>
+
+                    </div>
+
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Google Compute Engine
+                        </div>
+
+                        <div class="classification-type">
+                            IaaS
+                        </div>
+
+                        <div>
+                            Provides cloud computing instances.
+                        </div>
+
+                    </div>
+
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Google App Engine
+                        </div>
+
+                        <div class="classification-type paas-label">
+                            PaaS
+                        </div>
+
+                        <div>
+                            Hosts applications without traditional server
+                            administration.
+                        </div>
+
+                    </div>
+
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Azure App Service
+                        </div>
+
+                        <div class="classification-type paas-label">
+                            PaaS
+                        </div>
+
+                        <div>
+                            Managed web application hosting.
+                        </div>
+
+                    </div>
+
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Google Docs
+                        </div>
+
+                        <div class="classification-type saas-label">
+                            SaaS
+                        </div>
+
+                        <div>
+                            Complete word-processing software online.
+                        </div>
+
+                    </div>
+
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Gmail
+                        </div>
+
+                        <div class="classification-type saas-label">
+                            SaaS
+                        </div>
+
+                        <div>
+                            Complete email application delivered online.
+                        </div>
+
+                    </div>
+
+
+                    <div class="classification-row">
+
+                        <div class="classification-service">
+                            Microsoft 365
+                        </div>
+
+                        <div class="classification-type saas-label">
+                            SaaS
+                        </div>
+
+                        <div>
+                            Productivity applications delivered as services.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CHOOSING MODEL
+            ================================================== -->
+            <section
+                class="content-section"
+                id="selection"
+            >
+
+                <div class="section-number">
+                    09
+                </div>
+
+                <h2>
+                    How to Choose a Cloud Service Model
+                </h2>
+
+
+                <div class="decision-grid">
+
+                    <div class="decision-card">
+
+                        <div class="decision-question">
+                            Do you need complete control over the operating
+                            system and server?
+                        </div>
+
+                        <div class="decision-answer">
+                            Choose
+                            <strong>IaaS</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="decision-card">
+
+                        <div class="decision-question">
+                            Do you mainly want to develop and deploy an
+                            application?
+                        </div>
+
+                        <div class="decision-answer">
+                            Choose
+                            <strong>PaaS</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="decision-card">
+
+                        <div class="decision-question">
+                            Do you only need a finished application that is
+                            ready to use?
+                        </div>
+
+                        <div class="decision-answer">
+                            Choose
+                            <strong>SaaS</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="important-box">
+
+                    <h3>
+                        Remember
+                    </h3>
+
+                    <p>
+                        As we move from <strong>IaaS → PaaS → SaaS</strong>,
+                        the cloud provider manages more components, while the
+                        customer manages fewer components.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ADVANTAGES
+            ================================================== -->
+            <section
+                class="content-section"
+                id="advantages"
+            >
+
+                <div class="section-number">
+                    10
+                </div>
+
+                <h2>
+                    Advantages of Cloud Service Models
+                </h2>
+
+
+                <div class="feature-grid">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            💰
+                        </div>
+
+                        <h4>
+                            Reduced Hardware Cost
+                        </h4>
+
+                        <p>
+                            Organizations can reduce the need to purchase and
+                            maintain expensive physical servers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            📈
+                        </div>
+
+                        <h4>
+                            Scalability
+                        </h4>
+
+                        <p>
+                            Computing resources can be increased or decreased
+                            according to demand.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            ⚡
+                        </div>
+
+                        <h4>
+                            Fast Deployment
+                        </h4>
+
+                        <p>
+                            Servers and applications can often be deployed in
+                            minutes instead of waiting for physical equipment.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🌍
+                        </div>
+
+                        <h4>
+                            Accessibility
+                        </h4>
+
+                        <p>
+                            Cloud services can generally be accessed from
+                            different locations through the Internet.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🔄
+                        </div>
+
+                        <h4>
+                            Maintenance
+                        </h4>
+
+                        <p>
+                            Cloud providers handle varying levels of
+                            infrastructure maintenance.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🛡
+                        </div>
+
+                        <h4>
+                            Managed Infrastructure
+                        </h4>
+
+                        <p>
+                            Providers maintain physical data centers,
+                            networking, and underlying hardware.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LIMITATIONS
+            ================================================== -->
+            <section
+                class="content-section"
+                id="limitations"
+            >
+
+                <div class="section-number">
+                    11
+                </div>
+
+                <h2>
+                    Limitations and Considerations
+                </h2>
+
+
+                <div class="warning-grid">
+
+                    <div class="warning-card">
+
+                        <h3>
+                            Internet Dependency
+                        </h3>
+
+                        <p>
+                            Many cloud services require stable Internet
+                            connectivity.
+                        </p>
+
+                    </div>
+
+
+                    <div class="warning-card">
+
+                        <h3>
+                            Data Privacy
+                        </h3>
+
+                        <p>
+                            Organizations must understand where data is stored
+                            and how the provider protects it.
+                        </p>
+
+                    </div>
+
+
+                    <div class="warning-card">
+
+                        <h3>
+                            Vendor Lock-In
+                        </h3>
+
+                        <p>
+                            Moving applications between cloud platforms can
+                            sometimes be difficult.
+                        </p>
+
+                    </div>
+
+
+                    <div class="warning-card">
+
+                        <h3>
+                            Ongoing Costs
+                        </h3>
+
+                        <p>
+                            Cloud services may charge based on usage,
+                            subscriptions, storage, bandwidth, or computing
+                            resources.
+                        </p>
+
+                    </div>
+
+
+                    <div class="warning-card">
+
+                        <h3>
+                            Service Outages
+                        </h3>
+
+                        <p>
+                            Applications may temporarily become unavailable
+                            when the provider experiences an outage.
+                        </p>
+
+                    </div>
+
+
+                    <div class="warning-card">
+
+                        <h3>
+                            Security Responsibilities
+                        </h3>
+
+                        <p>
+                            Cloud providers secure their infrastructure, but
+                            customers are still responsible for properly
+                            protecting accounts, data, and configurations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PRACTICAL SCENARIO
+            ================================================== -->
+            <section
+                class="content-section"
+                id="scenario"
+            >
+
+                <div class="section-number">
+                    12
+                </div>
+
+                <h2>
+                    Practical Scenarios
+                </h2>
+
+
+                <div class="scenario-list">
+
+
+                    <div class="question-card">
+
+                        <span class="scenario-number">
+                            Scenario 1
+                        </span>
+
+                        <h3>
+                            Virtual School Server
+                        </h3>
+
+                        <p>
+                            A school needs a Linux server and wants its IT
+                            administrator to configure Apache, PHP, MySQL,
+                            firewall rules, and the operating system.
+                        </p>
+
+                        <details>
+
+                            <summary>
+                                Show Answer
+                            </summary>
+
+                            <div class="answer-content">
+
+                                <strong>
+                                    IaaS
+                                </strong>
+
+                                <p>
+                                    The school requires significant control
+                                    over the server, operating system, and
+                                    installed applications.
+                                </p>
+
+                            </div>
+
+                        </details>
+
+                    </div>
+
+
+                    <div class="question-card">
+
+                        <span class="scenario-number">
+                            Scenario 2
+                        </span>
+
+                        <h3>
+                            Student Web Application
+                        </h3>
+
+                        <p>
+                            Students created a Node.js application and want
+                            to deploy it online without manually managing
+                            Linux servers.
+                        </p>
+
+                        <details>
+
+                            <summary>
+                                Show Answer
+                            </summary>
+
+                            <div class="answer-content">
+
+                                <strong>
+                                    PaaS
+                                </strong>
+
+                                <p>
+                                    A managed application platform allows
+                                    students to focus on their source code.
+                                </p>
+
+                            </div>
+
+                        </details>
+
+                    </div>
+
+
+                    <div class="question-card">
+
+                        <span class="scenario-number">
+                            Scenario 3
+                        </span>
+
+                        <h3>
+                            Online Document Editing
+                        </h3>
+
+                        <p>
+                            A teacher wants to create documents using a
+                            browser and does not want to configure servers or
+                            install server software.
+                        </p>
+
+                        <details>
+
+                            <summary>
+                                Show Answer
+                            </summary>
+
+                            <div class="answer-content">
+
+                                <strong>
+                                    SaaS
+                                </strong>
+
+                                <p>
+                                    The teacher needs a finished software
+                                    application rather than infrastructure or
+                                    a development platform.
+                                </p>
+
+                            </div>
+
+                        </details>
+
+                    </div>
+
+
+                    <div class="question-card">
+
+                        <span class="scenario-number">
+                            Scenario 4
+                        </span>
+
+                        <h3>
+                            Software Development Team
+                        </h3>
+
+                        <p>
+                            Developers need automatic deployment, application
+                            logs, runtime management, and scaling while they
+                            focus on programming.
+                        </p>
+
+                        <details>
+
+                            <summary>
+                                Show Answer
+                            </summary>
+
+                            <div class="answer-content">
+
+                                <strong>
+                                    PaaS
+                                </strong>
+
+                                <p>
+                                    PaaS provides managed application
+                                    development and deployment infrastructure.
+                                </p>
+
+                            </div>
+
+                        </details>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CLASSROOM ACTIVITY
+            ================================================== -->
+            <section
+                class="content-section"
+                id="activity"
+            >
+
+                <div class="section-number">
+                    13
+                </div>
+
+                <h2>
+                    Classroom Activity
+                </h2>
+
+
+                <div class="activity-box">
+
+                    <div class="activity-title">
+
+                        <span>
+                            ACTIVITY
+                        </span>
+
+                        <h3>
+                            Identify the Cloud Service Model
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+                        Classify each technology or scenario as
+                        <strong>IaaS</strong>,
+                        <strong>PaaS</strong>, or
+                        <strong>SaaS</strong>.
+                    </p>
+
+
+                    <ol class="activity-questions">
+
+                        <li>
+                            A company rents a virtual Windows Server from
+                            Microsoft Azure.
+                        </li>
+
+                        <li>
+                            A student uses Gmail to send email.
+                        </li>
+
+                        <li>
+                            A developer deploys a web application to Google
+                            App Engine.
+                        </li>
+
+                        <li>
+                            A company runs Linux inside an Amazon EC2 virtual
+                            machine.
+                        </li>
+
+                        <li>
+                            A teacher creates a document using Google Docs.
+                        </li>
+
+                        <li>
+                            Developers deploy source code to a managed web
+                            application platform.
+                        </li>
+
+                        <li>
+                            An IT administrator creates virtual machines and
+                            configures the operating system manually.
+                        </li>
+
+                        <li>
+                            Students attend an online meeting using Zoom.
+                        </li>
+
+                    </ol>
+
+
+                    <details class="activity-answer">
+
+                        <summary>
+                            View Answer Key
+                        </summary>
+
+
+                        <ol>
+
+                            <li>
+                                IaaS
+                            </li>
+
+                            <li>
+                                SaaS
+                            </li>
+
+                            <li>
+                                PaaS
+                            </li>
+
+                            <li>
+                                IaaS
+                            </li>
+
+                            <li>
+                                SaaS
+                            </li>
+
+                            <li>
+                                PaaS
+                            </li>
+
+                            <li>
+                                IaaS
+                            </li>
+
+                            <li>
+                                SaaS
+                            </li>
+
+                        </ol>
+
+                    </details>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+            <section
+                class="content-section"
+                id="summary"
+            >
+
+                <div class="section-number">
+                    14
+                </div>
+
+                <h2>
+                    Lesson Summary
+                </h2>
+
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+
+                        <span>
+                            IaaS
+                        </span>
+
+                        <h3>
+                            Infrastructure
+                        </h3>
+
+                        <p>
+                            Provides virtual computing resources such as
+                            servers, storage, and networking.
+                        </p>
+
+                        <strong>
+                            Think: Virtual Machine
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span>
+                            PaaS
+                        </span>
+
+                        <h3>
+                            Platform
+                        </h3>
+
+                        <p>
+                            Provides a managed environment for developing
+                            and deploying applications.
+                        </p>
+
+                        <strong>
+                            Think: Developer Platform
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span>
+                            SaaS
+                        </span>
+
+                        <h3>
+                            Software
+                        </h3>
+
+                        <p>
+                            Provides complete applications that users access
+                            through the Internet.
+                        </p>
+
+                        <strong>
+                            Think: Ready-to-Use App
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="key-point">
+
+                    <strong>
+                        Key Point:
+                    </strong>
+
+                    IaaS gives the customer the greatest amount of
+                    infrastructure control. PaaS removes much of the
+                    infrastructure management so developers can concentrate
+                    on application development. SaaS provides a complete
+                    application where almost everything is managed by the
+                    provider.
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 REVIEW QUESTIONS
+            ================================================== -->
+            <section
+                class="content-section"
+                id="review"
+            >
+
+                <div class="section-number">
+                    15
+                </div>
+
+                <h2>
+                    Review Questions
+                </h2>
+
+
+                <div class="review-list">
+
+                    <div class="review-question">
+
+                        <span>
+                            01
+                        </span>
+
+                        <p>
+                            What is cloud computing?
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            02
+                        </span>
+
+                        <p>
+                            What does IaaS stand for?
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            03
+                        </span>
+
+                        <p>
+                            What does PaaS stand for?
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            04
+                        </span>
+
+                        <p>
+                            What does SaaS stand for?
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            05
+                        </span>
+
+                        <p>
+                            Which cloud model gives the customer the most
+                            control over the operating system?
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            06
+                        </span>
+
+                        <p>
+                            Which service model is mainly designed for
+                            application developers?
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            07
+                        </span>
+
+                        <p>
+                            Which service model provides a complete
+                            ready-to-use application?
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            08
+                        </span>
+
+                        <p>
+                            Give two examples of IaaS.
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            09
+                        </span>
+
+                        <p>
+                            Give two examples of PaaS.
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            10
+                        </span>
+
+                        <p>
+                            Give three examples of SaaS.
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            11
+                        </span>
+
+                        <p>
+                            Explain one advantage of using cloud services.
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-question">
+
+                        <span>
+                            12
+                        </span>
+
+                        <p>
+                            Explain one possible limitation of cloud
+                            computing.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TEACHER RECAP
+            ================================================== -->
+            <section class="teacher-recap">
+
+                <span class="recap-label">
+                    QUICK RECAP
+                </span>
+
+                <h2>
+                    IaaS → PaaS → SaaS
+                </h2>
+
+                <div class="recap-flow">
+
+                    <div>
+                        <strong>
+                            IaaS
+                        </strong>
+
+                        <span>
+                            Manage more
+                        </span>
+                    </div>
+
+                    <span class="flow-arrow">
+                        →
+                    </span>
+
+                    <div>
+                        <strong>
+                            PaaS
+                        </strong>
+
+                        <span>
+                            Manage less
+                        </span>
+                    </div>
+
+                    <span class="flow-arrow">
+                        →
+                    </span>
+
+                    <div>
+                        <strong>
+                            SaaS
+                        </strong>
+
+                        <span>
+                            Simply use the application
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LESSON NAVIGATION
+            ================================================== -->
+            <section class="lesson-navigation">
+
+                <a
+                    href="linux-users.html"
+                    class="lesson-nav-button previous"
+                >
+                    <small>
+                        Previous Lesson
+                    </small>
+
+                    <strong>
+                        ← Users, Permissions & Packages
+                    </strong>
+                </a>
+
+
+                <a
+                    href="typehypervisor.html"
+                    class="lesson-nav-button next"
+                >
+                    <small>
+                        Next Lesson
+                    </small>
+
+                    <strong>
+                        Type 1 vs Type 2 Hypervisors →
+                    </strong>
+                </a>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div>
+
+                <h3>
+                    Platform Technologies
+                </h3>
+
+                <p>
+                    Cloud & Containers Learning Module
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="linux.html">
+                    Linux
+                </a>
+
+                <a href="iaas.html">
+                    Cloud Computing
+                </a>
+
+                <a href="typehypervisor.html">
+                    Virtualization
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Platform Technologies Learning Module.
+            For educational purposes.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         SMALL NAVIGATION SCRIPT
+    ====================================================== -->
+    <script>
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const mobileMenu =
+            document.getElementById("mobileMenu");
+
+        const menuOverlay =
+            document.getElementById("menuOverlay");
+
+        const closeMenu =
+            document.getElementById("closeMenu");
+
+
+        function openMobileMenu() {
+
+            mobileMenu.classList.add("show");
+            menuOverlay.classList.add("show");
+
+            document.body.classList.add("menu-open");
+
+        }
+
+
+        function closeMobileMenu() {
+
+            mobileMenu.classList.remove("show");
+            menuOverlay.classList.remove("show");
+
+            document.body.classList.remove("menu-open");
+
+        }
+
+
+        menuButton.addEventListener(
+            "click",
+            openMobileMenu
+        );
+
+
+        closeMenu.addEventListener(
+            "click",
+            closeMobileMenu
+        );
+
+
+        menuOverlay.addEventListener(
+            "click",
+            closeMobileMenu
+        );
+
+
+        document
+            .querySelectorAll(".mobile-nav a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    closeMobileMenu
+                );
+
+            });
+
+    </script>
+
+</body>
+</html>

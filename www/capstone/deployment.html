@@ -1,0 +1,690 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Deployment Planning capstone lecture with 15 detailed lessons, examples, and automatic topic images.">
+  <title>Deployment Planning | Capstone Enterprise Lecture</title>
+  <link rel="stylesheet" href="../css/capstone/deployment.css">
+</head>
+<body id="top">
+<header class="topbar">
+  <div class="nav">
+    <a class="brand" href="../index.html" aria-label="Go to Home">
+      <span class="brand-mark">C</span>
+      <span>Capstone Learning<small>Enterprise Layer Lecture Series</small></span>
+    </a>
+
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="topLinks">Menu</button>
+
+    <nav class="top-links" id="topLinks" aria-label="Main navigation">
+      <a class="home-btn" href="../index.html">Home</a>
+      <a href="deployment.html" class="active">Deployment</a>
+<a href="migration.html" class="">Migration</a>
+<a href="technical.html" class="">Documentation</a>
+<a href="project.html" class="">Defense</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Capstone â€¢ Enterprise Layer</p>
+        <h1>Deployment Planning</h1>
+        <p class="hero-copy">Planning a controlled, secure, measurable transition from a completed capstone system to an operational environment.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lesson-01-deployment-fundamentals-and-release-readiness">Start Lesson 01</a>
+          <a class="button secondary" href="../index.html">Return to Home</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Module summary">
+        <strong>Lecture module overview</strong>
+        <div class="hero-stat-grid">
+          <div class="hero-stat"><b>15</b><span>Detailed lessons</span></div>
+          <div class="hero-stat"><b>15</b><span>Automatic visuals</span></div>
+          <div class="hero-stat"><b>100%</b><span>Mobile responsive</span></div>
+          <div class="hero-stat"><b>1</b><span>Home route to ../index.html</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <p>Lecture navigation</p>
+        <h2>Deployment Planning</h2>
+      </div>
+      <nav class="lesson-nav" aria-label="Lesson list">
+        <a href="#lesson-01-deployment-fundamentals-and-release-readiness"><span>01</span><span>Deployment Fundamentals and Release Readiness</span></a><a href="#lesson-02-deployment-models-on-premises-cloud-hybrid-an"><span>02</span><span>Deployment Models: On-Premises, Cloud, Hybrid, and Edge</span></a><a href="#lesson-03-environment-architecture-development-testing-"><span>03</span><span>Environment Architecture: Development, Testing, Staging, and Production</span></a><a href="#lesson-04-infrastructure-sizing-and-capacity-assumption"><span>04</span><span>Infrastructure Sizing and Capacity Assumptions</span></a><a href="#lesson-05-domain-dns-ssl-tls-and-secure-connectivity"><span>05</span><span>Domain, DNS, SSL/TLS, and Secure Connectivity</span></a><a href="#lesson-06-configuration-management-and-secret-handling"><span>06</span><span>Configuration Management and Secret Handling</span></a><a href="#lesson-07-database-deployment-and-data-initialization"><span>07</span><span>Database Deployment and Data Initialization</span></a><a href="#lesson-08-deployment-automation-and-ci-cd-concepts"><span>08</span><span>Deployment Automation and CI/CD Concepts</span></a><a href="#lesson-09-release-strategy-big-bang-phased-pilot-blue-g"><span>09</span><span>Release Strategy: Big Bang, Phased, Pilot, Blue-Green, and Canary</span></a><a href="#lesson-10-backup-restore-and-rollback-planning"><span>10</span><span>Backup, Restore, and Rollback Planning</span></a><a href="#lesson-11-monitoring-logging-and-health-checks"><span>11</span><span>Monitoring, Logging, and Health Checks</span></a><a href="#lesson-12-security-hardening-before-go-live"><span>12</span><span>Security Hardening Before Go-Live</span></a><a href="#lesson-13-user-onboarding-training-and-change-communica"><span>13</span><span>User Onboarding, Training, and Change Communication</span></a><a href="#lesson-14-go-live-checklist-and-deployment-day-control"><span>14</span><span>Go-Live Checklist and Deployment Day Control</span></a><a href="#lesson-15-post-deployment-review-and-continuous-improve"><span>15</span><span>Post-Deployment Review and Continuous Improvement</span></a>
+      </nav>
+    </aside>
+
+    <div class="content">
+      <section class="module-intro">
+        <h2>About this module</h2>
+        <p>This page contains 15 classroom-ready lessons. Every lesson includes a longer explanation, learning targets, an applied capstone example, and a local instructional diagram that shows the lesson rules in a clear three-step sequence.</p>
+      </section>
+
+      
+<section class="lesson" id="lesson-01-deployment-fundamentals-and-release-readiness">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-01.svg" alt="Deployment Fundamentals and Release Readiness visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 01 â€¢ Deployment Planning</div>
+    <h2>Deployment Fundamentals and Release Readiness</h2>
+    <p class="lesson-summary">Deployment is the disciplined process of moving a tested system from development into an environment where intended users can actually use it.</p>
+
+    <p>A capstone project is not deployment-ready simply because the application runs on the developer&#x27;s laptop. Release readiness means the software, infrastructure, data, documentation, support process, security controls, and recovery procedures have all reached an acceptable operational state. The team must know what is being released, where it will run, who will use it, and what conditions must be satisfied before the launch is approved.</p>
+<p>A practical readiness review checks functional completeness, unresolved defects, user acceptance results, performance behavior, security findings, backup availability, environment configuration, database migration status, and stakeholder approval. This review converts a vague statement such as â€œthe system is finishedâ€ into evidence that the system can be operated responsibly.</p>
+<p>For a capstone defense, deployment readiness is important because it demonstrates that the project is more than a prototype. It shows that the team understands the difference between software construction and service operation.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Define the target release and deployment environment.</li>
+<li>Identify release blockers and acceptance criteria.</li>
+<li>Prepare evidence that the system can be operated safely.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Before deploying a student information system, the team confirms production database credentials, SSL, backup schedules, user accounts, role permissions, browser compatibility, and a rollback procedure.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-02-deployment-models-on-premises-cloud-hybrid-an">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-02.svg" alt="Deployment Models: On-Premises, Cloud, Hybrid, and Edge visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 02 â€¢ Deployment Planning</div>
+    <h2>Deployment Models: On-Premises, Cloud, Hybrid, and Edge</h2>
+    <p class="lesson-summary">The deployment model determines where the system executes, who manages the infrastructure, and what operational constraints must be addressed.</p>
+
+    <p>On-premises deployment places servers and storage inside an organization&#x27;s own facilities. It can provide direct control over data and networking, but it also transfers hardware maintenance, power protection, physical security, patching, and capacity management to the organization. Cloud deployment uses provider-managed infrastructure and can simplify provisioning, public access, scaling, and managed services.</p>
+<p>A hybrid model combines local and cloud resources, while edge deployment moves computation closer to devices or users. The correct model depends on internet reliability, privacy requirements, budget, technical staff, latency, data residency, expected traffic, and recovery objectives.</p>
+<p>Capstone teams should justify the selected model instead of choosing a platform only because it is familiar. A deployment decision is stronger when supported by a requirements-to-infrastructure mapping.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Compare deployment models using project constraints.</li>
+<li>Relate infrastructure ownership to operational responsibility.</li>
+<li>Justify the selected hosting strategy.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A campus-only document management system may be deployed on a local server because it must remain available on the internal network even when the public internet is unavailable.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-03-environment-architecture-development-testing-">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-03.svg" alt="Environment Architecture: Development, Testing, Staging, and Production visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 03 â€¢ Deployment Planning</div>
+    <h2>Environment Architecture: Development, Testing, Staging, and Production</h2>
+    <p class="lesson-summary">Separate environments reduce the risk of experimenting directly on the live system.</p>
+
+    <p>Development is where programmers build and change features. Testing is used for systematic verification. Staging should resemble production closely enough to validate configuration, integrations, database changes, and release procedures. Production is the live environment used by real users and should have the strongest change controls.</p>
+<p>Environment separation prevents test data, debug settings, unstable code, and experimental database changes from contaminating production. Each environment should have its own configuration values, secrets, databases where appropriate, and access rules.</p>
+<p>Students should also understand configuration drift. If staging and production differ significantly, a release that succeeds in staging may fail in production. Infrastructure documentation and repeatable setup procedures help keep environments consistent.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Explain the role of each environment.</li>
+<li>Prevent test changes from affecting production.</li>
+<li>Control configuration and secrets per environment.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The staging website uses a staging database and test email service, while production uses real accounts, production API keys, and monitoring alerts.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-04-infrastructure-sizing-and-capacity-assumption">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-04.svg" alt="Infrastructure Sizing and Capacity Assumptions visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 04 â€¢ Deployment Planning</div>
+    <h2>Infrastructure Sizing and Capacity Assumptions</h2>
+    <p class="lesson-summary">Deployment planning must estimate the computing resources required to support expected workload.</p>
+
+    <p>Sizing considers CPU, memory, storage, network throughput, concurrent users, request rate, database growth, file uploads, background jobs, and peak usage. Initial estimates do not need to be perfect, but assumptions must be explicit and measurable.</p>
+<p>A team can create a basic capacity model by estimating active users, average requests per user, average response size, database transaction frequency, and data growth per month. The purpose is to avoid deploying a system with no idea whether the selected environment can support realistic use.</p>
+<p>Capacity planning also includes headroom. A production system should not operate at its maximum limit during normal conditions because updates, bursts of traffic, backups, and unexpected workloads require spare resources.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Estimate workload and storage growth.</li>
+<li>Document sizing assumptions.</li>
+<li>Provide reasonable operational headroom.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A system with 500 registered users may only have 50 concurrent users. The team sizes for concurrent workload rather than assuming all accounts are active at once.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-05-domain-dns-ssl-tls-and-secure-connectivity">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-05.svg" alt="Domain, DNS, SSL/TLS, and Secure Connectivity visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 05 â€¢ Deployment Planning</div>
+    <h2>Domain, DNS, SSL/TLS, and Secure Connectivity</h2>
+    <p class="lesson-summary">A production deployment needs reliable naming and encrypted communication.</p>
+
+    <p>A domain gives users a stable, human-readable address. DNS maps that domain to the service location. SSL/TLS protects data in transit by encrypting connections between clients and the server. HTTPS should be treated as a baseline requirement for login pages, personal data, administration portals, APIs, and modern web applications.</p>
+<p>Deployment teams should understand DNS records, certificate issuance, renewal, redirect behavior, and mixed-content problems. A valid certificate is not enough if some page resources still load over insecure HTTP.</p>
+<p>Secure connectivity also includes firewall rules, private database access, VPN requirements where appropriate, and avoiding unnecessary exposure of management interfaces.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Configure a stable application address.</li>
+<li>Enforce HTTPS and certificate renewal.</li>
+<li>Reduce unnecessary network exposure.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The public website is available on HTTPS, while the production database accepts connections only from the application server and is not exposed directly to the internet.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-06-configuration-management-and-secret-handling">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-06.svg" alt="Configuration Management and Secret Handling visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 06 â€¢ Deployment Planning</div>
+    <h2>Configuration Management and Secret Handling</h2>
+    <p class="lesson-summary">Production configuration should be separated from source code and handled as controlled operational data.</p>
+
+    <p>Applications usually require database URLs, API keys, email credentials, storage tokens, encryption keys, and environment-specific settings. Hard-coding these values into public source code creates security and maintenance problems.</p>
+<p>Environment variables, secret managers, protected configuration files, and deployment-platform settings are common approaches. Teams should define which configuration values are required, who may change them, and how changes are audited or documented.</p>
+<p>A capstone team should also provide safe defaults and clear startup validation. If a required secret is missing, the application should fail clearly rather than silently running in an insecure or broken state.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Separate secrets from source code.</li>
+<li>Document required configuration variables.</li>
+<li>Control who can change production configuration.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The source repository contains `DB_HOST` and `DB_NAME` placeholders, but the actual production password is stored only in the hosting platform&#x27;s protected environment settings.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-07-database-deployment-and-data-initialization">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-07.svg" alt="Database Deployment and Data Initialization visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 07 â€¢ Deployment Planning</div>
+    <h2>Database Deployment and Data Initialization</h2>
+    <p class="lesson-summary">The application and its database must be deployed as a coordinated release.</p>
+
+    <p>Database deployment includes schema creation, indexes, constraints, reference data, default roles, administrative accounts, migration scripts, and permissions. Database changes can be more difficult to reverse than code changes because production data must be preserved.</p>
+<p>Teams should avoid manually editing production tables without a record of what changed. Versioned migration scripts provide a repeatable sequence for moving the schema from one known version to another.</p>
+<p>Initialization should also be minimal and secure. Default passwords must be changed, test accounts should be removed, and production data should not be mixed with demonstration data unless clearly separated.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Deploy schema changes repeatably.</li>
+<li>Preserve production data integrity.</li>
+<li>Remove unsafe test or default data.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Version 1 creates users and records tables; version 2 adds audit fields; version 3 creates indexes. Each change is represented by a migration that can be tracked.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-08-deployment-automation-and-ci-cd-concepts">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-08.svg" alt="Deployment Automation and CI/CD Concepts visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 08 â€¢ Deployment Planning</div>
+    <h2>Deployment Automation and CI/CD Concepts</h2>
+    <p class="lesson-summary">Automation reduces repetitive manual steps and makes releases more consistent.</p>
+
+    <p>Continuous Integration automatically builds and tests code changes. Continuous Delivery prepares verified releases so they can be deployed reliably, while Continuous Deployment may automatically release changes after passing defined controls. A capstone project does not need an enterprise-grade pipeline, but students should understand the principles.</p>
+<p>A simple pipeline may install dependencies, run tests, build assets, check formatting, package the application, and deploy to a staging environment. Automated steps create evidence and reduce the chance that a deployment succeeds only because one developer remembers a special manual procedure.</p>
+<p>Automation must still include controls. A failed test, missing secret, or migration error should stop the release instead of being ignored.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Describe CI/CD stages.</li>
+<li>Automate repeatable release tasks.</li>
+<li>Use gates to prevent defective releases.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Every push to the main branch runs automated tests. A tagged release deploys to staging, and production deployment occurs only after approval.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-09-release-strategy-big-bang-phased-pilot-blue-g">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-09.svg" alt="Release Strategy: Big Bang, Phased, Pilot, Blue-Green, and Canary visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 09 â€¢ Deployment Planning</div>
+    <h2>Release Strategy: Big Bang, Phased, Pilot, Blue-Green, and Canary</h2>
+    <p class="lesson-summary">The release strategy determines how quickly users are moved to the new system and how failure risk is contained.</p>
+
+    <p>A big-bang release moves all users at once and is simple but risky. A phased release introduces the system by department, location, feature, or user group. A pilot release starts with a small representative group to identify operational issues before full rollout.</p>
+<p>Blue-green deployment maintains two production-like environments so traffic can switch between versions. Canary deployment exposes a new version to a small portion of users first. These strategies are more common in mature operations but illustrate an important principle: limit the blast radius of change.</p>
+<p>Capstone teams should choose a strategy based on system criticality, user count, reversibility, training needs, and infrastructure capabilities.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Compare release strategies.</li>
+<li>Choose a rollout approach based on risk.</li>
+<li>Limit the impact of deployment failure.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A new records system is piloted with one office for two weeks before all offices are migrated.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-10-backup-restore-and-rollback-planning">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-10.svg" alt="Backup, Restore, and Rollback Planning visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 10 â€¢ Deployment Planning</div>
+    <h2>Backup, Restore, and Rollback Planning</h2>
+    <p class="lesson-summary">A release plan is incomplete without a credible method for recovering from failure.</p>
+
+    <p>Backups protect data, while rollback restores the previous application state after a defective release. These are related but not identical. Restoring code may be fast, but rolling back a database migration can be difficult if the new version has already modified real data.</p>
+<p>Teams should define backup frequency, retention, storage location, encryption, restore testing, and recovery responsibilities. A backup that has never been restored in a test should not be assumed to be reliable.</p>
+<p>A rollback plan should state the trigger conditions, steps, responsible person, expected impact, and how data created during the failed release will be handled.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Differentiate backup, restore, and rollback.</li>
+<li>Define recovery procedures before launch.</li>
+<li>Test whether backups can actually be restored.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: Before a major schema migration, the team takes a verified database backup, records the current application version, and prepares the previous release package for rapid restoration.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-11-monitoring-logging-and-health-checks">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-11.svg" alt="Monitoring, Logging, and Health Checks visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 11 â€¢ Deployment Planning</div>
+    <h2>Monitoring, Logging, and Health Checks</h2>
+    <p class="lesson-summary">After deployment, the team needs visibility into whether the system is healthy.</p>
+
+    <p>Monitoring tracks metrics such as uptime, response time, CPU, memory, disk usage, database connections, error rate, and request volume. Logging records events that help explain what happened. Health checks provide a quick machine-readable indication of whether important components are functioning.</p>
+<p>Good observability allows the team to detect problems before users repeatedly report them. Logs should include useful context without exposing passwords, tokens, or sensitive personal information.</p>
+<p>For a capstone, a modest monitoring plan is sufficient if it clearly identifies what will be measured, acceptable thresholds, and the response when thresholds are exceeded.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Identify meaningful operational metrics.</li>
+<li>Use logs for diagnosis and accountability.</li>
+<li>Define health indicators and alert thresholds.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The application reports `/health` as healthy only when the web service can connect to the database. Repeated 500 errors trigger investigation.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-12-security-hardening-before-go-live">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-12.svg" alt="Security Hardening Before Go-Live visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 12 â€¢ Deployment Planning</div>
+    <h2>Security Hardening Before Go-Live</h2>
+    <p class="lesson-summary">Deployment is the point where development assumptions must be converted into production security controls.</p>
+
+    <p>Before go-live, debug mode should be disabled, unnecessary ports closed, dependencies updated, default credentials removed, privileged accounts reviewed, input validation confirmed, session settings hardened, and backups protected.</p>
+<p>Production permissions should follow least privilege. The web application account should not automatically have full administrative privileges on the operating system or database. Administrative routes should be protected separately from ordinary user functions.</p>
+<p>Security review should also consider privacy. Production logs, backups, analytics, and exports may contain personal data and therefore require controlled access and retention.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Apply least privilege.</li>
+<li>Remove development-only exposure.</li>
+<li>Review data protection before production use.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: A production PHP application disables display_errors, writes errors to protected logs, uses HTTPS-only cookies, and connects with a database account limited to required operations.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-13-user-onboarding-training-and-change-communica">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-13.svg" alt="User Onboarding, Training, and Change Communication visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 13 â€¢ Deployment Planning</div>
+    <h2>User Onboarding, Training, and Change Communication</h2>
+    <p class="lesson-summary">Successful deployment depends on people understanding how and why the new system should be used.</p>
+
+    <p>Users need more than an announcement that a system is live. They may need account activation, orientation, quick-start instructions, workflow changes, role-specific training, contact details for support, and clear expectations about old processes.</p>
+<p>Training should focus on tasks users actually perform. Administrators may need configuration and reporting training, while ordinary users may need only login, submission, search, and status-tracking procedures.</p>
+<p>Change communication should be timed around the rollout and should explain what is changing, when it changes, what users must do, and where they can report issues.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Plan role-based training.</li>
+<li>Communicate rollout changes clearly.</li>
+<li>Provide usable support information.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: One week before launch, users receive a quick-start guide; on launch day, the team conducts a demonstration and provides a support channel for first-week issues.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-14-go-live-checklist-and-deployment-day-control">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-14.svg" alt="Go-Live Checklist and Deployment Day Control visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 14 â€¢ Deployment Planning</div>
+    <h2>Go-Live Checklist and Deployment Day Control</h2>
+    <p class="lesson-summary">The go-live checklist coordinates the final sequence of technical and organizational actions.</p>
+
+    <p>A deployment-day checklist may include maintenance notification, final backup, release package verification, configuration review, migration execution, service restart, smoke testing, DNS change, monitoring activation, stakeholder confirmation, and rollback decision points.</p>
+<p>Ownership matters. Every major task should have a responsible person and a completion status. This reduces confusion when multiple team members are working during a high-pressure release window.</p>
+<p>Smoke tests should verify critical paths immediately after deployment: authentication, database access, core transactions, file handling, notifications, and administrative access.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Coordinate deployment activities.</li>
+<li>Assign clear task ownership.</li>
+<li>Verify critical functions immediately after release.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: After deployment, the team tests login, creates one controlled transaction, checks the database record, verifies email delivery, and confirms monitoring before declaring the release complete.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="lesson-15-post-deployment-review-and-continuous-improve">
+  <figure class="lesson-visual">
+    <img class="auto-topic-image" src="../images/capstone/deployment-15.svg" alt="Post-Deployment Review and Continuous Improvement visual" loading="lazy" width="1280" height="720">
+  </figure>
+
+  <div class="lesson-body">
+    <div class="lesson-number">Lesson 15 â€¢ Deployment Planning</div>
+    <h2>Post-Deployment Review and Continuous Improvement</h2>
+    <p class="lesson-summary">Deployment ends the release event, but it begins the operational learning cycle.</p>
+
+    <p>A post-deployment review examines what happened during launch, which incidents occurred, what users reported, whether performance matched expectations, and whether the deployment process should change. The goal is learning rather than blame.</p>
+<p>Teams should compare actual outcomes with the deployment plan. If deployment required undocumented manual fixes, those steps should be documented or automated. If users struggled with a feature, the interface or training material may need improvement.</p>
+<p>Capstone teams can use the review to demonstrate professional maturity by documenting lessons learned, unresolved operational risks, maintenance priorities, and recommended next actions.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Learning targets</h3>
+        <ul>
+          <li>Measure deployment outcomes.</li>
+<li>Document lessons learned.</li>
+<li>Convert operational feedback into improvements.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Why this matters in a capstone</h3>
+        <p>This lesson helps the team connect implementation decisions to deployment evidence, technical documentation, operational readiness, and questions that may be raised during evaluation or defense.</p>
+      </div>
+    </div>
+
+    <div class="example"><strong>Applied example:</strong> Example: The team discovers that file uploads are slower than expected during peak hours, so the review recommends compression, upload limits, and capacity testing before the next release.</div>
+
+    <div class="lesson-footer">
+      <span>Review prompt: How would you apply this concept to your own capstone system?</span>
+      <a class="back-top" href="#top">Back to top â†‘</a>
+    </div>
+  </div>
+</section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <strong>Capstone Enterprise Lecture Series</strong><br>
+  Deployment Planning â€¢ Migration & Integration â€¢ Technical Documentation â€¢ Project Defense
+</footer>
+
+<script>
+(() => {
+  const menuButton = document.querySelector('.menu-btn');
+  const topLinks = document.querySelector('#topLinks');
+
+  menuButton?.addEventListener('click', () => {
+    const open = topLinks.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+
+  topLinks?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      topLinks.classList.remove('open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Lesson diagrams are local, deterministic assets that match each topic.
+
+  // Highlight the current lesson in the sidebar.
+  const lessonLinks = [...document.querySelectorAll('.lesson-nav a')];
+  const sections = [...document.querySelectorAll('.lesson')];
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (!visible) return;
+    lessonLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + visible.target.id);
+    });
+  }, { rootMargin: '-15% 0px -65% 0px', threshold: [0.05, 0.2, 0.5] });
+
+  sections.forEach(section => observer.observe(section));
+})();
+</script>
+</body>
+</html>

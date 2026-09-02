@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 03 &mdash; Windows Installation &amp; Disk Partitioning | Cloud &amp; Containers</title>
+<meta name="description" content="A formal lecture on Windows installation and disk partitioning, prepared for the Cloud and Containers module: firmware, MBR versus GPT, partition planning, guided installation, post-installation configuration, and preparing the host for Hyper-V, WSL 2 and Docker.">
+
+<!-- Browser tab logo -->
+<link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+<link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+<link rel="stylesheet" href="../css/Windows & Linux/windows.css">
+</head>
+<body>
+
+<!-- Off-canvas control for the sidebar (CSS only, no scripting) -->
+<input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+
+<header class="topbar">
+  <label for="nav-toggle" class="nav-btn" title="Show or hide the lesson outline">
+    <span></span><span></span><span></span>
+  </label>
+  <span class="topbar-title">Windows Installation &amp; Disk Partitioning</span>
+  <span class="topbar-code">CLOUD&amp;CONT&nbsp;&middot;&nbsp;L03</span>
+  <span class="topbar-spacer"></span>
+  <a href="../index.html" class="home-link">Home</a>
+</header>
+
+<div class="layout">
+
+  <!-- =====================  SIDEBAR  ===================== -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <p class="eyebrow">Module 1 &middot; Lesson 03</p>
+      <h2>Windows Install &amp; Partitioning</h2>
+    </div>
+
+    <p class="toc-label">Lesson outline</p>
+    <nav>
+      <ul class="toc">
+        <li><a href="#overview"><span class="num">00</span>Lesson Overview</a></li>
+        <li><a href="#objectives"><span class="num">01</span>Learning Outcomes</a></li>
+        <li><a href="#why"><span class="num">02</span>Why This Matters in Cloud</a></li>
+        <li><a href="#firmware"><span class="num">03</span>Firmware: BIOS vs UEFI</a></li>
+        <li><a href="#storage"><span class="num">04</span>Storage Devices &amp; Interfaces</a></li>
+        <li><a href="#schemes"><span class="num">05</span>MBR vs GPT Partition Schemes</a></li>
+        <li><a href="#anatomy"><span class="num">06</span>Anatomy of a Windows Disk</a></li>
+        <li><a href="#filesystems"><span class="num">07</span>File Systems &amp; Formatting</a></li>
+        <li><a href="#planning"><span class="num">08</span>Partition Planning</a></li>
+        <li><a href="#prepare"><span class="num">09</span>Pre-Installation Checklist</a></li>
+        <li><a href="#media"><span class="num">10</span>Creating Bootable Media</a></li>
+        <li><a href="#bootorder"><span class="num">11</span>Firmware Setup &amp; Boot Order</a></li>
+        <li><a href="#install"><span class="num">12</span>Guided Installation Walk-through</a></li>
+        <li><a href="#custom"><span class="num">13</span>Custom Partitioning in Setup</a></li>
+        <li><a href="#diskpart"><span class="num">14</span>Advanced: DiskPart Method</a></li>
+        <li><a href="#post"><span class="num">15</span>Post-Installation Configuration</a></li>
+        <li><a href="#diskmgmt"><span class="num">16</span>Managing Disks After Install</a></li>
+        <li><a href="#virtualization"><span class="num">17</span>Preparing for Virtualization</a></li>
+        <li><a href="#containers"><span class="num">18</span>Partitioning for Containers</a></li>
+        <li><a href="#dualboot"><span class="num">19</span>Dual-Boot Lab Design</a></li>
+        <li><a href="#troubleshooting"><span class="num">20</span>Troubleshooting Guide</a></li>
+        <li><a href="#commands"><span class="num">21</span>Command Reference</a></li>
+        <li><a href="#lab"><span class="num">22</span>Laboratory Activity</a></li>
+        <li><a href="#assessment"><span class="num">23</span>Assessment Questions</a></li>
+        <li><a href="#glossary"><span class="num">24</span>Glossary</a></li>
+      </ul>
+    </nav>
+
+    <p class="sidebar-note">
+      <strong>Delivery note.</strong> Sections 03&ndash;08 form the theory block; sections 09&ndash;16 are the
+      demonstration block; sections 17&ndash;19 connect the lesson to the containers unit.
+    </p>
+  </aside>
+
+  <label for="nav-toggle" class="scrim" aria-hidden="true"></label>
+
+  <!-- =====================  CONTENT  ===================== -->
+  <main class="content">
+  <div class="content-inner">
+
+    <!-- HERO -->
+    <div class="hero">
+      <p class="eyebrow">Cloud &amp; Containers &middot; Module 1 &middot; Lesson 03</p>
+      <h1>Windows Installation and Disk Partitioning</h1>
+      <p>
+        Every container host, hypervisor and cloud workstation begins with a correctly installed
+        operating system on a correctly planned disk. This lecture examines the firmware, the
+        partition table, the file system and the installation procedure that together produce a
+        stable Windows host&mdash;one that is ready to run Hyper-V, WSL 2 and Docker.
+      </p>
+      <div class="hero-meta">
+        <span>Duration: 3 hours</span>
+        <span>Theory + Hands-on Laboratory</span>
+        <span>Prerequisite: Lesson 02 &mdash; Computer Hardware</span>
+      </div>
+    </div>
+
+    <!-- 00 OVERVIEW -->
+    <section class="lesson" id="overview">
+      <span class="sec-num">SECTION 00</span>
+      <h2>Lesson Overview</h2>
+
+      <p class="lead">
+        Installation is not a single click. It is a sequence of decisions&mdash;firmware mode,
+        partition scheme, partition sizes, file system&mdash;each of which constrains what the
+        machine can do for the remainder of its service life.
+      </p>
+
+      <p>
+        A student who installs Windows without understanding these decisions may still arrive at a
+        working desktop, but the result is fragile. A disk initialised in the wrong scheme cannot
+        boot in the wrong firmware mode. A system partition sized without foresight will refuse a
+        feature update two years later. A host without virtualization enabled in firmware cannot
+        run a single container. This lesson therefore treats installation as an engineering task
+        with defined inputs, defined outputs and verifiable results.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 210" role="img" aria-label="Five-stage lesson map from planning to container readiness">
+          <defs>
+            <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#0b6fb8"/>
+            </marker>
+          </defs>
+          <rect x="0" y="0" width="960" height="210" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <g>
+              <rect x="14" y="52" width="164" height="104" rx="10" fill="#0f2440"/>
+              <text x="96" y="86" fill="#8fb6da" font-size="12" text-anchor="middle">STAGE 1</text>
+              <text x="96" y="112" fill="#ffffff" font-size="16" font-weight="600" text-anchor="middle">Plan</text>
+              <text x="96" y="134" fill="#cfe0f0" font-size="12" text-anchor="middle">Disk &amp; firmware</text>
+            </g>
+            <line x1="182" y1="104" x2="212" y2="104" stroke="#0b6fb8" stroke-width="3" marker-end="url(#ar)"/>
+            <g>
+              <rect x="216" y="52" width="164" height="104" rx="10" fill="#16345c"/>
+              <text x="298" y="86" fill="#8fb6da" font-size="12" text-anchor="middle">STAGE 2</text>
+              <text x="298" y="112" fill="#ffffff" font-size="16" font-weight="600" text-anchor="middle">Prepare</text>
+              <text x="298" y="134" fill="#cfe0f0" font-size="12" text-anchor="middle">Media &amp; backup</text>
+            </g>
+            <line x1="384" y1="104" x2="414" y2="104" stroke="#0b6fb8" stroke-width="3" marker-end="url(#ar)"/>
+            <g>
+              <rect x="418" y="52" width="164" height="104" rx="10" fill="#0b6fb8"/>
+              <text x="500" y="86" fill="#cfe8fb" font-size="12" text-anchor="middle">STAGE 3</text>
+              <text x="500" y="112" fill="#ffffff" font-size="16" font-weight="600" text-anchor="middle">Partition</text>
+              <text x="500" y="134" fill="#e4f1fb" font-size="12" text-anchor="middle">GPT layout</text>
+            </g>
+            <line x1="586" y1="104" x2="616" y2="104" stroke="#0b6fb8" stroke-width="3" marker-end="url(#ar)"/>
+            <g>
+              <rect x="620" y="52" width="164" height="104" rx="10" fill="#1d7a4d"/>
+              <text x="702" y="86" fill="#c7ecd8" font-size="12" text-anchor="middle">STAGE 4</text>
+              <text x="702" y="112" fill="#ffffff" font-size="16" font-weight="600" text-anchor="middle">Install</text>
+              <text x="702" y="134" fill="#dcf3e7" font-size="12" text-anchor="middle">Deploy image</text>
+            </g>
+            <line x1="788" y1="104" x2="812" y2="104" stroke="#0b6fb8" stroke-width="3" marker-end="url(#ar)"/>
+            <g>
+              <rect x="816" y="52" width="132" height="104" rx="10" fill="#b8791b"/>
+              <text x="882" y="86" fill="#f7e3c2" font-size="12" text-anchor="middle">STAGE 5</text>
+              <text x="882" y="112" fill="#ffffff" font-size="16" font-weight="600" text-anchor="middle">Enable</text>
+              <text x="882" y="134" fill="#fbeed8" font-size="12" text-anchor="middle">WSL 2 / Docker</text>
+            </g>
+            <text x="480" y="30" fill="#16202e" font-size="15" font-weight="600" text-anchor="middle">The five stages of building a container-ready Windows host</text>
+            <text x="480" y="188" fill="#5b6b80" font-size="12.5" text-anchor="middle">A failure at any earlier stage is inherited by every stage that follows it.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 0.1</b> &mdash; The lesson roadmap. Each section of this page belongs to one of the five stages shown above.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 01 OBJECTIVES -->
+    <section class="lesson" id="objectives">
+      <span class="sec-num">SECTION 01</span>
+      <h2>Learning Outcomes</h2>
+      <p>Upon completion of this lesson, the student will be able to:</p>
+      <ul class="objectives">
+        <li>Differentiate legacy BIOS from UEFI firmware and explain the boot sequence of each.</li>
+        <li>Compare the MBR and GPT partitioning schemes and justify the selection of GPT for modern installations.</li>
+        <li>Identify the four standard partitions created by Windows Setup on a UEFI system and state the purpose of each.</li>
+        <li>Prepare bootable installation media and configure firmware boot order and Secure Boot correctly.</li>
+        <li>Perform a clean installation of Windows using both the guided interface and the DiskPart command-line method.</li>
+        <li>Design a partition layout appropriate to a workstation that will host virtual machines and containers.</li>
+        <li>Verify that the completed installation uses UEFI, GPT and hardware virtualization.</li>
+        <li>Diagnose and resolve the common installation failures listed in the troubleshooting guide.</li>
+      </ul>
+    </section>
+
+    <!-- 02 WHY -->
+    <section class="lesson" id="why">
+      <span class="sec-num">SECTION 02</span>
+      <h2>Why This Matters in a Cloud and Containers Course</h2>
+
+      <p>
+        It is reasonable for a student to ask why a course concerned with cloud platforms and
+        containers devotes a full session to installing a desktop operating system. The answer is
+        that the abstractions studied later in the course rest directly on the decisions made here.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h4>Containers share the host kernel</h4>
+          <p>
+            A container is not a virtual machine. It is an isolated process served by the host
+            kernel. The health, configuration and storage layout of that host determine the
+            behaviour of every container running on it.
+          </p>
+        </div>
+        <div class="card">
+          <h4>WSL 2 and Hyper-V require firmware support</h4>
+          <p>
+            Docker Desktop on Windows relies on a lightweight virtual machine. Without
+            Intel&nbsp;VT-x or AMD-V enabled in firmware, the engine will not start&mdash;a
+            failure that originates before the operating system loads.
+          </p>
+        </div>
+        <div class="card">
+          <h4>Images consume real disk</h4>
+          <p>
+            Container images, build caches and volumes accumulate quickly. A laboratory machine
+            partitioned with a small system volume will exhaust its free space within weeks of
+            regular use.
+          </p>
+        </div>
+        <div class="card">
+          <h4>Cloud provisioning mirrors this process</h4>
+          <p>
+            Choosing an image, sizing a disk, selecting a boot mode and attaching storage is exactly
+            what an engineer does when provisioning a virtual machine on any cloud platform. The
+            vocabulary is identical.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <span class="tag">Concept anchor</span>
+        <p>
+          Treat the physical machine in front of you as your first server. Every choice you make
+          during installation is the same class of choice you will later make through a cloud
+          console or an infrastructure-as-code template.
+        </p>
+      </div>
+    </section>
+
+    <!-- 03 FIRMWARE -->
+    <section class="lesson" id="firmware">
+      <span class="sec-num">SECTION 03</span>
+      <h2>Firmware: Legacy BIOS versus UEFI</h2>
+
+      <p>
+        Firmware is the software stored on the motherboard that runs before any operating system
+        exists. Its responsibilities are to test the hardware, initialise devices and locate a boot
+        loader. Two generations of firmware are in service today, and the difference between them
+        governs how the disk must be partitioned.
+      </p>
+
+      <h3>Legacy BIOS</h3>
+      <p>
+        The Basic Input/Output System dates from the earliest personal computers. After
+        power-on self-test, it reads the first 512-byte sector of the selected disk&mdash;the Master
+        Boot Record&mdash;and executes the small program stored there. BIOS operates in 16-bit real
+        mode, addresses disks through the MBR scheme, and therefore cannot boot from a volume
+        larger than approximately 2&nbsp;TB.
+      </p>
+
+      <h3>UEFI</h3>
+      <p>
+        The Unified Extensible Firmware Interface replaces that model. UEFI understands file
+        systems directly: it reads a FAT32 partition called the <strong>EFI System
+        Partition</strong> and executes a boot loader file stored inside it, typically
+        <code>\EFI\Microsoft\Boot\bootmgfw.efi</code>. Because UEFI pairs with the GPT scheme, it
+        supports very large disks, faster start-up, and the cryptographic verification known as
+        <strong>Secure Boot</strong>.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 400" role="img" aria-label="Side by side comparison of the BIOS boot chain and the UEFI boot chain">
+          <rect x="0" y="0" width="960" height="400" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="240" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#b3261e">Legacy BIOS boot chain</text>
+            <text x="720" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#1d7a4d">UEFI boot chain</text>
+            <line x1="480" y1="14" x2="480" y2="386" stroke="#d8e0ea" stroke-width="2" stroke-dasharray="6 6"/>
+
+            <!-- BIOS chain -->
+            <rect x="80" y="50" width="320" height="46" rx="8" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="240" y="79" text-anchor="middle" font-size="14" fill="#16202e">Power on &rarr; POST (hardware test)</text>
+            <path d="M240,96 L240,116" stroke="#b3261e" stroke-width="3"/><path d="M234,114 L240,124 L246,114 Z" fill="#b3261e"/>
+
+            <rect x="80" y="126" width="320" height="46" rx="8" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="240" y="155" text-anchor="middle" font-size="14" fill="#16202e">Read MBR &mdash; first 512-byte sector</text>
+            <path d="M240,172 L240,192" stroke="#b3261e" stroke-width="3"/><path d="M234,190 L240,200 L246,190 Z" fill="#b3261e"/>
+
+            <rect x="80" y="202" width="320" height="46" rx="8" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="240" y="231" text-anchor="middle" font-size="14" fill="#16202e">Execute boot code in the MBR</text>
+            <path d="M240,248 L240,268" stroke="#b3261e" stroke-width="3"/><path d="M234,266 L240,276 L246,266 Z" fill="#b3261e"/>
+
+            <rect x="80" y="278" width="320" height="46" rx="8" fill="#fdeceb" stroke="#b3261e"/>
+            <text x="240" y="307" text-anchor="middle" font-size="14" fill="#b3261e" font-weight="600">Load Windows Boot Manager</text>
+
+            <text x="240" y="352" text-anchor="middle" font-size="12.5" fill="#5b6b80">Max ~2 TB boot disk &middot; 4 primary partitions</text>
+            <text x="240" y="372" text-anchor="middle" font-size="12.5" fill="#5b6b80">No Secure Boot &middot; 16-bit real mode</text>
+
+            <!-- UEFI chain -->
+            <rect x="560" y="50" width="320" height="46" rx="8" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="720" y="79" text-anchor="middle" font-size="14" fill="#16202e">Power on &rarr; UEFI initialisation</text>
+            <path d="M720,96 L720,116" stroke="#1d7a4d" stroke-width="3"/><path d="M714,114 L720,124 L726,114 Z" fill="#1d7a4d"/>
+
+            <rect x="560" y="126" width="320" height="46" rx="8" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="720" y="155" text-anchor="middle" font-size="14" fill="#16202e">Read GPT &rarr; locate EFI System Partition</text>
+            <path d="M720,172 L720,192" stroke="#1d7a4d" stroke-width="3"/><path d="M714,190 L720,200 L726,190 Z" fill="#1d7a4d"/>
+
+            <rect x="560" y="202" width="320" height="46" rx="8" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="720" y="224" text-anchor="middle" font-size="14" fill="#16202e">Verify signature (Secure Boot)</text>
+            <text x="720" y="241" text-anchor="middle" font-size="12" fill="#5b6b80">bootmgfw.efi must be trusted</text>
+            <path d="M720,248 L720,268" stroke="#1d7a4d" stroke-width="3"/><path d="M714,266 L720,276 L726,266 Z" fill="#1d7a4d"/>
+
+            <rect x="560" y="278" width="320" height="46" rx="8" fill="#e7f5ee" stroke="#1d7a4d"/>
+            <text x="720" y="307" text-anchor="middle" font-size="14" fill="#1d7a4d" font-weight="600">Load Windows Boot Manager</text>
+
+            <text x="720" y="352" text-anchor="middle" font-size="12.5" fill="#5b6b80">Up to 9.4 ZB &middot; 128 partitions</text>
+            <text x="720" y="372" text-anchor="middle" font-size="12.5" fill="#5b6b80">Secure Boot &middot; faster start-up &middot; 64-bit</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 3.1</b> &mdash; Both chains end at the same boot manager, but they reach it by different means. The firmware mode selected at install time must match the partition scheme on the disk.</figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 3.1 &mdash; Comparison of firmware interfaces</caption>
+          <thead>
+            <tr><th>Characteristic</th><th>Legacy BIOS</th><th>UEFI</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Required partition scheme</td><td>MBR</td><td>GPT</td></tr>
+            <tr><td>Maximum bootable disk</td><td>Approximately 2&nbsp;TB</td><td>9.4&nbsp;ZB (theoretical)</td></tr>
+            <tr><td>Partition limit</td><td>4 primary, or 3 + extended</td><td>128 in the Windows implementation</td></tr>
+            <tr><td>Boot loader location</td><td>Sector 0 of the disk</td><td>File inside the EFI System Partition</td></tr>
+            <tr><td>Secure Boot</td><td>Not available</td><td>Supported</td></tr>
+            <tr><td>Interface</td><td>Text, keyboard only</td><td>Graphical, mouse supported</td></tr>
+            <tr><td>Windows 11 support</td><td>Not supported</td><td>Required</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <span class="tag">Critical rule</span>
+        <p>
+          The firmware mode used to boot the installation media determines the partition scheme
+          Windows will create. If the USB drive is started in legacy mode, Setup builds an MBR disk;
+          if started in UEFI mode, Setup builds a GPT disk. This single detail is the origin of the
+          most common installation error you will encounter in the laboratory.
+        </p>
+      </div>
+    </section>
+
+    <!-- 04 STORAGE -->
+    <section class="lesson" id="storage">
+      <span class="sec-num">SECTION 04</span>
+      <h2>Storage Devices and Interfaces</h2>
+
+      <p>
+        Before partitioning a disk, the technician must know what kind of disk it is. Three device
+        classes are commonly encountered, and they differ by an order of magnitude in performance.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 300" role="img" aria-label="Diagram comparing hard disk drive, SATA solid state drive and NVMe solid state drive">
+          <rect x="0" y="0" width="960" height="300" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <!-- HDD -->
+            <rect x="40" y="40" width="256" height="200" rx="12" fill="#ffffff" stroke="#d8e0ea" stroke-width="2"/>
+            <rect x="40" y="40" width="256" height="8" rx="4" fill="#b3261e"/>
+            <circle cx="168" cy="118" r="44" fill="#eef3f9" stroke="#8aa0ba" stroke-width="2"/>
+            <circle cx="168" cy="118" r="10" fill="#8aa0ba"/>
+            <line x1="205" y1="80" x2="172" y2="112" stroke="#5b6b80" stroke-width="4" stroke-linecap="round"/>
+            <text x="168" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#16202e">HDD &mdash; Hard Disk Drive</text>
+            <text x="168" y="210" text-anchor="middle" font-size="13" fill="#5b6b80">Spinning platters &middot; SATA</text>
+            <text x="168" y="230" text-anchor="middle" font-size="13" fill="#b3261e">80&ndash;160 MB/s</text>
+
+            <!-- SATA SSD -->
+            <rect x="352" y="40" width="256" height="200" rx="12" fill="#ffffff" stroke="#d8e0ea" stroke-width="2"/>
+            <rect x="352" y="40" width="256" height="8" rx="4" fill="#b8791b"/>
+            <rect x="410" y="82" width="140" height="72" rx="6" fill="#eef3f9" stroke="#8aa0ba" stroke-width="2"/>
+            <rect x="424" y="96" width="46" height="20" rx="3" fill="#8aa0ba"/>
+            <rect x="486" y="96" width="46" height="20" rx="3" fill="#8aa0ba"/>
+            <rect x="424" y="124" width="46" height="20" rx="3" fill="#8aa0ba"/>
+            <rect x="486" y="124" width="46" height="20" rx="3" fill="#8aa0ba"/>
+            <text x="480" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#16202e">SATA SSD</text>
+            <text x="480" y="210" text-anchor="middle" font-size="13" fill="#5b6b80">Flash memory &middot; SATA III</text>
+            <text x="480" y="230" text-anchor="middle" font-size="13" fill="#b8791b">Up to 550 MB/s</text>
+
+            <!-- NVMe -->
+            <rect x="664" y="40" width="256" height="200" rx="12" fill="#ffffff" stroke="#1d7a4d" stroke-width="2"/>
+            <rect x="664" y="40" width="256" height="8" rx="4" fill="#1d7a4d"/>
+            <rect x="700" y="98" width="184" height="42" rx="5" fill="#e7f5ee" stroke="#1d7a4d" stroke-width="2"/>
+            <rect x="716" y="110" width="40" height="18" rx="3" fill="#1d7a4d"/>
+            <rect x="764" y="110" width="40" height="18" rx="3" fill="#1d7a4d"/>
+            <rect x="812" y="110" width="40" height="18" rx="3" fill="#1d7a4d"/>
+            <path d="M700 140 l0 12 l24 0" stroke="#1d7a4d" stroke-width="3" fill="none"/>
+            <text x="792" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#16202e">NVMe SSD (M.2)</text>
+            <text x="792" y="210" text-anchor="middle" font-size="13" fill="#5b6b80">Flash memory &middot; PCI Express</text>
+            <text x="792" y="230" text-anchor="middle" font-size="13" fill="#1d7a4d">2,000&ndash;7,000 MB/s</text>
+
+            <text x="480" y="278" text-anchor="middle" font-size="13" fill="#5b6b80">Recommended for container laboratories: NVMe, because image layers are written and read in many small operations.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 4.1</b> &mdash; Relative sequential throughput of the three common device classes. Container image pulls and builds are strongly affected by random-access performance, where the gap is wider still.</figcaption>
+      </figure>
+
+      <h3>Terminology the student must use precisely</h3>
+      <ul>
+        <li><strong>Physical disk</strong> &mdash; the hardware device itself, listed by Windows as Disk 0, Disk 1 and so on.</li>
+        <li><strong>Partition</strong> &mdash; a defined region of a physical disk, described by an entry in the partition table.</li>
+        <li><strong>Volume</strong> &mdash; a formatted partition that carries a file system and, usually, a drive letter.</li>
+        <li><strong>Drive letter</strong> &mdash; a label such as <code>C:</code> assigned by Windows; it is not a property of the hardware.</li>
+      </ul>
+
+      <div class="callout tip">
+        <span class="tag">Teaching point</span>
+        <p>
+          Students frequently say &ldquo;the C drive&rdquo; when they mean the physical disk. Insist on
+          the correct term during the laboratory: a single physical disk can carry several volumes,
+          and a single volume can, in advanced configurations, span several physical disks.
+        </p>
+      </div>
+    </section>
+
+    <!-- 05 SCHEMES -->
+    <section class="lesson" id="schemes">
+      <span class="sec-num">SECTION 05</span>
+      <h2>Partition Schemes: MBR and GPT</h2>
+
+      <p>
+        A partition scheme is the on-disk data structure that records where each partition begins
+        and ends. Windows supports two. The choice is made when the disk is initialised and cannot
+        be changed later without either converting the disk or erasing it.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 430" role="img" aria-label="Structural diagram of an MBR disk compared with a GPT disk">
+          <rect x="0" y="0" width="960" height="430" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="20" y="30" font-size="16" font-weight="700" fill="#b3261e">MBR &mdash; Master Boot Record</text>
+            <rect x="20" y="46" width="920" height="60" rx="6" fill="#fdeceb" stroke="#b3261e" stroke-width="1.5"/>
+            <text x="34" y="72" font-size="13" font-weight="700" fill="#b3261e">Sector 0</text>
+            <text x="34" y="92" font-size="12.5" fill="#7a2b26">Boot code (446 B) + partition table (64 B) + signature (2 B) = 512 bytes</text>
+            <rect x="20" y="112" width="228" height="52" rx="6" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="134" y="143" font-size="13" text-anchor="middle" fill="#16202e">Primary partition 1</text>
+            <rect x="256" y="112" width="228" height="52" rx="6" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="370" y="143" font-size="13" text-anchor="middle" fill="#16202e">Primary partition 2</text>
+            <rect x="492" y="112" width="228" height="52" rx="6" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="606" y="143" font-size="13" text-anchor="middle" fill="#16202e">Primary partition 3</text>
+            <rect x="728" y="112" width="212" height="52" rx="6" fill="#f1f4f8" stroke="#8aa0ba" stroke-dasharray="4 3"/>
+            <text x="834" y="136" font-size="13" text-anchor="middle" fill="#5b6b80">Extended partition</text>
+            <text x="834" y="154" font-size="11.5" text-anchor="middle" fill="#5b6b80">holds logical drives</text>
+            <text x="20" y="188" font-size="12.5" fill="#5b6b80">One copy of the partition table only. If sector 0 is damaged, every partition becomes unreachable.</text>
+
+            <line x1="20" y1="208" x2="940" y2="208" stroke="#d8e0ea" stroke-width="2"/>
+
+            <text x="20" y="242" font-size="16" font-weight="700" fill="#1d7a4d">GPT &mdash; GUID Partition Table</text>
+            <rect x="20" y="258" width="120" height="52" rx="6" fill="#f1f4f8" stroke="#8aa0ba"/>
+            <text x="80" y="282" font-size="12" text-anchor="middle" fill="#5b6b80">Protective</text>
+            <text x="80" y="298" font-size="12" text-anchor="middle" fill="#5b6b80">MBR</text>
+            <rect x="148" y="258" width="150" height="52" rx="6" fill="#e7f5ee" stroke="#1d7a4d" stroke-width="1.5"/>
+            <text x="223" y="282" font-size="12" text-anchor="middle" fill="#1d7a4d" font-weight="600">Primary GPT</text>
+            <text x="223" y="298" font-size="12" text-anchor="middle" fill="#1d7a4d">header + entries</text>
+            <rect x="306" y="258" width="480" height="52" rx="6" fill="#ffffff" stroke="#d8e0ea"/>
+            <text x="546" y="282" font-size="13" text-anchor="middle" fill="#16202e">Up to 128 partitions, each identified by a unique GUID</text>
+            <text x="546" y="300" font-size="11.5" text-anchor="middle" fill="#5b6b80">no primary / extended / logical distinction</text>
+            <rect x="794" y="258" width="146" height="52" rx="6" fill="#e7f5ee" stroke="#1d7a4d" stroke-width="1.5"/>
+            <text x="867" y="282" font-size="12" text-anchor="middle" fill="#1d7a4d" font-weight="600">Backup GPT</text>
+            <text x="867" y="298" font-size="12" text-anchor="middle" fill="#1d7a4d">(end of disk)</text>
+            <path d="M223,318 C 400,352 700,352 867,318" stroke="#1d7a4d" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+            <text x="546" y="352" font-size="12.5" text-anchor="middle" fill="#1d7a4d">The header is mirrored at the end of the disk and protected by CRC32 checksums.</text>
+            <text x="20" y="392" font-size="12.5" fill="#5b6b80">GPT is required for Windows 11, for UEFI booting, and for any boot volume larger than 2 TB.</text>
+            <text x="20" y="414" font-size="12.5" fill="#5b6b80">A GPT disk remains readable by legacy tools thanks to the protective MBR in sector 0.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 5.1</b> &mdash; Structural comparison. Note the redundancy in GPT: two copies of the table, each checksummed, versus a single unprotected copy in MBR.</figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 5.1 &mdash; Selecting a partition scheme</caption>
+          <thead>
+            <tr><th>Situation</th><th>Scheme</th><th>Reasoning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>New workstation for this course</td><td>GPT</td><td>Required by Windows 11 and by UEFI; supports Secure Boot.</td></tr>
+            <tr><td>Boot disk larger than 2&nbsp;TB</td><td>GPT</td><td>MBR cannot address the space beyond the 2&nbsp;TB boundary.</td></tr>
+            <tr><td>Very old machine with BIOS-only firmware</td><td>MBR</td><td>The firmware cannot read an EFI System Partition.</td></tr>
+            <tr><td>Removable media for wide compatibility</td><td>MBR</td><td>Accepted by both firmware generations and by older devices.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 06 ANATOMY -->
+    <section class="lesson" id="anatomy">
+      <span class="sec-num">SECTION 06</span>
+      <h2>Anatomy of a Windows Disk</h2>
+
+      <p>
+        When Windows Setup is allowed to partition an empty GPT disk automatically, it creates four
+        partitions. Only one of them is visible in File Explorer. Students must be able to name all
+        four and explain why the hidden ones exist.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 320" role="img" aria-label="Layout of the four partitions Windows creates on a GPT disk">
+          <rect x="0" y="0" width="960" height="320" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="20" y="32" font-size="15" font-weight="700" fill="#16202e">Disk 0 &mdash; 512 GB NVMe &mdash; GPT</text>
+
+            <rect x="20" y="52" width="86" height="86" rx="6" fill="#0b6fb8"/>
+            <text x="63" y="88" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700">EFI</text>
+            <text x="63" y="106" font-size="11" fill="#d6ecfb" text-anchor="middle">100 MB</text>
+            <text x="63" y="122" font-size="11" fill="#d6ecfb" text-anchor="middle">FAT32</text>
+
+            <rect x="110" y="52" width="60" height="86" rx="6" fill="#5b6b80"/>
+            <text x="140" y="88" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700">MSR</text>
+            <text x="140" y="106" font-size="11" fill="#dfe6ee" text-anchor="middle">16 MB</text>
+            <text x="140" y="122" font-size="11" fill="#dfe6ee" text-anchor="middle">no FS</text>
+
+            <rect x="174" y="52" width="640" height="86" rx="6" fill="#0f2440"/>
+            <text x="494" y="86" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="700">Windows (C:) &mdash; Primary partition</text>
+            <text x="494" y="108" font-size="12" fill="#c9dcee" text-anchor="middle">~511 GB &middot; NTFS &middot; operating system, applications, user profiles</text>
+            <text x="494" y="126" font-size="12" fill="#c9dcee" text-anchor="middle">the only partition normally visible in File Explorer</text>
+
+            <rect x="818" y="52" width="122" height="86" rx="6" fill="#1d7a4d"/>
+            <text x="879" y="88" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700">Recovery</text>
+            <text x="879" y="106" font-size="11" fill="#d3efe0" text-anchor="middle">~750 MB</text>
+            <text x="879" y="122" font-size="11" fill="#d3efe0" text-anchor="middle">NTFS</text>
+
+            <line x1="63"  y1="146" x2="63"  y2="168" stroke="#8aa0ba" stroke-width="1.5"/>
+            <line x1="140" y1="146" x2="140" y2="188" stroke="#8aa0ba" stroke-width="1.5"/>
+            <line x1="494" y1="146" x2="494" y2="168" stroke="#8aa0ba" stroke-width="1.5"/>
+            <line x1="879" y1="146" x2="879" y2="188" stroke="#8aa0ba" stroke-width="1.5"/>
+
+            <text x="20"  y="188" font-size="12.5" fill="#0b6fb8" font-weight="600">1. EFI System Partition</text>
+            <text x="20"  y="208" font-size="12.5" fill="#5b6b80">Holds the boot loader that UEFI executes. Formatted FAT32 because</text>
+            <text x="20"  y="226" font-size="12.5" fill="#5b6b80">firmware is required to understand FAT32. Never assign it a letter.</text>
+
+            <text x="330" y="208" font-size="12.5" fill="#5b6b80" font-weight="600">2. Microsoft Reserved (MSR)</text>
+            <text x="330" y="226" font-size="12.5" fill="#5b6b80">Reserved working space for disk management operations</text>
+            <text x="330" y="244" font-size="12.5" fill="#5b6b80">such as converting to a dynamic disk. Contains no file system.</text>
+
+            <text x="330" y="276" font-size="12.5" fill="#0f2440" font-weight="600">3. Windows partition (C:)</text>
+            <text x="330" y="294" font-size="12.5" fill="#5b6b80">Receives the operating system image during installation.</text>
+
+            <text x="660" y="208" font-size="12.5" fill="#1d7a4d" font-weight="600">4. Windows Recovery Environment</text>
+            <text x="660" y="226" font-size="12.5" fill="#5b6b80">Stores winre.wim, used for startup repair,</text>
+            <text x="660" y="244" font-size="12.5" fill="#5b6b80">system reset and command-prompt recovery.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 6.1</b> &mdash; The standard four-partition layout produced by Windows Setup on a UEFI/GPT system. Sizes are approximate and vary slightly between Windows releases.</figcaption>
+      </figure>
+
+      <div class="callout warn">
+        <span class="tag">Do not delete</span>
+        <p>
+          Deleting the EFI System Partition renders the machine unbootable. Deleting the Recovery
+          partition removes the repair environment. Both are hidden by design; a technician who
+          deletes them to &ldquo;reclaim space&rdquo; will recover approximately 850&nbsp;MB and lose
+          the ability to start or repair the computer.
+        </p>
+      </div>
+    </section>
+
+    <!-- 07 FILESYSTEMS -->
+    <section class="lesson" id="filesystems">
+      <span class="sec-num">SECTION 07</span>
+      <h2>File Systems and Formatting</h2>
+
+      <p>
+        A partition is only a boundary. Formatting writes a file system into that boundary&mdash;the
+        index structures that allow files to be created, located and secured.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 7.1 &mdash; File systems encountered during installation</caption>
+          <thead>
+            <tr><th>File system</th><th>Typical use</th><th>Key characteristics</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NTFS</strong></td>
+              <td>The Windows system volume and all internal data volumes</td>
+              <td>Journaling, permissions (ACLs), encryption, compression, file size limited only by volume size</td>
+            </tr>
+            <tr>
+              <td><strong>FAT32</strong></td>
+              <td>EFI System Partition; older USB media</td>
+              <td>Universally readable; maximum single file size of 4&nbsp;GB; no permissions</td>
+            </tr>
+            <tr>
+              <td><strong>exFAT</strong></td>
+              <td>External drives shared between Windows, macOS and Linux</td>
+              <td>No 4&nbsp;GB limit; no journaling; not suitable for a system volume</td>
+            </tr>
+            <tr>
+              <td><strong>ReFS</strong></td>
+              <td>Server data volumes and resilient storage</td>
+              <td>Integrity checksums and automatic repair; cannot host the Windows boot volume</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Quick format compared with full format</h3>
+      <p>
+        A <strong>quick format</strong> writes a new, empty file-system index and marks the whole
+        area as free; the old data physically remains until it is overwritten. A <strong>full
+        format</strong> additionally verifies every sector, which takes considerably longer but
+        detects failing media. For a routine installation on a healthy disk, quick format is
+        appropriate. For a disk that has produced read errors, or one being retired from service,
+        use a full format.
+      </p>
+
+      <div class="callout tip">
+        <span class="tag">Security note</span>
+        <p>
+          Formatting is not secure erasure. If a disk holding confidential material is leaving the
+          institution, it must be sanitised with a dedicated tool&mdash;or, for a solid-state
+          device, with the manufacturer&rsquo;s secure-erase utility.
+        </p>
+      </div>
+    </section>
+
+    <!-- 08 PLANNING -->
+    <section class="lesson" id="planning">
+      <span class="sec-num">SECTION 08</span>
+      <h2>Partition Planning</h2>
+
+      <p>
+        Partition sizes should be decided before Setup is started, not improvised at the drive
+        selection screen. The table below gives defensible starting figures for a machine used in
+        this course.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 8.1 &mdash; Recommended layout for a 512 GB container-laboratory workstation</caption>
+          <thead>
+            <tr><th>Partition</th><th>Size</th><th>Justification</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>EFI System</td><td>100&ndash;300 MB</td><td>Created automatically; 300 MB gives room for additional boot loaders in a dual-boot design.</td></tr>
+            <tr><td>Microsoft Reserved</td><td>16 MB</td><td>Fixed by Windows; not user-configurable.</td></tr>
+            <tr><td>Windows (C:)</td><td>200&ndash;250 GB</td><td>Windows requires ~64 GB; feature updates need ~20 GB free; Docker images and WSL distributions default to this volume.</td></tr>
+            <tr><td>Data / Projects (D:)</td><td>200&ndash;250 GB</td><td>Separates source code, virtual machine files and datasets from the system, simplifying reinstallation.</td></tr>
+            <tr><td>Recovery</td><td>~750 MB</td><td>Created automatically at the end of the disk.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 240" role="img" aria-label="Proportional bar showing a planned 512 gigabyte disk layout">
+          <rect x="0" y="0" width="960" height="240" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="20" y="34" font-size="15" font-weight="700" fill="#16202e">Planned layout &mdash; 512 GB disk (drawn to scale)</text>
+            <rect x="20" y="52" width="920" height="66" rx="8" fill="#eef3f9" stroke="#d8e0ea"/>
+            <rect x="22" y="54" width="26" height="62" fill="#0b6fb8"/>
+            <rect x="48" y="54" width="8"  height="62" fill="#5b6b80"/>
+            <rect x="56" y="54" width="430" height="62" fill="#0f2440"/>
+            <rect x="486" y="54" width="420" height="62" fill="#16345c"/>
+            <rect x="906" y="54" width="32" height="62" fill="#1d7a4d"/>
+            <text x="271" y="92" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">Windows (C:) &mdash; 240 GB</text>
+            <text x="696" y="92" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">Data / Projects (D:) &mdash; 240 GB</text>
+
+            <rect x="20" y="146" width="16" height="16" fill="#0b6fb8"/><text x="44" y="159" font-size="13" fill="#253347">EFI System &mdash; 300 MB</text>
+            <rect x="230" y="146" width="16" height="16" fill="#5b6b80"/><text x="254" y="159" font-size="13" fill="#253347">MSR &mdash; 16 MB</text>
+            <rect x="420" y="146" width="16" height="16" fill="#0f2440"/><text x="444" y="159" font-size="13" fill="#253347">System volume, NTFS</text>
+            <rect x="660" y="146" width="16" height="16" fill="#16345c"/><text x="684" y="159" font-size="13" fill="#253347">Data volume, NTFS</text>
+            <rect x="20" y="176" width="16" height="16" fill="#1d7a4d"/><text x="44" y="189" font-size="13" fill="#253347">Recovery &mdash; 750 MB</text>
+
+            <text x="20" y="222" font-size="12.5" fill="#5b6b80">Reserve at least 20 percent of the system volume as free space; solid-state drives and Windows feature updates both depend on it.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 8.1</b> &mdash; The same plan expressed proportionally. Drawing the layout before installation prevents improvised decisions at the drive selection screen.</figcaption>
+      </figure>
+
+      <h3>Arguments for and against a separate data volume</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>In favour</h4>
+          <p>
+            Reinstalling Windows requires formatting only <code>C:</code>. Backups can target one
+            volume. Filling the data volume with datasets cannot stop the operating system from
+            functioning.
+          </p>
+        </div>
+        <div class="card">
+          <h4>Against</h4>
+          <p>
+            Space cannot flow between volumes without resizing. On a small disk of 256&nbsp;GB or
+            less, splitting frequently produces two volumes that are each too small to be useful.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 PREPARE -->
+    <section class="lesson" id="prepare">
+      <span class="sec-num">SECTION 09</span>
+      <h2>Pre-Installation Checklist</h2>
+
+      <p>
+        Installation is destructive. The following checks are completed and confirmed
+        <em>before</em> the installation media is inserted.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <h4>Back up all user data</h4>
+          <p>Copy documents, browser profiles, licence keys and application settings to external media or cloud storage. Verify that the copy opens correctly before proceeding.</p>
+        </li>
+        <li>
+          <h4>Record the network and account details</h4>
+          <p>Wireless password, Microsoft account credentials, and any proxy configuration required by the institution.</p>
+        </li>
+        <li>
+          <h4>Confirm the hardware meets requirements</h4>
+          <p>Windows 11 requires a 64-bit processor of 1&nbsp;GHz or faster with two or more cores, 4&nbsp;GB of RAM, 64&nbsp;GB of storage, UEFI with Secure Boot capability, and TPM 2.0. For this course, treat 16&nbsp;GB of RAM and an NVMe SSD as the practical minimum.</p>
+        </li>
+        <li>
+          <h4>Obtain drivers in advance</h4>
+          <p>Download the network and storage drivers for the specific model from the manufacturer&rsquo;s support page and keep them on the USB drive. A machine that installs successfully but has no network adapter driver cannot download its own drivers.</p>
+        </li>
+        <li>
+          <h4>Note the licence position</h4>
+          <p>A digital licence tied to the hardware reactivates automatically after a clean install of the same edition. A product key on a label must be recorded before the machine is wiped.</p>
+        </li>
+        <li>
+          <h4>Ensure stable power</h4>
+          <p>Connect the mains adapter. An interruption during the file-copy phase can leave the disk in an inconsistent state.</p>
+        </li>
+      </ol>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 9.1 &mdash; Minimum requirements compared with laboratory recommendation</caption>
+          <thead>
+            <tr><th>Component</th><th>Windows 11 minimum</th><th>Recommended for this course</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Processor</td><td>1 GHz, 2 cores, 64-bit</td><td>4 cores or more with VT-x / AMD-V</td></tr>
+            <tr><td>Memory</td><td>4 GB</td><td>16 GB</td></tr>
+            <tr><td>Storage</td><td>64 GB</td><td>512 GB NVMe SSD</td></tr>
+            <tr><td>Firmware</td><td>UEFI, Secure Boot capable</td><td>UEFI with virtualization enabled</td></tr>
+            <tr><td>Security module</td><td>TPM 2.0</td><td>TPM 2.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 10 MEDIA -->
+    <section class="lesson" id="media">
+      <span class="sec-num">SECTION 10</span>
+      <h2>Creating Bootable Installation Media</h2>
+
+      <p>
+        The installation media is a USB flash drive of at least 8&nbsp;GB, prepared so that firmware
+        can boot from it. Preparation erases the drive completely.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 250" role="img" aria-label="Workflow for creating bootable USB installation media">
+          <rect x="0" y="0" width="960" height="250" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <rect x="24" y="70" width="190" height="100" rx="10" fill="#ffffff" stroke="#0b6fb8" stroke-width="2"/>
+            <circle cx="119" cy="106" r="17" fill="#e8f2fb" stroke="#0b6fb8" stroke-width="2"/>
+            <path d="M112,104 l7,8 l7,-11" stroke="#0b6fb8" stroke-width="2.5" fill="none"/>
+            <text x="119" y="142" text-anchor="middle" font-size="13.5" font-weight="600" fill="#16202e">Download the ISO</text>
+            <text x="119" y="160" text-anchor="middle" font-size="11.5" fill="#5b6b80">microsoft.com only</text>
+
+            <path d="M218,120 L246,120" stroke="#0b6fb8" stroke-width="3"/><path d="M244,114 L256,120 L244,126 Z" fill="#0b6fb8"/>
+
+            <rect x="260" y="70" width="190" height="100" rx="10" fill="#ffffff" stroke="#0b6fb8" stroke-width="2"/>
+            <rect x="336" y="90" width="28" height="34" rx="4" fill="#0b6fb8"/>
+            <rect x="344" y="124" width="12" height="12" fill="#8aa0ba"/>
+            <text x="355" y="152" text-anchor="middle" font-size="13.5" font-weight="600" fill="#16202e">Insert 8 GB+ USB</text>
+            <text x="355" y="170" text-anchor="middle" font-size="11.5" fill="#b3261e">contents will be erased</text>
+
+            <path d="M454,120 L482,120" stroke="#0b6fb8" stroke-width="3"/><path d="M480,114 L492,120 L480,126 Z" fill="#0b6fb8"/>
+
+            <rect x="496" y="70" width="190" height="100" rx="10" fill="#ffffff" stroke="#0b6fb8" stroke-width="2"/>
+            <rect x="556" y="88" width="70" height="42" rx="5" fill="#eef3f9" stroke="#8aa0ba"/>
+            <rect x="564" y="98" width="54" height="7" rx="3" fill="#0b6fb8"/>
+            <rect x="564" y="110" width="34" height="7" rx="3" fill="#8aa0ba"/>
+            <text x="591" y="152" text-anchor="middle" font-size="13.5" font-weight="600" fill="#16202e">Write with Media</text>
+            <text x="591" y="170" text-anchor="middle" font-size="11.5" fill="#5b6b80">Creation Tool or Rufus</text>
+
+            <path d="M690,120 L718,120" stroke="#0b6fb8" stroke-width="3"/><path d="M716,114 L728,120 L716,126 Z" fill="#0b6fb8"/>
+
+            <rect x="732" y="70" width="204" height="100" rx="10" fill="#e7f5ee" stroke="#1d7a4d" stroke-width="2"/>
+            <text x="834" y="106" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1d7a4d">Set scheme = GPT</text>
+            <text x="834" y="128" text-anchor="middle" font-size="12.5" fill="#1d7a4d">Target system = UEFI</text>
+            <text x="834" y="152" text-anchor="middle" font-size="11.5" fill="#5b6b80">This is the decisive setting</text>
+
+            <text x="480" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="#16202e">Preparing bootable media in four steps</text>
+            <text x="480" y="216" text-anchor="middle" font-size="12.5" fill="#5b6b80">Verify the downloaded ISO against the published SHA-256 hash before writing it.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 10.1</b> &mdash; Media preparation workflow. In Rufus, the <b>Partition scheme</b> field must read <b>GPT</b> and the target system must read <b>UEFI (non CSM)</b> for a modern installation.</figcaption>
+      </figure>
+
+      <div class="callout warn">
+        <span class="tag">Source integrity</span>
+        <p>
+          Installation images are obtained only from the official Microsoft download page or from a
+          licensed volume-licensing portal. Images redistributed through file-sharing sites
+          routinely contain modified system files and must never be used on institutional hardware.
+        </p>
+      </div>
+    </section>
+
+    <!-- 11 BOOT ORDER -->
+    <section class="lesson" id="bootorder">
+      <span class="sec-num">SECTION 11</span>
+      <h2>Firmware Setup and Boot Order</h2>
+
+      <p>
+        The firmware setup utility is entered by pressing a manufacturer-specific key immediately
+        after power-on. Common keys are <kbd>F2</kbd>, <kbd>Del</kbd>, <kbd>F10</kbd> and
+        <kbd>Esc</kbd>. A one-time boot menu is usually available on <kbd>F12</kbd> or
+        <kbd>F9</kbd>.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 400" role="img" aria-label="Mock-up of a UEFI firmware setup screen showing boot order and virtualization settings">
+          <rect x="0" y="0" width="960" height="400" fill="#0a1626"/>
+          <g font-family="Consolas, Segoe UI, monospace">
+            <rect x="0" y="0" width="960" height="46" fill="#12294a"/>
+            <text x="24" y="30" font-size="16" fill="#ffffff" font-weight="700">UEFI Setup Utility</text>
+            <text x="936" y="30" font-size="13" fill="#8fb6da" text-anchor="end">Version 2.8 &nbsp;|&nbsp; BIOS Mode: UEFI</text>
+
+            <g font-size="13.5">
+              <rect x="24" y="60" width="120" height="30" rx="4" fill="#0b6fb8"/><text x="84" y="80" fill="#ffffff" text-anchor="middle">Boot</text>
+              <rect x="150" y="60" width="120" height="30" rx="4" fill="#173355"/><text x="210" y="80" fill="#a9c6e2" text-anchor="middle">Advanced</text>
+              <rect x="276" y="60" width="120" height="30" rx="4" fill="#173355"/><text x="336" y="80" fill="#a9c6e2" text-anchor="middle">Security</text>
+              <rect x="402" y="60" width="120" height="30" rx="4" fill="#173355"/><text x="462" y="80" fill="#a9c6e2" text-anchor="middle">Exit</text>
+            </g>
+
+            <rect x="24" y="106" width="560" height="264" rx="6" fill="#0f2036" stroke="#1f3f68"/>
+            <text x="44" y="134" font-size="13.5" fill="#8fb6da">BOOT PRIORITY ORDER</text>
+
+            <rect x="44" y="148" width="520" height="34" rx="4" fill="#0b6fb8"/>
+            <text x="60" y="170" font-size="14" fill="#ffffff">1.  UEFI: SanDisk USB 3.0  (Installation media)</text>
+            <rect x="44" y="188" width="520" height="34" rx="4" fill="#152a45"/>
+            <text x="60" y="210" font-size="14" fill="#c3d8ee">2.  UEFI: Samsung SSD 980 &mdash; Windows Boot Manager</text>
+            <rect x="44" y="228" width="520" height="34" rx="4" fill="#152a45"/>
+            <text x="60" y="250" font-size="14" fill="#c3d8ee">3.  UEFI: PXE Network Boot (IPv4)</text>
+            <rect x="44" y="268" width="520" height="34" rx="4" fill="#152a45"/>
+            <text x="60" y="290" font-size="14" fill="#7f97b3">4.  Legacy / CSM Boot .................... [ Disabled ]</text>
+            <text x="44" y="330" font-size="12.5" fill="#7f97b3">Use + / &minus; to move an entry. Place the installation media first,</text>
+            <text x="44" y="350" font-size="12.5" fill="#7f97b3">then return the internal disk to first place after installation.</text>
+
+            <rect x="600" y="106" width="336" height="264" rx="6" fill="#0f2036" stroke="#1f3f68"/>
+            <text x="620" y="134" font-size="13.5" fill="#8fb6da">REQUIRED SETTINGS</text>
+            <text x="620" y="166" font-size="13.5" fill="#c3d8ee">Secure Boot</text><text x="916" y="166" font-size="13.5" fill="#7fd6a2" text-anchor="end">[ Enabled ]</text>
+            <text x="620" y="196" font-size="13.5" fill="#c3d8ee">TPM 2.0 / PTT</text><text x="916" y="196" font-size="13.5" fill="#7fd6a2" text-anchor="end">[ Enabled ]</text>
+            <text x="620" y="226" font-size="13.5" fill="#c3d8ee">Intel VT-x / SVM Mode</text><text x="916" y="226" font-size="13.5" fill="#7fd6a2" text-anchor="end">[ Enabled ]</text>
+            <text x="620" y="256" font-size="13.5" fill="#c3d8ee">VT-d / IOMMU</text><text x="916" y="256" font-size="13.5" fill="#7fd6a2" text-anchor="end">[ Enabled ]</text>
+            <text x="620" y="286" font-size="13.5" fill="#c3d8ee">SATA Mode</text><text x="916" y="286" font-size="13.5" fill="#7fd6a2" text-anchor="end">[ AHCI ]</text>
+            <text x="620" y="316" font-size="13.5" fill="#c3d8ee">CSM / Legacy ROM</text><text x="916" y="316" font-size="13.5" fill="#f0a3a0" text-anchor="end">[ Disabled ]</text>
+            <text x="620" y="350" font-size="12" fill="#7f97b3">Virtualization must be on for Hyper-V, WSL 2 and Docker.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 11.1</b> &mdash; Representative firmware setup screen. Menu names differ between manufacturers, but every setting shown here exists under some label on a modern board.</figcaption>
+      </figure>
+
+      <div class="callout tip">
+        <span class="tag">Demonstration sequence</span>
+        <p>
+          Enter setup, disable CSM, confirm Secure Boot is enabled, enable virtualization, place the
+          USB device first in the boot order, then save and exit with <kbd>F10</kbd>. Perform these
+          five actions in this order so that students can reproduce them from memory.
+        </p>
+      </div>
+    </section>
+
+    <!-- 12 INSTALL -->
+    <section class="lesson" id="install">
+      <span class="sec-num">SECTION 12</span>
+      <h2>Guided Installation Walk-through</h2>
+
+      <p class="lead">
+        From this point the machine is committed. Each screen below is reproduced so that students
+        can recognise it and know what is expected of them before the demonstration begins.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <h4>Boot from the installation media</h4>
+          <p>
+            With the USB drive first in the boot order, restart the machine. If the message
+            <em>Press any key to boot from USB</em> appears, press a key promptly; the prompt expires
+            in a few seconds and the machine will fall through to the internal disk.
+          </p>
+        </li>
+        <li>
+          <h4>Select language, time format and keyboard</h4>
+          <p>
+            Choose the language and regional format required by the institution, then select the
+            keyboard layout that matches the physical hardware. An incorrect layout will make the
+            product key and password appear to be mistyped later.
+          </p>
+
+          <figure class="figure">
+            <svg viewBox="0 0 900 380" role="img" aria-label="Windows Setup language and keyboard selection screen">
+              <rect x="0" y="0" width="900" height="380" fill="#0b3a6b"/>
+              <rect x="150" y="46" width="600" height="288" rx="8" fill="#f0f3f7" stroke="#c3ceda"/>
+              <rect x="150" y="46" width="600" height="42" rx="8" fill="#e2e8f0"/>
+              <g font-family="Segoe UI, Arial, sans-serif">
+                <text x="174" y="73" font-size="15" font-weight="700" fill="#16202e">Windows Setup</text>
+                <text x="450" y="128" font-size="19" font-weight="600" fill="#0f2440" text-anchor="middle">Choose your language settings</text>
+
+                <text x="222" y="176" font-size="13.5" fill="#3d4b5c">Language to install</text>
+                <rect x="222" y="184" width="456" height="36" rx="4" fill="#ffffff" stroke="#8aa0ba"/>
+                <text x="238" y="208" font-size="14" fill="#16202e">English (United States)</text>
+                <path d="M652,198 l10,0 l-5,7 Z" fill="#5b6b80"/>
+
+                <text x="222" y="244" font-size="13.5" fill="#3d4b5c">Time and currency format</text>
+                <rect x="222" y="252" width="456" height="36" rx="4" fill="#ffffff" stroke="#8aa0ba"/>
+                <text x="238" y="276" font-size="14" fill="#16202e">English (Philippines)</text>
+                <path d="M652,266 l10,0 l-5,7 Z" fill="#5b6b80"/>
+
+                <rect x="556" y="300" width="122" height="34" rx="4" fill="#0b6fb8"/>
+                <text x="617" y="323" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="600">Next</text>
+              </g>
+            </svg>
+            <figcaption><b>Figure 12.1</b> &mdash; The first Setup screen. Nothing has been written to the disk at this stage; the installation can still be abandoned safely.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <h4>Select <em>Install now</em> and handle the product key prompt</h4>
+          <p>
+            If the machine holds a digital licence, choose <em>I don&rsquo;t have a product key</em>;
+            Windows will activate automatically once it reaches the network. Otherwise enter the key
+            recorded during preparation.
+          </p>
+        </li>
+        <li>
+          <h4>Select the edition and accept the licence terms</h4>
+          <p>
+            The edition chosen must match the licence. Windows&nbsp;11 <strong>Pro</strong> is
+            required for this course because Hyper-V, the sandbox and BitLocker are unavailable in
+            the Home edition.
+          </p>
+          <div class="callout note">
+            <span class="tag">Edition matters</span>
+            <p>
+              Docker Desktop can run on Home using the WSL 2 back end, but the Hyper-V exercises in
+              Module&nbsp;2 cannot. Install the Pro edition on all laboratory machines.
+            </p>
+          </div>
+        </li>
+        <li>
+          <h4>Choose <em>Custom: Install Windows only (advanced)</em></h4>
+          <p>
+            The <em>Upgrade</em> path preserves files and applications and is used only when
+            repairing an existing installation. Every clean installation uses the Custom path,
+            which is the only route to the partitioning interface.
+          </p>
+
+          <figure class="figure">
+            <svg viewBox="0 0 900 380" role="img" aria-label="Setup screen offering upgrade or custom installation">
+              <rect x="0" y="0" width="900" height="380" fill="#0b3a6b"/>
+              <rect x="150" y="36" width="600" height="308" rx="8" fill="#f0f3f7" stroke="#c3ceda"/>
+              <rect x="150" y="36" width="600" height="42" rx="8" fill="#e2e8f0"/>
+              <g font-family="Segoe UI, Arial, sans-serif">
+                <text x="174" y="63" font-size="15" font-weight="700" fill="#16202e">Windows Setup</text>
+                <text x="182" y="112" font-size="18" font-weight="600" fill="#0f2440">Which type of installation do you want?</text>
+
+                <rect x="182" y="134" width="536" height="82" rx="6" fill="#ffffff" stroke="#c3ceda"/>
+                <text x="204" y="164" font-size="15" font-weight="600" fill="#5b6b80">Upgrade: Install Windows and keep files, settings and applications</text>
+                <text x="204" y="190" font-size="13" fill="#7d8b9c">Files, settings and applications are moved to Windows with this option.</text>
+                <text x="204" y="208" font-size="13" fill="#7d8b9c">Available only when a supported version of Windows is already running.</text>
+
+                <rect x="182" y="228" width="536" height="82" rx="6" fill="#e8f2fb" stroke="#0b6fb8" stroke-width="2"/>
+                <text x="204" y="258" font-size="15" font-weight="700" fill="#0b6fb8">Custom: Install Windows only (advanced)</text>
+                <text x="204" y="284" font-size="13" fill="#3d4b5c">Files, settings and applications are not moved to Windows with this option.</text>
+                <text x="204" y="302" font-size="13" fill="#3d4b5c">Use this option to create, delete and format partitions. &#9664; select this</text>
+              </g>
+            </svg>
+            <figcaption><b>Figure 12.2</b> &mdash; The branching point of the installation. Selecting <b>Custom</b> opens the drive-selection screen examined in the next section.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <h4>Partition the disk</h4>
+          <p>
+            This is the substance of the lesson and is treated separately in Section&nbsp;13 below.
+          </p>
+        </li>
+        <li>
+          <h4>Allow the file copy to complete</h4>
+          <p>
+            Setup expands the image, installs features and updates, then restarts several times.
+            Remove the USB drive at the first restart to prevent Setup from starting again from the
+            beginning.
+          </p>
+
+          <figure class="figure">
+            <svg viewBox="0 0 900 330" role="img" aria-label="Installation progress screen showing the five phases of file installation">
+              <rect x="0" y="0" width="900" height="330" fill="#0b3a6b"/>
+              <rect x="150" y="40" width="600" height="250" rx="8" fill="#f0f3f7" stroke="#c3ceda"/>
+              <g font-family="Segoe UI, Arial, sans-serif">
+                <text x="450" y="88" font-size="18" font-weight="600" fill="#0f2440" text-anchor="middle">Installing Windows</text>
+                <text x="450" y="114" font-size="13.5" fill="#5b6b80" text-anchor="middle">Status</text>
+
+                <circle cx="230" cy="150" r="8" fill="#1d7a4d"/><text x="252" y="156" font-size="14" fill="#3d4b5c">Copying Windows files</text><text x="670" y="156" font-size="13.5" fill="#1d7a4d" text-anchor="end">100%</text>
+                <circle cx="230" cy="184" r="8" fill="#0b6fb8"/><text x="252" y="190" font-size="14" fill="#16202e" font-weight="600">Getting files ready for installation</text><text x="670" y="190" font-size="13.5" fill="#0b6fb8" text-anchor="end">64%</text>
+                <circle cx="230" cy="218" r="8" fill="#c3ceda"/><text x="252" y="224" font-size="14" fill="#8aa0ba">Installing features</text>
+                <circle cx="230" cy="252" r="8" fill="#c3ceda"/><text x="252" y="258" font-size="14" fill="#8aa0ba">Installing updates</text>
+
+                <rect x="230" y="272" width="440" height="8" rx="4" fill="#dbe3ec"/>
+                <rect x="230" y="272" width="282" height="8" rx="4" fill="#0b6fb8"/>
+                <text x="450" y="312" font-size="12.5" fill="#cfe0f0" text-anchor="middle">Your computer will restart several times. This might take a while.</text>
+              </g>
+            </svg>
+            <figcaption><b>Figure 12.3</b> &mdash; The unattended phase. On an NVMe drive this typically completes in eight to fifteen minutes; on a mechanical disk it may exceed forty.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <h4>Complete the out-of-box experience</h4>
+          <p>
+            Set the region and keyboard, connect to the network, name the device according to the
+            laboratory convention, sign in or create a local account, and review the privacy
+            settings. Decline optional telemetry and advertising personalisation on institutional
+            machines.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 13 CUSTOM PARTITIONING -->
+    <section class="lesson" id="custom">
+      <span class="sec-num">SECTION 13</span>
+      <h2>Custom Partitioning Inside Windows Setup</h2>
+
+      <p>
+        The drive-selection screen is the only part of Setup that permanently destroys data. Work
+        slowly here and read the disk numbers aloud before acting.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 900 420" role="img" aria-label="Windows Setup drive selection screen with unallocated space and partitioning controls">
+          <rect x="0" y="0" width="900" height="420" fill="#0b3a6b"/>
+          <rect x="120" y="26" width="660" height="368" rx="8" fill="#f0f3f7" stroke="#c3ceda"/>
+          <rect x="120" y="26" width="660" height="42" rx="8" fill="#e2e8f0"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="144" y="53" font-size="15" font-weight="700" fill="#16202e">Windows Setup</text>
+            <text x="150" y="98" font-size="17" font-weight="600" fill="#0f2440">Where do you want to install Windows?</text>
+
+            <rect x="150" y="116" width="600" height="30" fill="#dbe3ec"/>
+            <text x="166" y="136" font-size="12.5" font-weight="700" fill="#3d4b5c">Name</text>
+            <text x="470" y="136" font-size="12.5" font-weight="700" fill="#3d4b5c">Total size</text>
+            <text x="580" y="136" font-size="12.5" font-weight="700" fill="#3d4b5c">Free space</text>
+            <text x="690" y="136" font-size="12.5" font-weight="700" fill="#3d4b5c">Type</text>
+
+            <rect x="150" y="146" width="600" height="30" fill="#e8f2fb" stroke="#0b6fb8"/>
+            <text x="166" y="166" font-size="13" fill="#16202e">Drive 0 Unallocated Space</text>
+            <text x="470" y="166" font-size="13" fill="#16202e">476.9 GB</text>
+            <text x="580" y="166" font-size="13" fill="#16202e">476.9 GB</text>
+
+            <rect x="150" y="176" width="600" height="30" fill="#ffffff"/>
+            <text x="166" y="196" font-size="13" fill="#5b6b80">Drive 1 Partition 1: DATA</text>
+            <text x="470" y="196" font-size="13" fill="#5b6b80">931.5 GB</text>
+            <text x="580" y="196" font-size="13" fill="#5b6b80">720.1 GB</text>
+            <text x="690" y="196" font-size="13" fill="#5b6b80">Primary</text>
+
+            <line x1="150" y1="222" x2="750" y2="222" stroke="#c3ceda"/>
+
+            <g font-size="12.5" fill="#0b6fb8">
+              <text x="166" y="248">&#10227; Refresh</text>
+              <text x="266" y="248">&#128465; Delete</text>
+              <text x="366" y="248">&#9998; Format</text>
+              <text x="466" y="248">&#10133; New</text>
+              <text x="566" y="248">&#9881; Load driver</text>
+              <text x="686" y="248">&#8663; Extend</text>
+            </g>
+
+            <rect x="150" y="264" width="600" height="46" rx="4" fill="#ffffff" stroke="#8aa0ba"/>
+            <text x="166" y="284" font-size="13" fill="#3d4b5c">Size:</text>
+            <rect x="206" y="270" width="120" height="26" rx="3" fill="#ffffff" stroke="#8aa0ba"/>
+            <text x="266" y="288" font-size="13" fill="#16202e" text-anchor="middle">245760</text>
+            <text x="336" y="288" font-size="13" fill="#3d4b5c">MB</text>
+            <rect x="500" y="270" width="80" height="26" rx="3" fill="#0b6fb8"/>
+            <text x="540" y="288" font-size="13" fill="#ffffff" text-anchor="middle">Apply</text>
+            <rect x="592" y="270" width="80" height="26" rx="3" fill="#e2e8f0" stroke="#8aa0ba"/>
+            <text x="632" y="288" font-size="13" fill="#3d4b5c" text-anchor="middle">Cancel</text>
+
+            <text x="150" y="336" font-size="12.5" fill="#b3261e">&#9888; Windows cannot be installed to this disk. The selected disk has an MBR partition table.</text>
+            <text x="150" y="356" font-size="12.5" fill="#5b6b80">(This warning appears only when the media was booted in legacy mode &mdash; see Section 20.)</text>
+
+            <rect x="628" y="366" width="122" height="30" rx="4" fill="#0b6fb8"/>
+            <text x="689" y="386" font-size="13.5" fill="#ffffff" text-anchor="middle" font-weight="600">Next</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 13.1</b> &mdash; The drive-selection screen with a single empty disk. The <b>New</b> control creates a partition of the size entered in megabytes; 245,760&nbsp;MB is 240&nbsp;GB.</figcaption>
+      </figure>
+
+      <h3>Procedure for a clean installation on one disk</h3>
+      <ol class="steps">
+        <li>
+          <h4>Identify the correct disk</h4>
+          <p>
+            Match the reported capacity to the intended target. If a second disk is present, confirm
+            its number before touching any control. Deleting a partition on the wrong disk destroys
+            data that Setup cannot recover.
+          </p>
+        </li>
+        <li>
+          <h4>Delete the existing partitions on the target disk</h4>
+          <p>
+            Select each partition on Drive&nbsp;0 in turn and choose <em>Delete</em> until the entire
+            disk reports as a single block of unallocated space. This removes any previous EFI,
+            recovery and OEM partitions that would otherwise be reused.
+          </p>
+        </li>
+        <li>
+          <h4>Create the system partition</h4>
+          <p>
+            With the unallocated space selected, choose <em>New</em>, enter the planned size in
+            megabytes, and choose <em>Apply</em>. Setup will announce that it must create additional
+            partitions for system files; accept this. The EFI, MSR and recovery partitions appear
+            automatically.
+          </p>
+        </li>
+        <li>
+          <h4>Create the data partition</h4>
+          <p>
+            Select the remaining unallocated space, choose <em>New</em> again and apply the full
+            remaining size. Do not assign a drive letter here; Windows will do so after
+            installation.
+          </p>
+        </li>
+        <li>
+          <h4>Select the primary Windows partition and continue</h4>
+          <p>
+            Highlight the large primary partition created in step&nbsp;3&mdash;not the EFI or
+            recovery partition&mdash;and choose <em>Next</em>.
+          </p>
+        </li>
+      </ol>
+
+      <figure class="figure">
+        <svg viewBox="0 0 900 300" role="img" aria-label="Drive selection screen after the partitions have been created">
+          <rect x="0" y="0" width="900" height="300" fill="#0b3a6b"/>
+          <rect x="120" y="20" width="660" height="258" rx="8" fill="#f0f3f7" stroke="#c3ceda"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="150" y="52" font-size="16" font-weight="600" fill="#0f2440">Result after partitioning</text>
+            <rect x="150" y="66" width="600" height="28" fill="#dbe3ec"/>
+            <text x="166" y="85" font-size="12.5" font-weight="700" fill="#3d4b5c">Name</text>
+            <text x="450" y="85" font-size="12.5" font-weight="700" fill="#3d4b5c">Total size</text>
+            <text x="560" y="85" font-size="12.5" font-weight="700" fill="#3d4b5c">Free space</text>
+            <text x="670" y="85" font-size="12.5" font-weight="700" fill="#3d4b5c">Type</text>
+
+            <rect x="150" y="94" width="600" height="28" fill="#ffffff"/>
+            <text x="166" y="113" font-size="13" fill="#5b6b80">Drive 0 Partition 1: Recovery</text>
+            <text x="450" y="113" font-size="13" fill="#5b6b80">750.0 MB</text><text x="560" y="113" font-size="13" fill="#5b6b80">709.0 MB</text><text x="670" y="113" font-size="13" fill="#5b6b80">Recovery</text>
+
+            <rect x="150" y="122" width="600" height="28" fill="#f7f9fb"/>
+            <text x="166" y="141" font-size="13" fill="#5b6b80">Drive 0 Partition 2: System</text>
+            <text x="450" y="141" font-size="13" fill="#5b6b80">100.0 MB</text><text x="560" y="141" font-size="13" fill="#5b6b80">100.0 MB</text><text x="670" y="141" font-size="13" fill="#5b6b80">System</text>
+
+            <rect x="150" y="150" width="600" height="28" fill="#ffffff"/>
+            <text x="166" y="169" font-size="13" fill="#5b6b80">Drive 0 Partition 3</text>
+            <text x="450" y="169" font-size="13" fill="#5b6b80">16.0 MB</text><text x="560" y="169" font-size="13" fill="#5b6b80">16.0 MB</text><text x="670" y="169" font-size="13" fill="#5b6b80">MSR (Reserved)</text>
+
+            <rect x="150" y="178" width="600" height="28" fill="#e8f2fb" stroke="#0b6fb8" stroke-width="1.5"/>
+            <text x="166" y="197" font-size="13" fill="#0b6fb8" font-weight="700">Drive 0 Partition 4: Primary  &#9664; select this one</text>
+            <text x="450" y="197" font-size="13" fill="#0b6fb8">240.0 GB</text><text x="560" y="197" font-size="13" fill="#0b6fb8">240.0 GB</text><text x="670" y="197" font-size="13" fill="#0b6fb8">Primary</text>
+
+            <rect x="150" y="206" width="600" height="28" fill="#f7f9fb"/>
+            <text x="166" y="225" font-size="13" fill="#5b6b80">Drive 0 Partition 5: Primary</text>
+            <text x="450" y="225" font-size="13" fill="#5b6b80">236.1 GB</text><text x="560" y="225" font-size="13" fill="#5b6b80">236.1 GB</text><text x="670" y="225" font-size="13" fill="#5b6b80">Primary</text>
+
+            <text x="150" y="258" font-size="12.5" fill="#5b6b80">Five entries, four of which Setup created for you. Windows is installed to Partition 4.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 13.2</b> &mdash; The completed layout as Setup reports it. Recognising which line is the Windows partition is an examinable skill.</figcaption>
+      </figure>
+
+      <div class="callout warn">
+        <span class="tag">Point of no return</span>
+        <p>
+          Choosing <em>Next</em> on this screen begins writing to the disk. Any partition deleted
+          before this moment is gone; consumer recovery software rarely restores a partition that
+          Setup has already formatted.
+        </p>
+      </div>
+    </section>
+
+    <!-- 14 DISKPART -->
+    <section class="lesson" id="diskpart">
+      <span class="sec-num">SECTION 14</span>
+      <h2>Advanced Method: Partitioning with DiskPart</h2>
+
+      <p>
+        Pressing <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>F10</kbd> at any point during Setup opens a
+        command prompt. The <code>diskpart</code> utility available there gives exact control over
+        the layout and is the method used when the graphical screen refuses to cooperate&mdash;for
+        example when a disk must be converted from MBR to GPT.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 900 400" role="img" aria-label="Command prompt showing a diskpart session that converts a disk to GPT and creates partitions">
+          <rect x="0" y="0" width="900" height="400" fill="#0c0c0c"/>
+          <rect x="0" y="0" width="900" height="30" fill="#2b2b2b"/>
+          <g font-family="Consolas, monospace" font-size="13.5">
+            <text x="16" y="20" fill="#d8d8d8">Administrator: X:\Sources&gt; cmd.exe</text>
+            <text x="16" y="56" fill="#d8d8d8">X:\Sources&gt; <tspan fill="#7fd6a2">diskpart</tspan></text>
+            <text x="16" y="80" fill="#9aa7b4">Microsoft DiskPart version 10.0.26100</text>
+            <text x="16" y="110" fill="#d8d8d8">DISKPART&gt; <tspan fill="#7fd6a2">list disk</tspan></text>
+            <text x="16" y="134" fill="#9aa7b4">  Disk ###  Status         Size     Free     Dyn  Gpt</text>
+            <text x="16" y="152" fill="#9aa7b4">  --------  -------------  -------  -------  ---  ---</text>
+            <text x="16" y="170" fill="#e6f0fa">  Disk 0    Online          477 GB   477 GB             </text>
+            <text x="16" y="188" fill="#9aa7b4">  Disk 1    Online          931 GB      0 B         *   </text>
+            <text x="16" y="218" fill="#d8d8d8">DISKPART&gt; <tspan fill="#7fd6a2">select disk 0</tspan></text>
+            <text x="16" y="242" fill="#9aa7b4">Disk 0 is now the selected disk.</text>
+            <text x="16" y="272" fill="#d8d8d8">DISKPART&gt; <tspan fill="#f0a3a0">clean</tspan>          <tspan fill="#7f97b3">:: erases the entire disk</tspan></text>
+            <text x="16" y="296" fill="#9aa7b4">DiskPart succeeded in cleaning the disk.</text>
+            <text x="16" y="326" fill="#d8d8d8">DISKPART&gt; <tspan fill="#7fd6a2">convert gpt</tspan></text>
+            <text x="16" y="350" fill="#9aa7b4">DiskPart successfully converted the selected disk to GPT format.</text>
+            <text x="16" y="380" fill="#d8d8d8">DISKPART&gt; <tspan fill="#e6f0fa">_</tspan></text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 14.1</b> &mdash; A DiskPart session inside Windows Setup. The <code>clean</code> command is immediate and irreversible; there is no confirmation prompt.</figcaption>
+      </figure>
+
+      <h3>Complete UEFI/GPT layout script</h3>
+      <pre><code>diskpart
+list disk
+select disk 0
+clean                          <span class="cmt">:: removes ALL partitions on disk 0</span>
+convert gpt
+
+create partition efi size=300  <span class="cmt">:: EFI System Partition</span>
+format quick fs=fat32 label="System"
+assign letter=S
+
+create partition msr size=16   <span class="cmt">:: Microsoft Reserved</span>
+
+create partition primary size=245760   <span class="cmt">:: 240 GB for Windows</span>
+format quick fs=ntfs label="Windows"
+assign letter=W
+
+create partition primary       <span class="cmt">:: remaining space for data</span>
+format quick fs=ntfs label="Data"
+assign letter=D
+
+list volume
+exit</code></pre>
+
+      <div class="callout warn">
+        <span class="tag">Verify before you clean</span>
+        <p>
+          Always run <code>list disk</code> and confirm the disk number by its reported size before
+          issuing <code>select</code>. <code>clean</code> applied to the wrong disk erases a
+          customer&rsquo;s data in under one second and produces no warning.
+        </p>
+      </div>
+    </section>
+
+    <!-- 15 POST -->
+    <section class="lesson" id="post">
+      <span class="sec-num">SECTION 15</span>
+      <h2>Post-Installation Configuration</h2>
+
+      <p>
+        An installation is not finished when the desktop appears. The following sequence brings the
+        machine to a supportable state.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <h4>Verify firmware mode and partition scheme</h4>
+          <p>
+            Run <code>msinfo32</code>. The <em>BIOS Mode</em> line must read <strong>UEFI</strong>
+            and <em>Secure Boot State</em> must read <strong>On</strong>. Confirm the scheme in Disk
+            Management by opening the disk properties and reading the <em>Volumes</em> tab.
+          </p>
+        </li>
+        <li>
+          <h4>Install chipset and device drivers</h4>
+          <p>
+            Install in this order: chipset, storage, graphics, network, audio, then peripherals.
+            Windows Update supplies generic drivers, but the manufacturer&rsquo;s packages provide
+            power management and firmware updates that Windows Update does not.
+          </p>
+        </li>
+        <li>
+          <h4>Apply all pending updates</h4>
+          <p>
+            Run Windows Update repeatedly until no further updates are offered, restarting between
+            passes. Cumulative updates frequently reveal further updates once installed.
+          </p>
+        </li>
+        <li>
+          <h4>Confirm activation</h4>
+          <p>
+            Open <em>Settings &rarr; System &rarr; Activation</em>. The status should read
+            <em>Windows is activated with a digital licence linked to your Microsoft account</em>.
+          </p>
+        </li>
+        <li>
+          <h4>Format and label the data volume</h4>
+          <p>
+            Open Disk Management, assign a letter to the second partition, format it NTFS and give
+            it a meaningful label such as <em>Projects</em>.
+          </p>
+        </li>
+        <li>
+          <h4>Create a restore point and record the build</h4>
+          <p>
+            Enable system protection on <code>C:</code> and create a named restore point. Record
+            the machine name, edition, build number and disk layout in the laboratory inventory.
+          </p>
+        </li>
+      </ol>
+
+      <figure class="figure">
+        <svg viewBox="0 0 900 260" role="img" aria-label="System Information window showing BIOS mode UEFI and Secure Boot state on">
+          <rect x="0" y="0" width="900" height="260" fill="#eef1f5"/>
+          <rect x="30" y="20" width="840" height="220" rx="6" fill="#ffffff" stroke="#c3ceda"/>
+          <rect x="30" y="20" width="840" height="36" rx="6" fill="#f4f6f9"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="50" y="44" font-size="14" font-weight="700" fill="#16202e">System Information</text>
+            <text x="850" y="44" font-size="14" fill="#5b6b80" text-anchor="end">&#10005;</text>
+
+            <text x="54" y="86" font-size="13.5" fill="#5b6b80">OS Name</text>
+            <text x="330" y="86" font-size="13.5" fill="#16202e">Microsoft Windows 11 Pro</text>
+            <line x1="54" y1="98" x2="846" y2="98" stroke="#e6eaf0"/>
+
+            <text x="54" y="122" font-size="13.5" fill="#5b6b80">System Type</text>
+            <text x="330" y="122" font-size="13.5" fill="#16202e">x64-based PC</text>
+            <line x1="54" y1="134" x2="846" y2="134" stroke="#e6eaf0"/>
+
+            <text x="54" y="158" font-size="13.5" fill="#5b6b80">BIOS Mode</text>
+            <text x="330" y="158" font-size="13.5" fill="#1d7a4d" font-weight="700">UEFI</text>
+            <line x1="54" y1="170" x2="846" y2="170" stroke="#e6eaf0"/>
+
+            <text x="54" y="194" font-size="13.5" fill="#5b6b80">Secure Boot State</text>
+            <text x="330" y="194" font-size="13.5" fill="#1d7a4d" font-weight="700">On</text>
+            <line x1="54" y1="206" x2="846" y2="206" stroke="#e6eaf0"/>
+
+            <text x="54" y="230" font-size="13.5" fill="#5b6b80">Hyper-V Requirements</text>
+            <text x="330" y="230" font-size="13.5" fill="#16202e">VM Monitor Mode Extensions: Yes &nbsp;&middot;&nbsp; Virtualization Enabled in Firmware: Yes</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 15.1</b> &mdash; The verification screen. If <b>BIOS Mode</b> reads <em>Legacy</em>, the installation was performed in the wrong firmware mode and must be redone.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 16 DISK MANAGEMENT -->
+    <section class="lesson" id="diskmgmt">
+      <span class="sec-num">SECTION 16</span>
+      <h2>Managing Disks After Installation</h2>
+
+      <p>
+        Disk Management (<code>diskmgmt.msc</code>) is the graphical tool for work performed after
+        installation: shrinking a volume, extending it into adjacent free space, changing a drive
+        letter, or initialising a newly fitted disk.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 900 300" role="img" aria-label="Disk Management console showing two disks and their volumes">
+          <rect x="0" y="0" width="900" height="300" fill="#eef1f5"/>
+          <rect x="24" y="18" width="852" height="264" rx="6" fill="#ffffff" stroke="#c3ceda"/>
+          <rect x="24" y="18" width="852" height="34" rx="6" fill="#f4f6f9"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="44" y="41" font-size="13.5" font-weight="700" fill="#16202e">Disk Management</text>
+
+            <text x="44" y="82" font-size="13" font-weight="700" fill="#16202e">Disk 0</text>
+            <text x="44" y="100" font-size="11.5" fill="#5b6b80">Basic</text>
+            <text x="44" y="116" font-size="11.5" fill="#5b6b80">476.94 GB</text>
+            <text x="44" y="132" font-size="11.5" fill="#1d7a4d">Online</text>
+
+            <rect x="128" y="70" width="60" height="72" fill="#e8f2fb" stroke="#0b6fb8"/>
+            <text x="158" y="94" font-size="10.5" fill="#0b6fb8" text-anchor="middle">100 MB</text>
+            <text x="158" y="110" font-size="10.5" fill="#0b6fb8" text-anchor="middle">EFI</text>
+            <text x="158" y="126" font-size="10.5" fill="#0b6fb8" text-anchor="middle">Healthy</text>
+
+            <rect x="192" y="70" width="330" height="72" fill="#eef3f9" stroke="#0f2440"/>
+            <text x="357" y="94" font-size="12" fill="#0f2440" text-anchor="middle" font-weight="700">Windows (C:)</text>
+            <text x="357" y="112" font-size="11" fill="#3d4b5c" text-anchor="middle">240.00 GB NTFS</text>
+            <text x="357" y="128" font-size="11" fill="#3d4b5c" text-anchor="middle">Healthy (Boot, Page File, Crash Dump)</text>
+
+            <rect x="526" y="70" width="286" height="72" fill="#eef3f9" stroke="#16345c"/>
+            <text x="669" y="94" font-size="12" fill="#16345c" text-anchor="middle" font-weight="700">Projects (D:)</text>
+            <text x="669" y="112" font-size="11" fill="#3d4b5c" text-anchor="middle">236.11 GB NTFS</text>
+            <text x="669" y="128" font-size="11" fill="#3d4b5c" text-anchor="middle">Healthy (Basic Data Partition)</text>
+
+            <rect x="816" y="70" width="44" height="72" fill="#e7f5ee" stroke="#1d7a4d"/>
+            <text x="838" y="100" font-size="10" fill="#1d7a4d" text-anchor="middle">750</text>
+            <text x="838" y="114" font-size="10" fill="#1d7a4d" text-anchor="middle">MB</text>
+            <text x="838" y="128" font-size="10" fill="#1d7a4d" text-anchor="middle">Rec.</text>
+
+            <line x1="44" y1="160" x2="860" y2="160" stroke="#e0e5ec"/>
+
+            <text x="44" y="192" font-size="13" font-weight="700" fill="#16202e">Disk 1</text>
+            <text x="44" y="210" font-size="11.5" fill="#5b6b80">Basic</text>
+            <text x="44" y="226" font-size="11.5" fill="#5b6b80">931.51 GB</text>
+            <text x="44" y="242" font-size="11.5" fill="#1d7a4d">Online</text>
+
+            <rect x="128" y="180" width="470" height="72" fill="#eef3f9" stroke="#5b6b80"/>
+            <text x="363" y="212" font-size="12" fill="#16202e" text-anchor="middle" font-weight="700">Archive (E:) &mdash; 700.00 GB NTFS</text>
+            <text x="363" y="230" font-size="11" fill="#3d4b5c" text-anchor="middle">Healthy (Basic Data Partition)</text>
+
+            <rect x="602" y="180" width="258" height="72" fill="#f6f7f9" stroke="#8aa0ba" stroke-dasharray="5 4"/>
+            <text x="731" y="212" font-size="12" fill="#5b6b80" text-anchor="middle" font-weight="600">231.51 GB Unallocated</text>
+            <text x="731" y="230" font-size="11" fill="#8aa0ba" text-anchor="middle">available for a new volume</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 16.1</b> &mdash; Disk Management showing the completed installation on Disk 0 and a second data disk with unallocated space on Disk 1.</figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 16.1 &mdash; Common post-installation disk operations</caption>
+          <thead>
+            <tr><th>Task</th><th>Action</th><th>Constraint</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Make room for a new volume</td><td>Right-click the volume &rarr; Shrink Volume</td><td>Limited by immovable files; run defragmentation first on a mechanical disk</td></tr>
+            <tr><td>Enlarge a volume</td><td>Right-click the volume &rarr; Extend Volume</td><td>Free space must be unallocated and immediately to the right of the volume</td></tr>
+            <tr><td>Add a new disk</td><td>Right-click the disk &rarr; Initialise Disk &rarr; GPT</td><td>Initialising erases any existing partition table</td></tr>
+            <tr><td>Change a drive letter</td><td>Right-click &rarr; Change Drive Letter and Paths</td><td>Applications referencing the old letter will break</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 17 VIRTUALIZATION -->
+    <section class="lesson" id="virtualization">
+      <span class="sec-num">SECTION 17</span>
+      <h2>Preparing the Host for Virtualization</h2>
+
+      <p class="lead">
+        This section is the bridge between the installation you have just completed and the
+        container work that follows in Module&nbsp;2.
+      </p>
+
+      <p>
+        Docker Desktop on Windows does not run containers directly on the Windows kernel by default.
+        It runs a lightweight Linux virtual machine through WSL&nbsp;2, which itself depends on the
+        Windows hypervisor platform. The layers below must all be present.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 900 400" role="img" aria-label="Layered stack from hardware virtualization through WSL 2 to running containers">
+          <rect x="0" y="0" width="900" height="400" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#16202e">From silicon to container &mdash; the dependency stack</text>
+
+            <rect x="70" y="320" width="760" height="56" rx="8" fill="#0f2440"/>
+            <text x="450" y="345" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="600">Layer 1 &mdash; CPU with Intel VT-x / AMD-V, enabled in firmware</text>
+            <text x="450" y="365" text-anchor="middle" font-size="12" fill="#9dbbd8">If this is disabled, nothing above it can start</text>
+
+            <rect x="110" y="252" width="680" height="56" rx="8" fill="#16345c"/>
+            <text x="450" y="277" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="600">Layer 2 &mdash; Windows Hypervisor Platform + Virtual Machine Platform</text>
+            <text x="450" y="297" text-anchor="middle" font-size="12" fill="#9dbbd8">Windows optional features</text>
+
+            <rect x="150" y="184" width="600" height="56" rx="8" fill="#0b6fb8"/>
+            <text x="450" y="209" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="600">Layer 3 &mdash; WSL 2 with a Linux kernel</text>
+            <text x="450" y="229" text-anchor="middle" font-size="12" fill="#d3e8f8">wsl --install &middot; distribution stored as a virtual disk on C:</text>
+
+            <rect x="190" y="116" width="520" height="56" rx="8" fill="#1d7a4d"/>
+            <text x="450" y="141" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="600">Layer 4 &mdash; Docker Engine (Docker Desktop)</text>
+            <text x="450" y="161" text-anchor="middle" font-size="12" fill="#c9ecd9">image store, build cache, volumes</text>
+
+            <rect x="230" y="52" width="140" height="52" rx="8" fill="#b8791b"/>
+            <text x="300" y="83" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="600">Container A</text>
+            <rect x="380" y="52" width="140" height="52" rx="8" fill="#b8791b"/>
+            <text x="450" y="83" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="600">Container B</text>
+            <rect x="530" y="52" width="140" height="52" rx="8" fill="#b8791b"/>
+            <text x="600" y="83" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="600">Container C</text>
+
+            <path d="M860,346 L860,80 L680,80" stroke="#8aa0ba" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+            <text x="874" y="216" font-size="12" fill="#5b6b80" transform="rotate(-90 874 216)" text-anchor="middle">each layer depends on the one below</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 17.1</b> &mdash; The dependency stack. A student who reports that &ldquo;Docker will not start&rdquo; is almost always missing layer 1 or layer 2.</figcaption>
+      </figure>
+
+      <h3>Enabling the required Windows features</h3>
+      <figure class="figure">
+        <svg viewBox="0 0 760 300" role="img" aria-label="Windows Features dialog with Hyper-V, Virtual Machine Platform and WSL selected">
+          <rect x="0" y="0" width="760" height="300" fill="#eef1f5"/>
+          <rect x="60" y="18" width="640" height="264" rx="6" fill="#ffffff" stroke="#c3ceda"/>
+          <rect x="60" y="18" width="640" height="34" rx="6" fill="#f4f6f9"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="80" y="41" font-size="13.5" font-weight="700" fill="#16202e">Windows Features</text>
+            <text x="80" y="76" font-size="13" fill="#3d4b5c">Turn Windows features on or off</text>
+
+            <rect x="80" y="94" width="16" height="16" fill="#0b6fb8"/><path d="M83,102 l4,5 l7,-8" stroke="#ffffff" stroke-width="2" fill="none"/>
+            <text x="108" y="107" font-size="13.5" fill="#16202e">Hyper-V</text>
+            <rect x="104" y="118" width="16" height="16" fill="#0b6fb8"/><path d="M107,126 l4,5 l7,-8" stroke="#ffffff" stroke-width="2" fill="none"/>
+            <text x="132" y="131" font-size="13" fill="#3d4b5c">Hyper-V Management Tools</text>
+            <rect x="104" y="142" width="16" height="16" fill="#0b6fb8"/><path d="M107,150 l4,5 l7,-8" stroke="#ffffff" stroke-width="2" fill="none"/>
+            <text x="132" y="155" font-size="13" fill="#3d4b5c">Hyper-V Platform</text>
+
+            <rect x="80" y="170" width="16" height="16" fill="#0b6fb8"/><path d="M83,178 l4,5 l7,-8" stroke="#ffffff" stroke-width="2" fill="none"/>
+            <text x="108" y="183" font-size="13.5" fill="#16202e">Virtual Machine Platform</text>
+
+            <rect x="80" y="194" width="16" height="16" fill="#0b6fb8"/><path d="M83,202 l4,5 l7,-8" stroke="#ffffff" stroke-width="2" fill="none"/>
+            <text x="108" y="207" font-size="13.5" fill="#16202e">Windows Subsystem for Linux</text>
+
+            <rect x="80" y="218" width="16" height="16" fill="#ffffff" stroke="#8aa0ba"/>
+            <text x="108" y="231" font-size="13.5" fill="#5b6b80">Windows Sandbox (optional)</text>
+
+            <rect x="452" y="246" width="110" height="30" rx="4" fill="#0b6fb8"/>
+            <text x="507" y="266" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="600">OK</text>
+            <rect x="572" y="246" width="110" height="30" rx="4" fill="#e2e8f0" stroke="#8aa0ba"/>
+            <text x="627" y="266" font-size="13" fill="#3d4b5c" text-anchor="middle">Cancel</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 17.2</b> &mdash; The optional features that must be enabled before Docker Desktop is installed. A restart is required after applying them.</figcaption>
+      </figure>
+
+      <h3>Verification commands</h3>
+      <pre><code><span class="cmt">:: Confirm virtualization is active</span>
+systeminfo | findstr /i "Hyper-V Virtualization"
+
+<span class="cmt">:: Install WSL 2 and a default distribution</span>
+wsl --install
+
+<span class="cmt">:: Confirm the version in use</span>
+wsl --list --verbose
+<span class="out">  NAME      STATE     VERSION
+* Ubuntu    Running   2</span>
+
+<span class="cmt">:: Confirm the container engine responds</span>
+docker version
+docker run --rm hello-world</code></pre>
+
+      <div class="callout tip">
+        <span class="tag">Diagnostic shortcut</span>
+        <p>
+          Open Task Manager, select the <em>Performance</em> tab and choose <em>CPU</em>. The line
+          <em>Virtualization: Enabled</em> confirms layer&nbsp;1 in two seconds without a reboot.
+        </p>
+      </div>
+    </section>
+
+    <!-- 18 CONTAINERS -->
+    <section class="lesson" id="containers">
+      <span class="sec-num">SECTION 18</span>
+      <h2>Partitioning Decisions That Affect Containers</h2>
+
+      <p>
+        Container tooling is unusually demanding of the system volume, and the reasons are worth
+        stating explicitly.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 18.1 &mdash; Where container tooling consumes disk space</caption>
+          <thead>
+            <tr><th>Consumer</th><th>Default location</th><th>Typical size</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>WSL 2 distribution virtual disk</td><td><code>%LOCALAPPDATA%\Packages\...\ext4.vhdx</code></td><td>2&ndash;60 GB, grows over time</td></tr>
+            <tr><td>Docker image layers and containers</td><td><code>%LOCALAPPDATA%\Docker\wsl\</code></td><td>10&ndash;80 GB in active use</td></tr>
+            <tr><td>Build cache</td><td>Inside the Docker data volume</td><td>Several GB; grows with every build</td></tr>
+            <tr><td>Hyper-V virtual machines</td><td><code>C:\ProgramData\Microsoft\Windows\Hyper-V</code></td><td>20&ndash;120 GB per virtual machine</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Three practical rules</h3>
+      <ol>
+        <li>
+          <strong>Never size the system volume at the bare minimum.</strong> A 64&nbsp;GB
+          <code>C:</code> will run Windows and nothing else. Allocate 200&nbsp;GB or more where the
+          disk allows it.
+        </li>
+        <li>
+          <strong>Relocate large virtual disks deliberately, not by accident.</strong> Hyper-V
+          virtual machine files can be stored on the data volume by changing the default path in
+          Hyper-V Manager. WSL distributions can be exported and re-imported to another location.
+        </li>
+        <li>
+          <strong>Reclaim space on a schedule.</strong> <code>docker system prune -a</code> removes
+          unused images, containers and cache. Teach this alongside partition planning, because
+          together they determine whether the laboratory machine survives the semester.
+        </li>
+      </ol>
+
+      <div class="callout note">
+        <span class="tag">Field observation</span>
+        <p>
+          The most frequent cause of a broken container laboratory is not a broken container. It is a
+          system volume with less than one gigabyte free, which prevents Windows from writing its
+          page file, prevents Docker from extracting a layer, and produces error messages that name
+          neither cause.
+        </p>
+      </div>
+    </section>
+
+    <!-- 19 DUAL BOOT -->
+    <section class="lesson" id="dualboot">
+      <span class="sec-num">SECTION 19</span>
+      <h2>Designing a Dual-Boot Laboratory Machine</h2>
+
+      <p>
+        Some exercises later in this course are more convenient on a native Linux installation.
+        Where a machine must carry both operating systems, the partition layout is planned in
+        advance and Windows is always installed first, because the Linux boot loader can detect and
+        add Windows to its menu, while the reverse is not true.
+      </p>
+
+      <figure class="figure">
+        <svg viewBox="0 0 960 250" role="img" aria-label="Dual boot disk layout with shared EFI partition, Windows, Linux root and shared data volume">
+          <rect x="0" y="0" width="960" height="250" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="20" y="32" font-size="15" font-weight="700" fill="#16202e">Dual-boot layout &mdash; 1 TB disk, GPT</text>
+            <rect x="20" y="50" width="920" height="70" rx="8" fill="#eef3f9" stroke="#d8e0ea"/>
+            <rect x="22" y="52" width="46" height="66" fill="#0b6fb8"/>
+            <rect x="68" y="52" width="10" height="66" fill="#5b6b80"/>
+            <rect x="78" y="52" width="380" height="66" fill="#0f2440"/>
+            <rect x="458" y="52" width="230" height="66" fill="#8a3a1f"/>
+            <rect x="688" y="52" width="60" height="66" fill="#6a4a8a"/>
+            <rect x="748" y="52" width="164" height="66" fill="#16345c"/>
+            <rect x="912" y="52" width="26" height="66" fill="#1d7a4d"/>
+
+            <text x="268" y="82" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="600">Windows (C:) 400 GB</text>
+            <text x="268" y="102" font-size="11.5" fill="#c9dcee" text-anchor="middle">NTFS</text>
+            <text x="573" y="82" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="600">Linux root 240 GB</text>
+            <text x="573" y="102" font-size="11.5" fill="#f2d8cc" text-anchor="middle">ext4</text>
+            <text x="718" y="82" font-size="11.5" fill="#ffffff" text-anchor="middle">swap</text>
+            <text x="718" y="102" font-size="11" fill="#ded0ec" text-anchor="middle">16 GB</text>
+            <text x="830" y="82" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="600">Shared data</text>
+            <text x="830" y="102" font-size="11.5" fill="#c9dcee" text-anchor="middle">exFAT 250 GB</text>
+
+            <text x="20" y="152" font-size="12.5" fill="#0b6fb8">&#9632; Shared EFI System Partition (500 MB) &mdash; holds both boot loaders</text>
+            <text x="20" y="176" font-size="12.5" fill="#5b6b80">&#9632; MSR 16 MB &nbsp;&nbsp; &#9632; Recovery 750 MB at the end of the disk</text>
+            <text x="20" y="200" font-size="12.5" fill="#253347">Order of installation: 1) Windows first &nbsp;&rarr;&nbsp; 2) Linux second, pointing GRUB at the existing EFI partition.</text>
+            <text x="20" y="224" font-size="12.5" fill="#b3261e">Disable Fast Startup in Windows, or the shared data volume may be left in an inconsistent state when Linux mounts it.</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 19.1</b> &mdash; A dual-boot layout. Both operating systems share one EFI System Partition, which is why 300&ndash;500&nbsp;MB is a safer size than the default 100&nbsp;MB.</figcaption>
+      </figure>
+
+      <div class="callout warn">
+        <span class="tag">Before you begin</span>
+        <p>
+          Dual-boot installation is performed only on machines designated for it. Shrinking a
+          production Windows volume to make room for Linux carries a real risk of data loss and must
+          be preceded by a verified backup.
+        </p>
+      </div>
+    </section>
+
+    <!-- 20 TROUBLESHOOTING -->
+    <section class="lesson" id="troubleshooting">
+      <span class="sec-num">SECTION 20</span>
+      <h2>Troubleshooting Guide</h2>
+
+      <p>
+        The following failures account for the large majority of unsuccessful installations in a
+        teaching laboratory.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 20.1 &mdash; Installation errors, causes and resolutions</caption>
+          <thead>
+            <tr><th>Symptom</th><th>Cause</th><th>Resolution</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&ldquo;Windows cannot be installed to this disk. The selected disk has an MBR partition table.&rdquo;</td>
+              <td>Media booted in UEFI mode against an MBR disk</td>
+              <td>Back up data, then use <code>diskpart</code> &rarr; <code>clean</code> &rarr; <code>convert gpt</code>, or convert non-destructively with <code>mbr2gpt</code> from a running system</td>
+            </tr>
+            <tr>
+              <td>&ldquo;...the disk has a GPT partition table.&rdquo;</td>
+              <td>Media booted in legacy/CSM mode against a GPT disk</td>
+              <td>Restart, enter firmware, disable CSM and select the UEFI entry for the USB device</td>
+            </tr>
+            <tr>
+              <td>The machine will not boot from the USB drive</td>
+              <td>Boot order, Secure Boot rejecting the media, or the drive written with the wrong scheme</td>
+              <td>Place the UEFI USB entry first; re-create the media with scheme GPT and target UEFI</td>
+            </tr>
+            <tr>
+              <td>&ldquo;This PC can't run Windows 11&rdquo;</td>
+              <td>TPM 2.0 or Secure Boot disabled, or an unsupported processor</td>
+              <td>Enable TPM (often labelled PTT or fTPM) and Secure Boot in firmware; verify the processor against the published support list</td>
+            </tr>
+            <tr>
+              <td>No disks are listed at the drive-selection screen</td>
+              <td>Storage controller driver missing, or SATA mode set to RAID</td>
+              <td>Use <em>Load driver</em> to supply the manufacturer&rsquo;s storage driver, or set SATA mode to AHCI in firmware</td>
+            </tr>
+            <tr>
+              <td>Setup restarts into the installer repeatedly</td>
+              <td>The USB drive remains first in the boot order</td>
+              <td>Remove the media at the first restart, or return the internal disk to first place</td>
+            </tr>
+            <tr>
+              <td>Installation completes but there is no network</td>
+              <td>Network driver not included in the image</td>
+              <td>Install the driver prepared in Section 09 from the USB drive</td>
+            </tr>
+            <tr>
+              <td>Docker Desktop fails to start after installation</td>
+              <td>Virtualization disabled in firmware, or the required Windows features are off</td>
+              <td>Enable VT-x / AMD-V; enable Virtual Machine Platform and WSL; restart and run <code>wsl --update</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="figure">
+        <svg viewBox="0 0 900 300" role="img" aria-label="Decision flow for diagnosing a failed installation">
+          <rect x="0" y="0" width="900" height="300" fill="#fbfcfe"/>
+          <g font-family="Segoe UI, Arial, sans-serif">
+            <text x="450" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#16202e">First-response diagnostic path</text>
+
+            <rect x="330" y="44" width="240" height="44" rx="8" fill="#0f2440"/>
+            <text x="450" y="72" text-anchor="middle" font-size="13.5" fill="#ffffff">Installation failed</text>
+            <path d="M450,88 L450,110" stroke="#5b6b80" stroke-width="2"/><path d="M444,108 L450,118 L456,108 Z" fill="#5b6b80"/>
+
+            <rect x="300" y="118" width="300" height="44" rx="8" fill="#ffffff" stroke="#0b6fb8" stroke-width="2"/>
+            <text x="450" y="146" text-anchor="middle" font-size="13" fill="#0b6fb8">Did the machine reach the Setup screen?</text>
+
+            <path d="M300,140 L180,140 L180,190" stroke="#b3261e" stroke-width="2" fill="none"/><path d="M174,188 L180,198 L186,188 Z" fill="#b3261e"/>
+            <text x="238" y="132" font-size="12" fill="#b3261e">No</text>
+            <rect x="40" y="198" width="280" height="70" rx="8" fill="#fdeceb" stroke="#b3261e"/>
+            <text x="180" y="222" text-anchor="middle" font-size="12.5" fill="#b3261e" font-weight="600">Boot-side problem</text>
+            <text x="180" y="242" text-anchor="middle" font-size="12" fill="#7a2b26">Check boot order, CSM setting,</text>
+            <text x="180" y="258" text-anchor="middle" font-size="12" fill="#7a2b26">and how the USB media was written</text>
+
+            <path d="M600,140 L720,140 L720,190" stroke="#1d7a4d" stroke-width="2" fill="none"/><path d="M714,188 L720,198 L726,188 Z" fill="#1d7a4d"/>
+            <text x="656" y="132" font-size="12" fill="#1d7a4d">Yes</text>
+            <rect x="580" y="198" width="280" height="70" rx="8" fill="#e7f5ee" stroke="#1d7a4d"/>
+            <text x="720" y="222" text-anchor="middle" font-size="12.5" fill="#1d7a4d" font-weight="600">Disk-side problem</text>
+            <text x="720" y="242" text-anchor="middle" font-size="12" fill="#1b5e3f">Read the exact error text, then check</text>
+            <text x="720" y="258" text-anchor="middle" font-size="12" fill="#1b5e3f">scheme, drivers and SATA mode</text>
+          </g>
+        </svg>
+        <figcaption><b>Figure 20.1</b> &mdash; Divide the problem before investigating it: a machine that never reaches Setup has a firmware or media fault, not a disk fault.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 21 COMMANDS -->
+    <section class="lesson" id="commands">
+      <span class="sec-num">SECTION 21</span>
+      <h2>Command Reference</h2>
+
+      <h3>DiskPart</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>Table 21.1 &mdash; Frequently used DiskPart commands</caption>
+          <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td><code>list disk</code></td><td>Displays all physical disks with size, free space and GPT flag</td></tr>
+            <tr><td><code>select disk n</code></td><td>Sets the disk that subsequent commands act upon</td></tr>
+            <tr><td><code>detail disk</code></td><td>Shows the volumes and properties of the selected disk</td></tr>
+            <tr><td><code>clean</code></td><td>Removes all partition information &mdash; irreversible</td></tr>
+            <tr><td><code>convert gpt</code> / <code>convert mbr</code></td><td>Sets the partition scheme of an empty disk</td></tr>
+            <tr><td><code>create partition primary size=n</code></td><td>Creates a primary partition of n megabytes</td></tr>
+            <tr><td><code>format quick fs=ntfs label="X"</code></td><td>Formats the selected partition</td></tr>
+            <tr><td><code>assign letter=D</code></td><td>Assigns a drive letter to the selected volume</td></tr>
+            <tr><td><code>extend</code></td><td>Grows the selected volume into adjacent free space</td></tr>
+            <tr><td><code>exit</code></td><td>Leaves DiskPart</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Windows utilities</h3>
+      <pre><code><span class="cmt">:: Verify firmware mode, Secure Boot and Hyper-V readiness</span>
+msinfo32
+
+<span class="cmt">:: Open the graphical disk console</span>
+diskmgmt.msc
+
+<span class="cmt">:: Convert a system disk from MBR to GPT without data loss (run as administrator)</span>
+mbr2gpt /validate /allowFullOS
+mbr2gpt /convert /allowFullOS
+
+<span class="cmt">:: Check and repair the file system on the system volume</span>
+chkdsk C: /f /r
+
+<span class="cmt">:: Repair the component store and system files</span>
+DISM /Online /Cleanup-Image /RestoreHealth
+sfc /scannow</code></pre>
+
+      <h3>PowerShell equivalents</h3>
+      <pre><code>Get-Disk                                   <span class="cmt"># disks with partition style</span>
+Get-Partition -DiskNumber 0                <span class="cmt"># partitions on disk 0</span>
+Get-Volume                                 <span class="cmt"># volumes, file systems and free space</span>
+Confirm-SecureBootUEFI                     <span class="cmt"># True when Secure Boot is active</span>
+Resize-Partition -DriveLetter C -Size 300GB
+Initialize-Disk -Number 1 -PartitionStyle GPT</code></pre>
+    </section>
+
+    <!-- 22 LAB -->
+    <section class="lesson" id="lab">
+      <span class="sec-num">SECTION 22</span>
+      <h2>Laboratory Activity</h2>
+
+      <p class="lead">
+        Activity 3.1 &mdash; Build a container-ready Windows workstation. Performed individually on
+        laboratory hardware or inside a virtual machine, with a partner acting as observer.
+      </p>
+
+      <h3>Materials</h3>
+      <ul>
+        <li>Workstation or virtual machine with at least 60&nbsp;GB of virtual disk and 8&nbsp;GB of memory.</li>
+        <li>Windows 11 Pro installation media prepared according to Section 10.</li>
+        <li>Laboratory worksheet and the inventory record for the assigned machine.</li>
+      </ul>
+
+      <h3>Tasks</h3>
+      <ol class="steps">
+        <li>
+          <h4>Document the starting state</h4>
+          <p>Record the machine identifier, disk model, disk capacity and existing partition layout before making any change.</p>
+        </li>
+        <li>
+          <h4>Configure firmware</h4>
+          <p>Disable CSM, enable Secure Boot, TPM and virtualization. Capture a photograph or screenshot of the firmware summary page.</p>
+        </li>
+        <li>
+          <h4>Plan the layout</h4>
+          <p>Draw the intended partition layout on the worksheet, with sizes in megabytes, and have the observer verify the arithmetic before you proceed.</p>
+        </li>
+        <li>
+          <h4>Install Windows using the custom path</h4>
+          <p>Create the layout exactly as drawn. Record the time taken for the file-copy phase.</p>
+        </li>
+        <li>
+          <h4>Verify the installation</h4>
+          <p>Capture <code>msinfo32</code> showing UEFI and Secure Boot, and Disk Management showing the completed layout.</p>
+        </li>
+        <li>
+          <h4>Enable the container stack</h4>
+          <p>Enable the required Windows features, install WSL 2, and capture the output of <code>wsl --list --verbose</code> and <code>docker run hello-world</code>.</p>
+        </li>
+        <li>
+          <h4>Submit the report</h4>
+          <p>One PDF containing the plan, the four screenshots, and a short paragraph on any error encountered and how it was resolved.</p>
+        </li>
+      </ol>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Table 22.1 &mdash; Assessment rubric (100 points)</caption>
+          <thead><tr><th>Criterion</th><th>Points</th><th>Evidence required</th></tr></thead>
+          <tbody>
+            <tr><td>Firmware correctly configured</td><td>20</td><td>Screenshot showing UEFI, Secure Boot and virtualization enabled</td></tr>
+            <tr><td>Partition plan documented before installation</td><td>15</td><td>Completed worksheet countersigned by the observer</td></tr>
+            <tr><td>Layout matches the plan</td><td>25</td><td>Disk Management screenshot</td></tr>
+            <tr><td>Windows installs, activates and updates</td><td>20</td><td>Activation and Windows Update screenshots</td></tr>
+            <tr><td>Container stack functional</td><td>15</td><td><code>docker run hello-world</code> output</td></tr>
+            <tr><td>Report quality and technical accuracy</td><td>5</td><td>Submitted PDF</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 23 ASSESSMENT -->
+    <section class="lesson" id="assessment">
+      <span class="sec-num">SECTION 23</span>
+      <h2>Assessment Questions</h2>
+
+      <p>Answer in full sentences. Each answer should demonstrate reasoning, not recall alone.</p>
+
+      <ol class="quiz">
+        <li>
+          Explain why a disk initialised as MBR cannot be booted by a UEFI system operating with CSM disabled.
+          <details class="answer"><summary>Model answer</summary>
+            UEFI locates its boot loader as a file inside a FAT32 EFI System Partition, which exists only in the GPT layout. An MBR disk presents boot code in sector 0, which UEFI does not execute when compatibility support is disabled, so no boot loader is found.
+          </details>
+        </li>
+        <li>
+          State the purpose of each of the four partitions created automatically by Windows Setup on a GPT disk.
+          <details class="answer"><summary>Model answer</summary>
+            EFI System holds the boot loader; MSR reserves working space for disk management operations; the primary partition holds Windows and user data; the recovery partition holds the Windows Recovery Environment used for repair and reset.
+          </details>
+        </li>
+        <li>
+          A technician deletes the 100&nbsp;MB hidden partition to reclaim space. Describe the consequence and the remedy.
+          <details class="answer"><summary>Model answer</summary>
+            The machine will not boot, because the EFI System Partition containing the boot loader has been removed. The remedy is to boot the installation media, open a command prompt, recreate the partition and rebuild the boot files with <code>bcdboot C:\Windows /s S: /f UEFI</code>.
+          </details>
+        </li>
+        <li>
+          Why is 64&nbsp;GB an unsuitable system-volume size for a machine used in this course?
+          <details class="answer"><summary>Model answer</summary>
+            Windows itself consumes most of that space, and feature updates require roughly 20&nbsp;GB of free space. WSL virtual disks, Docker image layers and build caches are all written to the system volume by default and routinely exceed 30&nbsp;GB in normal course work.
+          </details>
+        </li>
+        <li>
+          A student reports that Docker Desktop will not start on a freshly installed machine. Give an ordered diagnostic procedure.
+          <details class="answer"><summary>Model answer</summary>
+            Confirm virtualization is enabled (Task Manager, Performance, CPU); if disabled, enable VT-x or AMD-V in firmware. Then confirm Virtual Machine Platform and WSL are enabled in Windows Features. Then run <code>wsl --list --verbose</code> to confirm version 2, and <code>wsl --update</code> if the kernel is outdated. Finally check free space on the system volume.
+          </details>
+        </li>
+        <li>
+          Compare quick format and full format, and state which is appropriate for a disk that has been returning read errors.
+          <details class="answer"><summary>Model answer</summary>
+            Quick format writes a new file-system index only; full format additionally verifies every sector. A disk returning read errors should receive a full format, because sector verification identifies bad areas and marks them unusable.
+          </details>
+        </li>
+        <li>
+          Explain why Windows is installed before Linux on a dual-boot machine.
+          <details class="answer"><summary>Model answer</summary>
+            The Linux boot loader detects an existing Windows installation and adds it to the boot menu. The Windows boot manager does not detect Linux, so installing Windows second overwrites the shared boot entries and hides the Linux installation until the loader is repaired.
+          </details>
+        </li>
+        <li>
+          Relate one decision made during installation to a decision an engineer makes when provisioning a cloud virtual machine.
+          <details class="answer"><summary>Model answer</summary>
+            Answers will vary. A strong answer maps disk sizing to selecting a managed-disk size, firmware mode to selecting a generation or boot-mode setting, and the image edition to selecting a machine image from a catalogue.
+          </details>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 24 GLOSSARY -->
+    <section class="lesson" id="glossary">
+      <span class="sec-num">SECTION 24</span>
+      <h2>Glossary</h2>
+
+      <dl class="glossary">
+        <dt>BIOS</dt>
+        <dd>Basic Input/Output System. Legacy motherboard firmware that boots from the Master Boot Record.</dd>
+
+        <dt>UEFI</dt>
+        <dd>Unified Extensible Firmware Interface. Modern firmware that boots a loader file from the EFI System Partition and supports Secure Boot.</dd>
+
+        <dt>Secure Boot</dt>
+        <dd>A UEFI facility that permits only cryptographically signed boot loaders to execute.</dd>
+
+        <dt>MBR</dt>
+        <dd>Master Boot Record. Legacy partition scheme limited to four primary partitions and approximately 2&nbsp;TB.</dd>
+
+        <dt>GPT</dt>
+        <dd>GUID Partition Table. Modern partition scheme supporting up to 128 partitions in Windows, with a checksummed backup table at the end of the disk.</dd>
+
+        <dt>EFI System Partition (ESP)</dt>
+        <dd>A small FAT32 partition holding boot loaders. Required for UEFI booting.</dd>
+
+        <dt>MSR</dt>
+        <dd>Microsoft Reserved Partition. Reserved working space with no file system, used by disk management operations.</dd>
+
+        <dt>Windows Recovery Environment</dt>
+        <dd>A minimal Windows image stored in the recovery partition, used for startup repair, system reset and command-line recovery.</dd>
+
+        <dt>NTFS</dt>
+        <dd>New Technology File System. The journaled file system used for Windows system and data volumes.</dd>
+
+        <dt>Partition</dt>
+        <dd>A defined region of a physical disk described by an entry in the partition table.</dd>
+
+        <dt>Volume</dt>
+        <dd>A formatted partition carrying a file system, usually presented with a drive letter.</dd>
+
+        <dt>DiskPart</dt>
+        <dd>The Windows command-line disk partitioning utility, available during Setup through <kbd>Shift</kbd>&nbsp;+&nbsp;<kbd>F10</kbd>.</dd>
+
+        <dt>TPM 2.0</dt>
+        <dd>Trusted Platform Module. A hardware security processor required by Windows 11 and used by BitLocker.</dd>
+
+        <dt>Hypervisor</dt>
+        <dd>Software that creates and runs virtual machines by partitioning physical hardware resources.</dd>
+
+        <dt>WSL 2</dt>
+        <dd>Windows Subsystem for Linux, version 2. Runs a real Linux kernel in a lightweight virtual machine and provides the default back end for Docker Desktop.</dd>
+
+        <dt>Container</dt>
+        <dd>An isolated process that shares the host kernel, packaged with its dependencies in an image.</dd>
+
+        <dt>Image layer</dt>
+        <dd>A read-only filesystem layer within a container image; layers are cached on the host disk and reused across images.</dd>
+      </dl>
+
+      <div class="callout tip">
+        <span class="tag">Looking ahead</span>
+        <p>
+          Lesson 04 takes the host you have just built and installs the container runtime on it,
+          beginning with the relationship between images, layers and the container filesystem.
+        </p>
+      </div>
+
+      <a class="back-top" href="#overview">Return to the top of the lesson</a>
+    </section>
+
+    <footer class="page-footer">
+      <span>Cloud &amp; Containers &middot; Module 1 &middot; Lesson 03 &mdash; Windows Installation and Disk Partitioning</span>
+      <a href="../index.html">Return to course home</a>
+    </footer>
+
+  </div>
+  </main>
+</div>
+
+</body>
+</html>

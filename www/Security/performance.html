@@ -1,0 +1,993 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Performance Monitoring lecture module for Platform Technologies Security and Operations.">
+  <title>Performance Monitoring | Platform Technologies</title>
+  <link rel="stylesheet" href="../css/Security/performance.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html">
+      Platform Technologies
+      <span>Security &amp; Operations Learning Module</span>
+    </a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+<a href="os.html">OS Hardening</a>
+<a href="firewalls.html">Firewalls & Backups</a>
+<a href="performance.html" class="active">Performance Monitoring</a>
+<a href="capacity.html">Capacity Planning</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero__inner">
+    <div class="eyebrow">Security &amp; Operations</div>
+    <h1>Performance Monitoring</h1>
+    <p>Observability, Metrics, Troubleshooting, Baselines, and Service Health. Every lesson includes its own visual explanation so students can connect the written lecture to a diagram.</p>
+    <div class="hero__meta">
+      <span>15 detailed lessons</span>
+      <span>15 local lesson images</span>
+      <span>Lecture + practical activity</span>
+      <span>Mobile responsive</span>
+    </div>
+  </div>
+</section>
+
+<main class="course-shell">
+  <aside class="sidebar">
+    <div class="sidebar__head">
+      <strong>Performance Monitoring</strong>
+      <small>Select a lesson</small>
+    </div>
+    <nav class="lesson-nav" aria-label="Performance Monitoring lessons">
+      <a href="#lesson-01-introduction-to-performance-monitoring">Lesson 1: Introduction to Performance Monitoring</a>
+<a href="#lesson-02-establishing-performance-baselines">Lesson 2: Establishing Performance Baselines</a>
+<a href="#lesson-03-cpu-monitoring">Lesson 3: CPU Monitoring</a>
+<a href="#lesson-04-memory-monitoring">Lesson 4: Memory Monitoring</a>
+<a href="#lesson-05-disk-and-storage-performance">Lesson 5: Disk and Storage Performance</a>
+<a href="#lesson-06-network-performance-monitoring">Lesson 6: Network Performance Monitoring</a>
+<a href="#lesson-07-process-and-service-monitoring">Lesson 7: Process and Service Monitoring</a>
+<a href="#lesson-08-logs-events-and-performance-correlation">Lesson 8: Logs, Events, and Performance Correlation</a>
+<a href="#lesson-09-monitoring-tools-and-dashboards">Lesson 9: Monitoring Tools and Dashboards</a>
+<a href="#lesson-10-thresholds-alerts-and-alert-fatigue">Lesson 10: Thresholds, Alerts, and Alert Fatigue</a>
+<a href="#lesson-11-bottleneck-identification">Lesson 11: Bottleneck Identification</a>
+<a href="#lesson-12-application-and-database-performance">Lesson 12: Application and Database Performance</a>
+<a href="#lesson-13-performance-testing">Lesson 13: Performance Testing</a>
+<a href="#lesson-14-performance-tuning-and-change-validation">Lesson 14: Performance Tuning and Change Validation</a>
+<a href="#lesson-15-building-a-monitoring-operations-routine">Lesson 15: Building a Monitoring Operations Routine</a>
+    </nav>
+  </aside>
+
+  <div class="content">
+    <section class="intro-card">
+      <h2>Module Overview</h2>
+      <p>
+        This page contains a complete 15-lesson lecture module for <strong>Performance Monitoring</strong>.
+        Each lesson contains an automatically displayed local SVG teaching image, a longer explanation, key concepts,
+        practical meaning, a guided student activity, and review questions.
+      </p>
+      <p>
+        The <strong>Home</strong> button returns to <code>../index.html</code>. Keep the <code>images/security-ops</code> folder
+        in the same project structure so every lesson image loads correctly.
+      </p>
+    </section>
+
+    
+<section class="lesson-card" id="lesson-01-introduction-to-performance-monitoring">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 01</div>
+  <h2>Introduction to Performance Monitoring</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-01-introduction-to-performance-monitoring.svg" alt="Educational diagram for Introduction to Performance Monitoring" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Introduction to Performance Monitoring.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Performance monitoring is the continuous observation of system behavior so administrators can understand health, detect degradation, investigate incidents, and verify whether infrastructure meets expected service levels.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Metrics</strong><span>Metrics is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Baseline</strong><span>Baseline is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Threshold</strong><span>Threshold is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Service Health</strong><span>Service Health is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Monitoring should answer operational questions. A large dashboard is not useful if it cannot tell administrators whether users are experiencing a problem.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-02-establishing-performance-baselines">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 02</div>
+  <h2>Establishing Performance Baselines</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-02-establishing-performance-baselines.svg" alt="Educational diagram for Establishing Performance Baselines" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Establishing Performance Baselines.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>A baseline describes normal behavior over a representative period. It provides a reference for identifying abnormal resource consumption, unusual latency, and changes after configuration or application updates.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Normal Range</strong><span>Normal Range is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Peak Period</strong><span>Peak Period is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>History</strong><span>History is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Seasonality</strong><span>Seasonality is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Different time periods may have different normal behavior. Overnight maintenance should not be compared directly with peak classroom or office activity.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-03-cpu-monitoring">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 03</div>
+  <h2>CPU Monitoring</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-03-cpu-monitoring.svg" alt="Educational diagram for CPU Monitoring" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in CPU Monitoring.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>CPU monitoring shows how processing capacity is consumed. High utilization can be normal during heavy work, but sustained saturation combined with run queues or latency may indicate a bottleneck.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Utilization</strong><span>Utilization is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Load</strong><span>Load is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Processes</strong><span>Processes is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Run Queue</strong><span>Run Queue is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Students should distinguish a brief spike from sustained contention and identify which process or workload is responsible.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-04-memory-monitoring">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 04</div>
+  <h2>Memory Monitoring</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-04-memory-monitoring.svg" alt="Educational diagram for Memory Monitoring" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Memory Monitoring.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Memory monitoring examines RAM, virtual memory, paging, caching, and process allocation. Low free memory is not automatically a problem because operating systems use available memory for caching.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>RAM</strong><span>RAM is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Swap</strong><span>Swap is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Pressure</strong><span>Pressure is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Leaks</strong><span>Leaks is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Indicators such as sustained memory pressure, excessive paging, and abnormal process growth are more meaningful than one memory percentage.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-05-disk-and-storage-performance">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 05</div>
+  <h2>Disk and Storage Performance</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-05-disk-and-storage-performance.svg" alt="Educational diagram for Disk and Storage Performance" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Disk and Storage Performance.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Storage performance affects application response, databases, file services, boot time, and backups. Important metrics include throughput, IOPS, latency, queue depth, and available capacity.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>IOPS</strong><span>IOPS is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Latency</strong><span>Latency is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Throughput</strong><span>Throughput is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Queue Depth</strong><span>Queue Depth is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Sequential workloads and random transaction workloads stress storage differently, so the correct metric depends on the workload.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-06-network-performance-monitoring">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 06</div>
+  <h2>Network Performance Monitoring</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-06-network-performance-monitoring.svg" alt="Educational diagram for Network Performance Monitoring" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Network Performance Monitoring.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Network monitoring tracks bandwidth, latency, packet loss, errors, retransmissions, and connection behavior. A link may have free bandwidth yet still perform poorly because of delay or packet loss.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Bandwidth</strong><span>Bandwidth is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Latency</strong><span>Latency is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Packet Loss</strong><span>Packet Loss is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Errors</strong><span>Errors is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Troubleshooting should separate client, DNS, routing, server, wireless, and application issues rather than assuming every slow response is a bandwidth problem.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-07-process-and-service-monitoring">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 07</div>
+  <h2>Process and Service Monitoring</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-07-process-and-service-monitoring.svg" alt="Educational diagram for Process and Service Monitoring" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Process and Service Monitoring.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Monitoring processes and services helps administrators verify whether critical software is running, responsive, consuming expected resources, and able to communicate with dependencies.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Process State</strong><span>Process State is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Uptime</strong><span>Uptime is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Resources</strong><span>Resources is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Dependencies</strong><span>Dependencies is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A service can be marked &#x27;running&#x27; while still being unhealthy because it is hung, slow, or unable to reach a database or external API.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-08-logs-events-and-performance-correlation">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 08</div>
+  <h2>Logs, Events, and Performance Correlation</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-08-logs-events-and-performance-correlation.svg" alt="Educational diagram for Logs, Events, and Performance Correlation" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Logs, Events, and Performance Correlation.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Metrics show what changed, while logs often explain why. Correlating time-aligned system metrics, application events, deployment history, and error logs improves diagnosis.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Events</strong><span>Events is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Error Logs</strong><span>Error Logs is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Time Sync</strong><span>Time Sync is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Change History</strong><span>Change History is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A CPU spike may be explained by a scheduled job, software deployment, antivirus scan, backup operation, or unexpected process.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-09-monitoring-tools-and-dashboards">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 09</div>
+  <h2>Monitoring Tools and Dashboards</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-09-monitoring-tools-and-dashboards.svg" alt="Educational diagram for Monitoring Tools and Dashboards" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Monitoring Tools and Dashboards.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Monitoring platforms collect, store, visualize, and alert on operational telemetry. Effective dashboards focus on service health and decisions instead of showing every possible metric.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Dashboard</strong><span>Dashboard is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Agent</strong><span>Agent is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>SNMP</strong><span>SNMP is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Telemetry</strong><span>Telemetry is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Different roles need different views. A network administrator, server administrator, and service owner may all use the same telemetry but ask different questions.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-10-thresholds-alerts-and-alert-fatigue">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 10</div>
+  <h2>Thresholds, Alerts, and Alert Fatigue</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-10-thresholds-alerts-and-alert-fatigue.svg" alt="Educational diagram for Thresholds, Alerts, and Alert Fatigue" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Thresholds, Alerts, and Alert Fatigue.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Alerts should indicate conditions that need human attention. Poor thresholds generate excessive notifications, causing important warnings to be ignored.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Threshold</strong><span>Threshold is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Severity</strong><span>Severity is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Routing</strong><span>Routing is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Noise</strong><span>Noise is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A good alert is actionable: it identifies the affected service, the measured condition, the likely impact, and the first diagnostic step.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-11-bottleneck-identification">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 11</div>
+  <h2>Bottleneck Identification</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-11-bottleneck-identification.svg" alt="Educational diagram for Bottleneck Identification" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Bottleneck Identification.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>A bottleneck is the limiting resource or dependency that constrains overall service performance. Correct diagnosis requires evidence across CPU, memory, storage, network, application, and external dependencies.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Saturation</strong><span>Saturation is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Queue</strong><span>Queue is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Dependency</strong><span>Dependency is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Workload</strong><span>Workload is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Random tuning often masks symptoms. A structured investigation identifies where wait time or resource contention actually occurs.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-12-application-and-database-performance">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 12</div>
+  <h2>Application and Database Performance</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-12-application-and-database-performance.svg" alt="Educational diagram for Application and Database Performance" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Application and Database Performance.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Application performance depends on code paths, queries, caches, external services, connection pools, and infrastructure. Slow database queries can appear to users as general server slowness.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Response Time</strong><span>Response Time is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Queries</strong><span>Queries is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Connections</strong><span>Connections is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Caching</strong><span>Caching is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Students should separate infrastructure saturation from inefficient application behavior before deciding to add hardware.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-13-performance-testing">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 13</div>
+  <h2>Performance Testing</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-13-performance-testing.svg" alt="Educational diagram for Performance Testing" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Performance Testing.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Performance testing generates controlled workloads to measure behavior before production demand causes failure. Load, stress, endurance, and spike testing answer different questions.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Load</strong><span>Load is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Stress</strong><span>Stress is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Soak</strong><span>Soak is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Spike</strong><span>Spike is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Realistic concurrency, workload mix, data size, and success criteria should be defined before testing begins.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-14-performance-tuning-and-change-validation">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 14</div>
+  <h2>Performance Tuning and Change Validation</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-14-performance-tuning-and-change-validation.svg" alt="Educational diagram for Performance Tuning and Change Validation" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Performance Tuning and Change Validation.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Performance tuning is a controlled adjustment to configuration, resources, or application behavior. Every change should have a hypothesis, baseline, test result, rollback plan, and documented outcome.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Hypothesis</strong><span>Hypothesis is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Before/After</strong><span>Before/After is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Change Control</strong><span>Change Control is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Rollback</strong><span>Rollback is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Changing many parameters simultaneously makes it difficult to prove which change improved or harmed performance.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-15-building-a-monitoring-operations-routine">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 15</div>
+  <h2>Building a Monitoring Operations Routine</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/performance-15-building-a-monitoring-operations-routine.svg" alt="Educational diagram for Building a Monitoring Operations Routine" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Building a Monitoring Operations Routine.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Effective monitoring becomes an operational discipline through daily checks, weekly trend review, incident analysis, service reporting, and continuous dashboard improvement.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Daily Check</strong><span>Daily Check is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Trend Review</strong><span>Trend Review is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Incident Analysis</strong><span>Incident Analysis is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Reporting</strong><span>Reporting is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>The goal is to turn raw telemetry into decisions about faults, tuning, maintenance, and future capacity.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+
+    <nav class="page-nav" aria-label="Security and operations topic navigation">
+      <a href="firewalls.html">â† Previous Topic</a>
+      <a href="capacity.html">Next Topic â†’</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="footer">
+  <strong>Platform Technologies</strong> Â· Security &amp; Operations Lecture Series
+</footer>
+</body>
+</html>

@@ -1,0 +1,3571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Professional lecture module about Type 1 and Type 2 Hypervisors for Virtualization."
+    >
+
+    <title>Type 1 vs Type 2 Hypervisors | Virtualization</title>
+
+    <!-- Browser tab logo -->
+    <link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+    <link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+    <!-- Separate CSS -->
+    <link rel="stylesheet" href="../css/Virtualization/typehypervisor.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         TOP HEADER
+    ========================================================== -->
+    <header class="top-header">
+        <div class="top-header-inner">
+
+            <div class="brand-area">
+                <div class="brand-icon">V</div>
+
+                <div>
+                    <p class="course-label">Cloud &amp; Containers</p>
+                    <h1 class="site-title">Virtualization</h1>
+                </div>
+            </div>
+
+            <nav class="top-navigation" aria-label="Main Navigation">
+                <a href="../index.html">Home</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- =========================================================
+         PAGE LAYOUT
+    ========================================================== -->
+    <div class="page-layout">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside class="sidebar">
+
+            <div class="sidebar-inner">
+
+                <div class="sidebar-heading">
+                    <span class="sidebar-number">01</span>
+
+                    <div>
+                        <p>Lecture Module</p>
+                        <h2>Hypervisors</h2>
+                    </div>
+                </div>
+
+                <nav class="lesson-navigation" aria-label="Lesson Topics">
+
+                    <a href="#introduction">
+                        <span>01</span>
+                        Introduction
+                    </a>
+
+                    <a href="#objectives">
+                        <span>02</span>
+                        Learning Objectives
+                    </a>
+
+                    <a href="#virtualization">
+                        <span>03</span>
+                        Virtualization Fundamentals
+                    </a>
+
+                    <a href="#hypervisor">
+                        <span>04</span>
+                        What Is a Hypervisor?
+                    </a>
+
+                    <a href="#type1">
+                        <span>05</span>
+                        Type 1 Hypervisors
+                    </a>
+
+                    <a href="#type2">
+                        <span>06</span>
+                        Type 2 Hypervisors
+                    </a>
+
+                    <a href="#architecture">
+                        <span>07</span>
+                        Architecture Comparison
+                    </a>
+
+                    <a href="#process">
+                        <span>08</span>
+                        Virtualization Process
+                    </a>
+
+                    <a href="#hardware">
+                        <span>09</span>
+                        Hardware Virtualization
+                    </a>
+
+                    <a href="#comparison">
+                        <span>10</span>
+                        Detailed Comparison
+                    </a>
+
+                    <a href="#performance">
+                        <span>11</span>
+                        Performance
+                    </a>
+
+                    <a href="#security">
+                        <span>12</span>
+                        Security &amp; Isolation
+                    </a>
+
+                    <a href="#use-cases">
+                        <span>13</span>
+                        Professional Use Cases
+                    </a>
+
+                    <a href="#selection">
+                        <span>14</span>
+                        Choosing a Hypervisor
+                    </a>
+
+                    <a href="#misconceptions">
+                        <span>15</span>
+                        Common Misconceptions
+                    </a>
+
+                    <a href="#terminology">
+                        <span>16</span>
+                        Key Terminology
+                    </a>
+
+                    <a href="#review">
+                        <span>17</span>
+                        Lesson Review
+                    </a>
+
+                </nav>
+
+                <div class="sidebar-note">
+                    <strong>Module:</strong>
+                    <span>Type 1 vs Type 2 Hypervisors</span>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+        <main class="lesson-content">
+
+            <!-- =================================================
+                 HERO
+            ================================================== -->
+            <section class="lesson-hero">
+
+                <div class="hero-text">
+
+                    <span class="topic-badge">
+                        Professional Virtualization Lecture
+                    </span>
+
+                    <p class="eyebrow">
+                        Virtualization • Hypervisor Architecture
+                    </p>
+
+                    <h1>Type 1 vs Type 2 Hypervisors</h1>
+
+                    <p class="hero-description">
+                        A professional introduction to hypervisor architecture,
+                        virtual machine management, hardware abstraction,
+                        performance, security, and the major differences between
+                        bare-metal and hosted virtualization.
+                    </p>
+
+                    <div class="hero-meta">
+
+                        <div>
+                            <span class="meta-label">Topic</span>
+                            <strong>Hypervisors</strong>
+                        </div>
+
+                        <div>
+                            <span class="meta-label">Level</span>
+                            <strong>Professional</strong>
+                        </div>
+
+                        <div>
+                            <span class="meta-label">Category</span>
+                            <strong>Virtualization</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Embedded illustration -->
+                <div class="hero-visual" aria-label="Virtualization architecture illustration">
+
+                    <svg
+                        class="hero-svg"
+                        viewBox="0 0 720 500"
+                        role="img"
+                        aria-labelledby="heroSvgTitle heroSvgDesc"
+                    >
+                        <title id="heroSvgTitle">
+                            Hypervisor Virtualization Architecture
+                        </title>
+
+                        <desc id="heroSvgDesc">
+                            A physical server running a hypervisor that manages
+                            several virtual machines.
+                        </desc>
+
+                        <rect
+                            class="svg-background"
+                            x="20"
+                            y="20"
+                            width="680"
+                            height="460"
+                            rx="30"
+                        />
+
+                        <text
+                            class="svg-heading"
+                            x="360"
+                            y="65"
+                            text-anchor="middle"
+                        >
+                            VIRTUALIZED SERVER
+                        </text>
+
+                        <!-- Virtual Machines -->
+                        <g>
+                            <rect
+                                class="svg-vm"
+                                x="70"
+                                y="100"
+                                width="160"
+                                height="145"
+                                rx="18"
+                            />
+
+                            <text
+                                class="svg-title"
+                                x="150"
+                                y="135"
+                                text-anchor="middle"
+                            >
+                                VM 01
+                            </text>
+
+                            <rect
+                                class="svg-inner"
+                                x="95"
+                                y="155"
+                                width="110"
+                                height="28"
+                                rx="6"
+                            />
+
+                            <text
+                                class="svg-small"
+                                x="150"
+                                y="174"
+                                text-anchor="middle"
+                            >
+                                Application
+                            </text>
+
+                            <rect
+                                class="svg-inner"
+                                x="95"
+                                y="193"
+                                width="110"
+                                height="28"
+                                rx="6"
+                            />
+
+                            <text
+                                class="svg-small"
+                                x="150"
+                                y="212"
+                                text-anchor="middle"
+                            >
+                                Guest OS
+                            </text>
+                        </g>
+
+
+                        <g>
+                            <rect
+                                class="svg-vm"
+                                x="280"
+                                y="100"
+                                width="160"
+                                height="145"
+                                rx="18"
+                            />
+
+                            <text
+                                class="svg-title"
+                                x="360"
+                                y="135"
+                                text-anchor="middle"
+                            >
+                                VM 02
+                            </text>
+
+                            <rect
+                                class="svg-inner"
+                                x="305"
+                                y="155"
+                                width="110"
+                                height="28"
+                                rx="6"
+                            />
+
+                            <text
+                                class="svg-small"
+                                x="360"
+                                y="174"
+                                text-anchor="middle"
+                            >
+                                Application
+                            </text>
+
+                            <rect
+                                class="svg-inner"
+                                x="305"
+                                y="193"
+                                width="110"
+                                height="28"
+                                rx="6"
+                            />
+
+                            <text
+                                class="svg-small"
+                                x="360"
+                                y="212"
+                                text-anchor="middle"
+                            >
+                                Guest OS
+                            </text>
+                        </g>
+
+
+                        <g>
+                            <rect
+                                class="svg-vm"
+                                x="490"
+                                y="100"
+                                width="160"
+                                height="145"
+                                rx="18"
+                            />
+
+                            <text
+                                class="svg-title"
+                                x="570"
+                                y="135"
+                                text-anchor="middle"
+                            >
+                                VM 03
+                            </text>
+
+                            <rect
+                                class="svg-inner"
+                                x="515"
+                                y="155"
+                                width="110"
+                                height="28"
+                                rx="6"
+                            />
+
+                            <text
+                                class="svg-small"
+                                x="570"
+                                y="174"
+                                text-anchor="middle"
+                            >
+                                Application
+                            </text>
+
+                            <rect
+                                class="svg-inner"
+                                x="515"
+                                y="193"
+                                width="110"
+                                height="28"
+                                rx="6"
+                            />
+
+                            <text
+                                class="svg-small"
+                                x="570"
+                                y="212"
+                                text-anchor="middle"
+                            >
+                                Guest OS
+                            </text>
+                        </g>
+
+
+                        <!-- Hypervisor -->
+                        <rect
+                            class="svg-hypervisor"
+                            x="70"
+                            y="280"
+                            width="580"
+                            height="65"
+                            rx="15"
+                        />
+
+                        <text
+                            class="svg-hypervisor-text"
+                            x="360"
+                            y="320"
+                            text-anchor="middle"
+                        >
+                            HYPERVISOR
+                        </text>
+
+
+                        <!-- Hardware -->
+                        <rect
+                            class="svg-hardware"
+                            x="70"
+                            y="375"
+                            width="580"
+                            height="65"
+                            rx="15"
+                        />
+
+                        <text
+                            class="svg-hardware-text"
+                            x="360"
+                            y="414"
+                            text-anchor="middle"
+                        >
+                            PHYSICAL SERVER HARDWARE
+                        </text>
+
+                    </svg>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 01 INTRODUCTION
+            ================================================== -->
+            <section id="introduction" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">01</span>
+
+                    <div>
+                        <p class="section-label">Foundation</p>
+                        <h2>Introduction to Hypervisors</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    Modern computing environments frequently require multiple
+                    operating systems and applications to share a single physical
+                    computer. Instead of assigning one physical server to every
+                    application, organizations can use
+                    <strong>virtualization</strong> to divide computing resources
+                    into multiple isolated environments.
+                </p>
+
+                <p>
+                    At the center of this process is software called a
+                    <strong>hypervisor</strong>. The hypervisor controls access to
+                    the physical processor, memory, storage, and network resources
+                    and distributes those resources to individual virtual machines.
+                </p>
+
+                <p>
+                    Hypervisors are generally classified into two major
+                    architectural categories:
+                    <strong>Type 1 hypervisors</strong> and
+                    <strong>Type 2 hypervisors</strong>.
+                </p>
+
+
+                <div class="concept-box">
+
+                    <div class="concept-icon">!</div>
+
+                    <div>
+                        <h3>Central Idea</h3>
+
+                        <p>
+                            A hypervisor allows several independent virtual
+                            computers to operate on one physical computer while
+                            maintaining controlled access to physical hardware.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 02 LEARNING OBJECTIVES
+            ================================================== -->
+            <section id="objectives" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">02</span>
+
+                    <div>
+                        <p class="section-label">Learning Outcomes</p>
+                        <h2>Learning Objectives</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    After completing this lesson, students should be able to:
+                </p>
+
+                <div class="objective-grid">
+
+                    <article class="objective-card">
+                        <span>01</span>
+
+                        <h3>Define Virtualization</h3>
+
+                        <p>
+                            Explain virtualization and describe why organizations
+                            use virtual machines.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span>02</span>
+
+                        <h3>Explain Hypervisors</h3>
+
+                        <p>
+                            Describe the purpose of a hypervisor and its role in
+                            virtual machine management.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span>03</span>
+
+                        <h3>Differentiate Types</h3>
+
+                        <p>
+                            Distinguish between Type 1 and Type 2 hypervisor
+                            architectures.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span>04</span>
+
+                        <h3>Evaluate Performance</h3>
+
+                        <p>
+                            Compare virtualization architectures in terms of
+                            performance and resource overhead.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span>05</span>
+
+                        <h3>Evaluate Security</h3>
+
+                        <p>
+                            Discuss security boundaries and the additional attack
+                            surface created by a host operating system.
+                        </p>
+                    </article>
+
+
+                    <article class="objective-card">
+                        <span>06</span>
+
+                        <h3>Select an Architecture</h3>
+
+                        <p>
+                            Choose an appropriate hypervisor architecture for
+                            enterprise, laboratory, development, or personal use.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 03 VIRTUALIZATION FUNDAMENTALS
+            ================================================== -->
+            <section id="virtualization" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">03</span>
+
+                    <div>
+                        <p class="section-label">Core Concept</p>
+                        <h2>Virtualization Fundamentals</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    <strong>Virtualization</strong> is the process of creating a
+                    software-based representation of computing resources that
+                    would traditionally be provided by dedicated physical
+                    hardware.
+                </p>
+
+                <p>
+                    A physical server may contain a processor, RAM, storage
+                    devices, and network interfaces. Virtualization allows those
+                    physical resources to be divided into virtual resources that
+                    can be assigned to several virtual machines.
+                </p>
+
+
+                <figure class="lecture-figure">
+
+                    <svg
+                        class="diagram-svg"
+                        viewBox="0 0 1000 520"
+                        role="img"
+                        aria-labelledby="virtualizationTitle"
+                    >
+                        <title id="virtualizationTitle">
+                            Physical to virtual resource transformation
+                        </title>
+
+                        <rect
+                            class="diagram-panel"
+                            x="30"
+                            y="40"
+                            width="300"
+                            height="420"
+                            rx="24"
+                        />
+
+                        <text
+                            class="diagram-main-title"
+                            x="180"
+                            y="90"
+                            text-anchor="middle"
+                        >
+                            PHYSICAL SERVER
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="75"
+                            y="125"
+                            width="210"
+                            height="55"
+                            rx="10"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="180"
+                            y="160"
+                            text-anchor="middle"
+                        >
+                            CPU
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="75"
+                            y="200"
+                            width="210"
+                            height="55"
+                            rx="10"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="180"
+                            y="235"
+                            text-anchor="middle"
+                        >
+                            MEMORY
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="75"
+                            y="275"
+                            width="210"
+                            height="55"
+                            rx="10"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="180"
+                            y="310"
+                            text-anchor="middle"
+                        >
+                            STORAGE
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="75"
+                            y="350"
+                            width="210"
+                            height="55"
+                            rx="10"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="180"
+                            y="385"
+                            text-anchor="middle"
+                        >
+                            NETWORK
+                        </text>
+
+
+                        <!-- Arrow -->
+                        <line
+                            class="diagram-arrow-line"
+                            x1="365"
+                            y1="250"
+                            x2="530"
+                            y2="250"
+                        />
+
+                        <polygon
+                            class="diagram-arrow"
+                            points="530,250 495,230 495,270"
+                        />
+
+                        <text
+                            class="diagram-arrow-label"
+                            x="447"
+                            y="220"
+                            text-anchor="middle"
+                        >
+                            VIRTUALIZATION
+                        </text>
+
+
+                        <!-- VMs -->
+                        <rect
+                            class="diagram-panel"
+                            x="570"
+                            y="40"
+                            width="400"
+                            height="420"
+                            rx="24"
+                        />
+
+                        <text
+                            class="diagram-main-title"
+                            x="770"
+                            y="90"
+                            text-anchor="middle"
+                        >
+                            VIRTUAL ENVIRONMENT
+                        </text>
+
+                        <rect
+                            class="diagram-vm"
+                            x="610"
+                            y="130"
+                            width="100"
+                            height="210"
+                            rx="12"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="660"
+                            y="165"
+                            text-anchor="middle"
+                        >
+                            VM 1
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="660"
+                            y="210"
+                            text-anchor="middle"
+                        >
+                            vCPU
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="660"
+                            y="245"
+                            text-anchor="middle"
+                        >
+                            vRAM
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="660"
+                            y="280"
+                            text-anchor="middle"
+                        >
+                            vDisk
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="660"
+                            y="315"
+                            text-anchor="middle"
+                        >
+                            vNIC
+                        </text>
+
+
+                        <rect
+                            class="diagram-vm"
+                            x="720"
+                            y="130"
+                            width="100"
+                            height="210"
+                            rx="12"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="770"
+                            y="165"
+                            text-anchor="middle"
+                        >
+                            VM 2
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="770"
+                            y="210"
+                            text-anchor="middle"
+                        >
+                            vCPU
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="770"
+                            y="245"
+                            text-anchor="middle"
+                        >
+                            vRAM
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="770"
+                            y="280"
+                            text-anchor="middle"
+                        >
+                            vDisk
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="770"
+                            y="315"
+                            text-anchor="middle"
+                        >
+                            vNIC
+                        </text>
+
+
+                        <rect
+                            class="diagram-vm"
+                            x="830"
+                            y="130"
+                            width="100"
+                            height="210"
+                            rx="12"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="880"
+                            y="165"
+                            text-anchor="middle"
+                        >
+                            VM 3
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="880"
+                            y="210"
+                            text-anchor="middle"
+                        >
+                            vCPU
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="880"
+                            y="245"
+                            text-anchor="middle"
+                        >
+                            vRAM
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="880"
+                            y="280"
+                            text-anchor="middle"
+                        >
+                            vDisk
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="880"
+                            y="315"
+                            text-anchor="middle"
+                        >
+                            vNIC
+                        </text>
+
+
+                        <rect
+                            class="diagram-hypervisor"
+                            x="610"
+                            y="370"
+                            width="320"
+                            height="55"
+                            rx="10"
+                        />
+
+                        <text
+                            class="diagram-light-text"
+                            x="770"
+                            y="405"
+                            text-anchor="middle"
+                        >
+                            HYPERVISOR
+                        </text>
+
+                    </svg>
+
+                    <figcaption>
+                        Figure 1. Virtualization converts physical computing
+                        resources into resources that can be allocated to multiple
+                        virtual machines.
+                    </figcaption>
+
+                </figure>
+
+
+                <h3>Physical Resources vs Virtual Resources</h3>
+
+                <div class="two-column">
+
+                    <div class="info-card">
+                        <h4>Physical Resources</h4>
+
+                        <ul>
+                            <li>Physical CPU cores</li>
+                            <li>Installed RAM</li>
+                            <li>Physical disks or SSDs</li>
+                            <li>Physical network adapters</li>
+                            <li>Motherboard and hardware devices</li>
+                        </ul>
+                    </div>
+
+
+                    <div class="info-card">
+                        <h4>Virtual Resources</h4>
+
+                        <ul>
+                            <li>Virtual CPUs or vCPUs</li>
+                            <li>Virtual memory</li>
+                            <li>Virtual disks</li>
+                            <li>Virtual network adapters</li>
+                            <li>Virtual hardware devices</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 04 WHAT IS HYPERVISOR
+            ================================================== -->
+            <section id="hypervisor" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">04</span>
+
+                    <div>
+                        <p class="section-label">Core Technology</p>
+                        <h2>What Is a Hypervisor?</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    A <strong>hypervisor</strong>, sometimes called a
+                    <strong>Virtual Machine Monitor (VMM)</strong>, is the
+                    virtualization layer responsible for creating, executing,
+                    isolating, and managing virtual machines.
+                </p>
+
+                <p>
+                    The hypervisor presents each virtual machine with virtual
+                    hardware. To the guest operating system, this virtual hardware
+                    appears similar to a physical computer.
+                </p>
+
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        <span>01</span>
+
+                        <div>
+                            <h3>Resource Allocation</h3>
+
+                            <p>
+                                Assigns CPU processing time, memory capacity,
+                                storage, and network resources to virtual machines.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="feature-item">
+                        <span>02</span>
+
+                        <div>
+                            <h3>Isolation</h3>
+
+                            <p>
+                                Maintains separation between virtual machines so
+                                that workloads can operate independently.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="feature-item">
+                        <span>03</span>
+
+                        <div>
+                            <h3>Hardware Abstraction</h3>
+
+                            <p>
+                                Hides many physical hardware details and presents
+                                standardized virtual hardware to guest operating
+                                systems.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="feature-item">
+                        <span>04</span>
+
+                        <div>
+                            <h3>Execution Control</h3>
+
+                            <p>
+                                Coordinates how virtual machines access physical
+                                processing resources and privileged CPU functions.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="feature-item">
+                        <span>05</span>
+
+                        <div>
+                            <h3>Virtual Device Management</h3>
+
+                            <p>
+                                Provides virtual disks, network adapters,
+                                controllers, and other devices required by the
+                                guest operating system.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="feature-item">
+                        <span>06</span>
+
+                        <div>
+                            <h3>Lifecycle Management</h3>
+
+                            <p>
+                                Supports operations such as starting, stopping,
+                                suspending, cloning, and managing virtual machines.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 05 TYPE 1
+            ================================================== -->
+            <section id="type1" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">05</span>
+
+                    <div>
+                        <p class="section-label">Bare-Metal Architecture</p>
+                        <h2>Type 1 Hypervisors</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    A <strong>Type 1 hypervisor</strong> operates directly on the
+                    physical server hardware rather than being installed as a
+                    normal application inside a conventional desktop operating
+                    system.
+                </p>
+
+                <p>
+                    This architecture is commonly called
+                    <strong>bare-metal virtualization</strong>.
+                </p>
+
+                <p>
+                    The hypervisor becomes the primary virtualization control
+                    layer between the physical hardware and the virtual machines.
+                    This architecture is commonly selected for servers,
+                    data centers, private clouds, enterprise infrastructure, and
+                    other environments where performance, scalability, isolation,
+                    and centralized management are important.
+                </p>
+
+
+                <figure class="lecture-figure">
+
+                    <svg
+                        class="diagram-svg type-diagram"
+                        viewBox="0 0 900 650"
+                        role="img"
+                        aria-labelledby="type1Title"
+                    >
+                        <title id="type1Title">
+                            Type 1 hypervisor architecture
+                        </title>
+
+                        <text
+                            class="diagram-main-title"
+                            x="450"
+                            y="55"
+                            text-anchor="middle"
+                        >
+                            TYPE 1 — BARE-METAL ARCHITECTURE
+                        </text>
+
+
+                        <!-- VM 1 -->
+                        <rect
+                            class="diagram-vm"
+                            x="100"
+                            y="100"
+                            width="200"
+                            height="200"
+                            rx="18"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="200"
+                            y="140"
+                            text-anchor="middle"
+                        >
+                            VIRTUAL MACHINE 1
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="130"
+                            y="165"
+                            width="140"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="200"
+                            y="194"
+                            text-anchor="middle"
+                        >
+                            APPLICATIONS
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="130"
+                            y="225"
+                            width="140"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="200"
+                            y="254"
+                            text-anchor="middle"
+                        >
+                            GUEST OS
+                        </text>
+
+
+                        <!-- VM 2 -->
+                        <rect
+                            class="diagram-vm"
+                            x="350"
+                            y="100"
+                            width="200"
+                            height="200"
+                            rx="18"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="450"
+                            y="140"
+                            text-anchor="middle"
+                        >
+                            VIRTUAL MACHINE 2
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="380"
+                            y="165"
+                            width="140"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="450"
+                            y="194"
+                            text-anchor="middle"
+                        >
+                            APPLICATIONS
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="380"
+                            y="225"
+                            width="140"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="450"
+                            y="254"
+                            text-anchor="middle"
+                        >
+                            GUEST OS
+                        </text>
+
+
+                        <!-- VM 3 -->
+                        <rect
+                            class="diagram-vm"
+                            x="600"
+                            y="100"
+                            width="200"
+                            height="200"
+                            rx="18"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="700"
+                            y="140"
+                            text-anchor="middle"
+                        >
+                            VIRTUAL MACHINE 3
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="630"
+                            y="165"
+                            width="140"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="700"
+                            y="194"
+                            text-anchor="middle"
+                        >
+                            APPLICATIONS
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="630"
+                            y="225"
+                            width="140"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="700"
+                            y="254"
+                            text-anchor="middle"
+                        >
+                            GUEST OS
+                        </text>
+
+
+                        <!-- Hypervisor -->
+                        <rect
+                            class="diagram-hypervisor"
+                            x="100"
+                            y="355"
+                            width="700"
+                            height="90"
+                            rx="14"
+                        />
+
+                        <text
+                            class="diagram-light-text diagram-large-text"
+                            x="450"
+                            y="410"
+                            text-anchor="middle"
+                        >
+                            TYPE 1 HYPERVISOR
+                        </text>
+
+
+                        <!-- Hardware -->
+                        <rect
+                            class="diagram-hardware"
+                            x="100"
+                            y="500"
+                            width="700"
+                            height="90"
+                            rx="14"
+                        />
+
+                        <text
+                            class="diagram-light-text diagram-large-text"
+                            x="450"
+                            y="555"
+                            text-anchor="middle"
+                        >
+                            PHYSICAL SERVER HARDWARE
+                        </text>
+
+                    </svg>
+
+                    <figcaption>
+                        Figure 2. In a Type 1 architecture, the hypervisor
+                        controls virtualization directly above the physical
+                        hardware.
+                    </figcaption>
+
+                </figure>
+
+
+                <h3>How Type 1 Works</h3>
+
+                <div class="step-list">
+
+                    <div class="step">
+                        <span class="step-number">1</span>
+
+                        <div>
+                            <h4>Physical Server Starts</h4>
+
+                            <p>
+                                The computer firmware initializes the physical
+                                CPU, memory, storage devices, network interfaces,
+                                and other hardware.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+
+                        <div>
+                            <h4>Hypervisor Loads</h4>
+
+                            <p>
+                                The virtualization platform initializes and takes
+                                responsibility for managing the server's resources.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+
+                        <div>
+                            <h4>Virtual Machines Are Defined</h4>
+
+                            <p>
+                                Administrators assign virtual processors, memory,
+                                virtual disks, network interfaces, and other
+                                configuration parameters to individual VMs.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+
+                        <div>
+                            <h4>Guest Operating Systems Start</h4>
+
+                            <p>
+                                Each virtual machine boots its own guest operating
+                                system using the virtual hardware supplied by the
+                                hypervisor.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+
+                        <div>
+                            <h4>Hypervisor Coordinates Resources</h4>
+
+                            <p>
+                                CPU execution, memory access, storage operations,
+                                and network traffic are coordinated according to
+                                the platform's resource-management policies.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <h3>Common Type 1 Platforms</h3>
+
+                <div class="platform-grid">
+
+                    <article class="platform-card">
+                        <span class="platform-letter">E</span>
+                        <h4>VMware ESXi</h4>
+                        <p>
+                            Bare-metal virtualization platform commonly used in
+                            enterprise virtual infrastructure.
+                        </p>
+                    </article>
+
+
+                    <article class="platform-card">
+                        <span class="platform-letter">H</span>
+                        <h4>Microsoft Hyper-V</h4>
+                        <p>
+                            Microsoft's hypervisor architecture used for
+                            server and enterprise virtualization.
+                        </p>
+                    </article>
+
+
+                    <article class="platform-card">
+                        <span class="platform-letter">X</span>
+                        <h4>Xen</h4>
+                        <p>
+                            A hypervisor architecture used in server and cloud
+                            virtualization environments.
+                        </p>
+                    </article>
+
+
+                    <article class="platform-card">
+                        <span class="platform-letter">K</span>
+                        <h4>KVM</h4>
+                        <p>
+                            Kernel-based Virtual Machine integrates virtualization
+                            capabilities with the Linux kernel and is commonly
+                            paired with QEMU.
+                        </p>
+                    </article>
+
+                </div>
+
+
+                <div class="professional-note">
+                    <h3>Professional Note: Hyper-V and KVM</h3>
+
+                    <p>
+                        Hypervisor classifications can appear more complex in
+                        modern platforms. For example, Microsoft Hyper-V uses a
+                        privileged parent partition, while KVM integrates
+                        virtualization functionality into the Linux kernel.
+                        Despite architectural differences from traditional
+                        minimalist hypervisors, both are generally treated as
+                        Type 1 virtualization technologies in professional
+                        infrastructure discussions.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 06 TYPE 2
+            ================================================== -->
+            <section id="type2" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">06</span>
+
+                    <div>
+                        <p class="section-label">Hosted Architecture</p>
+                        <h2>Type 2 Hypervisors</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    A <strong>Type 2 hypervisor</strong> operates as software on
+                    top of a conventional host operating system.
+                </p>
+
+                <p>
+                    This architecture is also known as
+                    <strong>hosted virtualization</strong>.
+                </p>
+
+                <p>
+                    Instead of directly replacing the normal host operating
+                    system, the virtualization software is installed similarly
+                    to another application. The host operating system continues
+                    to manage much of the physical hardware, device drivers,
+                    user accounts, desktop environment, and general system
+                    functions.
+                </p>
+
+                <p>
+                    Type 2 hypervisors are particularly useful for laboratories,
+                    software testing, application development, classroom
+                    demonstrations, operating-system experiments, and desktop
+                    virtualization.
+                </p>
+
+
+                <figure class="lecture-figure">
+
+                    <svg
+                        class="diagram-svg type-diagram"
+                        viewBox="0 0 900 790"
+                        role="img"
+                        aria-labelledby="type2Title"
+                    >
+                        <title id="type2Title">
+                            Type 2 hypervisor architecture
+                        </title>
+
+                        <text
+                            class="diagram-main-title"
+                            x="450"
+                            y="55"
+                            text-anchor="middle"
+                        >
+                            TYPE 2 — HOSTED ARCHITECTURE
+                        </text>
+
+
+                        <!-- VM 1 -->
+                        <rect
+                            class="diagram-vm"
+                            x="120"
+                            y="100"
+                            width="280"
+                            height="200"
+                            rx="18"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="260"
+                            y="140"
+                            text-anchor="middle"
+                        >
+                            VIRTUAL MACHINE 1
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="170"
+                            y="165"
+                            width="180"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="260"
+                            y="194"
+                            text-anchor="middle"
+                        >
+                            APPLICATIONS
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="170"
+                            y="225"
+                            width="180"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="260"
+                            y="254"
+                            text-anchor="middle"
+                        >
+                            GUEST OS
+                        </text>
+
+
+                        <!-- VM 2 -->
+                        <rect
+                            class="diagram-vm"
+                            x="500"
+                            y="100"
+                            width="280"
+                            height="200"
+                            rx="18"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="640"
+                            y="140"
+                            text-anchor="middle"
+                        >
+                            VIRTUAL MACHINE 2
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="550"
+                            y="165"
+                            width="180"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="640"
+                            y="194"
+                            text-anchor="middle"
+                        >
+                            APPLICATIONS
+                        </text>
+
+                        <rect
+                            class="diagram-box-neutral"
+                            x="550"
+                            y="225"
+                            width="180"
+                            height="45"
+                            rx="8"
+                        />
+
+                        <text
+                            class="diagram-small-text"
+                            x="640"
+                            y="254"
+                            text-anchor="middle"
+                        >
+                            GUEST OS
+                        </text>
+
+
+                        <!-- Type 2 Hypervisor -->
+                        <rect
+                            class="diagram-hypervisor"
+                            x="120"
+                            y="350"
+                            width="660"
+                            height="90"
+                            rx="14"
+                        />
+
+                        <text
+                            class="diagram-light-text diagram-large-text"
+                            x="450"
+                            y="405"
+                            text-anchor="middle"
+                        >
+                            TYPE 2 HYPERVISOR APPLICATION
+                        </text>
+
+
+                        <!-- Host OS -->
+                        <rect
+                            class="diagram-host-os"
+                            x="120"
+                            y="495"
+                            width="660"
+                            height="90"
+                            rx="14"
+                        />
+
+                        <text
+                            class="diagram-light-text diagram-large-text"
+                            x="450"
+                            y="550"
+                            text-anchor="middle"
+                        >
+                            HOST OPERATING SYSTEM
+                        </text>
+
+
+                        <!-- Hardware -->
+                        <rect
+                            class="diagram-hardware"
+                            x="120"
+                            y="640"
+                            width="660"
+                            height="90"
+                            rx="14"
+                        />
+
+                        <text
+                            class="diagram-light-text diagram-large-text"
+                            x="450"
+                            y="695"
+                            text-anchor="middle"
+                        >
+                            PHYSICAL COMPUTER HARDWARE
+                        </text>
+
+                    </svg>
+
+                    <figcaption>
+                        Figure 3. In a Type 2 architecture, the virtualization
+                        software operates above a conventional host operating
+                        system.
+                    </figcaption>
+
+                </figure>
+
+
+                <h3>How Type 2 Works</h3>
+
+                <div class="step-list">
+
+                    <div class="step">
+                        <span class="step-number">1</span>
+
+                        <div>
+                            <h4>Physical Computer Starts</h4>
+
+                            <p>
+                                The computer initializes its physical hardware in
+                                the normal manner.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">2</span>
+
+                        <div>
+                            <h4>Host Operating System Loads</h4>
+
+                            <p>
+                                Windows, Linux, macOS, or another host operating
+                                system boots and manages the physical computer.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">3</span>
+
+                        <div>
+                            <h4>Hypervisor Application Starts</h4>
+
+                            <p>
+                                The user launches the virtualization software
+                                from the host operating system.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">4</span>
+
+                        <div>
+                            <h4>Virtual Machines Start</h4>
+
+                            <p>
+                                The virtualization application creates or starts
+                                VMs containing independent guest operating systems.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="step">
+                        <span class="step-number">5</span>
+
+                        <div>
+                            <h4>Resources Are Shared</h4>
+
+                            <p>
+                                The host operating system, hypervisor software,
+                                and virtual machines share available processor,
+                                memory, storage, and network resources.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <h3>Common Type 2 Platforms</h3>
+
+                <div class="platform-grid">
+
+                    <article class="platform-card">
+                        <span class="platform-letter">V</span>
+                        <h4>Oracle VirtualBox</h4>
+                        <p>
+                            Desktop virtualization platform frequently used in
+                            classrooms, laboratories, development, and testing.
+                        </p>
+                    </article>
+
+
+                    <article class="platform-card">
+                        <span class="platform-letter">W</span>
+                        <h4>VMware Workstation</h4>
+                        <p>
+                            Desktop virtualization software designed to run
+                            multiple guest operating systems on a workstation.
+                        </p>
+                    </article>
+
+
+                    <article class="platform-card">
+                        <span class="platform-letter">F</span>
+                        <h4>VMware Fusion</h4>
+                        <p>
+                            Desktop virtualization software for running guest
+                            environments on supported Mac systems.
+                        </p>
+                    </article>
+
+
+                    <article class="platform-card">
+                        <span class="platform-letter">P</span>
+                        <h4>Parallels Desktop</h4>
+                        <p>
+                            Hosted virtualization platform commonly associated
+                            with desktop virtualization on Mac computers.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 07 ARCHITECTURE COMPARISON
+            ================================================== -->
+            <section id="architecture" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">07</span>
+
+                    <div>
+                        <p class="section-label">Architecture</p>
+                        <h2>Type 1 vs Type 2 Architecture</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    The easiest way to understand the difference is to examine
+                    the number and position of software layers between the virtual
+                    machine and the physical hardware.
+                </p>
+
+
+                <figure class="lecture-figure">
+
+                    <svg
+                        class="diagram-svg comparison-svg"
+                        viewBox="0 0 1100 680"
+                        role="img"
+                        aria-labelledby="architectureTitle"
+                    >
+                        <title id="architectureTitle">
+                            Type 1 and Type 2 architecture comparison
+                        </title>
+
+                        <!-- TYPE 1 -->
+                        <rect
+                            class="diagram-panel"
+                            x="40"
+                            y="40"
+                            width="480"
+                            height="590"
+                            rx="25"
+                        />
+
+                        <text
+                            class="diagram-main-title"
+                            x="280"
+                            y="90"
+                            text-anchor="middle"
+                        >
+                            TYPE 1
+                        </text>
+
+                        <text
+                            class="diagram-subtitle"
+                            x="280"
+                            y="120"
+                            text-anchor="middle"
+                        >
+                            Bare-Metal
+                        </text>
+
+                        <rect
+                            class="diagram-vm"
+                            x="90"
+                            y="165"
+                            width="165"
+                            height="120"
+                            rx="15"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="172"
+                            y="205"
+                            text-anchor="middle"
+                        >
+                            VM 1
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="172"
+                            y="245"
+                            text-anchor="middle"
+                        >
+                            Guest OS
+                        </text>
+
+
+                        <rect
+                            class="diagram-vm"
+                            x="305"
+                            y="165"
+                            width="165"
+                            height="120"
+                            rx="15"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="387"
+                            y="205"
+                            text-anchor="middle"
+                        >
+                            VM 2
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="387"
+                            y="245"
+                            text-anchor="middle"
+                        >
+                            Guest OS
+                        </text>
+
+
+                        <rect
+                            class="diagram-hypervisor"
+                            x="90"
+                            y="345"
+                            width="380"
+                            height="90"
+                            rx="13"
+                        />
+
+                        <text
+                            class="diagram-light-text"
+                            x="280"
+                            y="400"
+                            text-anchor="middle"
+                        >
+                            HYPERVISOR
+                        </text>
+
+
+                        <rect
+                            class="diagram-hardware"
+                            x="90"
+                            y="495"
+                            width="380"
+                            height="90"
+                            rx="13"
+                        />
+
+                        <text
+                            class="diagram-light-text"
+                            x="280"
+                            y="550"
+                            text-anchor="middle"
+                        >
+                            HARDWARE
+                        </text>
+
+
+                        <!-- TYPE 2 -->
+                        <rect
+                            class="diagram-panel"
+                            x="580"
+                            y="40"
+                            width="480"
+                            height="590"
+                            rx="25"
+                        />
+
+                        <text
+                            class="diagram-main-title"
+                            x="820"
+                            y="90"
+                            text-anchor="middle"
+                        >
+                            TYPE 2
+                        </text>
+
+                        <text
+                            class="diagram-subtitle"
+                            x="820"
+                            y="120"
+                            text-anchor="middle"
+                        >
+                            Hosted
+                        </text>
+
+                        <rect
+                            class="diagram-vm"
+                            x="630"
+                            y="150"
+                            width="165"
+                            height="100"
+                            rx="15"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="712"
+                            y="190"
+                            text-anchor="middle"
+                        >
+                            VM 1
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="712"
+                            y="222"
+                            text-anchor="middle"
+                        >
+                            Guest OS
+                        </text>
+
+
+                        <rect
+                            class="diagram-vm"
+                            x="845"
+                            y="150"
+                            width="165"
+                            height="100"
+                            rx="15"
+                        />
+
+                        <text
+                            class="diagram-box-text"
+                            x="927"
+                            y="190"
+                            text-anchor="middle"
+                        >
+                            VM 2
+                        </text>
+
+                        <text
+                            class="diagram-small-text"
+                            x="927"
+                            y="222"
+                            text-anchor="middle"
+                        >
+                            Guest OS
+                        </text>
+
+
+                        <rect
+                            class="diagram-hypervisor"
+                            x="630"
+                            y="290"
+                            width="380"
+                            height="75"
+                            rx="13"
+                        />
+
+                        <text
+                            class="diagram-light-text"
+                            x="820"
+                            y="336"
+                            text-anchor="middle"
+                        >
+                            HYPERVISOR
+                        </text>
+
+
+                        <rect
+                            class="diagram-host-os"
+                            x="630"
+                            y="405"
+                            width="380"
+                            height="75"
+                            rx="13"
+                        />
+
+                        <text
+                            class="diagram-light-text"
+                            x="820"
+                            y="451"
+                            text-anchor="middle"
+                        >
+                            HOST OPERATING SYSTEM
+                        </text>
+
+
+                        <rect
+                            class="diagram-hardware"
+                            x="630"
+                            y="520"
+                            width="380"
+                            height="75"
+                            rx="13"
+                        />
+
+                        <text
+                            class="diagram-light-text"
+                            x="820"
+                            y="566"
+                            text-anchor="middle"
+                        >
+                            HARDWARE
+                        </text>
+
+                    </svg>
+
+                    <figcaption>
+                        Figure 4. Type 2 includes an additional conventional host
+                        operating-system layer, while Type 1 places the
+                        virtualization layer directly above the server hardware.
+                    </figcaption>
+
+                </figure>
+
+
+                <div class="key-difference">
+
+                    <span>KEY DIFFERENCE</span>
+
+                    <h3>
+                        Type 1 places the virtualization control layer directly
+                        on the server hardware, while Type 2 operates through a
+                        host operating system.
+                    </h3>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 08 PROCESS
+            ================================================== -->
+            <section id="process" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">08</span>
+
+                    <div>
+                        <p class="section-label">Operational Flow</p>
+                        <h2>How a Virtual Machine Uses Physical Resources</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    When software inside a virtual machine performs an operation,
+                    several layers may participate in translating the virtual
+                    request into physical hardware activity.
+                </p>
+
+
+                <figure class="lecture-figure">
+
+                    <div class="process-diagram">
+
+                        <div class="process-box">
+                            <span>1</span>
+                            <strong>Application</strong>
+                            <small>Creates a computing request</small>
+                        </div>
+
+                        <div class="process-arrow">↓</div>
+
+                        <div class="process-box">
+                            <span>2</span>
+                            <strong>Guest Operating System</strong>
+                            <small>Processes the application's request</small>
+                        </div>
+
+                        <div class="process-arrow">↓</div>
+
+                        <div class="process-box process-highlight">
+                            <span>3</span>
+                            <strong>Hypervisor</strong>
+                            <small>
+                                Maps virtual resources to physical resources
+                            </small>
+                        </div>
+
+                        <div class="process-arrow">↓</div>
+
+                        <div class="process-box">
+                            <span>4</span>
+                            <strong>Physical Hardware</strong>
+                            <small>
+                                Performs processor, memory, storage, or network
+                                operations
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <figcaption>
+                        Figure 5. Simplified request flow from an application
+                        running inside a virtual machine to physical hardware.
+                    </figcaption>
+
+                </figure>
+
+
+                <h3>Example: Virtual Disk Operation</h3>
+
+                <p>
+                    Assume an application inside a virtual machine saves a file.
+                    The application communicates with the guest operating system.
+                    The guest operating system writes to what appears to be a
+                    virtual disk. The hypervisor or associated virtualization
+                    storage layer maps that virtual disk operation to actual
+                    physical or network-based storage.
+                </p>
+
+                <p>
+                    The guest operating system does not necessarily need to know
+                    the exact physical disk where the information is ultimately
+                    stored. This separation is one example of
+                    <strong>hardware abstraction</strong>.
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+                 09 HARDWARE VIRTUALIZATION
+            ================================================== -->
+            <section id="hardware" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">09</span>
+
+                    <div>
+                        <p class="section-label">Processor Support</p>
+                        <h2>Hardware-Assisted Virtualization</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    Modern processors contain hardware features designed to
+                    improve virtual machine execution. These features allow the
+                    processor and hypervisor to coordinate privileged operations
+                    more efficiently.
+                </p>
+
+
+                <div class="two-column">
+
+                    <article class="info-card accent-card">
+                        <span class="card-tag">Intel</span>
+
+                        <h3>Intel VT-x</h3>
+
+                        <p>
+                            Intel VT-x provides processor-level virtualization
+                            extensions that assist hypervisors when executing
+                            virtual machines.
+                        </p>
+                    </article>
+
+
+                    <article class="info-card accent-card">
+                        <span class="card-tag">AMD</span>
+
+                        <h3>AMD-V</h3>
+
+                        <p>
+                            AMD-V provides hardware virtualization extensions in
+                            supported AMD processors for virtual machine
+                            execution.
+                        </p>
+                    </article>
+
+                </div>
+
+
+                <h3>Why Hardware Assistance Matters</h3>
+
+                <ul class="professional-list">
+                    <li>
+                        Improves execution of privileged guest operating-system
+                        instructions.
+                    </li>
+
+                    <li>
+                        Reduces the amount of software translation required for
+                        some virtualization operations.
+                    </li>
+
+                    <li>
+                        Supports stronger and more efficient memory virtualization
+                        mechanisms on modern processors.
+                    </li>
+
+                    <li>
+                        Enables contemporary hypervisors to run many guest
+                        operating systems efficiently.
+                    </li>
+
+                    <li>
+                        May be required for certain virtualization features and
+                        64-bit guest configurations.
+                    </li>
+                </ul>
+
+
+                <div class="concept-box">
+                    <div class="concept-icon">i</div>
+
+                    <div>
+                        <h3>BIOS / UEFI Configuration</h3>
+
+                        <p>
+                            On some computers, hardware virtualization support
+                            must be enabled through BIOS or UEFI firmware
+                            configuration before virtualization software can use
+                            it.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 10 COMPARISON TABLE
+            ================================================== -->
+            <section id="comparison" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">10</span>
+
+                    <div>
+                        <p class="section-label">Technical Evaluation</p>
+                        <h2>Detailed Type 1 vs Type 2 Comparison</h2>
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="comparison-table">
+
+                        <thead>
+                            <tr>
+                                <th>Characteristic</th>
+                                <th>Type 1 Hypervisor</th>
+                                <th>Type 2 Hypervisor</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <th>Architecture</th>
+                                <td>Runs as the primary virtualization layer on hardware</td>
+                                <td>Runs above a host operating system</td>
+                            </tr>
+
+                            <tr>
+                                <th>Common Name</th>
+                                <td>Bare-metal hypervisor</td>
+                                <td>Hosted hypervisor</td>
+                            </tr>
+
+                            <tr>
+                                <th>Primary Environment</th>
+                                <td>Servers and enterprise infrastructure</td>
+                                <td>Desktop and workstation environments</td>
+                            </tr>
+
+                            <tr>
+                                <th>Resource Path</th>
+                                <td>More direct virtualization stack</td>
+                                <td>Includes the host operating system</td>
+                            </tr>
+
+                            <tr>
+                                <th>Management Scale</th>
+                                <td>Often designed for centralized large-scale management</td>
+                                <td>Often designed for individual workstation use</td>
+                            </tr>
+
+                            <tr>
+                                <th>Typical Performance</th>
+                                <td>Optimized for server virtualization workloads</td>
+                                <td>Can have additional host operating-system overhead</td>
+                            </tr>
+
+                            <tr>
+                                <th>Availability</th>
+                                <td>Frequently integrated with enterprise availability features</td>
+                                <td>Usually dependent on the host computer</td>
+                            </tr>
+
+                            <tr>
+                                <th>Security Surface</th>
+                                <td>No general-purpose desktop host OS in the classic architecture</td>
+                                <td>Host OS introduces another software layer to secure</td>
+                            </tr>
+
+                            <tr>
+                                <th>Installation</th>
+                                <td>Usually installed/configured as virtualization infrastructure</td>
+                                <td>Often installed like a desktop application</td>
+                            </tr>
+
+                            <tr>
+                                <th>Typical Users</th>
+                                <td>System administrators, cloud teams, data-center engineers</td>
+                                <td>Students, developers, testers, IT professionals</td>
+                            </tr>
+
+                            <tr>
+                                <th>Typical Examples</th>
+                                <td>ESXi, Hyper-V, Xen, KVM</td>
+                                <td>VirtualBox, Workstation, Fusion, Parallels Desktop</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="warning-box">
+
+                    <strong>Important:</strong>
+
+                    <p>
+                        The comparison describes typical architectural behavior.
+                        Actual performance depends on hardware, hypervisor
+                        implementation, workload, storage design, drivers,
+                        resource allocation, and system configuration.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 11 PERFORMANCE
+            ================================================== -->
+            <section id="performance" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">11</span>
+
+                    <div>
+                        <p class="section-label">Infrastructure Evaluation</p>
+                        <h2>Performance and Resource Efficiency</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    Performance is one of the major factors considered when
+                    selecting a virtualization architecture. However, performance
+                    should be evaluated using the complete system rather than the
+                    hypervisor category alone.
+                </p>
+
+
+                <div class="performance-grid">
+
+                    <article class="performance-card">
+
+                        <div class="performance-icon">CPU</div>
+
+                        <h3>Processor</h3>
+
+                        <p>
+                            The hypervisor schedules virtual CPUs onto physical
+                            processor cores.
+                        </p>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <div class="performance-icon">RAM</div>
+
+                        <h3>Memory</h3>
+
+                        <p>
+                            Every active VM consumes memory, while the
+                            virtualization platform also requires memory.
+                        </p>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <div class="performance-icon">SSD</div>
+
+                        <h3>Storage</h3>
+
+                        <p>
+                            Virtual disks ultimately rely on physical or
+                            network-based storage performance.
+                        </p>
+
+                    </article>
+
+
+                    <article class="performance-card">
+
+                        <div class="performance-icon">NET</div>
+
+                        <h3>Network</h3>
+
+                        <p>
+                            Virtual switches and virtual network adapters connect
+                            virtual workloads to each other and external networks.
+                        </p>
+
+                    </article>
+
+                </div>
+
+
+                <h3>Why Type 1 Is Common in Data Centers</h3>
+
+                <p>
+                    Type 1 platforms are commonly engineered specifically for
+                    server consolidation and enterprise virtualization. Their
+                    architecture typically avoids using a conventional desktop
+                    operating system as an intermediate host layer.
+                </p>
+
+                <p>
+                    This can reduce unnecessary software overhead and allows
+                    virtualization infrastructure to be managed as a dedicated
+                    computing platform.
+                </p>
+
+
+                <h3>Does Type 1 Always Mean Faster?</h3>
+
+                <p>
+                    No. Although Type 1 architecture is generally preferred for
+                    large production environments, it is inaccurate to state that
+                    every Type 1 configuration will always outperform every Type
+                    2 configuration.
+                </p>
+
+                <p>
+                    Actual results depend on CPU architecture, available RAM,
+                    storage performance, network configuration, guest workload,
+                    drivers, virtualization settings, and hypervisor
+                    implementation.
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+                 12 SECURITY
+            ================================================== -->
+            <section id="security" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">12</span>
+
+                    <div>
+                        <p class="section-label">Infrastructure Protection</p>
+                        <h2>Security and Isolation</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    Virtualization does not automatically make a system secure.
+                    A virtualized environment must be designed, configured,
+                    updated, monitored, and protected using appropriate security
+                    controls.
+                </p>
+
+
+                <div class="security-stack">
+
+                    <div class="security-layer">
+                        <span>01</span>
+
+                        <div>
+                            <h3>Physical Security</h3>
+                            <p>
+                                Protect physical servers, storage systems, and
+                                networking equipment.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="security-layer">
+                        <span>02</span>
+
+                        <div>
+                            <h3>Hypervisor Security</h3>
+                            <p>
+                                Apply patches, restrict administrative access,
+                                disable unnecessary services, and protect
+                                management interfaces.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="security-layer">
+                        <span>03</span>
+
+                        <div>
+                            <h3>Virtual Network Security</h3>
+                            <p>
+                                Segment networks appropriately and control traffic
+                                between virtual machines.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="security-layer">
+                        <span>04</span>
+
+                        <div>
+                            <h3>Guest Operating System Security</h3>
+                            <p>
+                                Each VM still requires operating-system updates,
+                                identity management, application security, and
+                                endpoint protection.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="security-layer">
+                        <span>05</span>
+
+                        <div>
+                            <h3>Management Security</h3>
+                            <p>
+                                Protect administrator credentials, management
+                                consoles, APIs, backups, and remote-access
+                                interfaces.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="professional-note">
+
+                    <h3>Type 2 Security Consideration</h3>
+
+                    <p>
+                        In Type 2 virtualization, the host operating system is
+                        another important security boundary. If the host OS is
+                        compromised or incorrectly configured, the virtualization
+                        environment may also be placed at risk.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 13 USE CASES
+            ================================================== -->
+            <section id="use-cases" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">13</span>
+
+                    <div>
+                        <p class="section-label">Industry Application</p>
+                        <h2>Professional Use Cases</h2>
+                    </div>
+
+                </div>
+
+
+                <h3>Type 1 Hypervisor Use Cases</h3>
+
+                <div class="use-case-grid">
+
+                    <article class="use-case-card">
+                        <span>01</span>
+                        <h4>Server Consolidation</h4>
+
+                        <p>
+                            Several server workloads can operate on fewer physical
+                            machines, improving hardware utilization.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>02</span>
+                        <h4>Private Cloud</h4>
+
+                        <p>
+                            Organizations can build pools of virtual compute
+                            resources for internal infrastructure.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>03</span>
+                        <h4>Enterprise Applications</h4>
+
+                        <p>
+                            Business applications can be isolated into separate
+                            VMs while sharing physical infrastructure.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>04</span>
+                        <h4>Data Centers</h4>
+
+                        <p>
+                            Large numbers of virtual servers can be centrally
+                            managed across virtualization hosts.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>05</span>
+                        <h4>Infrastructure Laboratories</h4>
+
+                        <p>
+                            IT departments can simulate complex server networks
+                            without requiring a separate physical server for every
+                            role.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>06</span>
+                        <h4>Disaster Recovery</h4>
+
+                        <p>
+                            Virtual machine workloads can form part of backup,
+                            replication, recovery, and business-continuity
+                            strategies.
+                        </p>
+                    </article>
+
+                </div>
+
+
+                <h3>Type 2 Hypervisor Use Cases</h3>
+
+                <div class="use-case-grid">
+
+                    <article class="use-case-card">
+                        <span>01</span>
+                        <h4>Operating System Practice</h4>
+
+                        <p>
+                            Students can install and study another operating
+                            system without replacing the host system.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>02</span>
+                        <h4>Software Development</h4>
+
+                        <p>
+                            Developers can create isolated environments for
+                            different development stacks.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>03</span>
+                        <h4>Application Testing</h4>
+
+                        <p>
+                            Applications can be evaluated on several operating
+                            systems using one workstation.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>04</span>
+                        <h4>Cybersecurity Laboratories</h4>
+
+                        <p>
+                            Isolated virtual networks can be created for controlled
+                            security exercises when appropriate safeguards are
+                            used.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>05</span>
+                        <h4>Legacy Software</h4>
+
+                        <p>
+                            Some older applications can be isolated inside a
+                            compatible guest operating system.
+                        </p>
+                    </article>
+
+
+                    <article class="use-case-card">
+                        <span>06</span>
+                        <h4>Classroom Demonstration</h4>
+
+                        <p>
+                            Instructors can demonstrate operating systems,
+                            networking, servers, and administrative procedures
+                            using virtual environments.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 14 CHOOSING A HYPERVISOR
+            ================================================== -->
+            <section id="selection" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">14</span>
+
+                    <div>
+                        <p class="section-label">Decision Process</p>
+                        <h2>Choosing the Correct Hypervisor</h2>
+                    </div>
+
+                </div>
+
+                <p>
+                    Choosing between Type 1 and Type 2 should begin with the
+                    intended workload, operating environment, reliability
+                    requirements, and management model.
+                </p>
+
+
+                <div class="decision-flow">
+
+                    <div class="decision-question">
+                        <span>START</span>
+
+                        <h3>
+                            What is the primary purpose of virtualization?
+                        </h3>
+                    </div>
+
+
+                    <div class="decision-columns">
+
+                        <div class="decision-path">
+
+                            <div class="decision-label">Production</div>
+
+                            <h4>
+                                Server / Enterprise / Data Center
+                            </h4>
+
+                            <ul>
+                                <li>Multiple production workloads</li>
+                                <li>Centralized administration</li>
+                                <li>High resource requirements</li>
+                                <li>Infrastructure scalability</li>
+                                <li>Availability requirements</li>
+                            </ul>
+
+                            <strong class="decision-result">
+                                Consider Type 1
+                            </strong>
+
+                        </div>
+
+
+                        <div class="decision-path">
+
+                            <div class="decision-label">Desktop</div>
+
+                            <h4>
+                                Learning / Testing / Development
+                            </h4>
+
+                            <ul>
+                                <li>Personal computer</li>
+                                <li>Operating-system experiments</li>
+                                <li>Development environment</li>
+                                <li>Classroom laboratory</li>
+                                <li>Software compatibility tests</li>
+                            </ul>
+
+                            <strong class="decision-result">
+                                Consider Type 2
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>Professional Selection Criteria</h3>
+
+                <div class="criteria-grid">
+
+                    <div>
+                        <span>01</span>
+                        <strong>Performance</strong>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <strong>Scalability</strong>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <strong>Security</strong>
+                    </div>
+
+                    <div>
+                        <span>04</span>
+                        <strong>Availability</strong>
+                    </div>
+
+                    <div>
+                        <span>05</span>
+                        <strong>Hardware Support</strong>
+                    </div>
+
+                    <div>
+                        <span>06</span>
+                        <strong>Management Tools</strong>
+                    </div>
+
+                    <div>
+                        <span>07</span>
+                        <strong>Licensing</strong>
+                    </div>
+
+                    <div>
+                        <span>08</span>
+                        <strong>Operational Skills</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 15 MISCONCEPTIONS
+            ================================================== -->
+            <section id="misconceptions" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">15</span>
+
+                    <div>
+                        <p class="section-label">Concept Clarification</p>
+                        <h2>Common Misconceptions</h2>
+                    </div>
+
+                </div>
+
+                <div class="myth-list">
+
+                    <article class="myth-card">
+
+                        <div class="myth-heading">
+                            <span>MYTH 01</span>
+                            <h3>A virtual machine is a physical computer.</h3>
+                        </div>
+
+                        <div class="myth-answer">
+                            <strong>Correction:</strong>
+
+                            <p>
+                                A virtual machine is a software-defined computing
+                                environment that receives virtualized hardware
+                                resources from the hypervisor.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="myth-card">
+
+                        <div class="myth-heading">
+                            <span>MYTH 02</span>
+                            <h3>
+                                Type 2 virtualization does not use hardware
+                                virtualization.
+                            </h3>
+                        </div>
+
+                        <div class="myth-answer">
+                            <strong>Correction:</strong>
+
+                            <p>
+                                Modern hosted virtualization platforms can also use
+                                hardware virtualization extensions such as Intel
+                                VT-x or AMD-V.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="myth-card">
+
+                        <div class="myth-heading">
+                            <span>MYTH 03</span>
+                            <h3>
+                                Virtualization completely eliminates hardware
+                                limitations.
+                            </h3>
+                        </div>
+
+                        <div class="myth-answer">
+                            <strong>Correction:</strong>
+
+                            <p>
+                                Virtual machines ultimately depend on finite
+                                physical CPU, memory, storage, and networking
+                                resources.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="myth-card">
+
+                        <div class="myth-heading">
+                            <span>MYTH 04</span>
+                            <h3>Every Type 1 hypervisor is always faster.</h3>
+                        </div>
+
+                        <div class="myth-answer">
+                            <strong>Correction:</strong>
+
+                            <p>
+                                Type 1 architecture is generally optimized for
+                                production server workloads, but actual performance
+                                depends on many architectural and configuration
+                                factors.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="myth-card">
+
+                        <div class="myth-heading">
+                            <span>MYTH 05</span>
+                            <h3>
+                                A VM does not need security because it is isolated.
+                            </h3>
+                        </div>
+
+                        <div class="myth-answer">
+                            <strong>Correction:</strong>
+
+                            <p>
+                                Guest operating systems and applications require
+                                normal security controls, patching, access control,
+                                monitoring, and network protection.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 16 TERMINOLOGY
+            ================================================== -->
+            <section id="terminology" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">16</span>
+
+                    <div>
+                        <p class="section-label">Professional Vocabulary</p>
+                        <h2>Key Virtualization Terminology</h2>
+                    </div>
+
+                </div>
+
+                <div class="terminology-list">
+
+                    <article>
+                        <dt>Host</dt>
+                        <dd>
+                            The physical computer or virtualization system
+                            providing resources to virtual machines.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Guest</dt>
+                        <dd>
+                            An operating system running inside a virtual machine.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Virtual Machine</dt>
+                        <dd>
+                            A software-defined computer containing virtual
+                            hardware and usually a guest operating system.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Hypervisor</dt>
+                        <dd>
+                            Software or system technology that creates and manages
+                            virtual machines.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>vCPU</dt>
+                        <dd>
+                            A virtual processor allocated to a virtual machine.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>vRAM</dt>
+                        <dd>
+                            Memory capacity allocated to a virtual machine from
+                            physical host memory.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Virtual Disk</dt>
+                        <dd>
+                            A software-defined storage device presented to a
+                            virtual machine.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>vNIC</dt>
+                        <dd>
+                            A virtual network interface presented to a virtual
+                            machine.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Virtual Switch</dt>
+                        <dd>
+                            A software-based network switching component used to
+                            connect virtual interfaces and networks.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Snapshot</dt>
+                        <dd>
+                            A point-in-time representation of a VM's state or
+                            storage, depending on the virtualization platform.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Hardware Abstraction</dt>
+                        <dd>
+                            The separation between physical hardware details and
+                            the virtual hardware presented to workloads.
+                        </dd>
+                    </article>
+
+
+                    <article>
+                        <dt>Resource Pool</dt>
+                        <dd>
+                            A logical collection of computing resources that can
+                            be allocated according to virtualization policies.
+                        </dd>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 17 REVIEW
+            ================================================== -->
+            <section id="review" class="lesson-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">17</span>
+
+                    <div>
+                        <p class="section-label">Summary</p>
+                        <h2>Lesson Review</h2>
+                    </div>
+
+                </div>
+
+                <div class="summary-box">
+
+                    <h3>Remember These Core Concepts</h3>
+
+                    <ul>
+                        <li>
+                            Virtualization allows multiple virtual machines to
+                            share physical computing resources.
+                        </li>
+
+                        <li>
+                            The hypervisor is responsible for creating and
+                            controlling virtual machine environments.
+                        </li>
+
+                        <li>
+                            Type 1 hypervisors operate as the primary
+                            virtualization layer directly above server hardware.
+                        </li>
+
+                        <li>
+                            Type 2 hypervisors operate above a conventional host
+                            operating system.
+                        </li>
+
+                        <li>
+                            Type 1 platforms are commonly used for production
+                            servers, enterprise infrastructure, and data centers.
+                        </li>
+
+                        <li>
+                            Type 2 platforms are commonly used for development,
+                            testing, education, and workstation virtualization.
+                        </li>
+
+                        <li>
+                            Modern processors provide hardware virtualization
+                            technologies such as Intel VT-x and AMD-V.
+                        </li>
+
+                        <li>
+                            Virtual machines still depend on the physical CPU,
+                            memory, storage, and network resources of the host.
+                        </li>
+
+                        <li>
+                            Hypervisor selection should consider performance,
+                            scalability, security, availability, hardware support,
+                            management, and workload requirements.
+                        </li>
+                    </ul>
+
+                </div>
+
+
+                <h3>Instructor Review Questions</h3>
+
+                <div class="review-questions">
+
+                    <div>
+                        <span>01</span>
+                        <p>What is virtualization?</p>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <p>What is the primary responsibility of a hypervisor?</p>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <p>
+                            Why is Type 1 virtualization called bare-metal
+                            virtualization?
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>04</span>
+                        <p>
+                            What additional architectural layer exists in a
+                            typical Type 2 virtualization system?
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>05</span>
+                        <p>
+                            Why are Type 1 hypervisors commonly selected for
+                            enterprise servers?
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>06</span>
+                        <p>
+                            Why are Type 2 hypervisors convenient for students and
+                            software developers?
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>07</span>
+                        <p>
+                            What is the purpose of Intel VT-x and AMD-V?
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>08</span>
+                        <p>
+                            Explain the difference between a host operating system
+                            and a guest operating system.
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>09</span>
+                        <p>
+                            Give two professional use cases for Type 1
+                            virtualization.
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>10</span>
+                        <p>
+                            Give two professional use cases for Type 2
+                            virtualization.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="final-takeaway">
+
+                    <p class="takeaway-label">FINAL TAKEAWAY</p>
+
+                    <h3>
+                        Type 1 virtualization prioritizes dedicated infrastructure,
+                        centralized management, and production workloads, while
+                        Type 2 virtualization emphasizes accessibility,
+                        convenience, experimentation, and workstation-based
+                        virtual environments.
+                    </h3>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+            <footer class="lesson-footer">
+
+                <div>
+                    <strong>Virtualization Learning Module</strong>
+
+                    <p>
+                        Type 1 vs Type 2 Hypervisors
+                    </p>
+                </div>
+
+                <a href="../index.html">Return to Home</a>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

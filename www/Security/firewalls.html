@@ -1,0 +1,993 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Firewalls &amp; Backups lecture module for Platform Technologies Security and Operations.">
+  <title>Firewalls &amp; Backups | Platform Technologies</title>
+  <link rel="stylesheet" href="../css/Security/firewalls.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="../index.html">
+      Platform Technologies
+      <span>Security &amp; Operations Learning Module</span>
+    </a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+<a href="os.html">OS Hardening</a>
+<a href="firewalls.html" class="active">Firewalls & Backups</a>
+<a href="performance.html">Performance Monitoring</a>
+<a href="capacity.html">Capacity Planning</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero__inner">
+    <div class="eyebrow">Security &amp; Operations</div>
+    <h1>Firewalls &amp; Backups</h1>
+    <p>Network Filtering, Data Protection, Recovery, and Operational Resilience. Every lesson includes its own visual explanation so students can connect the written lecture to a diagram.</p>
+    <div class="hero__meta">
+      <span>15 detailed lessons</span>
+      <span>15 local lesson images</span>
+      <span>Lecture + practical activity</span>
+      <span>Mobile responsive</span>
+    </div>
+  </div>
+</section>
+
+<main class="course-shell">
+  <aside class="sidebar">
+    <div class="sidebar__head">
+      <strong>Firewalls &amp; Backups</strong>
+      <small>Select a lesson</small>
+    </div>
+    <nav class="lesson-nav" aria-label="Firewalls &amp; Backups lessons">
+      <a href="#lesson-01-security-role-of-firewalls-and-backups">Lesson 1: Security Role of Firewalls and Backups</a>
+<a href="#lesson-02-how-firewalls-make-decisions">Lesson 2: How Firewalls Make Decisions</a>
+<a href="#lesson-03-host-based-and-network-firewalls">Lesson 3: Host-Based and Network Firewalls</a>
+<a href="#lesson-04-stateful-inspection-and-connection-tracking">Lesson 4: Stateful Inspection and Connection Tracking</a>
+<a href="#lesson-05-firewall-zones-and-network-segmentation">Lesson 5: Firewall Zones and Network Segmentation</a>
+<a href="#lesson-06-inbound-and-outbound-filtering">Lesson 6: Inbound and Outbound Filtering</a>
+<a href="#lesson-07-creating-and-reviewing-firewall-rules">Lesson 7: Creating and Reviewing Firewall Rules</a>
+<a href="#lesson-08-firewall-logs-and-troubleshooting">Lesson 8: Firewall Logs and Troubleshooting</a>
+<a href="#lesson-09-backup-fundamentals">Lesson 9: Backup Fundamentals</a>
+<a href="#lesson-10-full-incremental-and-differential-backups">Lesson 10: Full, Incremental, and Differential Backups</a>
+<a href="#lesson-11-the-3-2-1-backup-strategy">Lesson 11: The 3-2-1 Backup Strategy</a>
+<a href="#lesson-12-backup-security-and-encryption">Lesson 12: Backup Security and Encryption</a>
+<a href="#lesson-13-restore-testing-and-disaster-recovery">Lesson 13: Restore Testing and Disaster Recovery</a>
+<a href="#lesson-14-ransomware-resilience">Lesson 14: Ransomware Resilience</a>
+<a href="#lesson-15-integrated-firewall-and-backup-operations">Lesson 15: Integrated Firewall and Backup Operations</a>
+    </nav>
+  </aside>
+
+  <div class="content">
+    <section class="intro-card">
+      <h2>Module Overview</h2>
+      <p>
+        This page contains a complete 15-lesson lecture module for <strong>Firewalls &amp; Backups</strong>.
+        Each lesson contains an automatically displayed local SVG teaching image, a longer explanation, key concepts,
+        practical meaning, a guided student activity, and review questions.
+      </p>
+      <p>
+        The <strong>Home</strong> button returns to <code>index.html</code>. Keep the <code>images/security-ops</code> folder
+        in the same project structure so every lesson image loads correctly.
+      </p>
+    </section>
+
+    
+<section class="lesson-card" id="lesson-01-security-role-of-firewalls-and-backups">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 01</div>
+  <h2>Security Role of Firewalls and Backups</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-01-security-role-of-firewalls-and-backups.svg" alt="Educational diagram for Security Role of Firewalls and Backups" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Security Role of Firewalls and Backups.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Firewalls and backups solve different security problems. Firewalls control network communication to reduce unauthorized access, while backups preserve recoverable copies of information when prevention fails or data is lost.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Prevention</strong><span>Prevention is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Network Boundary</strong><span>Network Boundary is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Recovery</strong><span>Recovery is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Resilience</strong><span>Resilience is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A firewall cannot restore deleted data, and a backup cannot block a malicious connection. Strong operations use both controls as part of defense in depth.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-02-how-firewalls-make-decisions">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 02</div>
+  <h2>How Firewalls Make Decisions</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-02-how-firewalls-make-decisions.svg" alt="Educational diagram for How Firewalls Make Decisions" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in How Firewalls Make Decisions.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>A firewall evaluates traffic against security policy. Rules can consider source and destination addresses, ports, protocols, connection state, application, identity, and network zone before traffic is allowed or blocked.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Source</strong><span>Source is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Destination</strong><span>Destination is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Port</strong><span>Port is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Rule Order</strong><span>Rule Order is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Precise rules reduce exposure. A narrow rule that permits one required service is safer and easier to audit than a broad &#x27;allow any&#x27; rule.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-03-host-based-and-network-firewalls">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 03</div>
+  <h2>Host-Based and Network Firewalls</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-03-host-based-and-network-firewalls.svg" alt="Educational diagram for Host-Based and Network Firewalls" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Host-Based and Network Firewalls.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Host-based firewalls run directly on endpoints and servers. Network firewalls sit between network segments and inspect traffic passing between them. Using both provides layered enforcement.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Host Firewall</strong><span>Host Firewall is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Perimeter</strong><span>Perimeter is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Segmentation</strong><span>Segmentation is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Layered Control</strong><span>Layered Control is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Students compare where each firewall operates, what it can observe, and how it contributes to protecting internal and external traffic.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-04-stateful-inspection-and-connection-tracking">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 04</div>
+  <h2>Stateful Inspection and Connection Tracking</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-04-stateful-inspection-and-connection-tracking.svg" alt="Educational diagram for Stateful Inspection and Connection Tracking" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Stateful Inspection and Connection Tracking.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Stateful firewalls remember active connections. They can allow legitimate response packets that belong to a connection while blocking unrelated unsolicited packets.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Connection State</strong><span>Connection State is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Session Table</strong><span>Session Table is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Return Traffic</strong><span>Return Traffic is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Timeout</strong><span>Timeout is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Stateful inspection provides more context than simple packet filtering because decisions can depend on whether traffic belongs to an established session.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-05-firewall-zones-and-network-segmentation">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 05</div>
+  <h2>Firewall Zones and Network Segmentation</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-05-firewall-zones-and-network-segmentation.svg" alt="Educational diagram for Firewall Zones and Network Segmentation" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Firewall Zones and Network Segmentation.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Segmentation divides a network according to trust, sensitivity, or function. Firewalls then control communication between zones such as the internet, DMZ, internal users, servers, guests, and management networks.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>WAN</strong><span>WAN is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>DMZ</strong><span>DMZ is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Internal LAN</strong><span>Internal LAN is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Guest Zone</strong><span>Guest Zone is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Segmentation reduces lateral movement. A compromised guest device should not automatically gain direct access to administrative systems or critical servers.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-06-inbound-and-outbound-filtering">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 06</div>
+  <h2>Inbound and Outbound Filtering</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-06-inbound-and-outbound-filtering.svg" alt="Educational diagram for Inbound and Outbound Filtering" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Inbound and Outbound Filtering.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Inbound filtering controls traffic coming toward a system or network. Outbound filtering controls traffic leaving it. Both directions matter because compromised applications may attempt command-and-control communication or data exfiltration.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Ingress</strong><span>Ingress is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Egress</strong><span>Egress is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Applications</strong><span>Applications is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Data Leakage</strong><span>Data Leakage is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Security policy should define which systems may initiate connections, where they may connect, and which protocols are legitimate.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-07-creating-and-reviewing-firewall-rules">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 07</div>
+  <h2>Creating and Reviewing Firewall Rules</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-07-creating-and-reviewing-firewall-rules.svg" alt="Educational diagram for Creating and Reviewing Firewall Rules" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Creating and Reviewing Firewall Rules.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Firewall rules should be specific, documented, tested, and periodically reviewed. Each rule should have a business purpose, owner, source, destination, protocol, and expected lifetime.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Purpose</strong><span>Purpose is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Least Access</strong><span>Least Access is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Change Control</strong><span>Change Control is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Cleanup</strong><span>Cleanup is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Old temporary rules can become permanent risks. Scheduled rule review removes entries that are no longer required.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-08-firewall-logs-and-troubleshooting">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 08</div>
+  <h2>Firewall Logs and Troubleshooting</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-08-firewall-logs-and-troubleshooting.svg" alt="Educational diagram for Firewall Logs and Troubleshooting" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Firewall Logs and Troubleshooting.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Firewall logs show whether traffic was allowed, denied, malformed, or unexpected. They support both connectivity troubleshooting and security investigation.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Allowed</strong><span>Allowed is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Denied</strong><span>Denied is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Dropped</strong><span>Dropped is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Alerts</strong><span>Alerts is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A useful troubleshooting sequence is to confirm addressing, verify the application is listening, inspect firewall policy, and correlate the result with logs.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-09-backup-fundamentals">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 09</div>
+  <h2>Backup Fundamentals</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-09-backup-fundamentals.svg" alt="Educational diagram for Backup Fundamentals" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Backup Fundamentals.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>A backup is a recoverable copy of data or system state created so information can be restored after deletion, corruption, hardware failure, malware, or disaster.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Backup Copy</strong><span>Backup Copy is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Retention</strong><span>Retention is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Recovery</strong><span>Recovery is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Restore Test</strong><span>Restore Test is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>File synchronization is not automatically a backup because destructive changes can synchronize too. Backup systems require recovery points and retention.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-10-full-incremental-and-differential-backups">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 10</div>
+  <h2>Full, Incremental, and Differential Backups</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-10-full-incremental-and-differential-backups.svg" alt="Educational diagram for Full, Incremental, and Differential Backups" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Full, Incremental, and Differential Backups.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Full backups copy the complete selected dataset. Incremental backups copy changes since the last backup of any type, while differential backups copy changes since the last full backup.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Full</strong><span>Full is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Incremental</strong><span>Incremental is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Differential</strong><span>Differential is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Restore Chain</strong><span>Restore Chain is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Each method balances backup speed, storage consumption, and restore complexity. Students should choose based on recovery objectives rather than convenience alone.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-11-the-3-2-1-backup-strategy">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 11</div>
+  <h2>The 3-2-1 Backup Strategy</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-11-the-3-2-1-backup-strategy.svg" alt="Educational diagram for The 3-2-1 Backup Strategy" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in The 3-2-1 Backup Strategy.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>The 3-2-1 strategy recommends maintaining at least three copies of important data, on two different storage types, with at least one copy kept off-site or otherwise isolated.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>3 Copies</strong><span>3 Copies is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>2 Media</strong><span>2 Media is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>1 Off-site</strong><span>1 Off-site is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Isolation</strong><span>Isolation is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>The strategy reduces the chance that one failure, theft, fire, or ransomware incident destroys every recoverable copy.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-12-backup-security-and-encryption">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 12</div>
+  <h2>Backup Security and Encryption</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-12-backup-security-and-encryption.svg" alt="Educational diagram for Backup Security and Encryption" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Backup Security and Encryption.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Backups often contain complete copies of sensitive production information. They therefore require access controls, encryption, protected credentials, secure transfer, and responsible key management.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Encryption</strong><span>Encryption is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Access Control</strong><span>Access Control is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Secure Transfer</strong><span>Secure Transfer is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Keys</strong><span>Keys is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>A poorly protected backup repository can expose more data than the production application because it may contain historical copies from many systems.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-13-restore-testing-and-disaster-recovery">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 13</div>
+  <h2>Restore Testing and Disaster Recovery</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-13-restore-testing-and-disaster-recovery.svg" alt="Educational diagram for Restore Testing and Disaster Recovery" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Restore Testing and Disaster Recovery.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>A backup is operationally valuable only if it can be restored. Restore tests verify media integrity, credentials, procedures, dependencies, and whether recovery completes within the required time.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Restore Drill</strong><span>Restore Drill is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>RPO</strong><span>RPO is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>RTO</strong><span>RTO is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Procedure</strong><span>Procedure is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Recovery Point Objective describes acceptable data loss in time, while Recovery Time Objective describes how quickly service should be restored.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-14-ransomware-resilience">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 14</div>
+  <h2>Ransomware Resilience</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-14-ransomware-resilience.svg" alt="Educational diagram for Ransomware Resilience" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Ransomware Resilience.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Ransomware may encrypt production files, connected shares, and reachable backup repositories. Resilience requires isolation, credential separation, immutable or offline copies, monitoring, and tested recovery.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Immutable Copy</strong><span>Immutable Copy is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Offline Backup</strong><span>Offline Backup is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Separate Credentials</strong><span>Separate Credentials is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Recovery</strong><span>Recovery is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Backups should not depend completely on the same credentials and network paths that ransomware can compromise.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+<section class="lesson-card" id="lesson-15-integrated-firewall-and-backup-operations">
+  <div class="lesson-tag">Security &amp; Operations Â· Lesson 15</div>
+  <h2>Integrated Firewall and Backup Operations</h2>
+
+  <figure class="lesson-visual">
+    <img src="../images/security-ops/firewalls-15-integrated-firewall-and-backup-operations.svg" alt="Educational diagram for Integrated Firewall and Backup Operations" loading="lazy">
+    <figcaption>Visual explanation of the main concepts covered in Integrated Firewall and Backup Operations.</figcaption>
+  </figure>
+
+  <h3>Lecture Explanation</h3>
+  <p>Firewall policy and backup health should be managed continuously. Network rules change, data grows, systems move, threats evolve, and recovery objectives change with organizational needs.</p>
+  <p>
+    In real IT environments, this subject should be treated as part of an operational process rather than as a single setting or command.
+    Administrators must understand the current condition, identify the risk or limitation, select an appropriate control, test the change,
+    and verify the result using evidence such as configuration output, logs, monitoring data, or a controlled functional test.
+  </p>
+
+  <div class="explain-box">
+    <strong>What the image means:</strong>
+    The diagram above summarizes the most important ideas for this lesson. Read the four labeled concepts first, then connect each concept
+    to the lecture discussion below. The image is stored locally inside the project, so it will remain visible after deployment and can also
+    be used in an offline copy of the learning platform.
+  </div>
+
+  <h3>Key Concepts</h3>
+  <div class="concept-grid"><div class="concept"><strong>Rule Review</strong><span>Rule Review is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Backup Health</strong><span>Backup Health is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Recovery Evidence</strong><span>Recovery Evidence is one of the core ideas students should identify and apply in this topic.</span></div>
+<div class="concept"><strong>Change Records</strong><span>Change Records is one of the core ideas students should identify and apply in this topic.</span></div></div>
+
+  <h3>Practical Meaning</h3>
+  <p>Good operations produces evidence: firewall logs, approved changes, backup reports, restore tests, and documented corrective actions.</p>
+  <p>
+    Students should be able to explain not only <em>what</em> the technology does, but also <em>why</em> it is required, what could happen
+    when it is configured incorrectly, and how an administrator can confirm that the environment is working as intended.
+  </p>
+
+  <div class="note">
+    <strong>Operational reminder:</strong> document the original condition before changing a system. Apply controlled changes,
+    validate the result, and keep a rollback or recovery method whenever the activity can affect users or service availability.
+  </div>
+
+  <h3>Suggested Student Activity</h3>
+  <ol class="steps">
+    <li>Study the visual diagram and identify each labeled concept.</li>
+    <li>Inspect a real or simulated system related to the lesson.</li>
+    <li>Record the current configuration, metric, rule, or behavior.</li>
+    <li>Identify one security, reliability, recovery, or performance concern.</li>
+    <li>Propose one appropriate administrative action and explain the expected result.</li>
+    <li>Validate the result using system tools, logs, configuration output, or testing.</li>
+    <li>Write a short conclusion explaining what was learned and what should be monitored next.</li>
+  </ol>
+
+  <div class="review">
+    <strong>Review questions:</strong>
+    What is the main purpose of this lesson? Which visual concept is most important for the scenario?
+    What evidence would show that a problem exists, and how would you confirm that your administrative action solved it?
+  </div>
+</section>
+
+
+    <nav class="page-nav" aria-label="Security and operations topic navigation">
+      <a href="os.html">â† Previous Topic</a>
+      <a href="performance.html">Next Topic â†’</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="footer">
+  <strong>Platform Technologies</strong> Â· Security &amp; Operations Lecture Series
+</footer>
+</body>
+</html>

@@ -1,0 +1,3006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Docker Fundamentals lesson covering Docker images, containers, ports, volumes, Docker commands, Dockerfile basics, and hands-on activities."
+    >
+
+    <meta
+        name="keywords"
+        content="Docker, Docker Fundamentals, Containers, Images, Ports, Volumes, Cloud and Containers, Platform Technologies"
+    >
+
+    <meta name="author" content="Platform Technologies">
+
+    <title>Docker Fundamentals | Cloud & Containers</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../favicon.jpg">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../css/Cloud & Containers/docker.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         TOP HEADER
+    ========================================================== -->
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="../index.html" class="brand">
+
+                <div class="brand-icon">
+                    D
+                </div>
+
+                <div class="brand-text">
+                    <span class="brand-title">
+                        PLATFORM TECHNOLOGIES
+                    </span>
+
+                    <span class="brand-subtitle">
+                        Cloud & Containers
+                    </span>
+                </div>
+
+            </a>
+
+            <nav class="top-navigation">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="docker.html" class="active">
+                    Docker
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         HERO SECTION
+    ========================================================== -->
+    <section class="hero">
+
+        <div class="hero-container">
+
+            <div class="hero-content">
+
+                <div class="lesson-label">
+                    CLOUD & CONTAINERS
+                </div>
+
+                <h1>
+                    Docker Fundamentals
+                </h1>
+
+                <p class="hero-description">
+                    Learn how Docker packages applications into portable
+                    containers using images, containers, ports, and volumes.
+                </p>
+
+                <div class="hero-tags">
+
+                    <span>Docker Images</span>
+                    <span>Containers</span>
+                    <span>Ports</span>
+                    <span>Volumes</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="docker-logo">
+                    🐳
+                </div>
+
+                <h2>
+                    Docker
+                </h2>
+
+                <p>
+                    Build once.
+                    Run anywhere.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         MAIN PAGE
+    ========================================================== -->
+    <div class="page-layout">
+
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside class="sidebar">
+
+            <div class="sidebar-inner">
+
+                <h2>
+                    Lesson Contents
+                </h2>
+
+                <nav class="lesson-navigation">
+
+                    <a href="#introduction">
+                        1. Docker Introduction
+                    </a>
+
+                    <a href="#why-docker">
+                        2. Why Docker?
+                    </a>
+
+                    <a href="#architecture">
+                        3. Docker Architecture
+                    </a>
+
+                    <a href="#images">
+                        4. Docker Images
+                    </a>
+
+                    <a href="#containers">
+                        5. Docker Containers
+                    </a>
+
+                    <a href="#ports">
+                        6. Docker Ports
+                    </a>
+
+                    <a href="#volumes">
+                        7. Docker Volumes
+                    </a>
+
+                    <a href="#dockerfile">
+                        8. Dockerfile
+                    </a>
+
+                    <a href="#commands">
+                        9. Docker Commands
+                    </a>
+
+                    <a href="#workflow">
+                        10. Docker Workflow
+                    </a>
+
+                    <a href="#activity">
+                        11. Hands-on Activity
+                    </a>
+
+                    <a href="#best-practices">
+                        12. Best Practices
+                    </a>
+
+                    <a href="#summary">
+                        13. Lesson Summary
+                    </a>
+
+                    <a href="#quiz">
+                        14. Assessment
+                    </a>
+
+                </nav>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+        <main class="lesson-content">
+
+
+            <!-- =================================================
+                 LESSON INFORMATION
+            ================================================== -->
+            <section class="lesson-info">
+
+                <div class="info-card">
+
+                    <span class="info-label">
+                        Topic
+                    </span>
+
+                    <strong>
+                        Docker Fundamentals
+                    </strong>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span class="info-label">
+                        Subject Area
+                    </span>
+
+                    <strong>
+                        Cloud & Containers
+                    </strong>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span class="info-label">
+                        Level
+                    </span>
+
+                    <strong>
+                        Beginner
+                    </strong>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span class="info-label">
+                        Lesson Type
+                    </span>
+
+                    <strong>
+                        Lecture + Laboratory
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LEARNING OBJECTIVES
+            ================================================== -->
+            <section class="content-section objectives">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        Objectives
+                    </span>
+
+                    <h2>
+                        Learning Objectives
+                    </h2>
+
+                </div>
+
+                <p>
+                    At the end of this lesson, students should be able to:
+                </p>
+
+                <ul class="objective-list">
+
+                    <li>
+                        Define Docker and explain why containerization is
+                        important in modern software development.
+                    </li>
+
+                    <li>
+                        Differentiate Docker images from Docker containers.
+                    </li>
+
+                    <li>
+                        Explain how Docker ports expose containerized
+                        applications to users and other systems.
+                    </li>
+
+                    <li>
+                        Explain why Docker volumes are needed for persistent
+                        storage.
+                    </li>
+
+                    <li>
+                        Use basic Docker commands to download images,
+                        create containers, and manage running applications.
+                    </li>
+
+                    <li>
+                        Create a simple Dockerfile.
+                    </li>
+
+                    <li>
+                        Describe the basic workflow used when deploying an
+                        application with Docker.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- =================================================
+                 1 INTRODUCTION
+            ================================================== -->
+            <section class="content-section" id="introduction">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <h2>
+                        Introduction to Docker
+                    </h2>
+
+                </div>
+
+                <p>
+                    <strong>Docker</strong> is a platform used to build,
+                    package, distribute, and run applications inside
+                    lightweight isolated environments called
+                    <strong>containers</strong>.
+                </p>
+
+                <p>
+                    Instead of manually installing every dependency required
+                    by an application on every computer, developers can
+                    package the application together with its dependencies
+                    into a Docker image.
+                </p>
+
+                <div class="definition-box">
+
+                    <h3>
+                        Simple Definition
+                    </h3>
+
+                    <p>
+                        Docker allows developers to package an application
+                        together with everything it needs so that the
+                        application can run consistently on different
+                        computers and servers.
+                    </p>
+
+                </div>
+
+
+                <h3>
+                    Example Problem
+                </h3>
+
+                <p>
+                    Imagine that a developer creates a Node.js application
+                    using:
+                </p>
+
+                <ul>
+
+                    <li>Node.js version 22</li>
+                    <li>Specific NPM packages</li>
+                    <li>Environment variables</li>
+                    <li>A particular Linux configuration</li>
+
+                </ul>
+
+                <p>
+                    The application works on the developer's computer but
+                    fails when transferred to another machine because the
+                    other machine has different software versions.
+                </p>
+
+                <div class="concept-flow">
+
+                    <div class="flow-box">
+                        Application
+                    </div>
+
+                    <div class="flow-arrow">
+                        +
+                    </div>
+
+                    <div class="flow-box">
+                        Dependencies
+                    </div>
+
+                    <div class="flow-arrow">
+                        +
+                    </div>
+
+                    <div class="flow-box">
+                        Configuration
+                    </div>
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+                    <div class="flow-box highlight">
+                        Docker Image
+                    </div>
+
+                </div>
+
+                <p>
+                    Docker solves this problem by providing a consistent
+                    environment for the application.
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+                 2 WHY DOCKER
+            ================================================== -->
+            <section class="content-section" id="why-docker">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    <h2>
+                        Why Do We Use Docker?
+                    </h2>
+
+                </div>
+
+                <div class="feature-grid">
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            📦
+                        </div>
+
+                        <h3>
+                            Portability
+                        </h3>
+
+                        <p>
+                            A container can run on a developer computer,
+                            testing server, cloud server, or other compatible
+                            Docker environment.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Fast Deployment
+                        </h3>
+
+                        <p>
+                            Containers normally start much faster than
+                            traditional virtual machines.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            🔒
+                        </div>
+
+                        <h3>
+                            Isolation
+                        </h3>
+
+                        <p>
+                            Applications can run in separate containers,
+                            reducing conflicts between dependencies.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            🔁
+                        </div>
+
+                        <h3>
+                            Consistency
+                        </h3>
+
+                        <p>
+                            Developers and servers can use the same image,
+                            reducing configuration differences.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            📈
+                        </div>
+
+                        <h3>
+                            Scalability
+                        </h3>
+
+                        <p>
+                            Multiple containers can be created when an
+                            application requires additional capacity.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ☁️
+                        </div>
+
+                        <h3>
+                            Cloud Friendly
+                        </h3>
+
+                        <p>
+                            Docker containers are widely used with AWS,
+                            Microsoft Azure, Google Cloud, Kubernetes,
+                            and other platforms.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DOCKER VS VM
+            ================================================== -->
+            <section class="content-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        Compare
+                    </span>
+
+                    <h2>
+                        Docker Containers vs Virtual Machines
+                    </h2>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Feature</th>
+                                <th>Docker Container</th>
+                                <th>Virtual Machine</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Operating System</td>
+                                <td>Shares the host kernel</td>
+                                <td>Has a complete guest OS</td>
+                            </tr>
+
+                            <tr>
+                                <td>Startup</td>
+                                <td>Usually seconds</td>
+                                <td>Usually slower</td>
+                            </tr>
+
+                            <tr>
+                                <td>Storage Size</td>
+                                <td>Usually smaller</td>
+                                <td>Usually larger</td>
+                            </tr>
+
+                            <tr>
+                                <td>Resource Usage</td>
+                                <td>Lower</td>
+                                <td>Higher</td>
+                            </tr>
+
+                            <tr>
+                                <td>Isolation</td>
+                                <td>Process-level isolation</td>
+                                <td>Full OS-level virtualization</td>
+                            </tr>
+
+                            <tr>
+                                <td>Typical Use</td>
+                                <td>Application deployment</td>
+                                <td>Complete virtual computers</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="note-box">
+
+                    <strong>Important:</strong>
+
+                    Containers and virtual machines are not exactly the same.
+                    A container normally shares the operating system kernel of
+                    its host, while a VM includes its own guest operating
+                    system.
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 3 ARCHITECTURE
+            ================================================== -->
+            <section class="content-section" id="architecture">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        03
+                    </span>
+
+                    <h2>
+                        Docker Architecture
+                    </h2>
+
+                </div>
+
+                <p>
+                    Docker commonly uses a client-server architecture.
+                </p>
+
+                <div class="architecture-diagram">
+
+                    <div class="architecture-box">
+
+                        <span class="architecture-icon">
+                            💻
+                        </span>
+
+                        <h3>
+                            Docker Client
+                        </h3>
+
+                        <p>
+                            Accepts commands such as
+                            <code>docker run</code>.
+                        </p>
+
+                    </div>
+
+                    <div class="architecture-arrow">
+                        →
+                    </div>
+
+                    <div class="architecture-box primary">
+
+                        <span class="architecture-icon">
+                            🐳
+                        </span>
+
+                        <h3>
+                            Docker Engine
+                        </h3>
+
+                        <p>
+                            Builds images and manages containers.
+                        </p>
+
+                    </div>
+
+                    <div class="architecture-arrow">
+                        ↔
+                    </div>
+
+                    <div class="architecture-box">
+
+                        <span class="architecture-icon">
+                            🌐
+                        </span>
+
+                        <h3>
+                            Registry
+                        </h3>
+
+                        <p>
+                            Stores Docker images such as Docker Hub.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Main Components
+                </h3>
+
+                <div class="term-list">
+
+                    <div class="term-item">
+
+                        <strong>
+                            Docker Client
+                        </strong>
+
+                        <p>
+                            The command-line interface used to communicate
+                            with Docker.
+                        </p>
+
+                    </div>
+
+
+                    <div class="term-item">
+
+                        <strong>
+                            Docker Engine
+                        </strong>
+
+                        <p>
+                            The main Docker service responsible for building
+                            and running containers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="term-item">
+
+                        <strong>
+                            Docker Registry
+                        </strong>
+
+                        <p>
+                            A service that stores and distributes Docker
+                            images.
+                        </p>
+
+                    </div>
+
+
+                    <div class="term-item">
+
+                        <strong>
+                            Docker Hub
+                        </strong>
+
+                        <p>
+                            A widely used public registry containing
+                            thousands of container images.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 4 IMAGES
+            ================================================== -->
+            <section class="content-section" id="images">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        04
+                    </span>
+
+                    <h2>
+                        Docker Images
+                    </h2>
+
+                </div>
+
+                <p>
+                    A <strong>Docker image</strong> is a read-only package
+                    containing the application, dependencies, libraries,
+                    and configuration needed to create a container.
+                </p>
+
+                <div class="definition-box">
+
+                    <h3>
+                        Think of an Image as a Template
+                    </h3>
+
+                    <p>
+                        An image is similar to a blueprint. The blueprint
+                        itself is not the running application. Docker uses
+                        the blueprint to create one or more running
+                        containers.
+                    </p>
+
+                </div>
+
+
+                <div class="comparison-visual">
+
+                    <div class="visual-item image-type">
+
+                        <span class="visual-icon">
+                            📀
+                        </span>
+
+                        <h3>
+                            Docker Image
+                        </h3>
+
+                        <p>
+                            Template / Blueprint
+                        </p>
+
+                    </div>
+
+                    <div class="visual-arrow">
+                        →
+                    </div>
+
+                    <div class="visual-item container-type">
+
+                        <span class="visual-icon">
+                            📦
+                        </span>
+
+                        <h3>
+                            Docker Container
+                        </h3>
+
+                        <p>
+                            Running Instance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Examples of Docker Images
+                </h3>
+
+                <div class="image-examples">
+
+                    <span>nginx</span>
+                    <span>ubuntu</span>
+                    <span>mysql</span>
+                    <span>postgres</span>
+                    <span>node</span>
+                    <span>python</span>
+
+                </div>
+
+
+                <h3>
+                    Download an Image
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+
+                        <span>
+                            Terminal
+                        </span>
+
+                        <span class="code-language">
+                            Docker
+                        </span>
+
+                    </div>
+
+                    <pre><code>docker pull nginx</code></pre>
+
+                </div>
+
+                <p>
+                    This command downloads the official Nginx image from a
+                    configured Docker registry, commonly Docker Hub.
+                </p>
+
+
+                <h3>
+                    Display Downloaded Images
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker images</code></pre>
+
+                </div>
+
+
+                <div class="expected-output">
+
+                    <span class="output-title">
+                        Example Output
+                    </span>
+
+                    <pre>REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+nginx        latest    abc123456789   2 weeks ago   190MB</pre>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 5 CONTAINERS
+            ================================================== -->
+            <section class="content-section" id="containers">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        05
+                    </span>
+
+                    <h2>
+                        Docker Containers
+                    </h2>
+
+                </div>
+
+                <p>
+                    A <strong>container</strong> is a runnable instance of
+                    a Docker image.
+                </p>
+
+                <p>
+                    One image can be used to create multiple independent
+                    containers.
+                </p>
+
+
+                <div class="container-demo">
+
+                    <div class="source-image">
+
+                        <span>
+                            IMAGE
+                        </span>
+
+                        <strong>
+                            nginx
+                        </strong>
+
+                    </div>
+
+                    <div class="container-arrow">
+                        →
+                    </div>
+
+                    <div class="container-list">
+
+                        <div>
+                            Container 1
+                        </div>
+
+                        <div>
+                            Container 2
+                        </div>
+
+                        <div>
+                            Container 3
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Create and Start a Container
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker run nginx</code></pre>
+
+                </div>
+
+
+                <h3>
+                    Run a Container in the Background
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker run -d nginx</code></pre>
+
+                </div>
+
+                <p>
+                    The <code>-d</code> option means
+                    <strong>detached mode</strong>. The container runs in
+                    the background.
+                </p>
+
+
+                <h3>
+                    Give the Container a Name
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker run -d --name my-web-server nginx</code></pre>
+
+                </div>
+
+
+                <h3>
+                    View Running Containers
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker ps</code></pre>
+
+                </div>
+
+
+                <h3>
+                    View All Containers
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker ps -a</code></pre>
+
+                </div>
+
+
+                <h3>
+                    Stop a Container
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker stop my-web-server</code></pre>
+
+                </div>
+
+
+                <h3>
+                    Start It Again
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker start my-web-server</code></pre>
+
+                </div>
+
+
+                <h3>
+                    Delete a Container
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker rm my-web-server</code></pre>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 6 PORTS
+            ================================================== -->
+            <section class="content-section" id="ports">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        06
+                    </span>
+
+                    <h2>
+                        Docker Ports
+                    </h2>
+
+                </div>
+
+                <p>
+                    Containers are isolated from the host system. If a
+                    container runs a web server, users normally need a
+                    published port to access the application from outside
+                    the container.
+                </p>
+
+
+                <div class="port-diagram">
+
+                    <div class="port-device">
+
+                        <span class="port-icon">
+                            🌐
+                        </span>
+
+                        <strong>
+                            Browser
+                        </strong>
+
+                        <small>
+                            localhost:8080
+                        </small>
+
+                    </div>
+
+                    <div class="port-arrow">
+                        →
+                    </div>
+
+                    <div class="port-host">
+
+                        <strong>
+                            HOST
+                        </strong>
+
+                        <span>
+                            Port 8080
+                        </span>
+
+                    </div>
+
+                    <div class="port-arrow">
+                        →
+                    </div>
+
+                    <div class="port-container">
+
+                        <strong>
+                            CONTAINER
+                        </strong>
+
+                        <span>
+                            Port 80
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Port Mapping Syntax
+                </h3>
+
+                <div class="syntax-box">
+
+                    <code>
+                        -p HOST_PORT:CONTAINER_PORT
+                    </code>
+
+                </div>
+
+
+                <h3>
+                    Example
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker run -d -p 8080:80 --name web nginx</code></pre>
+
+                </div>
+
+
+                <div class="explanation-grid">
+
+                    <div>
+
+                        <strong>
+                            8080
+                        </strong>
+
+                        <span>
+                            Host computer port
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            80
+                        </strong>
+
+                        <span>
+                            Nginx container port
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p>
+                    After running the command, open a browser and visit:
+                </p>
+
+                <div class="browser-address">
+                    http://localhost:8080
+                </div>
+
+
+                <div class="important-box">
+
+                    <h3>
+                        Important Rule
+                    </h3>
+
+                    <p>
+                        The number before the colon is the host port.
+                        The number after the colon is the container port.
+                    </p>
+
+                    <code>
+                        8080:80
+                    </code>
+
+                    <p class="mapping-text">
+                        HOST PORT → CONTAINER PORT
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 7 VOLUMES
+            ================================================== -->
+            <section class="content-section" id="volumes">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        07
+                    </span>
+
+                    <h2>
+                        Docker Volumes
+                    </h2>
+
+                </div>
+
+                <p>
+                    By default, data created inside a container belongs to
+                    that container's writable layer. Important application
+                    data should not depend solely on that temporary
+                    container layer.
+                </p>
+
+                <p>
+                    Docker provides <strong>volumes</strong> for persistent
+                    data storage.
+                </p>
+
+
+                <div class="warning-box">
+
+                    <h3>
+                        Without Persistent Storage
+                    </h3>
+
+                    <p>
+                        If application data exists only inside the
+                        container's writable layer, removing that container
+                        also removes that container-specific data.
+                    </p>
+
+                </div>
+
+
+                <div class="volume-diagram">
+
+                    <div class="volume-container">
+
+                        <span>
+                            📦
+                        </span>
+
+                        <strong>
+                            MySQL Container
+                        </strong>
+
+                    </div>
+
+                    <div class="volume-connection">
+                        ↕
+                    </div>
+
+                    <div class="volume-storage">
+
+                        <span>
+                            💾
+                        </span>
+
+                        <strong>
+                            Docker Volume
+                        </strong>
+
+                        <small>
+                            Persistent Data
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Create a Volume
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker volume create student-data</code></pre>
+
+                </div>
+
+
+                <h3>
+                    List Volumes
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker volume ls</code></pre>
+
+                </div>
+
+
+                <h3>
+                    Attach a Volume to a Container
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker run -d \
+--name database \
+-v student-data:/var/lib/mysql \
+mysql</code></pre>
+
+                </div>
+
+
+                <p>
+                    The general volume syntax is:
+                </p>
+
+                <div class="syntax-box">
+
+                    <code>
+                        -v VOLUME_NAME:CONTAINER_PATH
+                    </code>
+
+                </div>
+
+
+                <h3>
+                    Why Volumes Are Important
+                </h3>
+
+                <ul class="check-list">
+
+                    <li>
+                        Preserve important application data.
+                    </li>
+
+                    <li>
+                        Allow containers to be replaced more safely.
+                    </li>
+
+                    <li>
+                        Separate application data from the container
+                        lifecycle.
+                    </li>
+
+                    <li>
+                        Useful for databases, uploaded files, and other
+                        persistent application data.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- =================================================
+                 8 DOCKERFILE
+            ================================================== -->
+            <section class="content-section" id="dockerfile">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        08
+                    </span>
+
+                    <h2>
+                        Introduction to Dockerfile
+                    </h2>
+
+                </div>
+
+                <p>
+                    A <strong>Dockerfile</strong> is a text file containing
+                    instructions Docker uses to build an image.
+                </p>
+
+
+                <h3>
+                    Simple HTML Project
+                </h3>
+
+                <div class="folder-tree">
+
+                    <div>📁 my-website</div>
+
+                    <div class="folder-child">
+                        📄 index.html
+                    </div>
+
+                    <div class="folder-child">
+                        📄 Dockerfile
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Example Dockerfile
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Dockerfile</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>FROM nginx:alpine
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80</code></pre>
+
+                </div>
+
+
+                <div class="instruction-table">
+
+                    <div class="instruction-row">
+
+                        <code>FROM</code>
+
+                        <p>
+                            Selects the base image.
+                        </p>
+
+                    </div>
+
+
+                    <div class="instruction-row">
+
+                        <code>COPY</code>
+
+                        <p>
+                            Copies files into the image.
+                        </p>
+
+                    </div>
+
+
+                    <div class="instruction-row">
+
+                        <code>EXPOSE</code>
+
+                        <p>
+                            Documents the port the application expects to
+                            listen on.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Build the Image
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker build -t my-website .</code></pre>
+
+                </div>
+
+
+                <div class="command-breakdown">
+
+                    <div>
+                        <code>docker build</code>
+                        <span>Build an image</span>
+                    </div>
+
+                    <div>
+                        <code>-t my-website</code>
+                        <span>Name/tag the image</span>
+                    </div>
+
+                    <div>
+                        <code>.</code>
+                        <span>Use the current directory as build context</span>
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Run the Image
+                </h3>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Terminal</span>
+                        <span class="code-language">Docker</span>
+                    </div>
+
+                    <pre><code>docker run -d -p 8080:80 --name my-site my-website</code></pre>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 9 COMMANDS
+            ================================================== -->
+            <section class="content-section" id="commands">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        09
+                    </span>
+
+                    <h2>
+                        Essential Docker Commands
+                    </h2>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="command-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <code>docker --version</code>
+                                </td>
+
+                                <td>
+                                    Display installed Docker version.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker pull nginx</code>
+                                </td>
+
+                                <td>
+                                    Download an image.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker images</code>
+                                </td>
+
+                                <td>
+                                    Display local images.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker run nginx</code>
+                                </td>
+
+                                <td>
+                                    Create and start a container.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker ps</code>
+                                </td>
+
+                                <td>
+                                    Show running containers.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker ps -a</code>
+                                </td>
+
+                                <td>
+                                    Show all containers.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker stop NAME</code>
+                                </td>
+
+                                <td>
+                                    Stop a running container.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker start NAME</code>
+                                </td>
+
+                                <td>
+                                    Start an existing stopped container.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker restart NAME</code>
+                                </td>
+
+                                <td>
+                                    Restart a container.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker rm NAME</code>
+                                </td>
+
+                                <td>
+                                    Remove a stopped container.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker rmi IMAGE</code>
+                                </td>
+
+                                <td>
+                                    Remove a Docker image.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker logs NAME</code>
+                                </td>
+
+                                <td>
+                                    Display logs generated by a container.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker exec -it NAME sh</code>
+                                </td>
+
+                                <td>
+                                    Open an interactive shell when the
+                                    container provides <code>sh</code>.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker volume ls</code>
+                                </td>
+
+                                <td>
+                                    Display Docker volumes.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>docker inspect NAME</code>
+                                </td>
+
+                                <td>
+                                    Display detailed Docker object
+                                    information.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 10 WORKFLOW
+            ================================================== -->
+            <section class="content-section" id="workflow">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        10
+                    </span>
+
+                    <h2>
+                        Basic Docker Workflow
+                    </h2>
+
+                </div>
+
+                <div class="workflow">
+
+                    <div class="workflow-step">
+
+                        <span class="step-number">
+                            1
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Write Application
+                            </h3>
+
+                            <p>
+                                Create your website, API, or other
+                                application.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step">
+
+                        <span class="step-number">
+                            2
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Create Dockerfile
+                            </h3>
+
+                            <p>
+                                Define how the application image should be
+                                built.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step">
+
+                        <span class="step-number">
+                            3
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Build Image
+                            </h3>
+
+                            <code>
+                                docker build -t my-app .
+                            </code>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step">
+
+                        <span class="step-number">
+                            4
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Run Container
+                            </h3>
+
+                            <code>
+                                docker run -d -p 8080:80 my-app
+                            </code>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step">
+
+                        <span class="step-number">
+                            5
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Test Application
+                            </h3>
+
+                            <p>
+                                Open the application using the published
+                                host port.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 COMPLETE EXAMPLE
+            ================================================== -->
+            <section class="content-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        Example
+                    </span>
+
+                    <h2>
+                        Complete Docker Example
+                    </h2>
+
+                </div>
+
+                <p>
+                    The following example starts an Nginx web server named
+                    <code>school-web</code> and exposes it through port
+                    <code>8080</code>.
+                </p>
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Step 1 — Download</span>
+                        <span class="code-language">Terminal</span>
+                    </div>
+
+                    <pre><code>docker pull nginx</code></pre>
+
+                </div>
+
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Step 2 — Run</span>
+                        <span class="code-language">Terminal</span>
+                    </div>
+
+                    <pre><code>docker run -d -p 8080:80 --name school-web nginx</code></pre>
+
+                </div>
+
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Step 3 — Verify</span>
+                        <span class="code-language">Terminal</span>
+                    </div>
+
+                    <pre><code>docker ps</code></pre>
+
+                </div>
+
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Step 4 — Browser</span>
+                        <span class="code-language">URL</span>
+                    </div>
+
+                    <pre><code>http://localhost:8080</code></pre>
+
+                </div>
+
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Step 5 — Stop</span>
+                        <span class="code-language">Terminal</span>
+                    </div>
+
+                    <pre><code>docker stop school-web</code></pre>
+
+                </div>
+
+
+                <div class="code-example">
+
+                    <div class="code-header">
+                        <span>Step 6 — Remove</span>
+                        <span class="code-language">Terminal</span>
+                    </div>
+
+                    <pre><code>docker rm school-web</code></pre>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ACTIVITY
+            ================================================== -->
+            <section class="content-section" id="activity">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        11
+                    </span>
+
+                    <h2>
+                        Hands-on Laboratory Activity
+                    </h2>
+
+                </div>
+
+                <div class="activity-header">
+
+                    <span>
+                        🧪
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Activity: Deploy Your First Docker Web Server
+                        </h3>
+
+                        <p>
+                            Students will deploy an Nginx container and
+                            access it through a browser.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Requirements
+                </h3>
+
+                <ul>
+
+                    <li>Windows, macOS, or Linux computer</li>
+                    <li>Docker Desktop or Docker Engine</li>
+                    <li>Internet connection for the initial image download</li>
+                    <li>Terminal or PowerShell</li>
+
+                </ul>
+
+
+                <div class="lab-steps">
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            1
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Verify Docker
+                            </h3>
+
+                            <pre><code>docker --version</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            2
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Download Nginx
+                            </h3>
+
+                            <pre><code>docker pull nginx</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            3
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Start the Container
+                            </h3>
+
+                            <pre><code>docker run -d -p 8080:80 --name student-web nginx</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            4
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Check the Container
+                            </h3>
+
+                            <pre><code>docker ps</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            5
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Open the Website
+                            </h3>
+
+                            <p>
+                                Open:
+                            </p>
+
+                            <pre><code>http://localhost:8080</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            6
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                View Container Logs
+                            </h3>
+
+                            <pre><code>docker logs student-web</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            7
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Stop the Container
+                            </h3>
+
+                            <pre><code>docker stop student-web</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lab-step">
+
+                        <div class="lab-number">
+                            8
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Delete the Container
+                            </h3>
+
+                            <pre><code>docker rm student-web</code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="task-box">
+
+                    <h3>
+                        Student Challenge
+                    </h3>
+
+                    <p>
+                        Repeat the activity, but change the host port from
+                        <code>8080</code> to <code>9090</code>.
+                    </p>
+
+                    <p>
+                        Determine which URL should be opened in the browser.
+                    </p>
+
+                    <details>
+
+                        <summary>
+                            Show Answer
+                        </summary>
+
+                        <div class="answer">
+
+                            <p>
+                                Run:
+                            </p>
+
+                            <pre><code>docker run -d -p 9090:80 --name student-web-2 nginx</code></pre>
+
+                            <p>
+                                Then open:
+                            </p>
+
+                            <code>
+                                http://localhost:9090
+                            </code>
+
+                        </div>
+
+                    </details>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 BEST PRACTICES
+            ================================================== -->
+            <section class="content-section" id="best-practices">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        12
+                    </span>
+
+                    <h2>
+                        Basic Docker Best Practices
+                    </h2>
+
+                </div>
+
+                <div class="practice-grid">
+
+                    <div class="practice-card">
+
+                        <span>
+                            01
+                        </span>
+
+                        <h3>
+                            Use Trusted Images
+                        </h3>
+
+                        <p>
+                            Prefer official or otherwise trusted images from
+                            reputable registries.
+                        </p>
+
+                    </div>
+
+
+                    <div class="practice-card">
+
+                        <span>
+                            02
+                        </span>
+
+                        <h3>
+                            Use Specific Tags
+                        </h3>
+
+                        <p>
+                            For reproducible deployments, prefer a required
+                            version tag rather than relying only on
+                            <code>latest</code>.
+                        </p>
+
+                    </div>
+
+
+                    <div class="practice-card">
+
+                        <span>
+                            03
+                        </span>
+
+                        <h3>
+                            Keep Images Small
+                        </h3>
+
+                        <p>
+                            Use appropriate lightweight base images when
+                            they satisfy application requirements.
+                        </p>
+
+                    </div>
+
+
+                    <div class="practice-card">
+
+                        <span>
+                            04
+                        </span>
+
+                        <h3>
+                            Protect Secrets
+                        </h3>
+
+                        <p>
+                            Do not permanently place passwords or API keys
+                            inside Docker images or public source code.
+                        </p>
+
+                    </div>
+
+
+                    <div class="practice-card">
+
+                        <span>
+                            05
+                        </span>
+
+                        <h3>
+                            Persist Important Data
+                        </h3>
+
+                        <p>
+                            Use Docker volumes or other appropriate
+                            persistent storage for important application
+                            data.
+                        </p>
+
+                    </div>
+
+
+                    <div class="practice-card">
+
+                        <span>
+                            06
+                        </span>
+
+                        <h3>
+                            Remove Unused Resources
+                        </h3>
+
+                        <p>
+                            Periodically review unnecessary stopped
+                            containers and unused images.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+            <section class="content-section" id="summary">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        13
+                    </span>
+
+                    <h2>
+                        Lesson Summary
+                    </h2>
+
+                </div>
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">
+                            🐳
+                        </div>
+
+                        <h3>
+                            Docker
+                        </h3>
+
+                        <p>
+                            Platform for building and running containerized
+                            applications.
+                        </p>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">
+                            📀
+                        </div>
+
+                        <h3>
+                            Image
+                        </h3>
+
+                        <p>
+                            Read-only template used to create containers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">
+                            📦
+                        </div>
+
+                        <h3>
+                            Container
+                        </h3>
+
+                        <p>
+                            Runnable instance created from an image.
+                        </p>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">
+                            🔌
+                        </div>
+
+                        <h3>
+                            Port
+                        </h3>
+
+                        <p>
+                            Allows services inside containers to be reached
+                            through published host ports.
+                        </p>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">
+                            💾
+                        </div>
+
+                        <h3>
+                            Volume
+                        </h3>
+
+                        <p>
+                            Persistent data storage managed separately from
+                            a container's writable layer.
+                        </p>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon">
+                            📄
+                        </div>
+
+                        <h3>
+                            Dockerfile
+                        </h3>
+
+                        <p>
+                            Instructions used to build a Docker image.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="key-concept">
+
+                    <strong>
+                        Remember:
+                    </strong>
+
+                    <p>
+                        Dockerfile → Image → Container
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 QUIZ
+            ================================================== -->
+            <section class="content-section" id="quiz">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        14
+                    </span>
+
+                    <h2>
+                        Knowledge Check
+                    </h2>
+
+                </div>
+
+                <p>
+                    Ask students to answer the following questions before
+                    checking the answers.
+                </p>
+
+
+                <div class="quiz-list">
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            1. What is Docker?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            Docker is a platform for building, packaging,
+                            distributing, and running applications in
+                            containers.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            2. What is the difference between an image and a
+                            container?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            An image is a template, while a container is a
+                            runnable instance created from that image.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            3. What does docker pull nginx do?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            It downloads the Nginx Docker image from a
+                            configured registry.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            4. What does docker ps display?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            It displays currently running containers.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            5. In -p 8080:80, which number is the host port?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            Port 8080 is the host port. Port 80 is the
+                            container port.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            6. Why are Docker volumes used?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            Volumes provide persistent storage that can
+                            remain available independently of a particular
+                            container's writable layer.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            7. What does the -d option mean?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            It starts the container in detached mode so it
+                            runs in the background.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            8. Which command stops a container named web?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            <code>docker stop web</code>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            9. What file contains instructions for building a
+                            Docker image?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            A Dockerfile.
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="quiz-question">
+
+                        <summary>
+                            10. What is the basic Docker workflow?
+                        </summary>
+
+                        <div class="quiz-answer">
+
+                            Create the application → create a Dockerfile →
+                            build an image → run a container → publish
+                            required ports → test or deploy the application.
+
+                        </div>
+
+                    </details>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DISCUSSION
+            ================================================== -->
+            <section class="content-section discussion-section">
+
+                <div class="section-heading">
+
+                    <span class="section-number">
+                        Discussion
+                    </span>
+
+                    <h2>
+                        Classroom Discussion Questions
+                    </h2>
+
+                </div>
+
+                <ol class="discussion-list">
+
+                    <li>
+                        Why might Docker reduce the problem of
+                        "it works on my computer"?
+                    </li>
+
+                    <li>
+                        Why is an image different from a running container?
+                    </li>
+
+                    <li>
+                        What could happen if a database stores important data
+                        only inside a temporary container?
+                    </li>
+
+                    <li>
+                        Why is port mapping necessary for many containerized
+                        web applications?
+                    </li>
+
+                    <li>
+                        When might a virtual machine be preferable to a
+                        container?
+                    </li>
+
+                    <li>
+                        How can Docker help when deploying an application to
+                        a cloud platform?
+                    </li>
+
+                </ol>
+
+            </section>
+
+
+            <!-- =================================================
+                 TEACHER RECAP
+            ================================================== -->
+            <section class="teacher-recap">
+
+                <span class="teacher-icon">
+                    👨‍🏫
+                </span>
+
+                <div>
+
+                    <h2>
+                        Teacher's Quick Recap
+                    </h2>
+
+                    <p>
+                        Emphasize these four terms before ending the lesson:
+                    </p>
+
+                    <p class="recap-line">
+                        <strong>IMAGE</strong> = Template
+                        <span>•</span>
+                        <strong>CONTAINER</strong> = Running Instance
+                        <span>•</span>
+                        <strong>PORT</strong> = Network Access
+                        <span>•</span>
+                        <strong>VOLUME</strong> = Persistent Data
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PAGE NAVIGATION
+            ================================================== -->
+            <nav class="page-navigation">
+
+                <a href="iaas.html" class="nav-button previous">
+
+                    <span>
+                        ← Previous Lesson
+                    </span>
+
+                    <strong>
+                        IaaS, PaaS & SaaS
+                    </strong>
+
+                </a>
+
+
+                <a href="#introduction" class="nav-button next">
+
+                    <span>
+                        Back to Top
+                    </span>
+
+                    <strong>
+                        Docker Fundamentals ↑
+                    </strong>
+
+                </a>
+
+            </nav>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div>
+
+                <h2>
+                    Platform Technologies
+                </h2>
+
+                <p>
+                    Cloud & Containers Learning Module
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="linux.html">
+                    Linux
+                </a>
+
+                <a href="iaas.html">
+                    Cloud Models
+                </a>
+
+                <a href="aws.html">
+                    Docker
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            Educational Learning Resource
+        </div>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundations of Platform Technologies | Desktop, Mobile &amp; Embedded Systems</title>
+
+<!-- Browser tab logo -->
+<link rel="icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+<link rel="shortcut icon" type="image/jpeg" href="../img/favicon.jpg?v=2">
+
+<link rel="stylesheet" href="../css/Foundation/foundations.css">
+</head>
+<body>
+
+<!-- Mobile sidebar toggle (CSS-only, no JavaScript required) -->
+<input type="checkbox" id="sidebar-toggle" class="sidebar-toggle">
+
+<header class="topbar">
+  <div class="topbar__brand">
+    <label for="sidebar-toggle" class="sidebar-toggle-label" aria-label="Toggle lesson menu">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="topbar__brand-text">
+      <span class="topbar__eyebrow">Platform Technologies</span>
+      <span class="topbar__title">Foundations of Desktop, Mobile &amp; Embedded Systems</span>
+    </div>
+  </div>
+  <nav class="topbar__nav">
+    <a href="../index.html" class="topbar__home-link">Home</a>
+  </nav>
+</header>
+
+<div class="layout">
+
+  <label for="sidebar-toggle" class="sidebar-overlay" aria-hidden="true"></label>
+
+  <!-- ============================ SIDEBAR ============================ -->
+  <aside class="sidebar">
+    <div class="sidebar__section-label">Module Navigation</div>
+    <nav aria-label="Lesson sections">
+      <ul>
+        <li><a href="#overview"><span class="num">•</span> Course Overview</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__section-label">Lessons</div>
+    <nav aria-label="Lessons">
+      <ul>
+        <li><a href="#lesson-1"><span class="num">1</span> Introduction to Platform Technologies</a></li>
+        <li><a href="#lesson-2"><span class="num">2</span> Desktop Computing Platforms</a></li>
+        <li><a href="#lesson-3"><span class="num">3</span> Mobile Computing Platforms</a></li>
+        <li><a href="#lesson-4"><span class="num">4</span> Embedded Systems Platforms</a></li>
+        <li><a href="#lesson-5"><span class="num">5</span> Comparative Analysis of Platforms</a></li>
+        <li><a href="#lesson-6"><span class="num">6</span> Operating Systems Across Platforms</a></li>
+        <li><a href="#lesson-7"><span class="num">7</span> Application Development Environments</a></li>
+        <li><a href="#lesson-8"><span class="num">8</span> Real-World Applications &amp; Case Studies</a></li>
+        <li><a href="#lesson-9"><span class="num">9</span> Summary &amp; Key Takeaways</a></li>
+        <li><a href="#lesson-10"><span class="num">10</span> Review Questions</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer-note">
+      Use this menu to jump directly to any topic while the lecture is being discussed in class.
+    </div>
+  </aside>
+
+  <!-- ============================ MAIN CONTENT ============================ -->
+  <main class="content">
+
+    <section id="overview" class="hero">
+      <div class="hero__module">Module · Platform Technologies</div>
+      <h1>Foundations of Desktop, Mobile &amp; Embedded Computing Platforms</h1>
+      <p>
+        This lecture introduces students to the three foundational categories of computing
+        platforms that form the backbone of modern Information Technology practice: desktop
+        systems, mobile systems, and embedded systems. Each lesson builds progressively toward
+        a comparative and applied understanding of platform technologies.
+      </p>
+      <div class="hero__meta">
+        <span>Lesson Duration: 3 Hours</span>
+        <span>Delivery Mode: Lecture &amp; Discussion</span>
+        <span>Prerequisite: Introduction to Computing</span>
+      </div>
+    </section>
+
+    <section class="objectives">
+      <h2>Learning Objectives</h2>
+      <p>At the end of this module, students are expected to:</p>
+      <ul>
+        <li>Define a computing platform and identify its core components.</li>
+        <li>Differentiate desktop, mobile, and embedded platforms based on architecture, purpose, and constraints.</li>
+        <li>Explain the role of operating systems in managing hardware resources across platform types.</li>
+        <li>Identify common development environments and tools associated with each platform category.</li>
+        <li>Apply platform concepts to real-world technology scenarios and industry examples.</li>
+      </ul>
+    </section>
+
+    <!-- ===================== LESSON 1 ===================== -->
+    <section id="lesson-1" class="lesson">
+      <span class="lesson__eyebrow">Lesson 1</span>
+      <h2>Introduction to Platform Technologies</h2>
+
+      <p>
+        A <strong>computing platform</strong> is the underlying environment—composed of hardware
+        architecture, an operating system, and supporting software frameworks—upon which
+        applications are built, installed, and executed. Understanding platform technologies is
+        essential for Information Technology students because every application, from a simple
+        calculator to a large enterprise system, is designed with a specific platform's
+        capabilities and limitations in mind.
+      </p>
+
+      <div class="callout callout--key">
+        <h4>Key Concept</h4>
+        <p>
+          A platform provides the "rules of engagement" for software: it defines how programs
+          access memory, storage, processors, input devices, and network resources. Choosing the
+          correct platform is often the first major decision in any software development project.
+        </p>
+      </div>
+
+      <h3>Core Components of a Platform</h3>
+      <ol class="steps">
+        <li><strong>Hardware Architecture</strong> — the physical processing unit (CPU/GPU), memory, and peripheral devices that execute instructions.</li>
+        <li><strong>Operating System (OS)</strong> — the software layer that manages hardware resources and provides services to applications.</li>
+        <li><strong>Runtime Environment</strong> — libraries, frameworks, and virtual machines (e.g., .NET, JVM) that support application execution.</li>
+        <li><strong>User Interface Paradigm</strong> — the interaction model, such as windows and pointers, touch gestures, or sensor-driven automation.</li>
+      </ol>
+
+      <div class="figure">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Datacenter%20Server%20Racks%20(22370909788).jpg" alt="Rows of computing hardware illustrating the range of platform infrastructure">
+        <figcaption>Figure 1.1 — Computing platforms range from personal devices to large-scale infrastructure, all built on the same foundational principles of hardware, operating systems, and software runtimes.</figcaption>
+      </div>
+
+      <div class="callout callout--note">
+        <h4>Why This Matters</h4>
+        <p>
+          Platform Technologies, as a subject, prepares IT practitioners to make informed
+          decisions when selecting the right platform for a given problem — balancing
+          performance, portability, cost, and user experience.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 2 ===================== -->
+    <section id="lesson-2" class="lesson">
+      <span class="lesson__eyebrow">Lesson 2</span>
+      <h2>Desktop Computing Platforms</h2>
+
+      <p>
+        Desktop platforms refer to stationary or semi-portable computing systems designed for
+        sustained productivity, complex processing tasks, and multitasking. They typically consist
+        of a tower or all-in-one unit, an external display, keyboard, and mouse, and are powered
+        by continuous electrical supply rather than battery alone.
+      </p>
+
+      <div class="figure">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Desktop%20personal%20computer.jpg" alt="A typical desktop personal computer setup with monitor, keyboard, and system unit">
+        <figcaption>Figure 2.1 — A standard desktop computer configuration, consisting of a system unit, monitor, and peripheral input devices.</figcaption>
+      </div>
+
+      <h3>Defining Characteristics</h3>
+      <ul>
+        <li><strong>High processing power:</strong> Multi-core CPUs and dedicated GPUs support demanding workloads such as video editing, engineering simulations, and software compilation.</li>
+        <li><strong>Expandability:</strong> Components such as RAM, storage drives, and graphics cards can often be upgraded or replaced.</li>
+        <li><strong>Stable power and cooling:</strong> Continuous power supply allows for sustained, high-performance operation.</li>
+        <li><strong>Full-featured operating systems:</strong> Desktop OS platforms support multitasking, multiple user accounts, and a wide range of peripheral drivers.</li>
+      </ul>
+
+      <h3>Common Desktop Operating Systems</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Operating System</th><th>Developer</th><th>Typical Use Case</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Microsoft Windows</td><td>Microsoft Corporation</td><td>General business, gaming, enterprise workstations</td></tr>
+            <tr><td>macOS</td><td>Apple Inc.</td><td>Creative production, design, software development</td></tr>
+            <tr><td>Linux Distributions</td><td>Open-source community</td><td>Servers, development environments, system administration</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--example">
+        <h4>Example</h4>
+        <p>
+          A graphic design studio relies on desktop platforms because rendering high-resolution
+          artwork requires sustained CPU and GPU performance that battery-powered mobile devices
+          cannot yet match efficiently.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 3 ===================== -->
+    <section id="lesson-3" class="lesson">
+      <span class="lesson__eyebrow">Lesson 3</span>
+      <h2>Mobile Computing Platforms</h2>
+
+      <p>
+        Mobile platforms encompass portable, battery-powered devices such as smartphones and
+        tablets, designed for connectivity, personal use, and on-the-go accessibility. Mobile
+        platforms prioritize energy efficiency, touch-based interaction, and constant network
+        connectivity over raw processing power.
+      </p>
+
+      <div class="figure-row">
+        <div class="figure">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Android%20Smartphones.jpg" alt="Multiple Android smartphones displaying home screen icons">
+          <figcaption>Figure 3.1 — Smartphones running the Android operating system, illustrating a touch-based mobile interface.</figcaption>
+        </div>
+        <div class="figure">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hand%20holding%20Smartphone.jpg" alt="A hand holding a smartphone, demonstrating typical mobile device interaction">
+          <figcaption>Figure 3.2 — Mobile platforms are designed around single-handed, touch-driven interaction.</figcaption>
+        </div>
+      </div>
+
+      <h3>Defining Characteristics</h3>
+      <ul>
+        <li><strong>Portability:</strong> Compact form factors allow devices to be carried and used anywhere.</li>
+        <li><strong>Touch-based interfaces:</strong> Applications are designed for finger-based gestures rather than a mouse and keyboard.</li>
+        <li><strong>Sensor integration:</strong> GPS, accelerometers, gyroscopes, and cameras enable context-aware applications.</li>
+        <li><strong>App-store distribution:</strong> Software is typically installed through centralized, curated marketplaces.</li>
+        <li><strong>Power efficiency:</strong> Processors and operating systems are optimized to extend battery life.</li>
+      </ul>
+
+      <h3>Common Mobile Operating Systems</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Operating System</th><th>Developer</th><th>Typical Use Case</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Android</td><td>Google (Open Handset Alliance)</td><td>Consumer smartphones and tablets, wide device range</td></tr>
+            <tr><td>iOS / iPadOS</td><td>Apple Inc.</td><td>Apple smartphones and tablets, tightly integrated ecosystem</td></tr>
+            <tr><td>HarmonyOS</td><td>Huawei</td><td>Cross-device consumer electronics ecosystem</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--key">
+        <h4>Key Concept</h4>
+        <p>
+          Mobile application development must always account for limited battery life, variable
+          network conditions, and diverse screen sizes — constraints that are far less critical
+          in desktop development.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 4 ===================== -->
+    <section id="lesson-4" class="lesson">
+      <span class="lesson__eyebrow">Lesson 4</span>
+      <h2>Embedded Systems Platforms</h2>
+
+      <p>
+        An <strong>embedded system</strong> is a specialized computing platform designed to
+        perform a dedicated function within a larger mechanical or electronic system. Unlike
+        desktop or mobile platforms, embedded systems are typically invisible to the end user —
+        operating inside appliances, vehicles, medical devices, and industrial machinery.
+      </p>
+
+      <div class="figure-row">
+        <div class="figure">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arduino%20Uno%20-%20R3.jpg" alt="An Arduino Uno microcontroller development board used for embedded systems education">
+          <figcaption>Figure 4.1 — The Arduino Uno, a widely used microcontroller board for prototyping embedded systems.</figcaption>
+        </div>
+        <div class="figure">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/LilyPad%20Arduino%20Main%20Board.JPG" alt="A LilyPad Arduino board designed for wearable embedded electronics">
+          <figcaption>Figure 4.2 — The LilyPad Arduino, an embedded platform designed for wearable technology applications.</figcaption>
+        </div>
+      </div>
+
+      <h3>Defining Characteristics</h3>
+      <ul>
+        <li><strong>Dedicated function:</strong> Designed to perform one task or a narrow set of tasks reliably, such as regulating temperature or controlling a motor.</li>
+        <li><strong>Resource constraints:</strong> Limited memory, processing power, and storage compared to desktop or mobile systems.</li>
+        <li><strong>Real-time operation:</strong> Many embedded systems must respond to inputs within strict time limits (real-time systems).</li>
+        <li><strong>Minimal or no user interface:</strong> Interaction may be limited to LEDs, buttons, or sensors rather than a full graphical display.</li>
+        <li><strong>Long operational lifespan:</strong> Designed to run continuously for years with minimal maintenance.</li>
+      </ul>
+
+      <h3>Where Embedded Systems Are Found</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Industry</th><th>Example Embedded Application</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Home Appliances</td><td>Washing machine controllers, smart thermostats</td></tr>
+            <tr><td>Automotive</td><td>Engine control units, anti-lock braking systems</td></tr>
+            <tr><td>Healthcare</td><td>Patient monitoring devices, infusion pumps</td></tr>
+            <tr><td>Consumer Electronics</td><td>Smartwatches, digital cameras, routers</td></tr>
+            <tr><td>Industrial Automation</td><td>Programmable logic controllers (PLCs), robotics</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--example">
+        <h4>Example</h4>
+        <p>
+          A microwave oven contains an embedded system that continuously monitors the keypad and
+          timer circuit — a single-purpose platform that never runs unrelated applications.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 5 ===================== -->
+    <section id="lesson-5" class="lesson">
+      <span class="lesson__eyebrow">Lesson 5</span>
+      <h2>Comparative Analysis of Platforms</h2>
+
+      <p>
+        Although desktop, mobile, and embedded platforms share the same foundational concepts of
+        hardware and software integration, they differ significantly in purpose, constraints, and
+        design priorities. The table below summarizes the essential distinctions.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Criteria</th>
+              <th>Desktop Platform</th>
+              <th>Mobile Platform</th>
+              <th>Embedded Platform</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Primary Purpose</td>
+              <td>General-purpose productivity and multitasking</td>
+              <td>Personal, portable connectivity and apps</td>
+              <td>Dedicated, single-function control</td>
+            </tr>
+            <tr>
+              <td>Power Source</td>
+              <td>Continuous AC power</td>
+              <td>Rechargeable battery</td>
+              <td>Battery or direct low-power supply</td>
+            </tr>
+            <tr>
+              <td>User Interface</td>
+              <td>Keyboard, mouse, large display</td>
+              <td>Touchscreen, gestures, voice</td>
+              <td>Minimal or no interface (sensors, LEDs)</td>
+            </tr>
+            <tr>
+              <td>Processing Power</td>
+              <td>High</td>
+              <td>Moderate</td>
+              <td>Low to moderate</td>
+            </tr>
+            <tr>
+              <td>Typical Lifespan</td>
+              <td>3–7 years</td>
+              <td>2–4 years</td>
+              <td>5–15+ years</td>
+            </tr>
+            <tr>
+              <td>Example Devices</td>
+              <td>Desktop PCs, workstations</td>
+              <td>Smartphones, tablets</td>
+              <td>Microcontrollers, IoT sensors, PLCs</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--note">
+        <h4>Discussion Point</h4>
+        <p>
+          Ask students to identify a device in their household that blends more than one platform
+          category — for example, a smart television, which combines embedded control circuitry
+          with a mobile-like operating system.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 6 ===================== -->
+    <section id="lesson-6" class="lesson">
+      <span class="lesson__eyebrow">Lesson 6</span>
+      <h2>Operating Systems Across Platforms</h2>
+
+      <p>
+        The <strong>operating system</strong> is the critical software layer that bridges hardware
+        and applications on every platform. While its core responsibilities—process management,
+        memory management, and input/output control—remain consistent, its implementation is
+        tailored to the constraints of each platform type.
+      </p>
+
+      <div class="figure">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/BalticServers%20data%20center.jpg" alt="A data center server room representing backend infrastructure that supports desktop, mobile, and embedded platforms alike">
+        <figcaption>Figure 6.1 — Server and cloud infrastructure often works alongside desktop, mobile, and embedded platforms to deliver connected services.</figcaption>
+      </div>
+
+      <h3>Operating System Responsibilities</h3>
+      <ol class="steps">
+        <li><strong>Process Management</strong> — scheduling and coordinating the execution of running programs.</li>
+        <li><strong>Memory Management</strong> — allocating and reclaiming system memory for applications.</li>
+        <li><strong>Device Management</strong> — controlling communication with hardware peripherals through drivers.</li>
+        <li><strong>File System Management</strong> — organizing and controlling access to stored data.</li>
+        <li><strong>Security &amp; Access Control</strong> — enforcing permissions between users, applications, and system resources.</li>
+      </ol>
+
+      <div class="callout callout--key">
+        <h4>Key Concept</h4>
+        <p>
+          Desktop operating systems are optimized for flexibility and multitasking; mobile
+          operating systems are optimized for battery efficiency and app sandboxing; embedded
+          operating systems (often called Real-Time Operating Systems, or RTOS) are optimized for
+          predictability and minimal resource footprint.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 7 ===================== -->
+    <section id="lesson-7" class="lesson">
+      <span class="lesson__eyebrow">Lesson 7</span>
+      <h2>Application Development Environments</h2>
+
+      <p>
+        Each platform type requires distinct tools, programming languages, and frameworks for
+        software development. Understanding these environments allows developers to choose the
+        right technology stack for their target platform.
+      </p>
+
+      <div class="figure">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Laptop%20computer.jpg" alt="A laptop computer commonly used as a development workstation for building applications">
+        <figcaption>Figure 7.1 — Development workstations, whether desktop or laptop, are used to write, test, and deploy software for all platform categories.</figcaption>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Platform</th><th>Common Languages</th><th>Example Development Tools</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Desktop</td>
+              <td>C#, Java, Python, C++</td>
+              <td>Visual Studio, IntelliJ IDEA, Qt Creator</td>
+            </tr>
+            <tr>
+              <td>Mobile</td>
+              <td>Kotlin, Swift, Dart (Flutter), JavaScript (React Native)</td>
+              <td>Android Studio, Xcode, Flutter SDK</td>
+            </tr>
+            <tr>
+              <td>Embedded</td>
+              <td>C, C++, Assembly, MicroPython</td>
+              <td>Arduino IDE, PlatformIO, Keil µVision</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--note">
+        <h4>Note for Students</h4>
+        <p>
+          This module focuses on conceptual foundations rather than hands-on programming.
+          Development tools are introduced here so students recognize them when they are used in
+          later, more technical subjects.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 8 ===================== -->
+    <section id="lesson-8" class="lesson">
+      <span class="lesson__eyebrow">Lesson 8</span>
+      <h2>Real-World Applications &amp; Case Studies</h2>
+
+      <p>
+        Understanding platform technologies becomes clearer through real-world scenarios where
+        desktop, mobile, and embedded systems work independently or together to deliver a
+        complete solution.
+      </p>
+
+      <h3>Case Study: A Smart Retail Store</h3>
+      <ul>
+        <li><strong>Desktop Platform:</strong> The back-office computer runs inventory management and accounting software.</li>
+        <li><strong>Mobile Platform:</strong> Store staff use a tablet application to check stock levels and process mobile payments.</li>
+        <li><strong>Embedded Platform:</strong> Electronic shelf labels and point-of-sale scanners run dedicated embedded firmware to read barcodes instantly.</li>
+      </ul>
+
+      <h3>Case Study: A Connected Healthcare Facility</h3>
+      <ul>
+        <li><strong>Desktop Platform:</strong> Hospital administrators use workstations for patient records and scheduling systems.</li>
+        <li><strong>Mobile Platform:</strong> Doctors and nurses use smartphones or tablets to access records at a patient's bedside.</li>
+        <li><strong>Embedded Platform:</strong> Vital-sign monitors and infusion pumps operate as dedicated embedded devices that report data to the network.</li>
+      </ul>
+
+      <div class="callout callout--example">
+        <h4>Reflection Activity</h4>
+        <p>
+          In groups, students should identify and diagram a system in their community (e.g., a
+          jeepney terminal, a school library, a barangay hall) that similarly integrates all three
+          platform categories.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 9 ===================== -->
+    <section id="lesson-9" class="lesson">
+      <span class="lesson__eyebrow">Lesson 9</span>
+      <h2>Summary &amp; Key Takeaways</h2>
+
+      <ul>
+        <li>A computing platform is composed of hardware architecture, an operating system, and a runtime environment that together support application execution.</li>
+        <li>Desktop platforms prioritize processing power and multitasking for productivity-oriented work.</li>
+        <li>Mobile platforms prioritize portability, touch interaction, and battery efficiency for personal, on-the-go use.</li>
+        <li>Embedded platforms prioritize reliability and dedicated function within resource-constrained environments.</li>
+        <li>Operating systems adapt their design goals depending on the constraints of the platform they manage.</li>
+        <li>Real-world systems frequently combine all three platform categories to deliver complete, connected solutions.</li>
+      </ul>
+
+      <div class="callout callout--key">
+        <h4>Key Concept</h4>
+        <p>
+          Mastery of platform technologies enables IT professionals to select, design, and
+          integrate the right combination of desktop, mobile, and embedded systems to solve
+          real-world problems efficiently.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LESSON 10 ===================== -->
+    <section id="lesson-10" class="lesson">
+      <span class="lesson__eyebrow">Lesson 10</span>
+      <h2>Review Questions</h2>
+
+      <ol class="review-list">
+        <li>Define a computing platform and identify its three core components.</li>
+        <li>Explain two key differences between desktop and mobile computing platforms.</li>
+        <li>Why are embedded systems described as "dedicated function" platforms? Provide two examples.</li>
+        <li>Compare how operating systems on desktop, mobile, and embedded platforms differ in their design priorities.</li>
+        <li>Describe a real-world system that integrates desktop, mobile, and embedded platforms together, and explain the role of each.</li>
+      </ol>
+
+      <a href="#overview" class="back-to-top">↑ Back to Course Overview</a>
+    </section>
+
+  </main>
+</div>
+
+<footer class="site-footer">
+  Platform Technologies — Module 1: Foundations of Desktop, Mobile &amp; Embedded Systems.
+  Prepared for classroom lecture and discussion purposes.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+/**
+ * Qualified GA Client ID Tracking
+ *
+ * Retrieves the Google Analytics Client ID from the GA cookie and sends
+ * it to Qualified via their identify API. This enables cross-system data
+ * comparison between GA and Qualified.
+ *
+ * Loaded via statics.json with defer. By the time this runs, both
+ * GA (gtag) and Qualified's synchronous head script should be available.
+ * If either is missing, we exit immediately.
+ *
+ * Client errors (gtag failure, identify failure) are sent to clerr
+ * when sfdcBase.disableClientErrors is not set.
+ */
+(function () {
+    'use strict';
+
+    var GA_TRACKING_ID = 'G-3VHBZ2DJWP';
+
+    function logClerr(msg, data, level) {
+        var sfdcBase = window.sfdcBase;
+        if (!sfdcBase || sfdcBase.disableClientErrors) return;
+        var endpoint = sfdcBase.clientErrorEndpoint;
+        if (!endpoint) return;
+        try {
+            navigator.sendBeacon(
+                endpoint,
+                JSON.stringify({
+                    msg: msg,
+                    logLevel: level || 'warn',
+                    data: Object.assign(
+                        { location: window.location.href, ua: navigator.userAgent },
+                        data || {}
+                    ),
+                })
+            );
+        } catch (e) {
+            // transport failure — swallow to avoid UX impact
+        }
+    }
+
+    function sendGAClientId() {
+        // Retrieve GA client ID and send to Qualified
+        try {
+            window.gtag('get', GA_TRACKING_ID, 'client_id', function (clientId) {
+                if (!clientId) {
+                    logClerr(
+                        'qualified_ga_tracking: client_id not returned',
+                        { trackingId: GA_TRACKING_ID },
+                        'warn'
+                    );
+                    return;
+                }
+
+                try {
+                    window.qualified('identify', {
+                        google_analytics_client_id: clientId
+                    });
+                } catch (e) {
+                    logClerr(
+                        'qualified_ga_tracking: identify call failed',
+                        {
+                            error: String(e && e.message ? e.message : e),
+                            clientIdPresent: true
+                        },
+                        'error'
+                    );
+                }
+            });
+        } catch (e) {
+            logClerr(
+                'qualified_ga_tracking: gtag get failed',
+                {
+                    error: String(e && e.message ? e.message : e),
+                    trackingId: GA_TRACKING_ID
+                },
+                'error'
+            );
+        }
+    }
+
+    function run() {
+        // Check if Qualified is available
+        if (typeof window.qualified !== 'function') return;
+
+        // Check if gtag is available immediately
+        if (typeof window.gtag === 'function') {
+            sendGAClientId();
+            return;
+        }
+
+        // gtag not ready yet - wait for it with polling (max 5 seconds)
+        var attempts = 0;
+        var maxAttempts = 50; // 50 * 100ms = 5 seconds
+        var pollInterval = setInterval(function () {
+            attempts++;
+
+            if (typeof window.gtag === 'function') {
+                clearInterval(pollInterval);
+                sendGAClientId();
+            } else if (attempts >= maxAttempts) {
+                clearInterval(pollInterval);
+                logClerr(
+                    'qualified_ga_tracking: gtag not available after timeout',
+                    { trackingId: GA_TRACKING_ID, attemptsMs: attempts * 100 },
+                    'warn'
+                );
+            }
+        }, 100);
+    }
+
+    // Wait for page load before starting, in case gtag loads with the page
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+    } else {
+        run();
+    }
+})();
